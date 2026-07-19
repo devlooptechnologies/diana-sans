@@ -1,0 +1,106 @@
+:root {
+  /* Colors - Palette */
+  --color-black-absolute: #0A0A0A;
+  --color-black-warm: #111111;
+  --color-ivory: #F6F2EB;
+  --color-gold: #B79A63;
+  --color-gray-warm: #A6A29B;
+  --color-white: #FFFFFF;
+  --color-divider: rgba(255, 255, 255, 0.06);
+  --color-divider-gold: rgba(183, 154, 99, 0.2);
+
+  /* Typography - Family */
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', -apple-system, Helvetica Neue, sans-serif;
+
+  /* Typography - Weights */
+  --weight-heading-light: 400;
+  --weight-heading-medium: 500;
+  --weight-heading-semibold: 600;
+  --weight-body-light: 300;
+  --weight-body-regular: 400;
+  --weight-body-medium: 500;
+
+  /* Typography - Sizes (Desktop - 1920px base) */
+  --text-hero-title: clamp(3.5rem, 6vw, 7.5rem);
+  --text-hero-subtitle: clamp(0.875rem, 1.1vw, 1.125rem);
+  --text-hero-description: clamp(0.9375rem, 1vw, 1.0625rem);
+  --text-section-overline: 0.75rem;
+  --text-section-title: clamp(2.25rem, 3.5vw, 4.5rem);
+  --text-section-subtitle: clamp(1.125rem, 1.4vw, 1.5rem);
+  --text-body: 0.9375rem;
+  --text-body-small: 0.8125rem;
+  --text-caption: 0.6875rem;
+  --text-stat: clamp(2.5rem, 3vw, 3.5rem);
+
+  /* Typography - Tracking */
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.08em;
+  --tracking-wider: 0.14em;
+  --tracking-widest: 0.22em;
+
+  /* Typography - Line Height */
+  --leading-none: 1;
+  --leading-tight: 1.1;
+  --leading-snug: 1.25;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.8;
+
+  /* Spacing (8px baseline grid) */
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-56: 56px;
+  --space-64: 64px;
+  --space-72: 72px;
+  --space-80: 80px;
+  --space-96: 96px;
+  --space-112: 112px;
+  --space-128: 128px;
+  --space-160: 160px;
+  --space-192: 192px;
+
+  /* Grid */
+  --grid-container: 1440px;
+  --grid-columns: 12;
+  --grid-gutter: 32px;
+  --grid-margin: 72px;
+  --grid-page-margin: clamp(24px, 3.75vw, 72px);
+
+  /* Layout */
+  --navbar-height: 72px;
+  --navbar-height-scrolled: 64px;
+
+  /* Radius */
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  /* Shadows */
+  --shadow-none: none;
+  --shadow-glow: 0 0 120px 60px rgba(183, 154, 99, 0.04);
+  --shadow-glow-strong: 0 0 200px 80px rgba(183, 154, 99, 0.06);
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-slow: 800ms;
+  --duration-slower: 1200ms;
+
+  /* Z-Index */
+  --z-below: -1;
+  --z-base: 0;
+  --z-above: 10;
+  --z-navbar: 100;
+  --z-overlay: 200;
+  --z-modal: 300;
+}

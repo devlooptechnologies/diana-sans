@@ -1,0 +1,715 @@
+/* ===========================
+   Espacios Section
+   =========================== */
+
+.espacios {
+  background-color: var(--color-black-absolute);
+}
+
+.espacios__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-72);
+  align-items: center;
+}
+
+.espacios__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+}
+
+.espacios__title {
+  max-width: 440px;
+}
+
+.espacios__text {
+  max-width: 400px;
+  color: var(--color-gray-warm);
+  line-height: var(--leading-relaxed);
+}
+
+.espacios__visual {
+  position: relative;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+}
+
+/* Architectural drawing */
+.arch-drawing {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arch-drawing__frame {
+  width: 70%;
+  height: 75%;
+  border: 1px solid var(--color-divider);
+  position: relative;
+}
+
+.arch-drawing__inner {
+  position: absolute;
+  top: 12%;
+  left: 12%;
+  width: 76%;
+  height: 76%;
+  border: 1px solid rgba(183, 154, 99, 0.1);
+}
+
+.arch-drawing__line--h {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-divider);
+}
+
+.arch-drawing__line--v {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background-color: var(--color-divider);
+}
+
+.arch-drawing__dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--color-gold);
+  opacity: 0.6;
+}
+
+/* Indicators Row */
+.espacios__indicators {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-32);
+  margin-top: var(--space-96);
+  padding-top: var(--space-48);
+  border-top: 1px solid var(--color-divider);
+}
+
+/* ===========================
+   Apartamentos Section
+   =========================== */
+
+.apartamentos {
+  background-color: var(--color-black-absolute);
+}
+
+.apartamentos__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: var(--space-96);
+}
+
+.apartamentos__gallery {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  gap: var(--grid-gutter);
+}
+
+.apartamento-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.apartamento-card__image {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  background-size: cover;
+  background-position: center;
+  transition: transform var(--duration-slower) var(--ease-out);
+}
+
+.apartamento-card:hover .apartamento-card__image {
+  transform: scale(1.03);
+}
+
+.apartamento-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(10, 10, 10, 0.85) 100%);
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.apartamento-card:hover .apartamento-card__overlay {
+  opacity: 1;
+}
+
+.apartamento-card__info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: var(--space-32);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  transform: translateY(16px);
+  opacity: 0;
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.apartamento-card:hover .apartamento-card__info {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.apartamento-card__name {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: var(--weight-heading-light);
+  color: var(--color-ivory);
+}
+
+.apartamento-card__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  font-size: var(--text-caption);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-gray-warm);
+}
+
+.apartamento-card__meta span {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.apartamento-card__meta span::before {
+  content: '';
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: var(--color-gold);
+}
+
+.apartamento-card__meta span:first-child::before {
+  display: none;
+}
+
+.apartamento-card__btn {
+  margin-top: var(--space-8);
+}
+
+/* Grid Sizes */
+.apartamento-card--large {
+  grid-column: span 7;
+  grid-row: span 2;
+}
+
+.apartamento-card--large .apartamento-card__image {
+  min-height: 680px;
+}
+
+.apartamento-card--medium {
+  grid-column: span 5;
+}
+
+.apartamento-card--medium .apartamento-card__image {
+  min-height: 328px;
+}
+
+.apartamento-card--small {
+  grid-column: span 5;
+}
+
+.apartamento-card--small .apartamento-card__image {
+  min-height: 328px;
+}
+
+/* ===========================
+   Experiencias Section
+   =========================== */
+
+.experiencias {
+  background-color: var(--color-black-absolute);
+}
+
+.experiencias__layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--space-96);
+  align-items: center;
+}
+
+.experiencias__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+}
+
+.experiencias__text {
+  max-width: 400px;
+  color: var(--color-gray-warm);
+  line-height: var(--leading-relaxed);
+}
+
+.experiencias__image {
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  position: relative;
+}
+
+.experiencias__image .img-placeholder {
+  transition: transform var(--duration-slower) var(--ease-out);
+}
+
+.experiencias:hover .experiencias__image .img-placeholder {
+  transform: scale(1.02);
+}
+
+/* ===========================
+   Ubicación Section
+   =========================== */
+
+.ubicacion {
+  background-color: var(--color-black-absolute);
+}
+
+.ubicacion__layout {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: var(--space-96);
+  align-items: start;
+}
+
+.ubicacion__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-40);
+}
+
+.ubicacion__text {
+  color: var(--color-gray-warm);
+  line-height: var(--leading-relaxed);
+  max-width: 380px;
+}
+
+.ubicacion__details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.ubicacion__detail {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  padding-bottom: var(--space-24);
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.ubicacion__detail-icon {
+  width: 32px;
+  height: 1px;
+  background-color: var(--color-gold);
+  flex-shrink: 0;
+}
+
+.ubicacion__detail-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.ubicacion__detail-label {
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gray-warm);
+}
+
+.ubicacion__detail-value {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: var(--weight-heading-light);
+  color: var(--color-ivory);
+}
+
+/* Map */
+.ubicacion__map {
+  aspect-ratio: 16/10;
+  background-color: var(--color-black-warm);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--color-divider);
+}
+
+.ubicacion__map-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-minimal {
+  width: 80%;
+  height: 70%;
+  position: relative;
+}
+
+/* Minimal map lines */
+.map-line {
+  position: absolute;
+  background-color: var(--color-divider);
+}
+
+.map-line--road-1 {
+  top: 30%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+}
+
+.map-line--road-2 {
+  top: 0;
+  left: 40%;
+  width: 1px;
+  height: 100%;
+}
+
+.map-line--road-3 {
+  top: 60%;
+  left: 10%;
+  width: 60%;
+  height: 1px;
+  transform: rotate(-15deg);
+}
+
+.map-point {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.map-point__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--color-gold);
+  background-color: transparent;
+}
+
+.map-point__dot--primary {
+  background-color: var(--color-gold);
+  box-shadow: 0 0 0 4px rgba(183, 154, 99, 0.15);
+}
+
+.map-point__label {
+  font-size: 0.5625rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gray-warm);
+  white-space: nowrap;
+}
+
+/* ===========================
+   Galería Section
+   =========================== */
+
+.galeria {
+  background-color: var(--color-black-absolute);
+}
+
+.galeria__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-16);
+}
+
+.galeria__item {
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.galeria__item:nth-child(2) {
+  aspect-ratio: 3/4;
+  transform: translateY(var(--space-48));
+}
+
+.galeria__item:nth-child(5) {
+  aspect-ratio: 3/4;
+  transform: translateY(calc(-1 * var(--space-48)));
+}
+
+.galeria__item .img-placeholder {
+  transition: transform var(--duration-slower) var(--ease-out);
+}
+
+.galeria__item:hover .img-placeholder {
+  transform: scale(1.04);
+}
+
+.galeria__item-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.galeria__item:hover .galeria__item-overlay {
+  opacity: 1;
+}
+
+.galeria__item-icon {
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+
+.galeria__item-icon::before,
+.galeria__item-icon::after {
+  content: '';
+  position: absolute;
+  background-color: var(--color-ivory);
+}
+
+.galeria__item-icon::before {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+}
+
+.galeria__item-icon::after {
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: 100%;
+}
+
+/* ===========================
+   Servicios Section
+   =========================== */
+
+.servicios {
+  background-color: var(--color-black-absolute);
+}
+
+.servicios__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+}
+
+.servicio-item {
+  padding: var(--space-48) var(--space-40);
+  border-bottom: 1px solid var(--color-divider);
+  display: flex;
+  align-items: center;
+  gap: var(--space-32);
+  transition: background-color var(--duration-normal) var(--ease-out);
+}
+
+.servicio-item:nth-child(odd) {
+  border-right: 1px solid var(--color-divider);
+  padding-right: var(--space-72);
+}
+
+.servicio-item:nth-child(even) {
+  padding-left: var(--space-72);
+}
+
+.servicio-item:hover {
+  background-color: rgba(183, 154, 99, 0.02);
+}
+
+.servicio-item__line {
+  width: 24px;
+  height: 1px;
+  background-color: var(--color-gold);
+  flex-shrink: 0;
+}
+
+.servicio-item__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.servicio-item__name {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: var(--weight-heading-light);
+  color: var(--color-ivory);
+}
+
+.servicio-item__desc {
+  font-size: var(--text-body-small);
+  color: var(--color-gray-warm);
+  line-height: var(--leading-normal);
+}
+
+/* ===========================
+   Opiniones Section
+   =========================== */
+
+.opiniones {
+  background-color: var(--color-black-absolute);
+}
+
+.opiniones__layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.opiniones__quotes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-128);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.opinione {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-32);
+}
+
+.opinione__mark {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  color: var(--color-gold);
+  line-height: 1;
+  opacity: 0.4;
+}
+
+.opinione__text {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 1.8vw, 1.75rem);
+  font-weight: var(--weight-heading-light);
+  line-height: var(--leading-snug);
+  color: var(--color-ivory);
+  font-style: italic;
+}
+
+.opinione__author {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.opinione__author-name {
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.opinione__author-detail {
+  font-size: var(--text-caption);
+  color: var(--color-gray-warm);
+}
+
+.opiniones__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  margin-top: var(--space-80);
+}
+
+.opiniones__nav-dot {
+  width: 32px;
+  height: 1px;
+  background-color: var(--color-divider);
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.opiniones__nav-dot.active {
+  background-color: var(--color-gold);
+}
+
+.opiniones__nav-dot:hover {
+  background-color: var(--color-gray-warm);
+}
+
+/* ===========================
+   CTA Final Section
+   =========================== */
+
+.cta-final {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-black-absolute);
+  overflow: hidden;
+}
+
+.cta-final__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.cta-final__bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 50% at 50% 50%,
+    rgba(183, 154, 99, 0.03) 0%,
+    transparent 70%
+  );
+}
+
+.cta-final__content {
+  position: relative;
+  z-index: var(--z-base);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-56);
+  max-width: 800px;
+  padding: 0 var(--grid-page-margin);
+}
+
+.cta-final__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 4.5vw, 5rem);
+  font-weight: var(--weight-heading-light);
+  line-height: var(--leading-tight);
+  color: var(--color-ivory);
+}
+
+.cta-final__title span {
+  display: block;
+  color: var(--color-gold);
+  font-style: italic;
+}

@@ -1,0 +1,254 @@
+/* ===========================
+   Responsive - Tablet (≤1024px)
+   =========================== */
+
+@media (max-width: 1024px) {
+  :root {
+    --grid-page-margin: 40px;
+    --grid-gutter: 24px;
+  }
+
+  .section {
+    padding-top: var(--space-128);
+    padding-bottom: var(--space-128);
+  }
+
+  /* Navbar */
+  .navbar__menu {
+    display: none;
+  }
+
+  .navbar__toggle {
+    display: flex;
+  }
+
+  .navbar__cta {
+    display: none;
+  }
+
+  /* Hero */
+  .hero__content {
+    max-width: 700px;
+  }
+
+  /* Espacios */
+  .espacios__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-64);
+  }
+
+  .espacios__visual {
+    aspect-ratio: 16/9;
+  }
+
+  .espacios__indicators {
+    gap: var(--space-24);
+  }
+
+  /* Apartamentos */
+  .apartamentos__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-32);
+  }
+
+  .apartamento-card--large {
+    grid-column: span 12;
+    grid-row: span 1;
+  }
+
+  .apartamento-card--large .apartamento-card__image {
+    min-height: 400px;
+  }
+
+  .apartamento-card--medium,
+  .apartamento-card--small {
+    grid-column: span 6;
+  }
+
+  /* Experiencias */
+  .experiencias__layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-64);
+  }
+
+  /* Ubicación */
+  .ubicacion__layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-64);
+  }
+
+  /* Galería */
+  .galeria__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .galeria__item:nth-child(2),
+  .galeria__item:nth-child(5) {
+    transform: none;
+  }
+
+  /* Servicios */
+  .servicios__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .servicio-item:nth-child(odd) {
+    border-right: none;
+    padding-right: var(--space-40);
+  }
+
+  .servicio-item:nth-child(even) {
+    padding-left: var(--space-40);
+  }
+
+  /* Footer */
+  .footer__top {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-48);
+  }
+}
+
+/* ===========================
+   Responsive - Mobile (≤768px)
+   =========================== */
+
+@media (max-width: 768px) {
+  :root {
+    --grid-page-margin: 24px;
+    --grid-gutter: 16px;
+  }
+
+  .section {
+    padding-top: var(--space-96);
+    padding-bottom: var(--space-96);
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 100svh;
+  }
+
+  .hero__title {
+    font-size: clamp(2.5rem, 10vw, 3.5rem);
+  }
+
+  .hero__description {
+    max-width: 100%;
+  }
+
+  .hero__scroll {
+    bottom: var(--space-32);
+  }
+
+  /* Espacios */
+  .espacios__indicators {
+    grid-template-columns: 1fr;
+    gap: var(--space-40);
+  }
+
+  .indicator {
+    align-items: flex-start;
+  }
+
+  /* Apartamentos */
+  .apartamento-card--medium,
+  .apartamento-card--small {
+    grid-column: span 12;
+  }
+
+  .apartamento-card--medium .apartamento-card__image,
+  .apartamento-card--small .apartamento-card__image {
+    min-height: 280px;
+  }
+
+  .apartamento-card__info {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Galería */
+  .galeria__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-16);
+  }
+
+  .galeria__item {
+    aspect-ratio: 16/10;
+  }
+
+  /* Servicios */
+  .servicio-item {
+    padding: var(--space-32) 0;
+  }
+
+  .servicio-item:nth-child(odd) {
+    padding-right: 0;
+    border-right: none;
+  }
+
+  .servicio-item:nth-child(even) {
+    padding-left: 0;
+  }
+
+  /* Opiniones */
+  .opiniones__quotes {
+    gap: var(--space-80);
+  }
+
+  /* CTA Final */
+  .cta-final {
+    min-height: 500px;
+  }
+
+  .cta-final__title {
+    font-size: clamp(2rem, 7vw, 3rem);
+  }
+
+  /* Footer */
+  .footer__top {
+    grid-template-columns: 1fr;
+    gap: var(--space-40);
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    gap: var(--space-16);
+    text-align: center;
+  }
+
+  .footer__legal {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-16);
+  }
+
+  /* Animations */
+  [data-reveal] {
+    transform: translateY(16px);
+  }
+}
+
+/* ===========================
+   Responsive - Small Mobile (≤480px)
+   =========================== */
+
+@media (max-width: 480px) {
+  :root {
+    --grid-page-margin: 20px;
+  }
+
+  .hero__title {
+    font-size: clamp(2rem, 8vw, 2.75rem);
+  }
+
+  .btn--primary,
+  .btn--white {
+    padding: var(--space-12) var(--space-32);
+    font-size: 0.5625rem;
+  }
+
+  .heading-section {
+    font-size: clamp(1.75rem, 6vw, 2.25rem);
+  }
+}
