@@ -142,6 +142,10 @@
     padding-bottom: var(--space-96);
   }
 
+  .section--espacios {
+    padding-top: var(--space-80);
+  }
+
   /* Hero */
   .hero {
     min-height: 100svh;

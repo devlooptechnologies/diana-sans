@@ -1,68 +1,178 @@
-/* Typography Base */
+/* ============================================================
+   DIANA & SANS — TYPOGRAPHY SYSTEM
+   ============================================================
+   
+   Scale:
+     Display  — Hero headlines
+     H1       — Section hero
+     H2       — Section titles
+     H3       — Subsections, card names
+     H4       — Small headings
+     Eyebrow  — Section overlines
+     Body     — Paragraphs
+     Body Small — Captions in content
+     Caption  — Labels, meta, navigation
+     CTA      — Button text
+     Stat     — Number indicators
+   
+   ============================================================ */
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: var(--weight-heading-light);
-  line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-tight);
 }
 
-.heading-hero {
-  font-size: var(--text-hero-title);
+/* --- Display --- */
+.display {
+  font-size: var(--text-display);
   font-weight: var(--weight-heading-light);
-  line-height: var(--leading-none);
-  letter-spacing: var(--tracking-tight);
+  line-height: var(--text-display-lh);
+  letter-spacing: var(--text-display-tracking);
+}
+
+/* --- H1 --- */
+.h1 {
+  font-size: var(--text-h1);
+  font-weight: var(--weight-heading-light);
+  line-height: var(--text-h1-lh);
+  letter-spacing: var(--text-h1-tracking);
+}
+
+/* --- H2 --- */
+.h2 {
+  font-size: var(--text-h2);
+  font-weight: var(--weight-heading-light);
+  line-height: var(--text-h2-lh);
+  letter-spacing: var(--text-h2-tracking);
+}
+
+/* --- H3 --- */
+.h3 {
+  font-size: var(--text-h3);
+  font-weight: var(--weight-heading-medium);
+  line-height: var(--text-h3-lh);
+  letter-spacing: var(--text-h3-tracking);
+}
+
+/* --- H4 --- */
+.h4 {
+  font-size: var(--text-h4);
+  font-weight: var(--weight-heading-medium);
+  line-height: var(--text-h4-lh);
+  letter-spacing: var(--text-h4-tracking);
+}
+
+/* --- Eyebrow --- */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-eyebrow);
+  font-weight: var(--weight-body-medium);
+  line-height: var(--text-eyebrow-lh);
+  letter-spacing: var(--text-eyebrow-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-accent);
+}
+
+/* --- Body --- */
+.body {
+  font-size: var(--text-body);
+  font-weight: var(--weight-body-light);
+  line-height: var(--text-body-lh);
+  letter-spacing: var(--text-body-tracking);
+  color: var(--color-text-secondary);
+}
+
+/* --- Body Small --- */
+.body-sm {
+  font-size: var(--text-body-small);
+  font-weight: var(--weight-body-light);
+  line-height: var(--text-body-small-lh);
+  letter-spacing: var(--text-body-small-tracking);
+  color: var(--color-text-secondary);
+}
+
+/* --- Caption --- */
+.caption {
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-regular);
+  line-height: var(--text-caption-lh);
+  letter-spacing: var(--text-caption-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+/* --- CTA --- */
+.cta-text {
+  font-family: var(--font-body);
+  font-size: var(--text-cta);
+  font-weight: var(--weight-body-medium);
+  line-height: var(--text-cta-lh);
+  letter-spacing: var(--text-cta-tracking);
+  text-transform: uppercase;
+}
+
+/* --- Stat --- */
+.stat {
+  font-family: var(--font-heading);
+  font-size: var(--text-stat);
+  font-weight: var(--weight-heading-light);
+  line-height: var(--text-stat-lh);
+  letter-spacing: var(--text-stat-tracking);
+}
+
+/* ============================================================
+   LEGACY CLASSES (backward compatibility)
+   ============================================================ */
+
+.heading-hero {
+  font-size: var(--text-display);
+  font-weight: var(--weight-heading-light);
+  line-height: var(--text-display-lh);
+  letter-spacing: var(--text-display-tracking);
 }
 
 .heading-section {
-  font-size: var(--text-section-title);
+  font-size: var(--text-h2);
   font-weight: var(--weight-heading-light);
-  line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-tight);
+  line-height: var(--text-h2-lh);
+  letter-spacing: var(--text-h2-tracking);
 }
 
 .heading-subsection {
-  font-size: var(--text-section-subtitle);
+  font-size: var(--text-h4);
   font-weight: var(--weight-heading-medium);
-  line-height: var(--leading-snug);
+  line-height: var(--text-h4-lh);
 }
 
 .overline {
   font-family: var(--font-body);
-  font-size: var(--text-section-overline);
+  font-size: var(--text-eyebrow);
   font-weight: var(--weight-body-medium);
-  letter-spacing: var(--tracking-widest);
+  letter-spacing: var(--text-eyebrow-tracking);
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--color-text-accent);
 }
 
 .body-text {
   font-size: var(--text-body);
   font-weight: var(--weight-body-light);
-  line-height: var(--leading-relaxed);
-  letter-spacing: var(--tracking-normal);
-  color: var(--color-gray-warm);
+  line-height: var(--text-body-lh);
+  letter-spacing: var(--text-body-tracking);
+  color: var(--color-text-secondary);
 }
 
 .body-small {
   font-size: var(--text-body-small);
   font-weight: var(--weight-body-light);
-  line-height: var(--leading-normal);
-  color: var(--color-gray-warm);
-}
-
-.caption {
-  font-size: var(--text-caption);
-  font-weight: var(--weight-body-regular);
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-  color: var(--color-gray-warm);
+  line-height: var(--text-body-small-lh);
+  color: var(--color-text-secondary);
 }
 
 .gold-text {
-  color: var(--color-gold);
+  color: var(--color-text-accent);
 }
 
 .ivory-text {
-  color: var(--color-ivory);
+  color: var(--color-text-primary);
 }
