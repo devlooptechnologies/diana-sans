@@ -26,13 +26,14 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='24' font-size='24' font-family='serif' fill='%23B79A63'>D</text></svg>">
 
   <style>
-    /* Page Load Animation */
-    body:not(.loaded) .hero__content > * {
+    /* Pre-load state — Hero elements invisible */
+    [data-hero] {
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(18px);
+      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 1s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    /* Navbar entrance */
     body:not(.loaded) .navbar {
       opacity: 0;
       transform: translateY(-10px);
@@ -92,20 +93,33 @@
   <section class="hero" id="hero">
     <div class="hero__bg">
       <div class="hero__glow"></div>
+      <div class="hero__arch"></div>
     </div>
 
     <div class="hero__content">
-      <span class="overline hero__overline" data-reveal>Cortesía · Exclusividad · Calma</span>
-      <h1 class="heading-hero hero__title" data-reveal="delay-1">Diana & Sans</h1>
-      <p class="hero__subtitle" data-reveal="delay-2">Apartamentos Boutique</p>
-      <p class="hero__description body-text" data-reveal="detail-3">
-        Una experiencia donde el lujo se siente en cada silencio,
-        en cada proporción, en cada momento diseñado para usted.
+      <!-- Brand as signature/seal -->
+      <div class="hero__signature" data-hero="0">Hospitalidad Boutique</div>
+
+      <!-- Main title — Hospitalidad -->
+      <h1 class="heading-hero hero__title" data-hero="1">Hospitalidad</h1>
+
+      <!-- Boutique — offset editorial -->
+      <span class="hero__boutique" data-hero="2">Boutique</span>
+
+      <!-- Subtitle — extreme tracking -->
+      <p class="hero__subtitle" data-hero="3">Experiencias Memorables</p>
+
+      <!-- Description — 110px breathing room from title -->
+      <p class="hero__description body-text" data-hero="4">
+        Un lugar donde el silencio tiene peso, la luz tiene ritmo
+        y cada proporción ha sido pensada para usted.
       </p>
-      <div class="hero__cta" data-reveal="delay-4">
-        <a href="#apartamentos" class="btn btn--primary">
-          Descubrir
-          <span class="btn__arrow"></span>
+
+      <!-- CTA — Editorial, no borde -->
+      <div class="hero__cta" data-hero="5">
+        <a href="#apartamentos" class="btn--editorial">
+          <span class="btn--editorial__line"></span>
+          <span>Planificar mi estadía</span>
         </a>
       </div>
     </div>
@@ -122,44 +136,74 @@
   <!-- ======================== -->
   <section class="section espacios" id="espacios">
     <div class="container">
-      <div class="espacios__grid">
-        <!-- Left: Content -->
-        <div class="espacios__content" data-reveal>
-          <span class="overline">Nuestros Espacios</span>
-          <h2 class="heading-section espacios__title">
-            Donde cada detalle<br>
-            <span class="gold-text">es intencional</span>
-          </h2>
-          <p class="body-text espacios__text">
-            Seis apartamentos boutique diseñados con una filosofía de edición.
-            Cada espacio ha sido concebido no solo para habitar, sino para sentir.
-            Líneas puras, materiales nobles y una luz que se transforma a lo largo del día.
-          </p>
-          <div>
-            <a href="#apartamentos" class="btn btn--ghost">
-              Ver apartamentos
-              <span class="btn__arrow"></span>
-            </a>
-          </div>
-        </div>
+      <!-- Editorial Divider -->
+      <div class="espacios__divider" data-reveal>
+        <hr class="divider divider--gold">
+      </div>
 
-        <!-- Right: Architectural Drawing -->
-        <div class="espacios__visual" data-reveal="delay-2">
-          <div class="arch-drawing">
-            <div class="arch-drawing__frame">
-              <div class="arch-drawing__inner">
-                <div class="arch-drawing__line--h" style="top: 50%;"></div>
-                <div class="arch-drawing__line--v" style="left: 35%;"></div>
-                <div class="arch-drawing__line--v" style="left: 65%;"></div>
-                <div class="arch-drawing__line--h" style="top: 25%;"></div>
-                <div class="arch-drawing__line--h" style="top: 75%;"></div>
-                <div class="arch-drawing__dot" style="top: 50%; left: 35%;"></div>
-                <div class="arch-drawing__dot" style="top: 50%; left: 65%;"></div>
-                <div class="arch-drawing__dot" style="top: 25%; left: 50%;"></div>
-              </div>
+      <!-- Overline -->
+      <div class="espacios__overline" data-reveal>
+        <span class="overline">Nuestros Espacios</span>
+      </div>
+
+      <!-- Giant editorial phrase -->
+      <h2 class="espacios__headline" data-reveal="delay-1">
+        Donde la arquitectura<br>
+        <em>se hace silencio</em>
+      </h2>
+
+      <!-- Breathing space -->
+      <div class="espacios__breath"></div>
+
+      <!-- Two apartments — editorial layout -->
+      <div class="espacios__editorial">
+        <div class="espacios__apt" data-reveal>
+          <div class="espacios__apt-image">
+            <div class="img-placeholder img-placeholder--architectural" style="background: linear-gradient(160deg, #111 0%, #0e0e0e 40%, #131210 100%);"></div>
+          </div>
+          <div class="espacios__apt-info">
+            <span class="tag tag--gold">Premium</span>
+            <h3 class="espacios__apt-name">Suite Presidential</h3>
+            <p class="espacios__apt-desc body-small">
+              Cien veinte metros de silencio absoluto.
+              Materiales nobles, luz cenital y una terraza
+              que mira Cartago desde arriba.
+            </p>
+            <div class="espacios__apt-meta">
+              <span>120 m²</span>
+              <span>·</span>
+              <span>4 Huéspedes</span>
             </div>
           </div>
         </div>
+
+        <div class="espacios__apt espacios__apt--offset" data-reveal="delay-2">
+          <div class="espacios__apt-image">
+            <div class="img-placeholder img-placeholder--architectural" style="background: linear-gradient(190deg, #0e0e0e 0%, #111 40%, #121210 100%);"></div>
+          </div>
+          <div class="espacios__apt-info">
+            <h3 class="espacios__apt-name">Loft Terraza</h3>
+            <p class="espacios__apt-desc body-small">
+              Ochenta y cinco metros pensados para la calma.
+              Un loft abierto donde el cielo es el techo
+              y la luz es el único mueble que importa.
+            </p>
+            <div class="espacios__apt-meta">
+              <span>85 m²</span>
+              <span>·</span>
+              <span>2 Huéspedes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tiny text -->
+      <div class="espacios__tiny" data-reveal>
+        <p class="body-small" style="max-width: 360px; opacity: 0.5;">
+          Cada uno de nuestros seis apartamentos ha sido diseñado
+          como una pausa arquitectónica. Sin excesos.
+          Solo proporción, materia y luz.
+        </p>
       </div>
 
       <!-- Indicators -->
@@ -170,7 +214,7 @@
         </div>
         <div class="indicator">
           <span class="indicator__number">400</span>
-          <span class="indicator__label">WiFi Premium</span>
+          <span class="indicator__label">Mbps WiFi</span>
         </div>
         <div class="indicator">
           <span class="indicator__number">24h</span>

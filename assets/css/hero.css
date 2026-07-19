@@ -13,23 +13,18 @@
   overflow: hidden;
 }
 
-/* Background Textures */
+/* ===========================
+   Background Textures + Grain
+   =========================== */
+
 .hero__bg {
   position: absolute;
   inset: 0;
   z-index: var(--z-below);
 }
 
+/* Subtle horizontal scan lines */
 .hero__bg::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% 45%, rgba(183, 154, 99, 0.04) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 40% at 50% 50%, rgba(183, 154, 99, 0.02) 0%, transparent 60%);
-}
-
-.hero__bg::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -38,31 +33,129 @@
       0deg,
       transparent,
       transparent 1px,
-      rgba(255, 255, 255, 0.008) 1px,
-      rgba(255, 255, 255, 0.008) 2px
+      rgba(255, 255, 255, 0.006) 1px,
+      rgba(255, 255, 255, 0.006) 2px
     );
-  opacity: 0.5;
+  opacity: 0.4;
+  pointer-events: none;
 }
 
-/* Warm glow */
+/* Film grain texture */
+.hero__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.6;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* ===========================
+   Organic Glow — lamp on wall
+   =========================== */
+
 .hero__glow {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px;
+  height: 700px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero__glow::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  height: 180px;
+  background: radial-gradient(
+    ellipse at 50% 30%,
+    rgba(183, 154, 99, 0.06) 0%,
+    rgba(183, 154, 99, 0.03) 25%,
+    rgba(183, 154, 99, 0.01) 50%,
+    transparent 75%
+  );
+  border-radius: 50%;
+  filter: blur(40px);
+}
+
+.hero__glow::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 500px;
+  background:
+    radial-gradient(ellipse 55% 45% at 50% 20%, rgba(183, 154, 99, 0.025) 0%, transparent 70%),
+    radial-gradient(ellipse 35% 60% at 50% 35%, rgba(183, 154, 99, 0.015) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 30% at 50% 60%, rgba(183, 154, 99, 0.008) 0%, transparent 50%);
+  filter: blur(80px);
+}
+
+.hero.loaded .hero__glow {
+  opacity: 1;
+}
+
+/* ===========================
+   Architectural Focal Point — arch at 3-4%
+   =========================== */
+
+.hero__arch {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 800px;
-  height: 600px;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(183, 154, 99, 0.035) 0%,
-    rgba(183, 154, 99, 0.015) 30%,
-    transparent 70%
-  );
-  filter: blur(60px);
+  width: 340px;
+  height: 480px;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 2.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
 }
 
-/* Content */
+.hero.loaded .hero__arch {
+  opacity: 1;
+}
+
+/* Outer arch */
+.hero__arch::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 170px 170px 0 0;
+}
+
+/* Inner arch */
+.hero__arch::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 76%;
+  height: 88%;
+  border: 1px solid rgba(183, 154, 99, 0.025);
+  border-radius: 130px 130px 0 0;
+}
+
+/* ===========================
+   Content
+   =========================== */
+
 .hero__content {
   position: relative;
   z-index: var(--z-base);
@@ -74,37 +167,135 @@
   padding: 0 var(--grid-page-margin);
 }
 
-.hero__overline {
-  margin-bottom: var(--space-40);
-}
+/* ===========================
+   Brand Signature
+   =========================== */
 
-.hero__title {
-  margin-bottom: var(--space-40);
-}
-
-.hero__subtitle {
+.hero__signature {
   font-family: var(--font-heading);
-  font-size: var(--text-hero-subtitle);
+  font-size: 0.6875rem;
   font-weight: var(--weight-heading-medium);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
   color: var(--color-gold);
-  margin-bottom: var(--space-40);
+  opacity: 0.5;
+  margin-bottom: var(--space-56);
+  padding-bottom: var(--space-24);
+  position: relative;
 }
 
+.hero__signature::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 1px;
+  background-color: var(--color-gold);
+  opacity: 0.3;
+}
+
+/* ===========================
+   Title — Hospitalidad
+   =========================== */
+
+.hero__title {
+  margin-bottom: var(--space-8);
+}
+
+/* ===========================
+   Boutique — offset editorial
+   =========================== */
+
+.hero__boutique {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3.75rem);
+  font-weight: var(--weight-heading-light);
+  font-style: italic;
+  color: var(--color-ivory);
+  margin-bottom: var(--space-48);
+  margin-left: clamp(80px, 12vw, 220px);
+  opacity: 0.85;
+}
+
+/* ===========================
+   Subtitle — extreme tracking
+   =========================== */
+
+.hero__subtitle {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 0;
+  opacity: 0.7;
+}
+
+/* ===========================
+   Description — breathing room
+   =========================== */
+
 .hero__description {
-  max-width: 480px;
-  margin-bottom: var(--space-56);
+  max-width: 440px;
+  margin-top: 110px;
+  margin-bottom: 60px;
   color: var(--color-gray-warm);
   font-size: var(--text-hero-description);
   line-height: var(--leading-relaxed);
 }
 
+/* ===========================
+   CTA — Editorial Button
+   =========================== */
+
 .hero__cta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: var(--space-128);
 }
 
-/* Divider line above scroll */
+.btn--editorial {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-24);
+  color: var(--color-ivory);
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  padding: 0;
+  transition: color var(--duration-normal) var(--ease-out);
+}
+
+.btn--editorial__line {
+  width: 64px;
+  height: 1px;
+  background-color: var(--color-ivory);
+  opacity: 0.4;
+  transition: width var(--duration-normal) var(--ease-out),
+              opacity var(--duration-normal) var(--ease-out);
+}
+
+.btn--editorial:hover {
+  color: var(--color-gold);
+}
+
+.btn--editorial:hover .btn--editorial__line {
+  width: 96px;
+  opacity: 0.8;
+  background-color: var(--color-gold);
+}
+
+/* ===========================
+   Scroll Indicator
+   =========================== */
+
 .hero__line {
   width: 1px;
   height: 48px;
@@ -112,7 +303,6 @@
   margin-bottom: var(--space-24);
 }
 
-/* Scroll Indicator */
 .hero__scroll {
   display: flex;
   flex-direction: column;
@@ -147,7 +337,7 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(180deg, transparent, var(--color-gold));
-  animation: scrollPulse 2s ease-in-out infinite;
+  animation: scrollPulse 2.4s ease-in-out infinite;
 }
 
 @keyframes scrollPulse {

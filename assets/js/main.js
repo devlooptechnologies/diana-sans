@@ -10,7 +10,6 @@
   // Navbar Scroll Behavior
   // ===========================
   const navbar = document.querySelector('.navbar');
-  let lastScroll = 0;
 
   function handleNavbarScroll() {
     const currentScroll = window.pageYOffset;
@@ -20,8 +19,6 @@
     } else {
       navbar.classList.remove('navbar--scrolled');
     }
-
-    lastScroll = currentScroll;
   }
 
   window.addEventListener('scroll', handleNavbarScroll, { passive: true });
@@ -39,7 +36,6 @@
     mobileMenu.classList.toggle('active', menuOpen);
     document.body.style.overflow = menuOpen ? 'hidden' : '';
 
-    // Animate toggle
     const spans = toggle.querySelectorAll('span');
     if (menuOpen) {
       spans[0].style.transform = 'rotate(45deg) translate(4px, 4px)';
@@ -65,16 +61,48 @@
   });
 
   // ===========================
+  // Hero Entrance — Life-like Sequence
+  // ===========================
+  function heroEntrance() {
+    var hero = document.querySelector('.hero');
+    var elements = document.querySelectorAll('[data-hero]');
+
+    if (!hero || elements.length === 0) return;
+
+    // Mark hero as loaded — triggers CSS opacity transitions for glow + arch
+    hero.classList.add('loaded');
+
+    // Stagger timings: organic, not mechanical
+    // 0: signature    — 600ms
+    // 1: title        — 1100ms
+    // 2: boutique     — 1800ms (300ms after title settles)
+    // 3: subtitle     — 2300ms
+    // 4: description  — 3000ms (110px breathing room = visual pause)
+    // 5: cta          — 3600ms (60px gap = final invitation)
+    var timings = [600, 1100, 1800, 2300, 3000, 3600];
+
+    elements.forEach(function(el) {
+      var index = parseInt(el.getAttribute('data-hero'), 10);
+      var delay = timings[index] || 2000;
+
+      setTimeout(function() {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, delay);
+    });
+  }
+
+  // ===========================
   // Scroll Reveal Animations
   // ===========================
-  const revealElements = document.querySelectorAll('[data-reveal]');
+  var revealElements = document.querySelectorAll('[data-reveal]');
 
   function checkReveal() {
-    const windowHeight = window.innerHeight;
-    const triggerPoint = windowHeight * 0.85;
+    var windowHeight = window.innerHeight;
+    var triggerPoint = windowHeight * 0.85;
 
     revealElements.forEach(function(el) {
-      const elementTop = el.getBoundingClientRect().top;
+      var elementTop = el.getBoundingClientRect().top;
 
       if (elementTop < triggerPoint) {
         el.classList.add('revealed');
@@ -88,15 +116,15 @@
   // ===========================
   // Smooth Scroll for Anchors
   // ===========================
-  const anchors = document.querySelectorAll('a[href^="#"]');
+  var anchors = document.querySelectorAll('a[href^="#"]');
 
   anchors.forEach(function(anchor) {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
+      var target = document.querySelector(this.getAttribute('href'));
 
       if (target) {
-        const offsetTop = target.offsetTop - 72;
+        var offsetTop = target.offsetTop - 72;
         window.scrollTo({
           top: offsetTop,
           behavior: 'smooth'
@@ -108,9 +136,9 @@
   // ===========================
   // Opiniones Carousel
   // ===========================
-  const quotes = document.querySelectorAll('.opinione');
-  const dots = document.querySelectorAll('.opiniones__nav-dot');
-  let currentQuote = 0;
+  var quotes = document.querySelectorAll('.opinione');
+  var dots = document.querySelectorAll('.opiniones__nav-dot');
+  var currentQuote = 0;
 
   function showQuote(index) {
     quotes.forEach(function(q, i) {
@@ -129,12 +157,10 @@
     });
   });
 
-  // Initialize
   if (quotes.length > 0) {
     showQuote(0);
   }
 
-  // Auto-advance
   if (quotes.length > 1) {
     setInterval(function() {
       currentQuote = (currentQuote + 1) % quotes.length;
@@ -145,48 +171,22 @@
   // ===========================
   // Parallax on Hero Glow
   // ===========================
-  const heroGlow = document.querySelector('.hero__glow');
+  var heroGlow = document.querySelector('.hero__glow');
 
   if (heroGlow) {
     window.addEventListener('scroll', function() {
-      const scrolled = window.pageYOffset;
-      const rate = scrolled * 0.3;
+      var scrolled = window.pageYOffset;
+      var rate = scrolled * 0.2;
       heroGlow.style.transform = 'translate(-50%, calc(-50% + ' + rate + 'px))';
     }, { passive: true });
   }
 
   // ===========================
-  // Cursor Glow Effect (Desktop)
-  // ===========================
-  if (window.innerWidth > 1024) {
-    const hero = document.querySelector('.hero');
-
-    if (hero) {
-      hero.addEventListener('mousemove', function(e) {
-        const rect = hero.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        hero.style.setProperty('--mouse-x', x + 'px');
-        hero.style.setProperty('--mouse-y', y + 'px');
-      });
-    }
-  }
-
-  // ===========================
-  // Page Load Animation
+  // Initialize on Load
   // ===========================
   window.addEventListener('load', function() {
     document.body.classList.add('loaded');
-
-    // Stagger hero content
-    const heroContent = document.querySelectorAll('.hero__content > *');
-    heroContent.forEach(function(el, i) {
-      setTimeout(function() {
-        el.style.opacity = '1';
-        el.style.transform = 'translateY(0)';
-      }, 200 + (i * 120));
-    });
+    heroEntrance();
   });
 
 })();
