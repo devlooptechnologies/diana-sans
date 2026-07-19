@@ -9,12 +9,14 @@
   min-height: 700px;
   display: flex;
   align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
 
 /* ===========================
-   Background Textures + Grain
+   Background — 3 Layers
+   Layer 1: Fine grain
+   Layer 2: Warm glow
+   Layer 3: Paper texture (almost invisible)
    =========================== */
 
 .hero__bg {
@@ -23,83 +25,81 @@
   z-index: var(--z-below);
 }
 
-/* Subtle horizontal scan lines */
+/* Layer 3: Paper texture — barely perceptible depth */
 .hero__bg::before {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 1px,
-      rgba(255, 255, 255, 0.006) 1px,
-      rgba(255, 255, 255, 0.006) 2px
-    );
-  opacity: 0.4;
+    repeating-conic-gradient(
+      rgba(255, 255, 255, 0.003) 0% 25%,
+      transparent 0% 50%
+    ) 0 0 / 4px 4px;
+  opacity: 0.8;
   pointer-events: none;
 }
 
-/* Film grain texture */
+/* Layer 1: Film grain — fine, cinematic */
 .hero__bg::after {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
-  opacity: 0.6;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  opacity: 0.5;
   pointer-events: none;
   mix-blend-mode: overlay;
 }
 
 /* ===========================
-   Organic Glow — lamp on wall
+   Organic Glow — Layer 2
+   Asymmetric, warm, organic
    =========================== */
 
 .hero__glow {
   position: absolute;
-  top: 42%;
-  left: 50%;
+  top: 38%;
+  left: 46%;
   transform: translate(-50%, -50%);
-  width: 900px;
-  height: 700px;
+  width: 1000px;
+  height: 750px;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 2.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Core hotspot — tighter, brighter */
 .hero__glow::before {
   content: '';
   position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 260px;
-  height: 180px;
+  top: 15%;
+  left: 48%;
+  width: 280px;
+  height: 200px;
   background: radial-gradient(
-    ellipse at 50% 30%,
-    rgba(183, 154, 99, 0.06) 0%,
-    rgba(183, 154, 99, 0.03) 25%,
-    rgba(183, 154, 99, 0.01) 50%,
-    transparent 75%
+    ellipse at 48% 30%,
+    rgba(183, 154, 99, 0.055) 0%,
+    rgba(183, 154, 99, 0.025) 30%,
+    rgba(183, 154, 99, 0.008) 55%,
+    transparent 80%
   );
-  border-radius: 50%;
-  filter: blur(40px);
+  border-radius: 45% 55% 50% 50%;
+  filter: blur(45px);
 }
 
+/* Outer spill — wide, asymmetric drift */
 .hero__glow::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 600px;
-  height: 500px;
+  top: 5%;
+  left: 35%;
+  width: 650px;
+  height: 550px;
   background:
-    radial-gradient(ellipse 55% 45% at 50% 20%, rgba(183, 154, 99, 0.025) 0%, transparent 70%),
-    radial-gradient(ellipse 35% 60% at 50% 35%, rgba(183, 154, 99, 0.015) 0%, transparent 60%),
-    radial-gradient(ellipse 80% 30% at 50% 60%, rgba(183, 154, 99, 0.008) 0%, transparent 50%);
-  filter: blur(80px);
+    radial-gradient(ellipse 50% 40% at 45% 20%, rgba(183, 154, 99, 0.022) 0%, transparent 65%),
+    radial-gradient(ellipse 30% 55% at 55% 40%, rgba(183, 154, 99, 0.012) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 25% at 40% 65%, rgba(183, 154, 99, 0.006) 0%, transparent 45%);
+  filter: blur(90px);
 }
 
 .hero.loaded .hero__glow {
@@ -107,53 +107,77 @@
 }
 
 /* ===========================
-   Architectural Focal Point — arch at 3-4%
+   Architectural Visual — RIGHT SIDE
+   Appears after 1.5s, at 2-4% opacity
+   Lines of a technical drawing
    =========================== */
 
-.hero__arch {
+.hero__visual {
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 340px;
-  height: 480px;
+  right: 8%;
+  transform: translateY(-50%);
+  width: 320px;
+  height: 460px;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 2.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+  transition: opacity 3s cubic-bezier(0.16, 1, 0.3, 1) 1.5s;
 }
 
-.hero.loaded .hero__arch {
+.hero.loaded .hero__visual {
   opacity: 1;
 }
 
-/* Outer arch */
-.hero__arch::before {
+/* Outer frame */
+.hero__visual::before {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.03);
-  border-radius: 170px 170px 0 0;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.025);
+  border-radius: 160px 160px 0 0;
 }
 
 /* Inner arch */
-.hero__arch::after {
+.hero__visual::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 76%;
-  height: 88%;
-  border: 1px solid rgba(183, 154, 99, 0.025);
-  border-radius: 130px 130px 0 0;
+  width: 72%;
+  height: 85%;
+  border: 1px solid rgba(183, 154, 99, 0.02);
+  border-radius: 120px 120px 0 0;
+}
+
+/* Technical grid lines inside */
+.hero__visual-grid {
+  position: absolute;
+  inset: 0;
+}
+
+.hero__visual-grid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.hero__visual-grid::after {
+  content: '';
+  position: absolute;
+  top: 40%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(183, 154, 99, 0.015);
 }
 
 /* ===========================
-   Content
+   Content — Asymmetric offset LEFT
    =========================== */
 
 .hero__content {
@@ -161,26 +185,28 @@
   z-index: var(--z-base);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
   max-width: 900px;
-  padding: 0 var(--grid-page-margin);
+  padding-left: clamp(48px, 8vw, 140px);
+  padding-right: var(--grid-page-margin);
+  margin-left: -40px;
 }
 
 /* ===========================
-   Brand Signature
+   Brand Signature — sello delicado
    =========================== */
 
 .hero__signature {
   font-family: var(--font-heading);
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
   font-weight: var(--weight-heading-medium);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
   color: var(--color-gold);
-  opacity: 0.5;
+  opacity: 0.45;
   margin-bottom: var(--space-56);
-  padding-bottom: var(--space-24);
+  padding-bottom: var(--space-20);
   position: relative;
 }
 
@@ -188,98 +214,120 @@
   content: '';
   position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 24px;
+  left: 0;
+  width: 20px;
   height: 1px;
   background-color: var(--color-gold);
   opacity: 0.3;
 }
 
 /* ===========================
-   Title — Hospitalidad
+   Title — Donde el lujo se vuelve silencio
    =========================== */
 
 .hero__title {
   margin-bottom: var(--space-8);
+  line-height: 1.05;
+}
+
+.hero__title em {
+  font-style: italic;
+  color: var(--color-gold);
 }
 
 /* ===========================
-   Boutique — offset editorial
+   Boutique — 55% of title, integrated
    =========================== */
 
 .hero__boutique {
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 4vw, 3.75rem);
+  font-size: clamp(1.6rem, 3vw, 2.75rem);
   font-weight: var(--weight-heading-light);
   font-style: italic;
   color: var(--color-ivory);
-  margin-bottom: var(--space-48);
-  margin-left: clamp(80px, 12vw, 220px);
-  opacity: 0.85;
+  margin-bottom: var(--space-40);
+  margin-left: clamp(48px, 7vw, 160px);
+  opacity: 0.7;
+  letter-spacing: var(--tracking-wide);
 }
 
 /* ===========================
-   Subtitle — extreme tracking
+   Subtitle — extreme tracking, more air
    =========================== */
 
 .hero__subtitle {
   font-family: var(--font-body);
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
   font-weight: var(--weight-body-medium);
-  letter-spacing: 0.45em;
+  letter-spacing: 0.5em;
   text-transform: uppercase;
   color: var(--color-gold);
   margin-bottom: 0;
-  opacity: 0.7;
+  margin-top: var(--space-8);
+  opacity: 0.6;
 }
 
 /* ===========================
-   Description — breathing room
+   Description — 420px max, magazine line-height
    =========================== */
 
 .hero__description {
-  max-width: 440px;
-  margin-top: 110px;
-  margin-bottom: 60px;
+  max-width: 420px;
+  margin-top: 40px;
+  margin-bottom: 56px;
   color: var(--color-gray-warm);
   font-size: var(--text-hero-description);
-  line-height: var(--leading-relaxed);
+  line-height: 1.85;
+  font-weight: var(--weight-body-light);
 }
 
 /* ===========================
-   CTA — Editorial Button
+   CTA — Editorial: text + line below
    =========================== */
 
 .hero__cta {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: var(--space-128);
 }
 
 .btn--editorial {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-24);
+  gap: var(--space-20);
   color: var(--color-ivory);
   font-family: var(--font-body);
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
   font-weight: var(--weight-body-medium);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
   padding: 0;
+  position: relative;
   transition: color var(--duration-normal) var(--ease-out);
 }
 
 .btn--editorial__line {
-  width: 64px;
+  width: 56px;
   height: 1px;
   background-color: var(--color-ivory);
-  opacity: 0.4;
+  opacity: 0.35;
   transition: width var(--duration-normal) var(--ease-out),
-              opacity var(--duration-normal) var(--ease-out);
+              opacity var(--duration-normal) var(--ease-out),
+              background-color var(--duration-normal) var(--ease-out);
+}
+
+/* Thin line underneath the whole CTA */
+.hero__cta::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 100%;
+  max-width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-divider), transparent);
 }
 
 .btn--editorial:hover {
@@ -287,21 +335,14 @@
 }
 
 .btn--editorial:hover .btn--editorial__line {
-  width: 96px;
-  opacity: 0.8;
+  width: 88px;
+  opacity: 0.7;
   background-color: var(--color-gold);
 }
 
 /* ===========================
    Scroll Indicator
    =========================== */
-
-.hero__line {
-  width: 1px;
-  height: 48px;
-  background: linear-gradient(180deg, var(--color-gold), transparent);
-  margin-bottom: var(--space-24);
-}
 
 .hero__scroll {
   display: flex;
@@ -312,19 +353,34 @@
   bottom: var(--space-48);
   left: 50%;
   transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero.loaded .hero__scroll {
+  opacity: 1;
+  transition-delay: 4.2s;
+}
+
+.hero__line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(180deg, var(--color-gold), transparent);
+  margin-bottom: var(--space-16);
 }
 
 .hero__scroll-text {
-  font-size: 0.5625rem;
+  font-size: 0.5rem;
   font-weight: var(--weight-body-medium);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
   color: var(--color-gray-warm);
+  opacity: 0.5;
 }
 
 .hero__scroll-line {
   width: 1px;
-  height: 40px;
+  height: 32px;
   position: relative;
   overflow: hidden;
 }
@@ -337,7 +393,7 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(180deg, transparent, var(--color-gold));
-  animation: scrollPulse 2.4s ease-in-out infinite;
+  animation: scrollPulse 2.6s ease-in-out infinite;
 }
 
 @keyframes scrollPulse {

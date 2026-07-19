@@ -10,6 +10,14 @@
   height: var(--navbar-height);
   z-index: var(--z-navbar);
   transition: all var(--duration-normal) var(--ease-out);
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+/* Visible state — triggered by scroll > 40px */
+.navbar--visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .navbar__inner {

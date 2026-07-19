@@ -33,16 +33,6 @@
       transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
                   transform 1s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    /* Navbar entrance */
-    body:not(.loaded) .navbar {
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    body.loaded .navbar {
-      opacity: 1;
-      transform: translateY(0);
-    }
   </style>
 </head>
 <body>
@@ -93,38 +83,46 @@
   <section class="hero" id="hero">
     <div class="hero__bg">
       <div class="hero__glow"></div>
-      <div class="hero__arch"></div>
+    </div>
+
+    <!-- Architectural visual — right side, appears late -->
+    <div class="hero__visual">
+      <div class="hero__visual-grid"></div>
     </div>
 
     <div class="hero__content">
-      <!-- Brand as signature/seal -->
-      <div class="hero__signature" data-hero="0">Hospitalidad Boutique</div>
+      <!-- Brand as sello -->
+      <div class="hero__signature" data-hero="0">Diana & Sans</div>
 
-      <!-- Main title — Hospitalidad -->
-      <h1 class="heading-hero hero__title" data-hero="1">Hospitalidad</h1>
+      <!-- Main title — aspirational story -->
+      <h1 class="heading-hero hero__title" data-hero="1">
+        Donde el lujo<br>
+        se vuelve <em>silencio</em>
+      </h1>
 
-      <!-- Boutique — offset editorial -->
+      <!-- Boutique — 55%, integrated, offset -->
       <span class="hero__boutique" data-hero="2">Boutique</span>
 
-      <!-- Subtitle — extreme tracking -->
+      <!-- Subtitle — extreme tracking, more air -->
       <p class="hero__subtitle" data-hero="3">Experiencias Memorables</p>
 
-      <!-- Description — 110px breathing room from title -->
+      <!-- Description — 420px, magazine line-height -->
       <p class="hero__description body-text" data-hero="4">
-        Un lugar donde el silencio tiene peso, la luz tiene ritmo
-        y cada proporción ha sido pensada para usted.
+        Un espacio donde la arquitectura respira,
+        la luz marca el ritmo y cada proporción
+        ha sido editada para usted.
       </p>
 
-      <!-- CTA — Editorial, no borde -->
+      <!-- CTA — Editorial -->
       <div class="hero__cta" data-hero="5">
         <a href="#apartamentos" class="btn--editorial">
-          <span class="btn--editorial__line"></span>
           <span>Planificar mi estadía</span>
+          <span class="btn--editorial__line"></span>
         </a>
       </div>
     </div>
 
-    <div class="hero__scroll">
+    <div class="hero__scroll" data-hero="6">
       <div class="hero__line"></div>
       <span class="hero__scroll-text">Scroll</span>
       <div class="hero__scroll-line"></div>

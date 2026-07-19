@@ -7,13 +7,24 @@
   'use strict';
 
   // ===========================
-  // Navbar Scroll Behavior
+  // Navbar — Hidden until 40px scroll
   // ===========================
-  const navbar = document.querySelector('.navbar');
+  var navbar = document.querySelector('.navbar');
+  var navbarHidden = true;
 
   function handleNavbarScroll() {
-    const currentScroll = window.pageYOffset;
+    var currentScroll = window.pageYOffset;
 
+    // Show after 40px
+    if (currentScroll > 40 && navbarHidden) {
+      navbar.classList.add('navbar--visible');
+      navbarHidden = false;
+    } else if (currentScroll <= 40 && !navbarHidden) {
+      navbar.classList.remove('navbar--visible');
+      navbarHidden = true;
+    }
+
+    // Scrolled state (blur + border)
     if (currentScroll > 80) {
       navbar.classList.add('navbar--scrolled');
     } else {
@@ -26,17 +37,17 @@
   // ===========================
   // Mobile Menu
   // ===========================
-  const toggle = document.querySelector('.navbar__toggle');
-  const mobileMenu = document.querySelector('.navbar__mobile-menu');
-  const mobileLinks = document.querySelectorAll('.navbar__mobile-menu .navbar__link');
-  let menuOpen = false;
+  var toggle = document.querySelector('.navbar__toggle');
+  var mobileMenu = document.querySelector('.navbar__mobile-menu');
+  var mobileLinks = document.querySelectorAll('.navbar__mobile-menu .navbar__link');
+  var menuOpen = false;
 
   function toggleMenu() {
     menuOpen = !menuOpen;
     mobileMenu.classList.toggle('active', menuOpen);
     document.body.style.overflow = menuOpen ? 'hidden' : '';
 
-    const spans = toggle.querySelectorAll('span');
+    var spans = toggle.querySelectorAll('span');
     if (menuOpen) {
       spans[0].style.transform = 'rotate(45deg) translate(4px, 4px)';
       spans[1].style.opacity = '0';
@@ -61,7 +72,8 @@
   });
 
   // ===========================
-  // Hero Entrance — Life-like Sequence
+  // Hero Entrance — Premium Sequence
+  // Each element 150-250ms apart
   // ===========================
   function heroEntrance() {
     var hero = document.querySelector('.hero');
@@ -69,17 +81,17 @@
 
     if (!hero || elements.length === 0) return;
 
-    // Mark hero as loaded — triggers CSS opacity transitions for glow + arch
     hero.classList.add('loaded');
 
-    // Stagger timings: organic, not mechanical
-    // 0: signature    — 600ms
-    // 1: title        — 1100ms
-    // 2: boutique     — 1800ms (300ms after title settles)
-    // 3: subtitle     — 2300ms
-    // 4: description  — 3000ms (110px breathing room = visual pause)
-    // 5: cta          — 3600ms (60px gap = final invitation)
-    var timings = [600, 1100, 1800, 2300, 3000, 3600];
+    // Timings: 150-250ms gaps, organic feel
+    // 0: signature   — 500ms
+    // 1: title       — 850ms   (+350)
+    // 2: boutique    — 1300ms  (+450 — title needs to land first)
+    // 3: subtitle    — 1700ms  (+400)
+    // 4: description — 2200ms  (+500 — breathing pause)
+    // 5: cta         — 2700ms  (+500)
+    // 6: scroll      — 4200ms  (late arrival, CSS handles delay too)
+    var timings = [500, 850, 1300, 1700, 2200, 2700, 4200];
 
     elements.forEach(function(el) {
       var index = parseInt(el.getAttribute('data-hero'), 10);
@@ -176,7 +188,7 @@
   if (heroGlow) {
     window.addEventListener('scroll', function() {
       var scrolled = window.pageYOffset;
-      var rate = scrolled * 0.2;
+      var rate = scrolled * 0.15;
       heroGlow.style.transform = 'translate(-50%, calc(-50% + ' + rate + 'px))';
     }, { passive: true });
   }
