@@ -25,7 +25,6 @@
 </head>
 <body>
 
-  <!-- NAVBAR -->
   <nav class="navbar navbar--visible" role="navigation">
     <div class="navbar__inner">
       <a href="index.html" class="navbar__logo">Diana <span>&</span> Sans</a>
@@ -47,7 +46,6 @@
     </div>
   </nav>
 
-  <!-- Mobile Menu -->
   <div class="navbar__mobile-menu">
     <a href="index.html#espacios" class="navbar__link">Espacios</a>
     <a href="index.html#experiencias" class="navbar__link">Experiencias</a>
@@ -56,9 +54,7 @@
     <a href="index.html#reservar" class="btn btn--primary">Reservar</a>
   </div>
 
-  <!-- ======================== -->
-  <!-- CHAPTER INTRO — Impact -->
-  <!-- ======================== -->
+  <!-- CHAPTER INTRO -->
   <section class="chapter-intro">
     <div class="container">
       <div class="chapter-intro__content" data-reveal>
@@ -72,217 +68,199 @@
     </div>
   </section>
 
-  <!-- ======================== -->
-  <!-- INTRO TEXT -->
-  <!-- ======================== -->
-  <section class="apt-intro-text" data-reveal>
+  <!-- TRANSITION SENTENCE — Cinematic pause -->
+  <section class="apt-transition">
     <div class="container">
-      <p class="apt-intro-text__content body-text">
-        Cada uno de nuestros apartamentos ha sido concebido como un espacio
-        con identidad propia. No existen dos experiencias iguales.
+      <p class="apt-transition__text" data-reveal>
+        Cada estancia<br>
+        comienza con un espacio<br>
+        diseñado para permanecer<br>
+        <span class="gold-text">en la memoria.</span>
       </p>
     </div>
   </section>
 
-  <!-- ======================== -->
-  <!-- APARTMENT 01 — Left text, right image -->
-  <!-- ======================== -->
-  <section class="apt-showcase" data-reveal>
-    <div class="apt-showcase__inner">
-      <div class="apt-showcase__info">
-        <span class="apt-showcase__label">Residencia 01</span>
-        <div class="apt-showcase__divider-line"></div>
-        <span class="apt-showcase__number">01</span>
-        <h2 class="apt-showcase__name">Presidential</h2>
-        <p class="apt-showcase__desc body-text">
-          Diseñado para quienes buscan privacidad, silencio
-          y comodidad durante cada estancia.
+  <!-- ======================================================================== -->
+  <!-- APARTMENT 01 — Classic editorial: text left, image right, full spec list  -->
+  <!-- ======================================================================== -->
+  <section class="apt-block" data-reveal>
+    <div class="apt-block__inner apt-block__inner--text-left">
+      <div class="apt-block__info">
+        <span class="apt-block__number">01</span>
+        <span class="apt-block__label">Residencia 01</span>
+        <div class="apt-block__line"></div>
+        <h2 class="apt-block__name">Presidential</h2>
+        <p class="apt-block__emotion body-text">
+          Pensado para quienes disfrutan despertar sin prisas. La luz entra
+          desde el este y recorre cada espacio hasta el atardecer.
         </p>
-        <div class="apt-showcase__ideal">Ideal para <span>Familias</span></div>
-        <div class="apt-showcase__specs">
+        <div class="apt-block__ideal">Ideal para <span>Familias</span></div>
+        <div class="apt-block__specs">
           <span>120 m²</span>
           <span>2 habitaciones</span>
           <span>Balcón privado</span>
+          <span>Cocina equipada</span>
+          <span>Smart TV 55"</span>
           <span>WiFi 400 Mbps</span>
-          <span>Check-in inteligente</span>
         </div>
-        <hr class="apt-editorial__rule">
-        <a href="#reservar" class="apt-editorial__cta">Conocer apartamento →</a>
+        <hr class="apt-block__rule">
+        <a href="#reservar" class="apt-block__cta">Descubrir espacio →</a>
       </div>
-      <div class="apt-showcase__image-wrapper">
-        <div class="apt-showcase__image">
+      <div class="apt-block__image-wrapper">
+        <div class="apt-block__image apt-block__image--ratio-4-3">
           <div class="img-placeholder img-placeholder--architectural" style="background: linear-gradient(160deg, #111 0%, #0e0e0e 40%, #131210 100%);"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ======================== -->
-  <!-- APARTMENT 02 — Right text, left image -->
-  <!-- ======================== -->
-  <section class="apt-showcase apt-showcase--reversed" data-reveal>
-    <div class="apt-showcase__inner">
-      <div class="apt-showcase__info">
-        <span class="apt-showcase__label">Residencia 02</span>
-        <div class="apt-showcase__divider-line"></div>
-        <span class="apt-showcase__number">02</span>
-        <h2 class="apt-showcase__name">Terra</h2>
-        <p class="apt-showcase__desc body-text">
-          Pensado para parejas que valoran la intimidad
-          y el contacto con los elementos naturales.
+  <!-- ======================================================================== -->
+  <!-- APARTMENT 02 — Reversed: image left, text right, tighter specs            -->
+  <!-- ======================================================================== -->
+  <section class="apt-block" data-reveal>
+    <div class="apt-block__inner apt-block__inner--image-left">
+      <div class="apt-block__info">
+        <span class="apt-block__number">02</span>
+        <span class="apt-block__label">Residencia 02</span>
+        <div class="apt-block__line"></div>
+        <h2 class="apt-block__name">Terra</h2>
+        <p class="apt-block__emotion body-text">
+          Hay habitaciones donde el techo es el cielo.
+          Esta es una de ellas.
         </p>
-        <div class="apt-showcase__ideal">Ideal para <span>Parejas</span></div>
-        <div class="apt-showcase__specs">
+        <div class="apt-block__ideal">Ideal para <span>Parejas</span></div>
+        <div class="apt-block__specs">
           <span>85 m²</span>
           <span>1 habitación</span>
           <span>Terraza privada</span>
-          <span>WiFi 400 Mbps</span>
           <span>Cocina equipada</span>
         </div>
-        <hr class="apt-editorial__rule">
-        <a href="#reservar" class="apt-editorial__cta">Conocer apartamento →</a>
+        <hr class="apt-block__rule">
+        <a href="#reservar" class="apt-block__cta">Explorar residencia →</a>
       </div>
-      <div class="apt-showcase__image-wrapper">
-        <div class="apt-showcase__image">
+      <div class="apt-block__image-wrapper">
+        <div class="apt-block__image apt-block__image--ratio-4-3">
           <div class="img-placeholder img-placeholder--architectural" style="background: linear-gradient(190deg, #0e0e0e 0%, #111 40%, #121210 100%);"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ======================== -->
-  <!-- APARTMENT 03 — Left text, right image -->
-  <!-- ======================== -->
-  <section class="apt-showcase" data-reveal>
-    <div class="apt-showcase__inner">
-      <div class="apt-showcase__info">
-        <span class="apt-showcase__label">Residencia 03</span>
-        <div class="apt-showcase__divider-line"></div>
-        <span class="apt-showcase__number">03</span>
-        <h2 class="apt-showcase__name">Sereno</h2>
-        <p class="apt-showcase__desc body-text">
-          Un espacio minimalista concebido para la
-          concentración, el descanso y la claridad mental.
+  <!-- ======================================================================== -->
+  <!-- APARTMENT 03 — Text left, image MUCH larger (20/80 grid), no specs       -->
+  <!-- ======================================================================== -->
+  <section class="apt-block apt-block--heroic" data-reveal>
+    <div class="apt-block__inner apt-block__inner--text-left apt-block__inner--heroic">
+      <div class="apt-block__info apt-block__info--minimal">
+        <span class="apt-block__number">03</span>
+        <span class="apt-block__label">Residencia 03</span>
+        <div class="apt-block__line"></div>
+        <h2 class="apt-block__name">Sereno</h2>
+        <p class="apt-block__emotion body-text">
+          Diseñado para quienes viajan solos.
+          El silencio no es ausencia de ruido.
+          Es presencia.
         </p>
-        <div class="apt-showcase__ideal">Ideal para <span>Viajes ejecutivos</span></div>
-        <div class="apt-showcase__specs">
-          <span>55 m²</span>
-          <span>Estudio abierto</span>
-          <span>Cocineta</span>
-          <span>Zona de trabajo</span>
-          <span>Smart TV 55"</span>
-        </div>
-        <hr class="apt-editorial__rule">
-        <a href="#reservar" class="apt-editorial__cta">Conocer apartamento →</a>
+        <hr class="apt-block__rule">
+        <a href="#reservar" class="apt-block__cta">Conocer apartamento →</a>
       </div>
-      <div class="apt-showcase__image-wrapper">
-        <div class="apt-showcase__image">
+      <div class="apt-block__image-wrapper">
+        <div class="apt-block__image apt-block__image--panoramic">
           <div class="img-placeholder img-placeholder--architectural" style="background: linear-gradient(200deg, #0e0e0e 0%, #111 50%, #101010 100%);"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ======================== -->
-  <!-- APARTMENT 04 — Right text, left image -->
-  <!-- ======================== -->
-  <section class="apt-showcase apt-showcase--reversed" data-reveal>
-    <div class="apt-showcase__inner">
-      <div class="apt-showcase__info">
-        <span class="apt-showcase__label">Residencia 04</span>
-        <div class="apt-showcase__divider-line"></div>
-        <span class="apt-showcase__number">04</span>
-        <h2 class="apt-showcase__name">Jardín</h2>
-        <p class="apt-showcase__desc body-text">
-          Donde la naturaleza se convierte en el primer
-          mueble. Un refugio verde dentro de la ciudad.
+  <!-- ======================================================================== -->
+  <!-- APARTMENT 04 — Vertical image left, compact text right                    -->
+  <!-- ======================================================================== -->
+  <section class="apt-block apt-block--tall" data-reveal>
+    <div class="apt-block__inner apt-block__inner--image-left apt-block__inner--tall">
+      <div class="apt-block__info apt-block__info--compact">
+        <span class="apt-block__number">04</span>
+        <span class="apt-block__label">Residencia 04</span>
+        <div class="apt-block__line"></div>
+        <h2 class="apt-block__name">Jardín</h2>
+        <p class="apt-block__emotion body-text">
+          Un refugio verde dentro de la ciudad.
+          La naturaleza como primer mueble.
         </p>
-        <div class="apt-showcase__ideal">Ideal para <span>Parejas</span></div>
-        <div class="apt-showcase__specs">
+        <div class="apt-block__ideal">Ideal para <span>Parejas</span></div>
+        <div class="apt-block__specs">
           <span>75 m²</span>
           <span>1.5 habitaciones</span>
           <span>Jardín privado</span>
-          <span>Cocina completa</span>
-          <span>Parqueadero</span>
         </div>
-        <hr class="apt-editorial__rule">
-        <a href="#reservar" class="apt-editorial__cta">Conocer apartamento →</a>
+        <hr class="apt-block__rule">
+        <a href="#reservar" class="apt-block__cta">Ver espacio →</a>
       </div>
-      <div class="apt-showcase__image-wrapper">
-        <div class="apt-showcase__image">
+      <div class="apt-block__image-wrapper apt-block__image-wrapper--tall">
+        <div class="apt-block__image apt-block__image--vertical">
           <div class="img-placeholder img-placeholder--architectural" style="background: linear-gradient(170deg, #101010 0%, #0d0d0d 50%, #111 100%);"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ======================== -->
-  <!-- APARTMENT 05 — Left text, right image -->
-  <!-- ======================== -->
-  <section class="apt-showcase" data-reveal>
-    <div class="apt-showcase__inner">
-      <div class="apt-showcase__info">
-        <span class="apt-showcase__label">Residencia 05</span>
-        <div class="apt-showcase__divider-line"></div>
-        <span class="apt-showcase__number">05</span>
-        <h2 class="apt-showcase__name">Mono Penthouse</h2>
-        <p class="apt-showcase__desc body-text">
-          Noventa y cinco metros en altura donde el cielo
-          es la única pared que realmente importa.
-        </p>
-        <div class="apt-showcase__ideal">Ideal para <span>Viajes ejecutivos</span></div>
-        <div class="apt-showcase__specs">
-          <span>95 m²</span>
-          <span>Terraza 360°</span>
-          <span>Bar privado</span>
-          <span>Smart TV 55"</span>
-          <span>Check-in inteligente</span>
-        </div>
-        <hr class="apt-editorial__rule">
-        <a href="#reservar" class="apt-editorial__cta">Conocer apartamento →</a>
+  <!-- ======================================================================== -->
+  <!-- APARTMENT 05 — Full-width panoramic, text overlay                         -->
+  <!-- ======================================================================== -->
+  <section class="apt-block apt-block--full" data-reveal>
+    <div class="apt-block__panoramic">
+      <div class="apt-block__number apt-block__number--overlay">05</div>
+      <div class="apt-block__panoramic-image">
+        <div class="img-placeholder img-placeholder--architectural" style="background: linear-gradient(190deg, #111 0%, #0f0f0f 50%, #0e0e0e 100%);"></div>
       </div>
-      <div class="apt-showcase__image-wrapper">
-        <div class="apt-showcase__image">
-          <div class="img-placeholder img-placeholder--architectural" style="background: linear-gradient(190deg, #111 0%, #0f0f0f 50%, #0e0e0e 100%);"></div>
-        </div>
+      <div class="apt-block__panoramic-content">
+        <span class="apt-block__label apt-block__label--light">Residencia 05</span>
+        <h2 class="apt-block__name apt-block__name--large">Mono Penthouse</h2>
+        <p class="apt-block__emotion apt-block__emotion--light body-text">
+          Noventa y cinco metros cuadrados en altura.
+          El cielo es la única pared que importa.
+        </p>
+        <div class="apt-block__ideal apt-block__ideal--light">Ideal para <span>Viajes ejecutivos</span></div>
+        <hr class="apt-block__rule apt-block__rule--light">
+        <a href="#reservar" class="apt-block__cta apt-block__cta--light">Explorar penthouse →</a>
       </div>
     </div>
   </section>
 
-  <!-- ======================== -->
-  <!-- APARTMENT 06 — Right text, left image -->
-  <!-- ======================== -->
-  <section class="apt-showcase apt-showcase--reversed" data-reveal>
-    <div class="apt-showcase__inner">
-      <div class="apt-showcase__info">
-        <span class="apt-showcase__label">Residencia 06</span>
-        <div class="apt-showcase__divider-line"></div>
-        <span class="apt-showcase__number">06</span>
-        <h2 class="apt-showcase__name">Acqua</h2>
-        <p class="apt-showcase__desc body-text">
-          Dos niveles donde el agua y la piedra crean
-          una atmósfera de serenidad absoluta.
+  <!-- ======================================================================== -->
+  <!-- APARTMENT 06 — Split: text left, image right, full specs + duple feeling  -->
+  <!-- ======================================================================== -->
+  <section class="apt-block" data-reveal>
+    <div class="apt-block__inner apt-block__inner--text-left">
+      <div class="apt-block__info">
+        <span class="apt-block__number">06</span>
+        <span class="apt-block__label">Residencia 06</span>
+        <div class="apt-block__line"></div>
+        <h2 class="apt-block__name">Acqua</h2>
+        <p class="apt-block__emotion body-text">
+          Dos niveles. El sonido del agua como banda sonora.
+          La piedra como testigo.
         </p>
-        <div class="apt-showcase__ideal">Ideal para <span>Familias</span></div>
-        <div class="apt-showcase__specs">
+        <div class="apt-block__ideal">Ideal para <span>Familias</span></div>
+        <div class="apt-block__specs">
           <span>110 m²</span>
           <span>Dúplex</span>
           <span>Baño exterior</span>
           <span>Cocina premium</span>
           <span>Parqueadero</span>
+          <span>WiFi 400 Mbps</span>
         </div>
-        <hr class="apt-editorial__rule">
-        <a href="#reservar" class="apt-editorial__cta">Conocer apartamento →</a>
+        <hr class="apt-block__rule">
+        <a href="#reservar" class="apt-block__cta">Recorrer espacio →</a>
       </div>
-      <div class="apt-showcase__image-wrapper">
-        <div class="apt-showcase__image">
+      <div class="apt-block__image-wrapper">
+        <div class="apt-block__image apt-block__image--ratio-4-3">
           <div class="img-placeholder img-placeholder--architectural" style="background: linear-gradient(150deg, #101010 0%, #0d0d0d 100%);"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- CTA FINAL -->
   <section class="cta-final" id="reservar">
     <div class="cta-final__bg"></div>
     <div class="cta-final__content">
@@ -300,7 +278,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
       <div class="footer__bottom">
