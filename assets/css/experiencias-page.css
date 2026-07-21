@@ -1,0 +1,559 @@
+/* ===========================
+   Experiencias Page — 5 Cinematic Chapters
+   Editorial luxury magazine format.
+   No cards, no icons, no lists.
+   =========================== */
+
+/* ── Chapter Divider ── */
+.chapter-divider {
+  background-color: var(--color-black-absolute);
+  padding: var(--space-96) 0;
+  display: flex;
+  justify-content: center;
+}
+
+.chapter-divider__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-24);
+  opacity: 0.2;
+}
+
+.chapter-divider__label {
+  font-family: var(--font-heading);
+  font-size: var(--text-caption);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.chapter-divider__line {
+  width: 64px;
+  height: 1px;
+  background-color: var(--color-gold);
+}
+
+/* ===========================
+   Base Chapter
+   =========================== */
+
+.chapter {
+  background-color: var(--color-black-absolute);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Images */
+.chapter__image {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.chapter__image--half {
+  width: 55%;
+  right: auto;
+}
+
+.chapter__image--light {
+  opacity: 0.6;
+}
+
+.chapter__image--full {
+  position: absolute;
+  inset: 0;
+}
+
+.chapter__placeholder {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+/* Overlay gradients */
+.chapter__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.6) 50%, var(--color-black-absolute) 100%);
+  z-index: var(--z-base);
+  pointer-events: none;
+}
+
+.chapter__overlay--dark {
+  background: linear-gradient(180deg, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.8) 50%, var(--color-black-absolute) 100%);
+}
+
+/* Content */
+.chapter__content {
+  position: relative;
+  z-index: var(--z-above);
+  max-width: var(--grid-container);
+  margin: 0 auto;
+  padding-left: var(--grid-page-margin);
+  padding-right: var(--grid-page-margin);
+  display: flex;
+  flex-direction: column;
+}
+
+.chapter__content--right {
+  margin-left: auto;
+  width: 50%;
+  padding-top: var(--space-160);
+  padding-bottom: var(--space-160);
+}
+
+.chapter__content--center {
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.chapter__content--bottom-left {
+  justify-content: flex-end;
+  min-height: 100vh;
+  padding-bottom: var(--space-96);
+}
+
+/* Labels */
+.chapter__label {
+  font-size: var(--text-caption);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+  opacity: 0.6;
+  margin-bottom: var(--space-16);
+}
+
+.chapter__label--light {
+  color: var(--color-ivory);
+  opacity: 0.5;
+}
+
+/* Chapter 01 — Hero title */
+.chapter--hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.chapter--hero .chapter__content {
+  padding-top: var(--space-160);
+  padding-bottom: var(--space-48);
+  min-height: 100vh;
+  justify-content: center;
+}
+
+.chapter__title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 8vw, 9rem);
+  font-weight: var(--weight-heading-light);
+  line-height: var(--leading-tight);
+  color: var(--color-ivory);
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-8);
+}
+
+.chapter__subtitle {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  font-weight: var(--weight-heading-light);
+  line-height: var(--leading-snug);
+  color: var(--color-gold);
+  font-style: italic;
+  margin-bottom: var(--space-40);
+}
+
+/* Scroll indicator */
+.chapter__scroll {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  margin-top: var(--space-96);
+}
+
+.chapter__scroll-text {
+  font-size: 0.5625rem;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gray-warm);
+  opacity: 0.4;
+}
+
+.chapter__scroll-line {
+  width: 32px;
+  height: 1px;
+  background-color: var(--color-gray-warm);
+  opacity: 0.3;
+}
+
+/* Standard heading */
+.chapter__heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: var(--weight-heading-light);
+  line-height: var(--leading-tight);
+  color: var(--color-ivory);
+  margin-bottom: var(--space-32);
+}
+
+.chapter__heading--tight {
+  margin-bottom: var(--space-24);
+}
+
+.chapter__heading--large {
+  font-size: clamp(2.5rem, 5vw, 5.5rem);
+}
+
+/* Narrative lines (Descansar chapter) */
+.chapter__narrative {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  margin-bottom: var(--space-32);
+}
+
+.chapter__narrative-line {
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 1.8vw, 1.5rem);
+  font-weight: var(--weight-heading-light);
+  color: var(--color-ivory);
+  line-height: var(--leading-snug);
+  opacity: 0.7;
+}
+
+/* Body text */
+.chapter__text {
+  font-size: var(--text-body);
+  color: var(--color-gray-warm);
+  line-height: var(--leading-relaxed);
+  max-width: 400px;
+}
+
+.chapter__text--center {
+  text-align: center;
+  max-width: 360px;
+}
+
+.chapter__text--light {
+  color: rgba(246, 242, 235, 0.7);
+}
+
+/* Chapter 03 — Stat (400 Mbps) */
+.chapter--speed {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chapter__stat {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-8);
+  margin-bottom: var(--space-32);
+}
+
+.chapter__stat-number {
+  font-family: var(--font-heading);
+  font-size: clamp(4rem, 12vw, 12rem);
+  font-weight: var(--weight-heading-light);
+  line-height: var(--leading-none);
+  color: var(--color-ivory);
+  letter-spacing: -0.03em;
+}
+
+.chapter__stat-unit {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2vw, 2rem);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+/* Chapter 04 — Grid (explorar) */
+.chapter__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16) var(--space-48);
+  margin-bottom: var(--space-24);
+  max-width: 440px;
+}
+
+.chapter__grid-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.chapter__grid-value {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2vw, 2rem);
+  font-weight: var(--weight-heading-light);
+  color: var(--color-ivory);
+  line-height: var(--leading-none);
+}
+
+.chapter__grid-label {
+  font-size: var(--text-caption);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-gray-warm);
+  opacity: 0.6;
+}
+
+/* Chapter 05 — Final */
+.chapter--final {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.chapter__final-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 6vw, 6.5rem);
+  font-weight: var(--weight-heading-light);
+  line-height: var(--leading-tight);
+  color: var(--color-ivory);
+  margin-bottom: var(--space-40);
+  text-align: center;
+}
+
+.chapter__cta {
+  margin-top: var(--space-48);
+}
+
+/* Chapter 02 — Editorial layout */
+.chapter--editorial {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* ===========================
+   Animations — Sequential
+   =========================== */
+
+[data-reveal] .ch-reveal-1 {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+}
+
+[data-reveal].revealed .ch-reveal-1 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal] .ch-reveal-2 {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--duration-slow) var(--ease-out) 200ms,
+              transform var(--duration-slow) var(--ease-out) 200ms;
+}
+
+[data-reveal].revealed .ch-reveal-2 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal] .ch-reveal-3 {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity var(--duration-slow) var(--ease-out) 450ms,
+              transform var(--duration-slow) var(--ease-out) 450ms;
+}
+
+[data-reveal].revealed .ch-reveal-3 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal] .ch-reveal-4 {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity var(--duration-slow) var(--ease-out) 700ms,
+              transform var(--duration-slow) var(--ease-out) 700ms;
+}
+
+[data-reveal].revealed .ch-reveal-4 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal] .ch-reveal-5 {
+  opacity: 0;
+  transition: opacity var(--duration-slow) var(--ease-out) 1000ms;
+}
+
+[data-reveal].revealed .ch-reveal-5 {
+  opacity: 1;
+}
+
+/* Hero image — slow blur-in */
+[data-reveal] .chapter__image,
+[data-reveal] .chapter__placeholder {
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity var(--duration-emerge) var(--ease-out),
+              transform var(--duration-emerge) var(--ease-out);
+}
+
+[data-reveal].revealed .chapter__image,
+[data-reveal].revealed .chapter__placeholder {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ===========================
+   Responsive
+   =========================== */
+
+@media (max-width: 1024px) {
+  .chapter__content--right {
+    width: 60%;
+  }
+
+  .chapter__image--half {
+    width: 60%;
+  }
+
+  .chapter__scroll {
+    margin-top: var(--space-64);
+  }
+}
+
+@media (max-width: 768px) {
+  /* Chapter 01 */
+  .chapter--hero .chapter__content {
+    min-height: 100vh;
+    padding-top: calc(var(--navbar-height) + var(--space-80));
+  }
+
+  .chapter__title {
+    font-size: clamp(2.5rem, 10vw, 4.5rem);
+  }
+
+  .chapter__subtitle {
+    font-size: clamp(1.25rem, 5vw, 2rem);
+  }
+
+  /* Chapter 02 — stack */
+  .chapter--editorial {
+    flex-direction: column;
+    min-height: auto;
+    padding: var(--space-96) 0;
+  }
+
+  .chapter--editorial .chapter__image--half {
+    position: relative;
+    width: 100%;
+    height: 40vh;
+    order: -1;
+  }
+
+  .chapter__content--right {
+    width: 100%;
+    padding: var(--space-48) 0 0 0;
+  }
+
+  .chapter__narrative-line {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+  }
+
+  /* Chapter 03 */
+  .chapter--speed {
+    padding: var(--space-96) 0;
+    min-height: auto;
+  }
+
+  .chapter--speed .chapter__image--light {
+    position: relative;
+    height: 30vh;
+  }
+
+  .chapter__stat-number {
+    font-size: clamp(3rem, 15vw, 6rem);
+  }
+
+  .chapter__stat-unit {
+    font-size: clamp(0.875rem, 3vw, 1.25rem);
+  }
+
+  /* Chapter 04 */
+  .chapter--explore {
+    min-height: auto;
+    padding: var(--space-96) 0;
+  }
+
+  .chapter--explore .chapter__image--full {
+    position: relative;
+    height: 35vh;
+  }
+
+  .chapter__content--bottom-left {
+    min-height: auto;
+    padding-bottom: 0;
+  }
+
+  .chapter__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12) var(--space-24);
+    max-width: 100%;
+  }
+
+  .chapter__grid-value {
+    font-size: clamp(1rem, 4vw, 1.5rem);
+  }
+
+  .chapter__heading--large {
+    font-size: clamp(1.75rem, 6vw, 3rem);
+  }
+
+  /* Chapter 05 */
+  .chapter--final {
+    min-height: auto;
+    padding: var(--space-128) 0;
+  }
+
+  .chapter__final-title {
+    font-size: clamp(2rem, 8vw, 4rem);
+  }
+
+  /* Dividers */
+  .chapter-divider {
+    padding: var(--space-48) 0;
+  }
+
+  /* All chapters content */
+  .chapter__content--center {
+    min-height: auto;
+    padding: var(--space-64) 0;
+  }
+
+  .chapter__heading {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+
+  .chapter__text {
+    max-width: 100%;
+  }
+
+  .chapter__scroll {
+    margin-top: var(--space-48);
+  }
+}
+
+@media (max-width: 480px) {
+  .chapter__grid {
+    gap: var(--space-8) var(--space-16);
+  }
+
+  .chapter__stat-number {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+  }
+}
