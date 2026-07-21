@@ -30,6 +30,56 @@
   color: var(--color-gray-warm);
 }
 
+/* ── Chapter Intro ── */
+.chapter-intro {
+  padding-top: calc(var(--navbar-height) + var(--space-160));
+  padding-bottom: var(--space-64);
+  background-color: var(--color-black-absolute);
+  min-height: 60vh;
+  display: flex;
+  align-items: flex-end;
+}
+
+.chapter-intro__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+  max-width: 720px;
+}
+
+.chapter-intro__overline {
+  font-size: var(--text-caption);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+  opacity: 0.6;
+}
+
+.chapter-intro__title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: var(--weight-heading-light);
+  line-height: var(--leading-tight);
+  color: var(--color-ivory);
+}
+
+.chapter-intro__title .gold-text {
+  color: var(--color-gold);
+  font-style: italic;
+}
+
+/* ── Apt Intro Text ── */
+.apt-intro-text {
+  background-color: var(--color-black-absolute);
+  padding: var(--space-80) 0 var(--space-40);
+}
+
+.apt-intro-text__content {
+  max-width: 480px;
+  font-style: italic;
+  color: var(--color-gray-warm);
+}
+
 /* ── Apartment Showcase — 35/65 ── */
 .apt-showcase {
   background-color: var(--color-black-absolute);
@@ -82,12 +132,32 @@
   margin: var(--space-4) 0 var(--space-12) 0;
 }
 
+.apt-showcase__label {
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+  opacity: 0.6;
+}
+
 .apt-showcase__name {
   font-family: var(--font-heading);
   font-size: clamp(1.75rem, 2.8vw, 2.5rem);
   font-weight: var(--weight-heading-light);
   color: var(--color-ivory);
   letter-spacing: var(--tracking-tight);
+}
+
+.apt-showcase__specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-16);
+  font-size: var(--text-body-small);
+  color: var(--color-gray-warm);
+  opacity: 0.8;
+  margin-top: var(--space-8);
+  flex-direction: column;
 }
 
 .apt-showcase__size {
@@ -216,9 +286,17 @@
 }
 
 @media (max-width: 768px) {
-  .page-hero {
+  .chapter-intro {
     padding-top: calc(var(--navbar-height) + var(--space-80));
     min-height: 40vh;
+  }
+
+  .chapter-intro__title {
+    font-size: clamp(2rem, 7vw, 3rem);
+  }
+
+  .apt-intro-text {
+    padding: var(--space-40) 0 var(--space-24);
   }
 
   .apt-showcase {
