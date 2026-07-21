@@ -6,94 +6,88 @@
   background-color: var(--color-black-absolute);
 }
 
-/* Divider */
-.espacios__divider {
-  margin-bottom: var(--space-80);
+.espacios__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: var(--space-96);
 }
 
-/* Overline */
-.espacios__overline {
-  margin-bottom: var(--space-40);
+/* ===========================
+   Apartment Editorial — Full Width Showcase
+   =========================== */
+
+.apt-editorial {
+  background-color: var(--color-black-absolute);
+  border-top: 1px solid var(--color-divider);
+  padding: var(--space-128) 0;
 }
 
-/* Giant headline */
-.espacios__headline {
+.apt-editorial__inner {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--space-96);
+  align-items: center;
+  max-width: var(--grid-container);
+  margin: 0 auto;
+  padding-left: var(--grid-page-margin);
+  padding-right: var(--grid-page-margin);
+}
+
+.apt-editorial--reversed .apt-editorial__inner {
+  grid-template-columns: 1.2fr 1fr;
+}
+
+.apt-editorial--reversed .apt-editorial__info {
+  order: 2;
+}
+
+.apt-editorial--reversed .apt-editorial__image {
+  order: 1;
+}
+
+.apt-editorial__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.apt-editorial__number {
   font-family: var(--font-heading);
-  font-size: clamp(3rem, 5.5vw, 6rem);
+  font-size: clamp(4rem, 7vw, 7rem);
   font-weight: var(--weight-heading-light);
   line-height: var(--leading-none);
-  letter-spacing: var(--tracking-tight);
-  color: var(--color-ivory);
-  max-width: 800px;
-}
-
-.espacios__headline em {
-  font-style: italic;
   color: var(--color-gold);
-  font-weight: var(--weight-heading-light);
+  opacity: 0.15;
+  letter-spacing: -0.04em;
 }
 
-/* Breathing space */
-.espacios__breath {
-  height: var(--space-128);
+.apt-editorial__line {
+  width: 40px;
+  height: 1px;
+  background-color: var(--color-gold);
+  opacity: 0.4;
+  margin: var(--space-8) 0;
 }
 
-/* Editorial two-apt layout */
-.espacios__editorial {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-64);
-  align-items: start;
-}
-
-.espacios__apt {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-32);
-}
-
-/* Offset second apartment for editorial feel */
-.espacios__apt--offset {
-  margin-top: var(--space-96);
-}
-
-.espacios__apt-image {
-  aspect-ratio: 4/5;
-  overflow: hidden;
-  position: relative;
-}
-
-.espacios__apt-image .img-placeholder {
-  transition: transform var(--duration-slower) var(--ease-out);
-}
-
-.espacios__apt:hover .espacios__apt-image .img-placeholder {
-  transform: scale(1.02);
-}
-
-.espacios__apt-info {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-12);
-}
-
-.espacios__apt-name {
+.apt-editorial__name {
   font-family: var(--font-heading);
-  font-size: clamp(1.25rem, 1.8vw, 1.75rem);
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
   font-weight: var(--weight-heading-light);
   color: var(--color-ivory);
+  letter-spacing: var(--tracking-tight);
 }
 
-.espacios__apt-desc {
+.apt-editorial__desc {
   color: var(--color-gray-warm);
-  max-width: 320px;
   line-height: var(--leading-relaxed);
+  max-width: 360px;
 }
 
-.espacios__apt-meta {
+.apt-editorial__meta {
   display: flex;
   align-items: center;
-  gap: var(--space-12);
+  gap: var(--space-16);
   font-size: var(--text-caption);
   font-weight: var(--weight-body-medium);
   letter-spacing: var(--tracking-wider);
@@ -102,198 +96,32 @@
   margin-top: var(--space-8);
 }
 
-/* Tiny text */
-.espacios__tiny {
-  margin-top: var(--space-128);
-  margin-bottom: var(--space-96);
-}
-
-/* Indicators Row */
-.espacios__indicators {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-32);
-  padding-top: var(--space-48);
-  border-top: 1px solid var(--color-divider);
-}
-
-/* ===========================
-   Apartamentos Section
-   =========================== */
-
-.apartamentos {
-  background-color: var(--color-black-absolute);
-}
-
-.apartamentos__header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: var(--space-96);
-}
-
-.apartamentos__gallery {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto;
-  gap: var(--grid-gutter);
-}
-
-.apartamento-card {
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.apartamento-card__image {
-  width: 100%;
-  height: 100%;
-  min-height: 320px;
-  background-size: cover;
-  background-position: center;
-  transition: transform var(--duration-slower) var(--ease-out);
-}
-
-.apartamento-card:hover .apartamento-card__image {
-  transform: scale(1.03);
-}
-
-.apartamento-card__overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(10, 10, 10, 0.85) 100%);
-  opacity: 0;
-  transition: opacity var(--duration-normal) var(--ease-out);
-}
-
-.apartamento-card:hover .apartamento-card__overlay {
-  opacity: 1;
-}
-
-.apartamento-card__info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: var(--space-32);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
-  transform: translateY(16px);
-  opacity: 0;
-  transition: all var(--duration-normal) var(--ease-out);
-}
-
-.apartamento-card:hover .apartamento-card__info {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.apartamento-card__name {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: var(--weight-heading-light);
-  color: var(--color-ivory);
-}
-
-.apartamento-card__meta {
-  display: flex;
-  align-items: center;
-  gap: var(--space-16);
-  font-size: var(--text-caption);
-  letter-spacing: var(--tracking-wider);
-  text-transform: uppercase;
-  color: var(--color-gray-warm);
-}
-
-.apartamento-card__meta span {
-  display: flex;
-  align-items: center;
-  gap: var(--space-8);
-}
-
-.apartamento-card__meta span::before {
-  content: '';
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background-color: var(--color-gold);
-}
-
-.apartamento-card__meta span:first-child::before {
-  display: none;
-}
-
-.apartamento-card__btn {
-  margin-top: var(--space-8);
-}
-
-/* Grid Sizes */
-.apartamento-card--large {
-  grid-column: span 7;
-  grid-row: span 2;
-}
-
-.apartamento-card--large .apartamento-card__image {
-  min-height: 680px;
-}
-
-.apartamento-card--medium {
-  grid-column: span 5;
-}
-
-.apartamento-card--medium .apartamento-card__image {
-  min-height: 328px;
-}
-
-.apartamento-card--small {
-  grid-column: span 5;
-}
-
-.apartamento-card--small .apartamento-card__image {
-  min-height: 328px;
-}
-
-/* ===========================
-   Experiencias Section
-   =========================== */
-
-.experiencias {
-  background-color: var(--color-black-absolute);
-}
-
-.experiencias__layout {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: var(--space-96);
-  align-items: center;
-}
-
-.experiencias__content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-32);
-}
-
-.experiencias__text {
-  max-width: 400px;
-  color: var(--color-gray-warm);
-  line-height: var(--leading-relaxed);
-}
-
-.experiencias__image {
+.apt-editorial__image {
   aspect-ratio: 3/4;
   overflow: hidden;
   position: relative;
 }
 
-.experiencias__image .img-placeholder {
+.apt-editorial__image .img-placeholder {
   transition: transform var(--duration-slower) var(--ease-out);
 }
 
-.experiencias:hover .experiencias__image .img-placeholder {
+.apt-editorial:hover .apt-editorial__image .img-placeholder {
   transform: scale(1.02);
 }
+
+/* Tiny text */
+.espacios__tiny {
+  margin-top: var(--space-64);
+}
+
+/* ===========================
+   Experiencias Section — kept in experience-words.css
+   =========================== */
+
+/* ===========================
+   Experiencias Section
+   =========================== */
 
 /* ===========================
    Ubicación Section
@@ -446,34 +274,33 @@
 }
 
 /* ===========================
-   Galería Section
+   Galería Section — Magazine Editorial
    =========================== */
 
 .galeria {
   background-color: var(--color-black-absolute);
 }
 
-.galeria__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-16);
+.galeria__editorial {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+  max-width: var(--grid-container);
+  margin: 0 auto;
+  padding-left: var(--grid-page-margin);
+  padding-right: var(--grid-page-margin);
+}
+
+.galeria__row {
+  display: flex;
+  gap: var(--space-24);
+  align-items: flex-start;
 }
 
 .galeria__item {
-  aspect-ratio: 4/5;
   overflow: hidden;
   position: relative;
   cursor: pointer;
-}
-
-.galeria__item:nth-child(2) {
-  aspect-ratio: 3/4;
-  transform: translateY(var(--space-48));
-}
-
-.galeria__item:nth-child(5) {
-  aspect-ratio: 3/4;
-  transform: translateY(calc(-1 * var(--space-48)));
 }
 
 .galeria__item .img-placeholder {
@@ -481,111 +308,94 @@
 }
 
 .galeria__item:hover .img-placeholder {
-  transform: scale(1.04);
+  transform: scale(1.03);
 }
 
-.galeria__item-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(10, 10, 10, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity var(--duration-normal) var(--ease-out);
+/* Row 1: Wide + Tall */
+.galeria__row--1 {
+  gap: var(--space-24);
 }
 
-.galeria__item:hover .galeria__item-overlay {
-  opacity: 1;
+.galeria__row--1 .galeria__item--wide {
+  flex: 2;
+  aspect-ratio: 16/10;
 }
 
-.galeria__item-icon {
-  width: 32px;
-  height: 32px;
-  position: relative;
+.galeria__row--1 .galeria__item--tall {
+  flex: 1;
+  aspect-ratio: 3/5;
+  align-self: stretch;
 }
 
-.galeria__item-icon::before,
-.galeria__item-icon::after {
-  content: '';
-  position: absolute;
-  background-color: var(--color-ivory);
-}
-
-.galeria__item-icon::before {
-  top: 50%;
-  left: 0;
+/* Row 2: Full width cinematic */
+.galeria__row--2 .galeria__item--full {
   width: 100%;
-  height: 1px;
+  aspect-ratio: 21/9;
 }
 
-.galeria__item-icon::after {
-  left: 50%;
-  top: 0;
-  width: 1px;
-  height: 100%;
+/* Row 3: Two medium + small offset */
+.galeria__row--3 {
+  gap: var(--space-24);
+}
+
+.galeria__row--3 .galeria__item--medium {
+  flex: 1;
+  aspect-ratio: 4/5;
+}
+
+.galeria__row--3 .galeria__item--offset {
+  margin-top: var(--space-64);
+}
+
+.galeria__row--3 .galeria__item--small {
+  flex: 0.6;
+  aspect-ratio: 1/1;
+  align-self: center;
 }
 
 /* ===========================
-   Servicios Section
+   Servicios Section — Minimalist Editorial
    =========================== */
 
 .servicios {
   background-color: var(--color-black-absolute);
 }
 
-.servicios__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0;
+.servicios__editorial {
+  display: flex;
+  flex-direction: column;
+  max-width: 720px;
 }
 
-.servicio-item {
-  padding: var(--space-48) var(--space-40);
-  border-bottom: 1px solid var(--color-divider);
+.servicio-row {
   display: flex;
   align-items: center;
   gap: var(--space-32);
-  transition: background-color var(--duration-normal) var(--ease-out);
+  padding: var(--space-32) 0;
 }
 
-.servicio-item:nth-child(odd) {
-  border-right: 1px solid var(--color-divider);
-  padding-right: var(--space-72);
-}
-
-.servicio-item:nth-child(even) {
-  padding-left: var(--space-72);
-}
-
-.servicio-item:hover {
-  background-color: rgba(183, 154, 99, 0.02);
-}
-
-.servicio-item__line {
-  width: 24px;
-  height: 1px;
-  background-color: var(--color-gold);
-  flex-shrink: 0;
-}
-
-.servicio-item__content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
-}
-
-.servicio-item__name {
+.servicio-row__value {
   font-family: var(--font-heading);
-  font-size: 1.25rem;
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
   font-weight: var(--weight-heading-light);
   color: var(--color-ivory);
+  white-space: nowrap;
+  min-width: 200px;
 }
 
-.servicio-item__desc {
-  font-size: var(--text-body-small);
+.servicio-row__divider {
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-divider);
+}
+
+.servicio-row__label {
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
   color: var(--color-gray-warm);
-  line-height: var(--leading-normal);
+  white-space: nowrap;
 }
 
 /* ===========================

@@ -194,6 +194,42 @@
   }
 
   // ===========================
+  // Experience Words — Scroll-triggered
+  // Apple/Aesop style single words
+  // ===========================
+  var experienceWords = document.querySelectorAll('[data-word]');
+
+  if (experienceWords.length > 0) {
+    var wordObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, {
+      threshold: 0.3,
+      rootMargin: '0px 0px -10% 0px'
+    });
+
+    experienceWords.forEach(function(word) {
+      wordObserver.observe(word);
+    });
+
+    // Active state: word glows gold when most centered
+    var wordActiveObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        entry.target.classList.toggle('is-active', entry.isIntersecting);
+      });
+    }, {
+      threshold: 0.6
+    });
+
+    experienceWords.forEach(function(word) {
+      wordActiveObserver.observe(word);
+    });
+  }
+
+  // ===========================
   // Initialize on Load
   // ===========================
   window.addEventListener('load', function() {

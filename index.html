@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="assets/css/sections.css">
   <link rel="stylesheet" href="assets/css/footer.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="stylesheet" href="assets/css/experience-words.css">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='24' font-size='24' font-family='serif' fill='%23B79A63'>D</text></svg>">
@@ -45,8 +46,7 @@
       <a href="#" class="navbar__logo">Diana <span>&</span> Sans</a>
 
       <div class="navbar__menu">
-        <a href="#espacios" class="navbar__link">Espacios</a>
-        <a href="#apartamentos" class="navbar__link">Apartamentos</a>
+        <a href="espacios.html" class="navbar__link">Espacios</a>
         <a href="#experiencias" class="navbar__link">Experiencias</a>
         <a href="#galeria" class="navbar__link">Galería</a>
         <a href="#servicios" class="navbar__link">Servicios</a>
@@ -67,8 +67,7 @@
 
   <!-- Mobile Menu -->
   <div class="navbar__mobile-menu">
-    <a href="#espacios" class="navbar__link">Espacios</a>
-    <a href="#apartamentos" class="navbar__link">Apartamentos</a>
+    <a href="espacios.html" class="navbar__link">Espacios</a>
     <a href="#experiencias" class="navbar__link">Experiencias</a>
     <a href="#galeria" class="navbar__link">Galería</a>
     <a href="#servicios" class="navbar__link">Servicios</a>
@@ -113,7 +112,7 @@
 
       <!-- CTA — Editorial -->
       <div class="hero__cta" data-hero="5">
-        <a href="#apartamentos" class="btn--editorial">
+        <a href="#servicios" class="btn--editorial">
           <span>Planificar mi estadía</span>
           <span class="btn--editorial__line"></span>
         </a>
@@ -128,91 +127,74 @@
   </section>
 
   <!-- ======================== -->
-  <!-- ESPACIOS -->
+  <!-- ESPACIOS — Editorial Showcase -->
   <!-- ======================== -->
   <section class="section espacios" id="espacios">
     <div class="container">
-      <!-- Editorial Divider -->
-      <div class="espacios__divider" data-reveal>
-        <hr class="divider divider--gold">
+      <div class="espacios__header" data-reveal>
+        <div class="section-header">
+          <span class="overline">Nuestros Espacios</span>
+          <h2 class="heading-section">Cada apartamento,<br><span class="gold-text">una pausa arquitectónica</span></h2>
+        </div>
+        <a href="espacios.html" class="btn btn--ghost">
+          Ver todos los espacios
+          <span class="btn__arrow"></span>
+        </a>
       </div>
+    </div>
 
-      <!-- Overline -->
-      <div class="espacios__overline" data-reveal>
-        <span class="overline">Nuestros Espacios</span>
-      </div>
-
-      <!-- Giant editorial phrase -->
-      <h2 class="espacios__headline" data-reveal="delay-1">
-        Espacios que<br>
-        <em>se recuerdan</em>
-      </h2>
-
-      <!-- Breathing space -->
-      <div class="espacios__breath"></div>
-
-      <!-- Two apartments — editorial layout -->
-      <div class="espacios__editorial">
-        <div class="espacios__apt" data-reveal>
-          <div class="espacios__apt-image">
-            <div class="img-placeholder img-placeholder--architectural" style="background: linear-gradient(160deg, #111 0%, #0e0e0e 40%, #131210 100%);"></div>
-          </div>
-          <div class="espacios__apt-info">
-            <span class="tag tag--gold">Premium</span>
-            <h3 class="espacios__apt-name">Suite Presidential</h3>
-            <p class="espacios__apt-desc body-small">
-              Silencio absoluto en cien veinte metros.
-              Materiales nobles y luz cenital.
-            </p>
-            <div class="espacios__apt-meta">
-              <span>120 m²</span>
-              <span>·</span>
-              <span>4 Huéspedes</span>
-            </div>
+    <!-- Apartment 01 — Full width editorial -->
+    <div class="apt-editorial" data-reveal>
+      <div class="apt-editorial__inner">
+        <div class="apt-editorial__info">
+          <span class="apt-editorial__number">01</span>
+          <div class="apt-editorial__line"></div>
+          <h3 class="apt-editorial__name">Suite Presidential</h3>
+          <p class="apt-editorial__desc body-small">
+            Silencio absoluto en cien veinte metros.
+            Materiales nobles y luz cenital.
+          </p>
+          <div class="apt-editorial__meta">
+            <span>120 m²</span>
+            <span>4 Huéspedes</span>
+            <span>2 Habitaciones</span>
           </div>
         </div>
-
-        <div class="espacios__apt espacios__apt--offset" data-reveal="delay-2">
-          <div class="espacios__apt-image">
-            <div class="img-placeholder img-placeholder--architectural" style="background: linear-gradient(190deg, #0e0e0e 0%, #111 40%, #121210 100%);"></div>
-          </div>
-          <div class="espacios__apt-info">
-            <h3 class="espacios__apt-name">Loft Terraza</h3>
-            <p class="espacios__apt-desc body-small">
-              Ochenta y cinco metros donde el cielo
-              es el techo y la luz es el único mueble.
-            </p>
-            <div class="espacios__apt-meta">
-              <span>85 m²</span>
-              <span>·</span>
-              <span>2 Huéspedes</span>
-            </div>
-          </div>
+        <div class="apt-editorial__image">
+          <div class="img-placeholder img-placeholder--architectural" style="background: linear-gradient(160deg, #111 0%, #0e0e0e 40%, #131210 100%);"></div>
         </div>
       </div>
+    </div>
 
-      <!-- Tiny text -->
+    <!-- Apartment 02 — Reversed -->
+    <div class="apt-editorial apt-editorial--reversed" data-reveal>
+      <div class="apt-editorial__inner">
+        <div class="apt-editorial__info">
+          <span class="apt-editorial__number">02</span>
+          <div class="apt-editorial__line"></div>
+          <h3 class="apt-editorial__name">Loft Terraza</h3>
+          <p class="apt-editorial__desc body-small">
+            Ochenta y cinco metros donde el cielo
+            es el techo y la luz es el único mueble.
+          </p>
+          <div class="apt-editorial__meta">
+            <span>85 m²</span>
+            <span>2 Huéspedes</span>
+            <span>Terraza</span>
+          </div>
+        </div>
+        <div class="apt-editorial__image">
+          <div class="img-placeholder img-placeholder--architectural" style="background: linear-gradient(190deg, #0e0e0e 0%, #111 40%, #121210 100%);"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" style="margin-top: var(--space-80);">
       <div class="espacios__tiny" data-reveal>
         <p class="body-small" style="max-width: 360px; opacity: 0.5;">
           Seis apartamentos. Cada uno, una pausa arquitectónica.
           Sin excesos. Solo proporción, materia y luz.
         </p>
-      </div>
-
-      <!-- Indicators -->
-      <div class="espacios__indicators" data-reveal>
-        <div class="indicator">
-          <span class="indicator__number">6</span>
-          <span class="indicator__label">Apartamentos Boutique</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator__number">400</span>
-          <span class="indicator__label">Mbps WiFi</span>
-        </div>
-        <div class="indicator">
-          <span class="indicator__number">24h</span>
-          <span class="indicator__label">Check-in Inteligente</span>
-        </div>
       </div>
     </div>
   </section>
@@ -221,144 +203,32 @@
   <div class="container"><hr class="divider"></div>
 
   <!-- ======================== -->
-  <!-- APARTAMENTOS -->
+  <!-- EXPERIENCIAS — Scroll Words -->
   <!-- ======================== -->
-  <section class="section apartamentos" id="apartamentos">
+  <section class="section experiencia-words" id="experiencias">
+    <div class="experiencia-words__bg"></div>
     <div class="container">
-      <div class="apartamentos__header" data-reveal>
-        <div class="section-header">
-          <span class="overline">Alojamiento</span>
-          <h2 class="heading-section">Apartamentos</h2>
-        </div>
-        <a href="#reservar" class="btn btn--ghost">
-          Ver disponibilidad
-          <span class="btn__arrow"></span>
-        </a>
+      <div class="experiencia-words__intro" data-reveal>
+        <span class="overline">La Experiencia</span>
+        <h2 class="heading-section">
+          No es hospedaje.<br>
+          <span class="gold-text">Es un ritual.</span>
+        </h2>
       </div>
 
-      <div class="apartamentos__gallery">
-        <!-- Card Large -->
-        <div class="apartamento-card apartamento-card--large" data-reveal>
-          <div class="apartamento-card__image img-placeholder img-placeholder--architectural"></div>
-          <div class="apartamento-card__overlay"></div>
-          <div class="apartamento-card__info">
-            <span class="tag tag--gold">Premium</span>
-            <h3 class="apartamento-card__name">Suite Presidential</h3>
-            <div class="apartamento-card__meta">
-              <span>120 m²</span>
-              <span>4 Huéspedes</span>
-            </div>
-            <a href="#reservar" class="btn btn--ghost apartamento-card__btn">
-              Reservar
-              <span class="btn__arrow"></span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Card Medium 1 -->
-        <div class="apartamento-card apartamento-card--medium" data-reveal="delay-1">
-          <div class="apartamento-card__image img-placeholder img-placeholder--architectural" style="background: linear-gradient(160deg, #111 0%, #0e0e0e 50%, #131210 100%);"></div>
-          <div class="apartamento-card__overlay"></div>
-          <div class="apartamento-card__info">
-            <h3 class="apartamento-card__name">Loft Terraza</h3>
-            <div class="apartamento-card__meta">
-              <span>85 m²</span>
-              <span>2 Huéspedes</span>
-            </div>
-            <a href="#reservar" class="btn btn--ghost apartamento-card__btn">
-              Reservar
-              <span class="btn__arrow"></span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Card Medium 2 -->
-        <div class="apartamento-card apartamento-card--small" data-reveal="delay-2">
-          <div class="apartamento-card__image img-placeholder img-placeholder--architectural" style="background: linear-gradient(200deg, #0e0e0e 0%, #111 50%, #101010 100%);"></div>
-          <div class="apartamento-card__overlay"></div>
-          <div class="apartamento-card__info">
-            <h3 class="apartamento-card__name">Studio Sereno</h3>
-            <div class="apartamento-card__meta">
-              <span>55 m²</span>
-              <span>2 Huéspedes</span>
-            </div>
-            <a href="#reservar" class="btn btn--ghost apartamento-card__btn">
-              Reservar
-              <span class="btn__arrow"></span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Card Medium 3 -->
-        <div class="apartamento-card apartamento-card--medium" data-reveal>
-          <div class="apartamento-card__image img-placeholder img-placeholder--architectural" style="background: linear-gradient(170deg, #101010 0%, #0d0d0d 50%, #111 100%);"></div>
-          <div class="apartamento-card__overlay"></div>
-          <div class="apartamento-card__info">
-            <h3 class="apartamento-card__name">Suite Jardín</h3>
-            <div class="apartamento-card__meta">
-              <span>75 m²</span>
-              <span>3 Huéspedes</span>
-            </div>
-            <a href="#reservar" class="btn btn--ghost apartamento-card__btn">
-              Reservar
-              <span class="btn__arrow"></span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Card Medium 4 -->
-        <div class="apartamento-card apartamento-card--small" data-reveal="delay-1">
-          <div class="apartamento-card__image img-placeholder img-placeholder--architectural" style="background: linear-gradient(190deg, #111 0%, #0f0f0f 50%, #0e0e0e 100%);"></div>
-          <div class="apartamento-card__overlay"></div>
-          <div class="apartamento-card__info">
-            <h3 class="apartamento-card__name">Mono Penthouse</h3>
-            <div class="apartamento-card__meta">
-              <span>95 m²</span>
-              <span>3 Huéspedes</span>
-            </div>
-            <a href="#reservar" class="btn btn--ghost apartamento-card__btn">
-              Reservar
-              <span class="btn__arrow"></span>
-            </a>
-          </div>
-        </div>
+      <div class="experiencia-words__list">
+        <div class="experience-word" data-word>Llegar.</div>
+        <div class="experience-word" data-word>Respirar.</div>
+        <div class="experience-word" data-word>Descansar.</div>
+        <div class="experience-word" data-word>Dormir.</div>
+        <div class="experience-word" data-word>Despertar.</div>
+        <div class="experience-word" data-word>Disfrutar.</div>
       </div>
     </div>
   </section>
 
   <!-- ======================== -->
-  <!-- EXPERIENCIAS -->
-  <!-- ======================== -->
-  <section class="section experiencias" id="experiencias">
-    <div class="container">
-      <div class="experiencias__layout">
-        <div class="experiencias__content" data-reveal>
-          <span class="overline">La Experiencia</span>
-          <h2 class="heading-section">
-            No es hospedaje.<br>
-            <span class="gold-text">Es un ritual.</span>
-          </h2>
-          <p class="body-text experiencias__text">
-            Silencio, diseño y una atención que no se nota
-            hasta que se necesita.
-          </p>
-          <div>
-            <a href="#reservar" class="btn btn--primary">
-              Reservar experiencia
-              <span class="btn__arrow"></span>
-            </a>
-          </div>
-        </div>
-
-        <div class="experiencias__image img-wrapper" data-reveal="delay-2">
-          <div class="img-placeholder img-placeholder--architectural" style="background: linear-gradient(160deg, #111 0%, #0e0e0e 40%, #131210 100%); min-height: 560px;"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================== -->
-  <!-- GALERÍA -->
+  <!-- GALERÍA — Magazine Editorial -->
   <!-- ======================== -->
   <section class="section galeria" id="galeria">
     <div class="container">
@@ -368,113 +238,84 @@
       </div>
     </div>
 
-    <div class="container" style="margin-top: var(--space-96);">
-      <div class="galeria__grid">
-        <div class="galeria__item" data-reveal>
+    <div class="galeria__editorial" style="margin-top: var(--space-96);">
+      <!-- Row 1: Large landscape + small portrait -->
+      <div class="galeria__row galeria__row--1">
+        <div class="galeria__item galeria__item--wide" data-reveal>
           <div class="img-placeholder img-placeholder--architectural" style="background: linear-gradient(160deg, #111 0%, #0d0d0d 100%);"></div>
-          <div class="galeria__item-overlay">
-            <div class="galeria__item-icon"></div>
-          </div>
         </div>
-        <div class="galeria__item" data-reveal="delay-1">
+        <div class="galeria__item galeria__item--tall" data-reveal="delay-1">
           <div class="img-placeholder img-placeholder--architectural" style="background: linear-gradient(180deg, #0f0f0f 0%, #121210 100%);"></div>
-          <div class="galeria__item-overlay">
-            <div class="galeria__item-icon"></div>
-          </div>
         </div>
-        <div class="galeria__item" data-reveal="delay-2">
+      </div>
+
+      <!-- Row 2: Full width cinematic -->
+      <div class="galeria__row galeria__row--2">
+        <div class="galeria__item galeria__item--full" data-reveal>
           <div class="img-placeholder img-placeholder--architectural" style="background: linear-gradient(200deg, #101010 0%, #0e0e0e 100%);"></div>
-          <div class="galeria__item-overlay">
-            <div class="galeria__item-icon"></div>
-          </div>
         </div>
-        <div class="galeria__item" data-reveal>
+      </div>
+
+      <!-- Row 3: Two medium + tiny offset -->
+      <div class="galeria__row galeria__row--3">
+        <div class="galeria__item galeria__item--medium" data-reveal>
           <div class="img-placeholder img-placeholder--architectural" style="background: linear-gradient(170deg, #111 0%, #0f0e0e 100%);"></div>
-          <div class="galeria__item-overlay">
-            <div class="galeria__item-icon"></div>
-          </div>
         </div>
-        <div class="galeria__item" data-reveal="delay-1">
+        <div class="galeria__item galeria__item--medium galeria__item--offset" data-reveal="delay-1">
           <div class="img-placeholder img-placeholder--architectural" style="background: linear-gradient(190deg, #0e0e0e 0%, #111 100%);"></div>
-          <div class="galeria__item-overlay">
-            <div class="galeria__item-icon"></div>
-          </div>
         </div>
-        <div class="galeria__item" data-reveal="delay-2">
+        <div class="galeria__item galeria__item--small" data-reveal="delay-2">
           <div class="img-placeholder img-placeholder--architectural" style="background: linear-gradient(150deg, #101010 0%, #0d0d0d 100%);"></div>
-          <div class="galeria__item-overlay">
-            <div class="galeria__item-icon"></div>
-          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ======================== -->
-  <!-- SERVICIOS -->
+  <!-- SERVICIOS — Minimalist Editorial -->
   <!-- ======================== -->
   <section class="section servicios" id="servicios">
     <div class="container">
-      <div class="section-header section-header--center" data-reveal style="margin-bottom: var(--space-96);">
+      <div class="section-header" data-reveal style="margin-bottom: var(--space-128);">
         <span class="overline">Servicios</span>
-        <h2 class="heading-section">Todo lo esencial,<br><span class="gold-text>nada de más</span></h2>
+        <h2 class="heading-section">Todo lo esencial,<br><span class="gold-text">nada de más</span></h2>
       </div>
 
-      <div class="servicios__grid">
-        <div class="servicio-item" data-reveal>
-          <div class="servicio-item__line"></div>
-          <div class="servicio-item__content">
-            <h3 class="servicio-item__name">WiFi Premium</h3>
-            <p class="servicio-item__desc">400 Mbps dedicados.</p>
-          </div>
+      <div class="servicios__editorial">
+        <div class="servicio-row" data-reveal>
+          <div class="servicio-row__value">400 Mbps</div>
+          <div class="servicio-row__divider"></div>
+          <div class="servicio-row__label">WiFi Premium</div>
         </div>
-
-        <div class="servicio-item" data-reveal="delay-1">
-          <div class="servicio-item__line"></div>
-          <div class="servicio-item__content">
-            <h3 class="servicio-item__name">Aire Acondicionado</h3>
-            <p class="servicio-item__desc">Clima individual silencioso.</p>
-          </div>
+        <div class="servicio-row" data-reveal="delay-1">
+          <div class="servicio-row__value">24/7</div>
+          <div class="servicio-row__divider"></div>
+          <div class="servicio-row__label">Check-in Inteligente</div>
         </div>
-
-        <div class="servicio-item" data-reveal>
-          <div class="servicio-item__line"></div>
-          <div class="servicio-item__content">
-            <h3 class="servicio-item__name">Agua Caliente</h3>
-            <p class="servicio-item__desc">Constante y eficiente.</p>
-          </div>
+        <div class="servicio-row" data-reveal>
+          <div class="servicio-row__value">Silencioso</div>
+          <div class="servicio-row__divider"></div>
+          <div class="servicio-row__label">Aire Acondicionado</div>
         </div>
-
-        <div class="servicio-item" data-reveal="delay-1">
-          <div class="servicio-item__line"></div>
-          <div class="servicio-item__content">
-            <h3 class="servicio-item__name">Cocina Equipada</h3>
-            <p class="servicio-item__desc">Primera línea.</p>
-          </div>
+        <div class="servicio-row" data-reveal="delay-1">
+          <div class="servicio-row__value">Constante</div>
+          <div class="servicio-row__divider"></div>
+          <div class="servicio-row__label">Agua Caliente</div>
         </div>
-
-        <div class="servicio-item" data-reveal>
-          <div class="servicio-item__line"></div>
-          <div class="servicio-item__content">
-            <h3 class="servicio-item__name">Parqueadero</h3>
-            <p class="servicio-item__desc">Seguro y privado.</p>
-          </div>
+        <div class="servicio-row" data-reveal>
+          <div class="servicio-row__value">Primera línea</div>
+          <div class="servicio-row__divider"></div>
+          <div class="servicio-row__label">Cocina Equipada</div>
         </div>
-
-        <div class="servicio-item" data-reveal="delay-1">
-          <div class="servicio-item__line"></div>
-          <div class="servicio-item__content">
-            <h3 class="servicio-item__name">Check-in Inteligente</h3>
-            <p class="servicio-item__desc">Sin contacto. Llegue cuando desee.</p>
-          </div>
+        <div class="servicio-row" data-reveal="delay-1">
+          <div class="servicio-row__value">Seguro y privado</div>
+          <div class="servicio-row__divider"></div>
+          <div class="servicio-row__label">Parqueadero</div>
         </div>
-
-        <div class="servicio-item" data-reveal>
-          <div class="servicio-item__line"></div>
-          <div class="servicio-item__content">
-            <h3 class="servicio-item__name">Concierge</h3>
-            <p class="servicio-item__desc">Disponible durante su estancia.</p>
-          </div>
+        <div class="servicio-row" data-reveal>
+          <div class="servicio-row__value">55"</div>
+          <div class="servicio-row__divider"></div>
+          <div class="servicio-row__label">Smart TV</div>
         </div>
       </div>
     </div>
@@ -482,6 +323,68 @@
 
   <!-- Divider -->
   <div class="container"><hr class="divider"></div>
+
+  <!-- ======================== -->
+  <!-- UBICACIÓN — Stats + Map -->
+  <!-- ======================== -->
+  <section class="section ubicacion" id="ubicacion">
+    <div class="container">
+      <div class="section-header" data-reveal style="margin-bottom: var(--space-96);">
+        <span class="overline">Ubicación</span>
+        <h2 class="heading-section">Cartago,<br><span class="gold-text">Valle del Cauca</span></h2>
+      </div>
+
+      <div class="ubicacion__layout">
+        <div class="ubicacion__content">
+          <div class="ubicacion__details">
+            <div class="ubicacion__detail" data-reveal>
+              <div class="ubicacion__detail-icon"></div>
+              <div class="ubicacion__detail-text">
+                <span class="ubicacion__detail-label">Aeropuerto</span>
+                <span class="ubicacion__detail-value">5 min</span>
+              </div>
+            </div>
+            <div class="ubicacion__detail" data-reveal="delay-1">
+              <div class="ubicacion__detail-icon"></div>
+              <div class="ubicacion__detail-text">
+                <span class="ubicacion__detail-label">Centro Comercial</span>
+                <span class="ubicacion__detail-value">2 min</span>
+              </div>
+            </div>
+            <div class="ubicacion__detail" data-reveal="delay-2">
+              <div class="ubicacion__detail-icon"></div>
+              <div class="ubicacion__detail-text">
+                <span class="ubicacion__detail-label">Parque Principal</span>
+                <span class="ubicacion__detail-value">15 min</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ubicacion__map" data-reveal="delay-1">
+          <div class="ubicacion__map-content">
+            <div class="map-minimal">
+              <div class="map-line map-line--road-1"></div>
+              <div class="map-line map-line--road-2"></div>
+              <div class="map-line map-line--road-3"></div>
+              <div class="map-point" style="top: 30%; left: 40%;">
+                <div class="map-point__dot map-point__dot--primary"></div>
+                <span class="map-point__label">Diana & Sans</span>
+              </div>
+              <div class="map-point" style="top: 60%; left: 70%;">
+                <div class="map-point__dot"></div>
+                <span class="map-point__label">Aeropuerto</span>
+              </div>
+              <div class="map-point" style="top: 15%; left: 65%;">
+                <div class="map-point__dot"></div>
+                <span class="map-point__label">Centro</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ======================== -->
   <!-- OPINIONES -->

@@ -42,82 +42,40 @@
     height: 360px;
   }
 
-  /* Espacios */
-  .espacios__headline {
-    font-size: clamp(2.5rem, 4.5vw, 4.5rem);
-  }
-
-  .espacios__breath {
-    height: var(--space-96);
-  }
-
-  .espacios__editorial {
-    gap: var(--space-48);
-  }
-
-  .espacios__apt--offset {
-    margin-top: var(--space-64);
-  }
-
-  .espacios__indicators {
-    gap: var(--space-24);
-  }
-
-  /* Apartamentos */
-  .apartamentos__header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-32);
-  }
-
-  .apartamento-card--large {
-    grid-column: span 12;
-    grid-row: span 1;
-  }
-
-  .apartamento-card--large .apartamento-card__image {
-    min-height: 400px;
-  }
-
-  .apartamento-card--medium,
-  .apartamento-card--small {
-    grid-column: span 6;
-  }
-
-  /* Experiencias */
-  .experiencias__layout {
-    grid-template-columns: 1fr;
+  /* Espacios editorial */
+  .apt-editorial__inner {
     gap: var(--space-64);
   }
 
-  /* Ubicación */
+  .apt-editorial__number {
+    font-size: clamp(3rem, 5vw, 5rem);
+  }
+
+  /* Galería editorial */
+  .galeria__row--1 {
+    gap: var(--space-16);
+  }
+
+  .galeria__row--3 {
+    gap: var(--space-16);
+  }
+
+  /* Espacios header */
+  .espacios__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-24);
+  }
+
+  /* Ubicación — tablet */
   .ubicacion__layout {
     grid-template-columns: 1fr;
     gap: var(--space-64);
   }
 
-  /* Galería */
-  .galeria__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .galeria__item:nth-child(2),
-  .galeria__item:nth-child(5) {
-    transform: none;
-  }
-
-  /* Servicios */
-  .servicios__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .servicio-item:nth-child(odd) {
-    border-right: none;
-    padding-right: var(--space-40);
-  }
-
-  .servicio-item:nth-child(even) {
-    padding-left: var(--space-40);
+  /* Servicios editorial — tablet */
+  .servicio-row__value {
+    min-width: 180px;
   }
 
   /* Footer — tablet */
@@ -231,44 +189,142 @@
     align-items: flex-start;
   }
 
-  /* Apartamentos */
-  .apartamento-card--medium,
-  .apartamento-card--small {
-    grid-column: span 12;
+  /* Espacios editorial — mobile */
+  .espacios__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-24);
   }
 
-  .apartamento-card--medium .apartamento-card__image,
-  .apartamento-card--small .apartamento-card__image {
-    min-height: 280px;
+  .apt-editorial {
+    padding: var(--space-64) 0;
   }
 
-  .apartamento-card__info {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Galería */
-  .galeria__grid {
+  .apt-editorial__inner {
     grid-template-columns: 1fr;
+    gap: var(--space-32);
+  }
+
+  .apt-editorial--reversed .apt-editorial__info {
+    order: 1;
+  }
+
+  .apt-editorial--reversed .apt-editorial__image {
+    order: 2;
+  }
+
+  .apt-editorial__image {
+    aspect-ratio: 4/3;
+    order: -1;
+  }
+
+  .apt-editorial__number {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+  }
+
+  .apt-editorial__meta {
+    flex-wrap: wrap;
+    gap: var(--space-8);
+  }
+
+  /* Galería editorial — mobile */
+
+  /* Espacios editorial — mobile */
+  .espacios__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-24);
+  }
+
+  .apt-editorial {
+    padding: var(--space-64) 0;
+  }
+
+  .apt-editorial__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-32);
+  }
+
+  .apt-editorial--reversed .apt-editorial__info {
+    order: 1;
+  }
+
+  .apt-editorial--reversed .apt-editorial__image {
+    order: 2;
+  }
+
+  .apt-editorial__image {
+    aspect-ratio: 4/3;
+    order: -1;
+  }
+
+  .apt-editorial__number {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+  }
+
+  .apt-editorial__meta {
+    flex-wrap: wrap;
+    gap: var(--space-8);
+  }
+
+  /* Galería editorial — mobile */
+  .galeria__editorial {
     gap: var(--space-16);
   }
 
-  .galeria__item {
+  .galeria__row {
+    flex-direction: column;
+    gap: var(--space-16);
+  }
+
+  .galeria__row--1 .galeria__item--wide {
     aspect-ratio: 16/10;
   }
 
-  /* Servicios */
-  .servicio-item {
-    padding: var(--space-32) 0;
+  .galeria__row--1 .galeria__item--tall {
+    aspect-ratio: 4/3;
+    align-self: auto;
   }
 
-  .servicio-item:nth-child(odd) {
-    padding-right: 0;
-    border-right: none;
+  .galeria__row--2 .galeria__item--full {
+    aspect-ratio: 16/10;
   }
 
-  .servicio-item:nth-child(even) {
-    padding-left: 0;
+  .galeria__row--3 {
+    flex-direction: row;
+    gap: var(--space-12);
+  }
+
+  .galeria__row--3 .galeria__item--medium {
+    aspect-ratio: 3/4;
+  }
+
+  .galeria__row--3 .galeria__item--offset {
+    margin-top: 0;
+  }
+
+  .galeria__row--3 .galeria__item--small {
+    display: none;
+  }
+
+  /* Servicios editorial — mobile */
+  .servicios__editorial {
+    gap: 0;
+  }
+
+  .servicio-row {
+    padding: var(--space-24) 0;
+  }
+
+  .servicio-row__value {
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
+    min-width: 120px;
+  }
+
+  /* Ubicación */
+  .ubicacion__layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-48);
   }
 
   /* Opiniones */
