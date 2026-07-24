@@ -1,347 +1,717 @@
-/* ===========================
-   Experiencias Page — 5 Cinematic Chapters
-   Editorial luxury magazine format.
-   No cards, no icons, no lists.
-   =========================== */
+/* ============================================================
+   EXPERIENCIAS PAGE — Momentos
+   Editorial luxury. One visual focus per section.
+   Never more than 70 chars per line.
 
-/* ── Chapter Divider ── */
-.chapter-divider {
-  background-color: var(--color-black-absolute);
-  padding: var(--space-96) 0;
-  display: flex;
-  justify-content: center;
+   Spacing scale (enforced):
+     XS  24px    S   48px    M   80px
+     L   120px   XL  180px   XXL 240px
+
+   Easing:
+     cubic-bezier(.22,.61,.36,1)
+
+   Performance budget per section:
+     Max 2 large gradients + 1 texture + 1 pseudo-element
+   ============================================================ */
+
+:root {
+  --exp-xs: 24px;
+  --exp-s: 48px;
+  --exp-m: 80px;
+  --exp-l: 120px;
+  --exp-xl: 180px;
+  --exp-xxl: 240px;
+  --exp-ease: cubic-bezier(.22,.61,.36,1);
 }
 
-.chapter-divider__inner {
+/* ===========================
+   SECCION 1 — HERO
+   Foco: Marca + emotional hook
+   Ritmo: Muchísimo aire
+   =========================== */
+
+.exp-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
   display: flex;
   align-items: center;
-  gap: var(--space-24);
-  opacity: 0.2;
-}
-
-.chapter-divider__label {
-  font-family: var(--font-heading);
-  font-size: var(--text-caption);
-  letter-spacing: var(--tracking-widest);
-  text-transform: uppercase;
-  color: var(--color-gold);
-}
-
-.chapter-divider__line {
-  width: 64px;
-  height: 1px;
-  background-color: var(--color-gold);
-}
-
-/* ===========================
-   Base Chapter
-   =========================== */
-
-.chapter {
   background-color: var(--color-black-absolute);
-  position: relative;
   overflow: hidden;
 }
 
-/* Images */
-.chapter__image {
+/* Textura papel negro — capa 1 */
+.exp-hero__texture {
   position: absolute;
   inset: 0;
-  overflow: hidden;
-}
-
-.chapter__image--half {
-  width: 55%;
-  right: auto;
-}
-
-.chapter__image--light {
-  opacity: 0.6;
-}
-
-.chapter__image--full {
-  position: absolute;
-  inset: 0;
-}
-
-.chapter__placeholder {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  inset: 0;
-}
-
-/* Overlay gradients */
-.chapter__overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.6) 50%, var(--color-black-absolute) 100%);
-  z-index: var(--z-base);
+  background:
+    repeating-conic-gradient(
+      rgba(255, 255, 255, 0.003) 0% 25%,
+      transparent 0% 50%
+    ) 0 0 / 4px 4px;
+  opacity: 0.8;
   pointer-events: none;
 }
 
-.chapter__overlay--dark {
-  background: linear-gradient(180deg, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.8) 50%, var(--color-black-absolute) 100%);
+/* Glow cálido — capa 2, esquina superior derecha */
+.exp-hero__glow {
+  position: absolute;
+  top: 20%;
+  right: 15%;
+  width: 600px;
+  height: 500px;
+  background: radial-gradient(
+    ellipse at 60% 40%,
+    rgba(183, 154, 99, 0.05) 0%,
+    rgba(183, 154, 99, 0.02) 35%,
+    transparent 70%
+  );
+  filter: blur(60px);
+  pointer-events: none;
 }
 
-/* Content */
-.chapter__content {
+.exp-hero__content {
   position: relative;
-  z-index: var(--z-above);
-  max-width: var(--grid-container);
-  margin: 0 auto;
-  padding-left: var(--grid-page-margin);
-  padding-right: var(--grid-page-margin);
+  z-index: 1;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  max-width: 900px;
+  padding-left: clamp(48px, 8vw, 140px);
+  padding-right: var(--grid-page-margin);
 }
 
-.chapter__content--right {
-  margin-left: auto;
-  width: 50%;
-  padding-top: var(--space-160);
-  padding-bottom: var(--space-160);
-}
-
-.chapter__content--center {
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  min-height: 100vh;
-}
-
-.chapter__content--bottom-left {
-  justify-content: flex-end;
-  min-height: 100vh;
-  padding-bottom: var(--space-96);
-}
-
-/* Labels */
-.chapter__label {
-  font-size: var(--text-caption);
-  letter-spacing: var(--tracking-widest);
+/* Firma de página — casi invisible */
+.exp-hero__signature {
+  position: absolute;
+  bottom: 40px;
+  right: var(--grid-page-margin);
+  font-family: var(--font-body);
+  font-size: 0.5rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--color-gold);
-  opacity: 0.6;
-  margin-bottom: var(--space-16);
-}
-
-.chapter__label--light {
   color: var(--color-ivory);
-  opacity: 0.5;
+  opacity: 0.08;
 }
 
-/* Chapter 01 — Hero title */
-.chapter--hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-}
-
-.chapter--hero .chapter__content {
-  padding-top: var(--space-160);
-  padding-bottom: var(--space-48);
-  min-height: 100vh;
-  justify-content: center;
-}
-
-.chapter__title {
+.exp-hero__title {
   font-family: var(--font-heading);
-  font-size: clamp(3rem, 8vw, 9rem);
+  font-size: clamp(3.5rem, 7vw, 8rem);
   font-weight: var(--weight-heading-light);
-  line-height: var(--leading-tight);
+  line-height: 1.02;
   color: var(--color-ivory);
   letter-spacing: -0.03em;
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--exp-s);
 }
 
-.chapter__subtitle {
+.exp-hero__title em {
+  font-style: italic;
+  color: var(--color-ivory);
+  opacity: 0.65;
+  display: block;
+  margin-left: clamp(24px, 5vw, 80px);
+}
+
+.exp-hero__subtitle {
   font-family: var(--font-heading);
-  font-size: clamp(1.5rem, 3vw, 3rem);
+  font-size: clamp(1.125rem, 2vw, 1.75rem);
   font-weight: var(--weight-heading-light);
-  line-height: var(--leading-snug);
+  line-height: 1.4;
   color: var(--color-gold);
   font-style: italic;
-  margin-bottom: var(--space-40);
 }
 
-/* Scroll indicator */
-.chapter__scroll {
+.exp-hero__scroll {
+  position: absolute;
+  bottom: var(--exp-m);
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: var(--space-16);
-  margin-top: var(--space-96);
+  gap: var(--exp-xs);
 }
 
-.chapter__scroll-text {
-  font-size: 0.5625rem;
-  letter-spacing: var(--tracking-widest);
+.exp-hero__scroll-text {
+  font-size: 0.5rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-gray-warm);
   opacity: 0.4;
 }
 
-.chapter__scroll-line {
-  width: 32px;
-  height: 1px;
-  background-color: var(--color-gray-warm);
-  opacity: 0.3;
+.exp-hero__scroll-line {
+  width: 1px;
+  height: 32px;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Standard heading */
-.chapter__heading {
-  font-family: var(--font-heading);
-  font-size: clamp(2rem, 4vw, 4rem);
-  font-weight: var(--weight-heading-light);
-  line-height: var(--leading-tight);
-  color: var(--color-ivory);
-  margin-bottom: var(--space-32);
+.exp-hero__scroll-line::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, var(--color-gold));
+  animation: expScrollPulse 2.6s ease-in-out infinite;
 }
 
-.chapter__heading--tight {
-  margin-bottom: var(--space-24);
+@keyframes expScrollPulse {
+  0% { top: -100%; }
+  50% { top: 100%; }
+  100% { top: 100%; }
 }
 
-.chapter__heading--large {
-  font-size: clamp(2.5rem, 5vw, 5.5rem);
-}
 
-/* Narrative lines (Descansar chapter) */
-.chapter__narrative {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
-  margin-bottom: var(--space-32);
-}
+/* ===========================
+   SECCION 2 — LLEGADA
+   Foco: Check-in como ritual
+   Ritmo: Composición rota, frases distribuidas
+   =========================== */
 
-.chapter__narrative-line {
-  font-family: var(--font-heading);
-  font-size: clamp(1rem, 1.8vw, 1.5rem);
-  font-weight: var(--weight-heading-light);
-  color: var(--color-ivory);
-  line-height: var(--leading-snug);
-  opacity: 0.7;
-}
-
-/* Body text */
-.chapter__text {
-  font-size: var(--text-body);
-  color: var(--color-gray-warm);
-  line-height: var(--leading-relaxed);
-  max-width: 400px;
-}
-
-.chapter__text--center {
-  text-align: center;
-  max-width: 360px;
-}
-
-.chapter__text--light {
-  color: rgba(246, 242, 235, 0.7);
-}
-
-/* Chapter 03 — Stat (400 Mbps) */
-.chapter--speed {
+.exp-llegada {
+  position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--color-black-absolute);
+  overflow: hidden;
 }
 
-.chapter__stat {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-8);
-  margin-bottom: var(--space-32);
+/* Marcos editoriales — líneas doradas */
+.exp-llegada__frame {
+  position: absolute;
+  top: 12%;
+  left: 8%;
+  right: 8%;
+  bottom: 12%;
+  border-top: 1px solid rgba(183, 154, 99, 0.07);
+  border-left: 1px solid rgba(183, 154, 99, 0.07);
+  pointer-events: none;
 }
 
-.chapter__stat-number {
+.exp-llegada__frame::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-bottom: 1px solid rgba(183, 154, 99, 0.07);
+  border-right: 1px solid rgba(183, 154, 99, 0.07);
+  width: 100%;
+  height: 100%;
+}
+
+.exp-llegada__content {
+  position: relative;
+  width: 100%;
+  max-width: var(--grid-container);
+  height: 70vh;
+  margin: 0 auto;
+  padding: 0 var(--grid-page-margin);
+}
+
+.exp-llegada__phrase {
+  position: absolute;
+}
+
+/* CHECK-IN — palabra gigante, top izquierda */
+.exp-llegada__phrase--1 {
+  top: 5%;
+  left: 5%;
+}
+
+.exp-llegada__label {
   font-family: var(--font-heading);
-  font-size: clamp(4rem, 12vw, 12rem);
+  font-size: clamp(4rem, 10vw, 10rem);
   font-weight: var(--weight-heading-light);
-  line-height: var(--leading-none);
-  color: var(--color-ivory);
-  letter-spacing: -0.03em;
-}
-
-.chapter__stat-unit {
-  font-family: var(--font-body);
-  font-size: clamp(1rem, 2vw, 2rem);
-  font-weight: var(--weight-body-medium);
-  letter-spacing: var(--tracking-widest);
-  text-transform: uppercase;
+  line-height: 0.9;
   color: var(--color-gold);
-}
-
-/* Chapter 04 — Grid (explorar) */
-.chapter__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-16) var(--space-48);
-  margin-bottom: var(--space-24);
-  max-width: 440px;
-}
-
-.chapter__grid-item {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-.chapter__grid-value {
-  font-family: var(--font-heading);
-  font-size: clamp(1.25rem, 2vw, 2rem);
-  font-weight: var(--weight-heading-light);
-  color: var(--color-ivory);
-  line-height: var(--leading-none);
-}
-
-.chapter__grid-label {
-  font-size: var(--text-caption);
-  letter-spacing: var(--tracking-wider);
+  opacity: 0.06;
+  letter-spacing: -0.04em;
   text-transform: uppercase;
-  color: var(--color-gray-warm);
-  opacity: 0.6;
 }
 
-/* Chapter 05 — Final */
-.chapter--final {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
+/* Inteligente — derecha */
+.exp-llegada__phrase--2 {
+  top: 12%;
+  right: 10%;
 }
 
-.chapter__final-title {
+.exp-llegada__text {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 6vw, 6.5rem);
+  font-size: clamp(1.5rem, 3vw, 3rem);
   font-weight: var(--weight-heading-light);
-  line-height: var(--leading-tight);
+  font-style: italic;
   color: var(--color-ivory);
-  margin-bottom: var(--space-40);
-  text-align: center;
+  opacity: 0.7;
 }
 
-.chapter__cta {
-  margin-top: var(--space-48);
+/* Reserva directa — centro-izquierda */
+.exp-llegada__phrase--3 {
+  top: 42%;
+  left: 20%;
 }
 
-/* Chapter 02 — Editorial layout */
-.chapter--editorial {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
+/* Acceso inmediato — derecha */
+.exp-llegada__phrase--4 {
+  top: 45%;
+  right: 8%;
+}
+
+/* Sin esperas. — abajo centro, gold */
+.exp-llegada__phrase--5 {
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.exp-llegada__text--gold {
+  color: var(--color-gold);
+  opacity: 1;
+}
+
+
+/* ===========================
+   SECCION 3 — DENTRO
+   Foco: Cómo se siente quedarse
+   Ritmo: Muy vertical, bloques variados
+   Performance: 1 radial-gradient sutil (luz)
+   =========================== */
+
+.exp-dentro {
+  background-color: var(--color-black-absolute);
+  padding: var(--exp-xxl) 0;
   position: relative;
 }
 
+/* Luz cálida desde esquina superior izquierda */
+.exp-dentro::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    ellipse at 30% 30%,
+    rgba(183, 154, 99, 0.02) 0%,
+    transparent 70%
+  );
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.exp-dentro__block {
+  max-width: var(--grid-container);
+  margin: 0 auto;
+  padding: var(--exp-l) var(--grid-page-margin);
+  position: relative;
+}
+
+/* Bloque Horizontal — valor izquierda, línea, texto derecha */
+.exp-dentro__block--horizontal {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: var(--exp-s);
+  align-items: center;
+}
+
+.exp-dentro__block--reversed {
+  direction: rtl;
+}
+
+.exp-dentro__block--reversed > * {
+  direction: ltr;
+}
+
+/* Bloque Centrado */
+.exp-dentro__block--centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--exp-s);
+  padding: var(--exp-xl) var(--grid-page-margin);
+}
+
+/* Bloque Vertical */
+.exp-dentro__block--vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--exp-xs);
+}
+
+/* Bloque Offset */
+.exp-dentro__block--offset-right {
+  margin-left: auto;
+  max-width: 480px;
+  padding-right: var(--grid-page-margin);
+}
+
+.exp-dentro__block--offset-left {
+  margin-right: auto;
+  max-width: 480px;
+  padding-left: var(--grid-page-margin);
+}
+
+/* Elementos */
+.exp-dentro__value {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: var(--weight-heading-light);
+  color: var(--color-ivory);
+  letter-spacing: -0.02em;
+}
+
+.exp-dentro__value--gold {
+  color: var(--color-gold);
+}
+
+.exp-dentro__value em {
+  font-style: italic;
+  display: block;
+}
+
+.exp-dentro__desc {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-body-light);
+  line-height: 1.8;
+  color: var(--color-gray-warm);
+}
+
+.exp-dentro__label {
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  opacity: 0.5;
+}
+
+.exp-dentro__line {
+  width: 64px;
+  height: 1px;
+  background-color: var(--color-gold);
+  opacity: 0.25;
+}
+
+
 /* ===========================
-   Animations — Sequential
+   SECCION 4 — CARTAGO
+   Foco: Qué tengo cerca
+   Ritmo: Muy horizontal
+   Performance: 1 repeating-linear-gradient (grid técnico)
    =========================== */
 
+.exp-cartago {
+  background-color: var(--color-black-absolute);
+  padding: var(--exp-xxl) 0;
+  position: relative;
+}
+
+/* Grid técnico — papel de plano */
+.exp-cartago::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 79px,
+      rgba(255, 255, 255, 0.02) 79px,
+      rgba(255, 255, 255, 0.02) 80px
+    );
+  pointer-events: none;
+}
+
+.exp-cartago__grid {
+  max-width: var(--grid-container);
+  margin: 0 auto;
+  padding: 0 var(--grid-page-margin);
+  position: relative;
+}
+
+.exp-cartago__row {
+  display: flex;
+  align-items: center;
+  gap: var(--exp-s);
+  padding: var(--exp-m) 0;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.exp-cartago__row:first-child {
+  border-top: 1px solid var(--color-divider);
+}
+
+.exp-cartago__number {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 7vw, 7rem);
+  font-weight: var(--weight-heading-light);
+  line-height: 1;
+  color: var(--color-gold);
+  letter-spacing: -0.04em;
+  min-width: 160px;
+}
+
+.exp-cartago__unit {
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gray-warm);
+  opacity: 0.5;
+  min-width: 100px;
+}
+
+.exp-cartago__dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--color-gold);
+  opacity: 0.3;
+  flex-shrink: 0;
+}
+
+.exp-cartago__label {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-body-light);
+  color: var(--color-ivory);
+  letter-spacing: 0.04em;
+}
+
+
+/* ===========================
+   SECCION 5 — DETALLES
+   Foco: Por qué somos diferentes
+   Ritmo: Todo centrado, aparición gradual
+   Performance: 1 pseudo-elemento (eje vertical)
+   =========================== */
+
+.exp-detalles {
+  background-color: var(--color-black-absolute);
+  padding: var(--exp-xxl) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Eje editorial — línea vertical dorada */
+.exp-detalles__axis {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(183, 154, 99, 0.06) 15%,
+    rgba(183, 154, 99, 0.06) 85%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.exp-detalles__moment {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 var(--grid-page-margin);
+  gap: var(--exp-s);
+  position: relative;
+}
+
+.exp-detalles__moment--final {
+  min-height: 80vh;
+  gap: var(--exp-m);
+}
+
+.exp-detalles__line {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: var(--weight-heading-light);
+  line-height: 1.15;
+  color: var(--color-ivory);
+  letter-spacing: -0.02em;
+  max-width: 700px;
+}
+
+.exp-detalles__line em {
+  font-style: italic;
+}
+
+.exp-detalles__line--gold {
+  color: var(--color-gold);
+}
+
+/* Firma escondida — posición absoluta variable */
+.exp-detalles__firma {
+  position: absolute;
+  bottom: var(--exp-l);
+  right: var(--grid-page-margin);
+  font-family: var(--font-body);
+  font-size: 0.5rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ivory);
+  opacity: 0.08;
+  line-height: 1.6;
+  text-align: right;
+}
+
+
+/* ===========================
+   SECCION 6 — CTA
+   Foco: ¿Reservamos?
+   Ritmo: Todo vacío
+   Performance: 1 pseudo-elemento (glow sutil)
+   =========================== */
+
+.exp-cta {
+  position: relative;
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-black-absolute);
+  overflow: hidden;
+}
+
+.exp-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 60% 50% at 50% 50%,
+    rgba(183, 154, 99, 0.02) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.exp-cta__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--exp-l);
+}
+
+.exp-cta__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: var(--weight-heading-light);
+  line-height: 1.15;
+  color: var(--color-ivory);
+  letter-spacing: -0.02em;
+}
+
+.exp-cta__title em {
+  font-style: italic;
+  color: var(--color-gold);
+}
+
+/* Línea dorada — se dibuja antes del botón */
+.exp-cta__line {
+  width: 0;
+  height: 1px;
+  background-color: var(--color-gold);
+  transition: width 0.8s var(--exp-ease);
+}
+
+.exp-cta.revealed .exp-cta__line {
+  width: 200px;
+}
+
+
+/* ===========================
+   FOOTER — Firma extra
+   =========================== */
+
+.footer__bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.footer__firma {
+  font-family: var(--font-body);
+  font-size: 0.5rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ivory);
+  opacity: 0.08;
+}
+
+
+/* ===========================
+   SCROLL ANIMATIONS
+   Aparecer: 10% visible → 40% completamente
+   Desaparecer: empieza al pasar el 80%
+   Easing: cubic-bezier(.22,.61,.36,1)
+   =========================== */
+
+/* Reaparecer — entrance */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 1.2s var(--exp-ease),
+              transform 1.2s var(--exp-ease);
+}
+
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal="delay-1"] { transition-delay: 150ms; }
+[data-reveal="delay-2"] { transition-delay: 300ms; }
+[data-reveal="delay-3"] { transition-delay: 450ms; }
+[data-reveal="delay-4"] { transition-delay: 600ms; }
+[data-reveal="delay-5"] { transition-delay: 750ms; }
+
+/* Desaparecer — salida */
+.is-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition: opacity 1s var(--exp-ease),
+              transform 1s var(--exp-ease);
+}
+
+.is-past {
+  opacity: 0 !important;
+  transform: translateY(-16px) !important;
+  transition: opacity 0.8s var(--exp-ease),
+              transform 0.8s var(--exp-ease);
+}
+
+/* Chapter reveal system (heredado) */
 [data-reveal] .ch-reveal-1 {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity var(--duration-slow) var(--ease-out),
-              transform var(--duration-slow) var(--ease-out);
+  transition: opacity 0.8s var(--exp-ease),
+              transform 0.8s var(--exp-ease);
 }
 
 [data-reveal].revealed .ch-reveal-1 {
@@ -352,8 +722,8 @@
 [data-reveal] .ch-reveal-2 {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity var(--duration-slow) var(--ease-out) 200ms,
-              transform var(--duration-slow) var(--ease-out) 200ms;
+  transition: opacity 0.8s var(--exp-ease) 200ms,
+              transform 0.8s var(--exp-ease) 200ms;
 }
 
 [data-reveal].revealed .ch-reveal-2 {
@@ -364,8 +734,8 @@
 [data-reveal] .ch-reveal-3 {
   opacity: 0;
   transform: translateY(15px);
-  transition: opacity var(--duration-slow) var(--ease-out) 450ms,
-              transform var(--duration-slow) var(--ease-out) 450ms;
+  transition: opacity 0.8s var(--exp-ease) 450ms,
+              transform 0.8s var(--exp-ease) 450ms;
 }
 
 [data-reveal].revealed .ch-reveal-3 {
@@ -376,8 +746,8 @@
 [data-reveal] .ch-reveal-4 {
   opacity: 0;
   transform: translateY(12px);
-  transition: opacity var(--duration-slow) var(--ease-out) 700ms,
-              transform var(--duration-slow) var(--ease-out) 700ms;
+  transition: opacity 0.8s var(--exp-ease) 700ms,
+              transform 0.8s var(--exp-ease) 700ms;
 }
 
 [data-reveal].revealed .ch-reveal-4 {
@@ -387,173 +757,231 @@
 
 [data-reveal] .ch-reveal-5 {
   opacity: 0;
-  transition: opacity var(--duration-slow) var(--ease-out) 1000ms;
+  transition: opacity 0.8s var(--exp-ease) 1000ms;
 }
 
 [data-reveal].revealed .ch-reveal-5 {
   opacity: 1;
 }
 
-/* Hero image — slow blur-in */
-[data-reveal] .chapter__image,
-[data-reveal] .chapter__placeholder {
-  opacity: 0;
-  transform: scale(1.06);
-  transition: opacity var(--duration-emerge) var(--ease-out),
-              transform var(--duration-emerge) var(--ease-out);
-}
-
-[data-reveal].revealed .chapter__image,
-[data-reveal].revealed .chapter__placeholder {
-  opacity: 1;
-  transform: scale(1);
-}
 
 /* ===========================
-   Responsive
+   RESPONSIVE — Tablet (≤1024px)
    =========================== */
 
 @media (max-width: 1024px) {
-  .chapter__content--right {
-    width: 60%;
+  .exp-llegada__phrase--1 {
+    top: 8%;
+    left: 5%;
   }
 
-  .chapter__image--half {
-    width: 60%;
+  .exp-llegada__phrase--3 {
+    left: 15%;
   }
 
-  .chapter__scroll {
-    margin-top: var(--space-64);
+  .exp-dentro__block--horizontal {
+    grid-template-columns: 1fr;
+    gap: var(--exp-xs);
+  }
+
+  .exp-dentro__block--reversed {
+    direction: ltr;
+  }
+
+  .exp-dentro__block--offset-right,
+  .exp-dentro__block--offset-left {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .exp-cartago__row {
+    gap: var(--exp-m);
+  }
+
+  .exp-cartago__number {
+    min-width: 120px;
   }
 }
 
+
+/* ===========================
+   RESPONSIVE — Mobile (≤768px)
+   =========================== */
+
 @media (max-width: 768px) {
-  /* Chapter 01 */
-  .chapter--hero .chapter__content {
-    min-height: 100vh;
-    padding-top: calc(var(--navbar-height) + var(--space-80));
+  .exp-hero__title {
+    font-size: clamp(2.5rem, 10vw, 4rem);
   }
 
-  .chapter__title {
-    font-size: clamp(2.5rem, 10vw, 4.5rem);
+  .exp-hero__subtitle {
+    font-size: clamp(1rem, 4vw, 1.25rem);
   }
 
-  .chapter__subtitle {
-    font-size: clamp(1.25rem, 5vw, 2rem);
+  .exp-hero__signature {
+    bottom: 24px;
   }
 
-  /* Chapter 02 — stack */
-  .chapter--editorial {
+  /* Llegada — composición colapsa a vertical */
+  .exp-llegada {
+    min-height: 80vh;
+  }
+
+  .exp-llegada__content {
+    height: auto;
+    display: flex;
     flex-direction: column;
-    min-height: auto;
-    padding: var(--space-96) 0;
+    align-items: center;
+    gap: var(--exp-l);
+    padding-top: var(--exp-xl);
+    padding-bottom: var(--exp-xl);
   }
 
-  .chapter--editorial .chapter__image--half {
+  .exp-llegada__phrase {
     position: relative;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    text-align: center;
+  }
+
+  .exp-llegada__label {
+    font-size: clamp(3rem, 12vw, 5rem);
+  }
+
+  .exp-llegada__text {
+    font-size: clamp(1.25rem, 4vw, 2rem);
+  }
+
+  .exp-llegada__frame {
+    top: 5%;
+    left: 5%;
+    right: 5%;
+    bottom: 5%;
+  }
+
+  /* Dentro — bloques apilados */
+  .exp-dentro {
+    padding: var(--exp-xl) 0;
+  }
+
+  .exp-dentro__block {
+    padding: var(--exp-l) var(--grid-page-margin);
+  }
+
+  .exp-dentro__block--centered {
+    padding: var(--exp-l) var(--grid-page-margin);
+  }
+
+  .exp-dentro__value {
+    font-size: clamp(1.75rem, 7vw, 3rem);
+  }
+
+  .exp-dentro__block--offset-right,
+  .exp-dentro__block--offset-left {
+    padding-left: var(--grid-page-margin);
+    padding-right: var(--grid-page-margin);
+  }
+
+  /* Cartago — grid colapsa */
+  .exp-cartago {
+    padding: var(--exp-xl) 0;
+  }
+
+  .exp-cartago__row {
+    flex-wrap: wrap;
+    gap: var(--exp-xs);
+  }
+
+  .exp-cartago__number {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+    min-width: 80px;
+  }
+
+  .exp-cartago__unit {
+    min-width: auto;
+  }
+
+  .exp-cartago__label {
     width: 100%;
-    height: 40vh;
-    order: -1;
+    margin-top: var(--exp-xs);
   }
 
-  .chapter__content--right {
-    width: 100%;
-    padding: var(--space-48) 0 0 0;
+  /* Detalles — momentos más compactos */
+  .exp-detalles {
+    padding: var(--exp-xl) 0;
   }
 
-  .chapter__narrative-line {
-    font-size: clamp(1rem, 3vw, 1.25rem);
+  .exp-detalles__moment {
+    min-height: 70vh;
+    padding: 0 var(--grid-page-margin);
   }
 
-  /* Chapter 03 */
-  .chapter--speed {
-    padding: var(--space-96) 0;
-    min-height: auto;
+  .exp-detalles__moment--final {
+    min-height: 60vh;
   }
 
-  .chapter--speed .chapter__image--light {
-    position: relative;
-    height: 30vh;
+  .exp-detalles__line {
+    font-size: clamp(2rem, 7vw, 3.5rem);
   }
 
-  .chapter__stat-number {
-    font-size: clamp(3rem, 15vw, 6rem);
+  .exp-detalles__axis {
+    display: none;
   }
 
-  .chapter__stat-unit {
-    font-size: clamp(0.875rem, 3vw, 1.25rem);
+  .exp-detalles__firma {
+    bottom: var(--exp-m);
   }
 
-  /* Chapter 04 */
-  .chapter--explore {
-    min-height: auto;
-    padding: var(--space-96) 0;
+  /* CTA */
+  .exp-cta {
+    min-height: 60vh;
   }
 
-  .chapter--explore .chapter__image--full {
-    position: relative;
-    height: 35vh;
+  .exp-cta__title {
+    font-size: clamp(2rem, 7vw, 3.5rem);
   }
 
-  .chapter__content--bottom-left {
-    min-height: auto;
-    padding-bottom: 0;
+  .exp-cta__content {
+    gap: var(--exp-m);
   }
 
-  .chapter__grid {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-12) var(--space-24);
-    max-width: 100%;
+  /* Footer firma */
+  .footer__bottom-inner {
+    flex-direction: column;
+    gap: var(--exp-xs);
+    text-align: center;
+  }
+}
+
+
+/* ===========================
+   RESPONSIVE — Small (≤480px)
+   =========================== */
+
+@media (max-width: 480px) {
+  .exp-hero__title {
+    font-size: clamp(2rem, 9vw, 3rem);
   }
 
-  .chapter__grid-value {
-    font-size: clamp(1rem, 4vw, 1.5rem);
+  .exp-llegada__label {
+    font-size: clamp(2.5rem, 10vw, 4rem);
   }
 
-  .chapter__heading--large {
-    font-size: clamp(1.75rem, 6vw, 3rem);
-  }
-
-  /* Chapter 05 */
-  .chapter--final {
-    min-height: auto;
-    padding: var(--space-128) 0;
-  }
-
-  .chapter__final-title {
-    font-size: clamp(2rem, 8vw, 4rem);
-  }
-
-  /* Dividers */
-  .chapter-divider {
-    padding: var(--space-48) 0;
-  }
-
-  /* All chapters content */
-  .chapter__content--center {
-    min-height: auto;
-    padding: var(--space-64) 0;
-  }
-
-  .chapter__heading {
+  .exp-dentro__value {
     font-size: clamp(1.5rem, 6vw, 2.5rem);
   }
 
-  .chapter__text {
-    max-width: 100%;
+  .exp-cartago__number {
+    font-size: clamp(2rem, 8vw, 3rem);
   }
 
-  .chapter__scroll {
-    margin-top: var(--space-48);
-  }
-}
-
-@media (max-width: 480px) {
-  .chapter__grid {
-    gap: var(--space-8) var(--space-16);
+  .exp-detalles__line {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
   }
 
-  .chapter__stat-number {
-    font-size: clamp(2.5rem, 12vw, 4rem);
+  .exp-cta__title {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
   }
 }
