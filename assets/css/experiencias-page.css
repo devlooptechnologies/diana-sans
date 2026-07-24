@@ -31,6 +31,26 @@
   --exp-ease: cubic-bezier(.22,.61,.36,1);
 }
 
+html, body {
+  overflow-x: clip;
+}
+
+/* Navbar overrides — more presence */
+.navbar__link {
+  color: var(--color-ivory) !important;
+  opacity: 0.82;
+}
+
+.navbar__link:hover {
+  opacity: 1;
+}
+
+.navbar__cta {
+  padding: 12px 34px !important;
+  border: 1px solid rgba(246, 242, 235, 0.25) !important;
+  font-size: 0.65rem !important;
+}
+
 /* ===========================
    SECCION 1 — HERO — 100vh
    Foco: Marca + emotional hook
@@ -46,6 +66,7 @@
   align-items: center;
   background-color: var(--color-black-absolute);
   overflow: hidden;
+  overflow-x: clip;
 }
 
 /* Textura papel negro — capa 1 */
@@ -138,6 +159,7 @@
   color: var(--color-gold);
   font-style: italic;
   margin-top: var(--exp-s);
+  max-width: 380px;
 }
 
 /* Scroll indicator removed — editorial choice */
@@ -914,12 +936,13 @@
 @media (max-width: 768px) {
   .exp-hero {
     min-height: 600px;
+    align-items: flex-start;
   }
 
   .exp-hero__content {
     padding-left: 24px;
     padding-right: 24px;
-    margin-top: 80px;
+    margin-top: 120px;
     align-items: flex-start;
   }
 
@@ -933,23 +956,26 @@
 
   .exp-hero__anchor {
     width: 70px;
+    margin-top: var(--exp-s);
   }
 
   .exp-hero__subtitle {
     font-size: 1.35rem;
-    line-height: 1.35;
+    line-height: 1.4;
+    max-width: none;
   }
 
   .exp-hero__glow {
-    top: 10%;
-    right: 0;
-    width: 300px;
-    height: 350px;
-    opacity: 0.6;
+    top: 5%;
+    right: -10%;
+    width: 250px;
+    height: 300px;
+    opacity: 0.5;
   }
 
   .exp-hero__signature {
     bottom: 24px;
+    right: 24px;
   }
 
   /* Llegada — composición colapsa a vertical */
@@ -1115,10 +1141,17 @@
 
   .exp-hero__subtitle {
     font-size: 1.2rem;
+    max-width: 200px;
   }
 
   .exp-hero__anchor {
     width: 60px;
+  }
+
+  .exp-hero__glow {
+    width: 200px;
+    height: 250px;
+    opacity: 0.4;
   }
 
   .exp-llegada__label {
