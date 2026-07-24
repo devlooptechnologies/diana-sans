@@ -64,17 +64,17 @@
 /* Glow cálido — capa 2, esquina superior derecha */
 .exp-hero__glow {
   position: absolute;
-  top: 20%;
-  right: 15%;
-  width: 600px;
-  height: 500px;
+  top: 15%;
+  right: 10%;
+  width: 750px;
+  height: 600px;
   background: radial-gradient(
-    ellipse at 60% 40%,
-    rgba(183, 154, 99, 0.06) 0%,
-    rgba(183, 154, 99, 0.025) 35%,
+    ellipse at 55% 45%,
+    rgba(183, 154, 99, 0.085) 0%,
+    rgba(183, 154, 99, 0.035) 40%,
     transparent 70%
   );
-  filter: blur(60px);
+  filter: blur(65px);
   pointer-events: none;
 }
 
@@ -87,6 +87,7 @@
   max-width: 900px;
   padding-left: clamp(48px, 8vw, 140px);
   padding-right: var(--grid-page-margin);
+  margin-top: 50px;
 }
 
 /* Firma de página — casi invisible */
@@ -100,7 +101,7 @@
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--color-ivory);
-  opacity: 0.08;
+  opacity: 0.16;
 }
 
 .exp-hero__title {
@@ -110,15 +111,23 @@
   line-height: 1.02;
   color: var(--color-ivory);
   letter-spacing: -0.03em;
-  margin-bottom: var(--exp-s);
+  margin-bottom: calc(var(--exp-s) + 30px);
 }
 
 .exp-hero__title em {
   font-style: italic;
   color: var(--color-ivory);
-  opacity: 0.65;
+  opacity: 0.95;
   display: block;
   margin-left: clamp(24px, 5vw, 80px);
+}
+
+.exp-hero__anchor {
+  width: 80px;
+  height: 1px;
+  background: var(--color-gold);
+  opacity: 0.18;
+  margin-top: var(--exp-s);
 }
 
 .exp-hero__subtitle {
@@ -128,45 +137,10 @@
   line-height: 1.4;
   color: var(--color-gold);
   font-style: italic;
-  margin-top: calc(var(--exp-m) + 40px);
+  margin-top: var(--exp-s);
 }
 
-.exp-hero__scroll {
-  position: absolute;
-  bottom: var(--exp-m);
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--exp-xs);
-}
-
-.exp-hero__scroll-text {
-  font-size: 0.5rem;
-  font-weight: var(--weight-body-medium);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--color-gray-warm);
-  opacity: 0.4;
-}
-
-.exp-hero__scroll-line {
-  width: 1px;
-  height: 32px;
-  position: relative;
-  overflow: hidden;
-}
-
-.exp-hero__scroll-line::after {
-  content: '';
-  position: absolute;
-  top: -100%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(180deg, transparent, var(--color-gold));
-  animation: expScrollPulse 2.6s ease-in-out infinite;
+/* Scroll indicator removed — editorial choice */
 }
 
 @keyframes expScrollPulse {
