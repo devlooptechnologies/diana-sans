@@ -78,9 +78,9 @@
   height: 200px;
   background: radial-gradient(
     ellipse at 48% 30%,
-    rgba(196, 168, 110, 0.065) 0%,
-    rgba(196, 168, 110, 0.03) 30%,
-    rgba(196, 168, 110, 0.01) 55%,
+    rgba(196, 168, 110, 0.058) 0%,
+    rgba(196, 168, 110, 0.027) 30%,
+    rgba(196, 168, 110, 0.009) 55%,
     transparent 80%
   );
   border-radius: 45% 55% 50% 50%;
@@ -96,9 +96,9 @@
   width: 650px;
   height: 550px;
   background:
-    radial-gradient(ellipse 50% 40% at 45% 20%, rgba(196, 168, 110, 0.026) 0%, transparent 65%),
-    radial-gradient(ellipse 30% 55% at 55% 40%, rgba(196, 168, 110, 0.015) 0%, transparent 55%),
-    radial-gradient(ellipse 70% 25% at 40% 65%, rgba(196, 168, 110, 0.008) 0%, transparent 45%);
+    radial-gradient(ellipse 50% 40% at 45% 20%, rgba(196, 168, 110, 0.023) 0%, transparent 65%),
+    radial-gradient(ellipse 30% 55% at 55% 40%, rgba(196, 168, 110, 0.013) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 25% at 40% 65%, rgba(196, 168, 110, 0.007) 0%, transparent 45%);
   filter: blur(90px);
 }
 
@@ -248,7 +248,7 @@
 
 .hero__title {
   margin-bottom: var(--space-8);
-  line-height: 1.05;
+  line-height: 1;
 }
 
 .hero__title em {
@@ -334,7 +334,7 @@
   width: 120px;
   height: 1px;
   background-color: var(--color-ivory);
-  opacity: 0.35;
+  opacity: 0.45;
   transition: width var(--duration-normal) var(--ease-out),
               opacity var(--duration-normal) var(--ease-out),
               background-color var(--duration-normal) var(--ease-out);
@@ -372,7 +372,7 @@
   align-items: center;
   gap: var(--space-12);
   position: absolute;
-  bottom: var(--space-48);
+  bottom: var(--space-88);
   left: 50%;
   transform: translateX(-50%);
   opacity: 0;
@@ -386,7 +386,7 @@
 
 .hero__line {
   width: 1px;
-  height: 40px;
+  height: 50px;
   background: linear-gradient(180deg, var(--color-gold), transparent);
   margin-bottom: var(--space-16);
 }

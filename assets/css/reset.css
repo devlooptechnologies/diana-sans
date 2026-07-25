@@ -19,7 +19,7 @@ body {
   background-color: var(--color-black-absolute);
   line-height: var(--leading-normal);
   letter-spacing: var(--tracking-normal);
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 ::selection {
