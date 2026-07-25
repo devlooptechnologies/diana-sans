@@ -6,11 +6,41 @@
   background-color: var(--color-black-absolute);
 }
 
-.espacios__header {
+/* ── Cinematic transition ── */
+.espacios__transition {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-24);
+  padding-top: var(--space-120);
   margin-bottom: var(--space-96);
+}
+
+.espacios__transition-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(180deg, transparent, var(--color-gold), transparent);
+  opacity: 0.3;
+}
+
+.espacios__transition-word {
+  font-family: var(--font-body);
+  font-size: 0.5625rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  opacity: 0.4;
+}
+
+.espacios__header {
+  margin-bottom: var(--space-96);
+}
+
+.espacios__header .section-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-48);
 }
 
 /* ===========================
@@ -20,7 +50,7 @@
 
 .apt-editorial {
   background-color: var(--color-black-absolute);
-  padding: var(--space-180) 0;
+  padding: var(--space-220) 0;
 }
 
 .apt-editorial__inner {
@@ -51,11 +81,11 @@
 
 .apt-editorial__number {
   font-family: var(--font-heading);
-  font-size: clamp(5rem, 10vw, 9rem);
+  font-size: clamp(7rem, 14vw, 12rem);
   font-weight: var(--weight-heading-light);
   line-height: var(--leading-none);
   color: var(--color-gold);
-  opacity: 0.06;
+  opacity: 0.08;
   letter-spacing: -0.06em;
   user-select: none;
   margin-bottom: var(--space-8);
@@ -89,18 +119,18 @@
 .apt-editorial__desc {
   color: var(--color-gray-warm);
   line-height: var(--leading-relaxed);
-  margin-top: var(--space-8);
+  margin-top: var(--space-16);
 }
 
 .apt-editorial__ideal {
   font-size: var(--text-caption);
-  letter-spacing: var(--tracking-wider);
+  letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
   color: var(--color-gray-warm);
-  opacity: 0.7;
+  opacity: 0.5;
   display: flex;
   gap: var(--space-4);
-  margin-top: var(--space-16);
+  margin-top: var(--space-24);
 }
 
 .apt-editorial__ideal span {
@@ -108,15 +138,31 @@
   opacity: 1;
 }
 
-/* ── Features inline ── */
+/* ── Features with bullets ── */
 .apt-editorial__features {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-8) var(--space-16);
+  flex-direction: column;
+  gap: var(--space-8);
   font-size: var(--text-body-small);
   color: var(--color-gray-warm);
-  opacity: 0.8;
-  margin-top: var(--space-4);
+  opacity: 0.7;
+  margin-top: var(--space-16);
+}
+
+.apt-editorial__feature {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.apt-editorial__feature::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--color-gold);
+  opacity: 0.4;
+  flex-shrink: 0;
 }
 
 /* Rule + CTA */
@@ -134,12 +180,24 @@
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
   color: var(--color-gold);
-  transition: opacity var(--duration-fast) var(--ease-out);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-12);
+  padding: var(--space-16) 0;
+  transition: color var(--duration-normal) var(--ease-out);
+}
+
+.apt-editorial__cta-arrow {
   display: inline-block;
+  transition: transform var(--duration-normal) var(--ease-out);
 }
 
 .apt-editorial__cta:hover {
-  opacity: 0.7;
+  color: var(--color-ivory);
+}
+
+.apt-editorial__cta:hover .apt-editorial__cta-arrow {
+  transform: translateX(4px);
 }
 
 /* ── Image column (65%) ── */
@@ -192,8 +250,26 @@
 }
 
 /* Tiny text */
-.espacios__tiny {
-  margin-top: var(--space-64);
+.espacios__closing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-32);
+  text-align: center;
+  padding: var(--space-96) 0;
+}
+
+.espacios__closing-line {
+  width: 40px;
+  height: 1px;
+  background-color: var(--color-gold);
+  opacity: 0.3;
+}
+
+.espacios__closing-text {
+  max-width: 360px;
+  opacity: 0.5;
+  line-height: 1.8;
 }
 
 /* ===========================
