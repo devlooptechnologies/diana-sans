@@ -58,11 +58,15 @@
   }
 
   .apt-editorial__image-wrapper {
-    max-width: 560px;
+    max-width: 520px;
   }
 
   .apt-editorial__number {
     font-size: clamp(3rem, 5vw, 5rem);
+  }
+
+  .apt-editorial__carousel {
+    display: flex;
   }
 
   /* Galería editorial */
@@ -260,10 +264,6 @@
 
   .apt-editorial__features {
     gap: 0;
-  }
-
-  .apt-editorial__carousel {
-    display: flex;
   }
 
   /* Galería editorial — mobile */
