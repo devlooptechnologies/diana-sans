@@ -1,4 +1,15 @@
 /* ===========================
+   Responsive - Laptop (≤1440px)
+   =========================== */
+
+@media (max-width: 1440px) {
+  .apt-editorial__inner {
+    grid-template-columns: 40fr 60fr;
+    gap: var(--space-96);
+  }
+}
+
+/* ===========================
    Responsive - Tablet (≤1024px)
    =========================== */
 
@@ -44,7 +55,12 @@
 
   /* Espacios editorial */
   .apt-editorial__inner {
+    grid-template-columns: 35fr 65fr;
     gap: var(--space-64);
+  }
+
+  .apt-editorial__image-wrapper {
+    max-width: 650px;
   }
 
   .apt-editorial__number {
@@ -217,7 +233,7 @@
   }
 
   .apt-editorial__features {
-    gap: var(--space-6) var(--space-12);
+    gap: 0;
   }
 
   /* Galería editorial — mobile */
