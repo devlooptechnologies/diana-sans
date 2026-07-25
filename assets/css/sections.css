@@ -511,6 +511,10 @@
   align-items: flex-start;
 }
 
+.galeria__row > * {
+  min-width: 0;
+}
+
 .galeria__item {
   overflow: hidden;
   position: relative;
