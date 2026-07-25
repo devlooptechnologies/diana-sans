@@ -318,7 +318,7 @@
 .btn--editorial {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-12);
+  gap: var(--space-16);
   color: var(--color-ivory);
   font-family: var(--font-body);
   font-size: 0.625rem;
@@ -388,7 +388,7 @@
   width: 1px;
   height: 50px;
   background: linear-gradient(180deg, var(--color-gold), transparent);
-  margin-bottom: var(--space-16);
+  margin-bottom: var(--space-8);
 }
 
 .hero__scroll-text {
