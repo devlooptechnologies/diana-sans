@@ -149,7 +149,9 @@
   height: 85%;
   border: 1px solid rgba(196, 168, 110, 0.06);
   border-radius: 120px 120px 0 0;
-  box-shadow: 0 0 40px 15px rgba(196, 168, 110, 0.025);
+  box-shadow:
+    0 0 40px 15px rgba(196, 168, 110, 0.025),
+    inset 60px 0 80px -40px rgba(196, 168, 110, 0.035);
 }
 
 /* Technical grid lines inside */
@@ -190,8 +192,8 @@
   text-transform: uppercase;
   color: var(--color-gold);
   opacity: 0.15;
-  margin-top: var(--space-40);
-  margin-left: 4px;
+  margin-top: 10px;
+  margin-left: 20px;
 }
 
 /* ===========================
@@ -209,6 +211,7 @@
   padding-left: clamp(48px, 8vw, 140px);
   padding-right: var(--grid-page-margin);
   margin-left: -40px;
+  margin-top: -45px;
 }
 
 /* ===========================
@@ -263,7 +266,7 @@
   font-weight: var(--weight-heading-light);
   font-style: italic;
   color: var(--color-ivory);
-  margin-top: 24px;
+  margin-top: 36px;
   margin-bottom: var(--space-40);
   margin-left: clamp(64px, 8.5vw, 180px);
   opacity: 0.7;
@@ -315,7 +318,7 @@
 .btn--editorial {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-20);
+  gap: var(--space-12);
   color: var(--color-ivory);
   font-family: var(--font-body);
   font-size: 0.625rem;
