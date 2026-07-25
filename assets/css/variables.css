@@ -17,13 +17,13 @@
   --color-black-absolute: #0A0A0A;
   --color-black-warm: #111111;
   --color-ivory: #F6F2EB;
-  --color-gold: #B79A63;
+  --color-gold: #C4A86E;
   --color-gray-warm: #A6A29B;
   --color-white: #FFFFFF;
 
   /* Functional */
   --color-divider: rgba(255, 255, 255, 0.06);
-  --color-divider-gold: rgba(183, 154, 99, 0.2);
+  --color-divider-gold: rgba(196, 168, 110, 0.2);
   --color-surface: var(--color-black-absolute);
   --color-surface-elevated: var(--color-black-warm);
   --color-text-primary: var(--color-ivory);
@@ -194,8 +194,8 @@
      ========================================================== */
 
   --shadow-none: none;
-  --shadow-glow: 0 0 120px 60px rgba(183, 154, 99, 0.04);
-  --shadow-glow-strong: 0 0 200px 80px rgba(183, 154, 99, 0.06);
+  --shadow-glow: 0 0 120px 60px rgba(196, 168, 110, 0.05);
+  --shadow-glow-strong: 0 0 200px 80px rgba(196, 168, 110, 0.07);
 
   /* ==========================================================
      8. TRANSITION TOKENS

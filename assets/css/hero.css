@@ -78,9 +78,9 @@
   height: 200px;
   background: radial-gradient(
     ellipse at 48% 30%,
-    rgba(183, 154, 99, 0.055) 0%,
-    rgba(183, 154, 99, 0.025) 30%,
-    rgba(183, 154, 99, 0.008) 55%,
+    rgba(196, 168, 110, 0.065) 0%,
+    rgba(196, 168, 110, 0.03) 30%,
+    rgba(196, 168, 110, 0.01) 55%,
     transparent 80%
   );
   border-radius: 45% 55% 50% 50%;
@@ -96,9 +96,9 @@
   width: 650px;
   height: 550px;
   background:
-    radial-gradient(ellipse 50% 40% at 45% 20%, rgba(183, 154, 99, 0.022) 0%, transparent 65%),
-    radial-gradient(ellipse 30% 55% at 55% 40%, rgba(183, 154, 99, 0.012) 0%, transparent 55%),
-    radial-gradient(ellipse 70% 25% at 40% 65%, rgba(183, 154, 99, 0.006) 0%, transparent 45%);
+    radial-gradient(ellipse 50% 40% at 45% 20%, rgba(196, 168, 110, 0.026) 0%, transparent 65%),
+    radial-gradient(ellipse 30% 55% at 55% 40%, rgba(196, 168, 110, 0.015) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 25% at 40% 65%, rgba(196, 168, 110, 0.008) 0%, transparent 45%);
   filter: blur(90px);
 }
 
@@ -133,8 +133,9 @@
   content: '';
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 160px 160px 0 0;
+  box-shadow: 0 0 60px 20px rgba(196, 168, 110, 0.03);
 }
 
 /* Inner arch */
@@ -146,8 +147,9 @@
   transform: translateX(-50%);
   width: 72%;
   height: 85%;
-  border: 1px solid rgba(183, 154, 99, 0.02);
+  border: 1px solid rgba(196, 168, 110, 0.06);
   border-radius: 120px 120px 0 0;
+  box-shadow: 0 0 40px 15px rgba(196, 168, 110, 0.025);
 }
 
 /* Technical grid lines inside */
@@ -163,7 +165,7 @@
   left: 50%;
   width: 1px;
   height: 100%;
-  background: rgba(255, 255, 255, 0.015);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .hero__visual-grid::after {
@@ -173,7 +175,23 @@
   left: 0;
   width: 100%;
   height: 1px;
-  background: rgba(183, 154, 99, 0.015);
+  background: rgba(196, 168, 110, 0.03);
+}
+
+/* ===========================
+   Editorial Word — hidden detail
+   =========================== */
+
+.hero__editorial-word {
+  font-family: var(--font-body);
+  font-size: 0.5rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  opacity: 0.15;
+  margin-top: var(--space-40);
+  margin-left: 4px;
 }
 
 /* ===========================
@@ -245,8 +263,9 @@
   font-weight: var(--weight-heading-light);
   font-style: italic;
   color: var(--color-ivory);
+  margin-top: 24px;
   margin-bottom: var(--space-40);
-  margin-left: clamp(48px, 7vw, 160px);
+  margin-left: clamp(64px, 8.5vw, 180px);
   opacity: 0.7;
   letter-spacing: var(--tracking-wide);
 }
@@ -273,7 +292,7 @@
 
 .hero__description {
   max-width: 420px;
-  margin-top: 40px;
+  margin-top: 56px;
   margin-bottom: 56px;
   color: var(--color-gray-warm);
   font-size: var(--text-hero-description);
@@ -309,7 +328,7 @@
 }
 
 .btn--editorial__line {
-  width: 56px;
+  width: 120px;
   height: 1px;
   background-color: var(--color-ivory);
   opacity: 0.35;
@@ -335,7 +354,7 @@
 }
 
 .btn--editorial:hover .btn--editorial__line {
-  width: 88px;
+  width: 160px;
   opacity: 0.7;
   background-color: var(--color-gold);
 }
