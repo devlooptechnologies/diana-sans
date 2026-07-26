@@ -10,6 +10,7 @@
   min-height: 75vh;
   display: flex;
   align-items: flex-end;
+  overflow: hidden;
 }
 
 .chapter-intro__content {
@@ -44,6 +45,7 @@
 .apt-transition {
   background-color: var(--color-black-absolute);
   padding: var(--space-80) 0 var(--space-128);
+  overflow: hidden;
 }
 
 .apt-transition__text {
@@ -67,6 +69,7 @@
 .apt-block {
   background-color: var(--color-black-absolute);
   padding: var(--space-200) 0;
+  overflow: hidden;
 }
 
 .apt-block--tight {
@@ -342,6 +345,7 @@
   margin: 0 auto;
   padding-left: var(--grid-page-margin);
   padding-right: var(--grid-page-margin);
+  overflow: hidden;
 }
 
 .apt-pano-image {

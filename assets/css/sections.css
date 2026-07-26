@@ -4,6 +4,7 @@
 
 .espacios {
   background-color: var(--color-black-absolute);
+  overflow: hidden;
 }
 
 /* ── Cinematic transition ── */
@@ -51,6 +52,7 @@
 .apt-editorial {
   background-color: var(--color-black-absolute);
   padding: var(--space-220) 0;
+  overflow: hidden;
 }
 
 .apt-editorial__inner {
@@ -343,6 +345,7 @@
 
 .ubicacion {
   background-color: var(--color-black-absolute);
+  overflow: hidden;
 }
 
 .ubicacion__layout {
@@ -493,6 +496,7 @@
 
 .galeria {
   background-color: var(--color-black-absolute);
+  overflow: hidden;
 }
 
 .galeria__editorial {
@@ -577,6 +581,7 @@
 
 .servicios {
   background-color: var(--color-black-absolute);
+  overflow: hidden;
 }
 
 .servicios__editorial {
@@ -622,6 +627,7 @@
 
 .opiniones {
   background-color: var(--color-black-absolute);
+  overflow: hidden;
 }
 
 .opiniones__layout {

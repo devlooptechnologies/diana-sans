@@ -32,7 +32,7 @@
 }
 
 html, body {
-  overflow-x: clip;
+  overflow-x: hidden;
 }
 
 /* Navbar overrides — more presence */
@@ -343,6 +343,7 @@ html, body {
   background-color: var(--color-black-absolute);
   padding: var(--exp-l) 0 var(--exp-m);
   position: relative;
+  overflow: hidden;
 }
 
 /* Luz cálida desde esquina superior izquierda */
@@ -521,6 +522,7 @@ html, body {
   background-color: var(--color-black-absolute);
   padding: var(--exp-xl) 0;
   position: relative;
+  overflow: hidden;
 }
 
 /* Grid técnico — papel de plano */

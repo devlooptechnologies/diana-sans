@@ -52,6 +52,11 @@
     height: 360px;
   }
 
+  .hero__glow {
+    width: 800px;
+    height: 600px;
+  }
+
   /* Espacios editorial */
   .apt-editorial__inner {
     grid-template-columns: 45fr 55fr;
@@ -78,20 +83,30 @@
     gap: var(--space-16);
   }
 
+  .galeria__row > * {
+    min-width: 0;
+    overflow: hidden;
+  }
+
   /* Espacios header */
   .espacios__header .section-header {
     gap: var(--space-24);
+  }
+
+  /* Servicios editorial — tablet */
+  .servicio-row {
+    gap: var(--space-24);
+  }
+
+  .servicio-row__value {
+    min-width: 160px;
+    font-size: clamp(1.25rem, 2.2vw, 2rem);
   }
 
   /* Ubicación — tablet */
   .ubicacion__layout {
     grid-template-columns: 1fr;
     gap: var(--space-64);
-  }
-
-  /* Servicios editorial — tablet */
-  .servicio-row__value {
-    min-width: 180px;
   }
 
   /* Footer — tablet */

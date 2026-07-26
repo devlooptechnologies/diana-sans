@@ -10,7 +10,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  overflow-x: clip;
+  overflow-x: hidden;
 }
 
 body {
@@ -20,7 +20,7 @@ body {
   background-color: var(--color-black-absolute);
   line-height: var(--leading-normal);
   letter-spacing: var(--tracking-normal);
-  overflow-x: clip;
+  overflow-x: hidden;
 }
 
 ::selection {
