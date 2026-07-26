@@ -323,6 +323,221 @@
 }
 
 /* ===========================
+   Interior — Editorial Section
+   =========================== */
+
+.interior {
+  background-color: var(--color-black-absolute);
+  padding: var(--space-160) 0;
+  overflow: hidden;
+}
+
+.interior__inner {
+  display: grid;
+  grid-template-columns: 40fr 60fr;
+  gap: var(--space-80);
+  align-items: center;
+  max-width: var(--grid-container);
+  margin: 0 auto;
+  padding-left: var(--grid-page-margin);
+  padding-right: var(--grid-page-margin);
+}
+
+/* ── Text column ── */
+.interior__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.interior__overline {
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+  opacity: 0.5;
+  margin-bottom: var(--space-8);
+}
+
+.interior__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: var(--weight-heading-light);
+  line-height: 1.15;
+  color: var(--color-ivory);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-32);
+}
+
+.interior__copy {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-body-light);
+  color: var(--color-gray-warm);
+  line-height: var(--leading-relaxed);
+  max-width: 380px;
+  margin-bottom: var(--space-40);
+}
+
+.interior__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-12);
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+  text-decoration: none;
+  transition: opacity var(--duration-fast) var(--ease-out);
+  opacity: 0.6;
+}
+
+.interior__cta:hover {
+  opacity: 1;
+}
+
+.interior__cta-arrow {
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.interior__cta:hover .interior__cta-arrow {
+  transform: translateX(4px);
+}
+
+/* ── Image column ── */
+.interior__image-col {
+  position: relative;
+}
+
+.interior__image {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.interior__image-placeholder {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: linear-gradient(
+    178deg,
+    #0d0d0d 0%,
+    #111111 30%,
+    #0f0f0e 60%,
+    #121210 100%
+  );
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: transform var(--duration-slower) var(--ease-out);
+}
+
+/* Subtle texture */
+.interior__image-placeholder::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-conic-gradient(
+      rgba(255, 255, 255, 0.004) 0% 25%,
+      transparent 0% 50%
+    ) 0 0 / 3px 3px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ── Ficha — overlay on image ── */
+.interior__ficha {
+  position: absolute;
+  bottom: var(--space-32);
+  left: var(--space-32);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  z-index: 2;
+}
+
+/* ── Scroll reveal animations ── */
+.interior .interior__overline,
+.interior .interior__title,
+.interior .interior__copy,
+.interior .interior__cta {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.interior .interior__title { transition-delay: 0.1s; }
+.interior .interior__copy { transition-delay: 0.25s; }
+.interior .interior__cta { transition-delay: 0.4s; }
+
+.interior.revealed .interior__overline,
+.interior.revealed .interior__title,
+.interior.revealed .interior__copy,
+.interior.revealed .interior__cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.interior .interior__image-placeholder {
+  opacity: 0;
+  transform: scale(1.04);
+  filter: blur(8px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.interior.revealed .interior__image-placeholder {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+}
+
+.interior .interior__ficha {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s,
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.interior.revealed .interior__ficha {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.interior__ficha-line {
+  width: 32px;
+  height: 1px;
+  background-color: var(--color-gold);
+  opacity: 0.4;
+  margin-bottom: var(--space-4);
+}
+
+.interior__ficha-name {
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-ivory);
+  opacity: 0.7;
+}
+
+.interior__ficha-specs {
+  font-family: var(--font-body);
+  font-size: 0.625rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-gold);
+  opacity: 0.45;
+}
+
+/* ===========================
    Espacios Page — Responsive
    =========================== */
 
@@ -340,6 +555,14 @@
   .es-hero__content {
     padding-left: clamp(80px, 10vw, 160px);
     max-width: 480px;
+  }
+
+  .interior__inner {
+    gap: var(--space-48);
+  }
+
+  .interior__title {
+    font-size: clamp(1.75rem, 3vw, 2.8rem);
   }
 }
 
@@ -449,6 +672,41 @@
     padding: 20px var(--space-32);
     text-align: center;
   }
+
+  /* ── Interior: mobile single-column ── */
+  .interior {
+    padding: var(--space-96) 0;
+  }
+
+  .interior__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-40);
+  }
+
+  .interior__text {
+    order: 2;
+  }
+
+  .interior__image-col {
+    order: 1;
+  }
+
+  .interior__title {
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
+    margin-bottom: var(--space-24);
+  }
+
+  .interior__copy {
+    font-size: 0.9375rem;
+    max-width: 100%;
+    margin-bottom: var(--space-32);
+  }
+
+  .interior__ficha {
+    bottom: var(--space-20);
+    left: var(--space-20);
+  }
 }
 
 @media (max-width: 480px) {
@@ -486,6 +744,19 @@
 
   .es-hero__cta {
     padding: 18px var(--space-24);
+  }
+
+  .interior {
+    padding: var(--space-64) 0;
+  }
+
+  .interior__title {
+    font-size: clamp(1.5rem, 8vw, 2.2rem);
+  }
+
+  .interior__ficha {
+    bottom: var(--space-16);
+    left: var(--space-16);
   }
 }
 
