@@ -194,18 +194,17 @@
   }
 
   // ===========================
-  // Experience Words — Scroll Narrative
-  // Each word appears, previous fades
+  // Experience Words — Scroll Narrative v2
+  // Transitions at 60-70% viewport height
+  // Each word appears, previous becomes echo
   // ===========================
   var experienceWords = document.querySelectorAll('[data-word]');
   var closingBlock = document.querySelector('.experiencia-words__closing');
 
   if (experienceWords.length > 0) {
-    var currentActiveIndex = -1;
-
     function updateWords() {
       var windowHeight = window.innerHeight;
-      var center = windowHeight * 0.5;
+      var triggerPoint = windowHeight * 0.65;
 
       var closestIndex = -1;
       var closestDistance = Infinity;
@@ -213,7 +212,7 @@
       experienceWords.forEach(function(word, i) {
         var rect = word.getBoundingClientRect();
         var wordCenter = rect.top + rect.height / 2;
-        var distance = Math.abs(wordCenter - center);
+        var distance = Math.abs(wordCenter - triggerPoint);
 
         if (distance < closestDistance) {
           closestDistance = distance;
@@ -223,21 +222,17 @@
 
       experienceWords.forEach(function(word, i) {
         if (i < closestIndex) {
-          // Previous words — faded
           word.classList.add('is-past');
           word.classList.add('is-visible');
         } else if (i === closestIndex) {
-          // Current word — fully visible
           word.classList.add('is-visible');
           word.classList.remove('is-past');
         } else {
-          // Future words — hidden
           word.classList.remove('is-visible');
           word.classList.remove('is-past');
         }
       });
 
-      // Closing block appears after last word
       if (closingBlock && closestIndex === experienceWords.length - 1) {
         closingBlock.classList.add('is-visible');
       } else if (closingBlock) {

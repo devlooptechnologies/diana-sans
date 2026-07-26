@@ -1,6 +1,7 @@
 /* ===========================
-   Experience Words — Scroll Narrative
+   Experience Words — Scroll Narrative v2
    Each word appears as previous fades
+   Transitions at 60-70% viewport height
    =========================== */
 
 .experiencia-words {
@@ -56,12 +57,13 @@
   color: var(--color-ivory);
   text-align: center;
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(30px) scale(0.97);
   filter: blur(6px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              text-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   letter-spacing: var(--tracking-tight);
   will-change: opacity, transform, filter;
 }
@@ -69,18 +71,34 @@
 /* Visible state — word enters */
 .experience-word.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
   filter: blur(0);
 }
 
-/* Fading state — previous word loses focus */
+/* Fading state — previous word becomes echo */
 .experience-word.is-past {
-  opacity: 0.15;
-  transform: translateY(-20px);
-  filter: blur(4px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0.12;
+  transform: translateY(-16px) scale(0.98);
+  filter: blur(2px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Llegar — first word, slower entrance ── */
+.experience-word:first-child {
+  transition-duration: 0.9s;
+}
+
+.experience-word:first-child.is-visible {
+  transition-delay: 0ms;
+}
+
+/* ── Disfrutar — finale effect ── */
+.experience-word--gold-intense.is-visible {
+  text-shadow: 0 0 60px rgba(196, 168, 110, 0.25),
+               0 0 120px rgba(196, 168, 110, 0.08);
+  transition-duration: 0.9s;
 }
 
 /* ── Color Variations ── */
@@ -93,7 +111,7 @@
 }
 
 .experience-word--white {
-  color: var(--color-ivory);
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .experience-word--gold-intense {
@@ -110,13 +128,14 @@
   font-size: clamp(2.7rem, 6.5vw, 5.4rem);
 }
 
-/* ── Closing Block ── */
+/* ── Closing Block — pulled up ~50px ── */
 .experiencia-words__closing {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-24);
-  margin-top: var(--space-96);
+  margin-top: var(--space-48);
+  padding-bottom: var(--space-40);
   text-align: center;
   opacity: 0;
   transform: translateY(16px);
@@ -164,7 +183,7 @@
 
   .experience-word {
     font-size: clamp(2rem, 10vw, 3.5rem);
-    transform: translateY(24px);
+    transform: translateY(24px) scale(0.97);
   }
 
   .experience-word--large {
@@ -172,6 +191,7 @@
   }
 
   .experiencia-words__closing {
-    margin-top: var(--space-64);
+    margin-top: var(--space-32);
+    padding-bottom: var(--space-24);
   }
 }
