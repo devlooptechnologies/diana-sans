@@ -400,8 +400,12 @@
   }
 
   /* Opiniones */
+  .opiniones__layout {
+    padding-top: 60px;
+  }
+
   .opiniones__quotes {
-    gap: var(--space-80);
+    min-height: 280px;
   }
 
   /* CTA Final */

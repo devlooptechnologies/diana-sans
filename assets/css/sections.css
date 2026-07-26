@@ -1100,31 +1100,57 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  padding-top: 100px;
 }
 
 .opiniones__quotes {
   display: flex;
   flex-direction: column;
-  gap: var(--space-128);
-  max-width: 720px;
+  max-width: 800px;
   margin: 0 auto;
+  position: relative;
+  min-height: 320px;
 }
 
+/* ── Quote base ── */
 .opinione {
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-32);
+  gap: var(--space-24);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.opinione.is-active {
+  display: flex;
+}
+
+.opinione.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Quotes — bigger, gold ── */
 .opinione__mark {
   font-family: var(--font-heading);
-  font-size: 3rem;
+  font-size: 4rem;
   color: var(--color-gold);
   line-height: 1;
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
+/* ── Stars ── */
+.opinione__stars {
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  color: var(--color-gold);
+  opacity: 0.45;
+}
+
+/* ── Text — wider ── */
 .opinione__text {
   font-family: var(--font-heading);
   font-size: clamp(1.25rem, 1.8vw, 1.75rem);
@@ -1132,13 +1158,15 @@
   line-height: var(--leading-snug);
   color: var(--color-ivory);
   font-style: italic;
+  max-width: 640px;
 }
 
+/* ── Author — more editorial space ── */
 .opinione__author {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-8);
 }
 
 .opinione__author-name {
@@ -1154,6 +1182,7 @@
   color: var(--color-gray-warm);
 }
 
+/* ── Nav dots — active longer ── */
 .opiniones__nav {
   display: flex;
   align-items: center;
@@ -1162,14 +1191,16 @@
 }
 
 .opiniones__nav-dot {
-  width: 32px;
+  width: 20px;
   height: 1px;
   background-color: var(--color-divider);
   cursor: pointer;
-  transition: background-color var(--duration-fast) var(--ease-out);
+  transition: background-color var(--duration-fast) var(--ease-out),
+              width 0.4s var(--ease-out);
 }
 
 .opiniones__nav-dot.active {
+  width: 40px;
   background-color: var(--color-gold);
 }
 

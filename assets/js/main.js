@@ -146,37 +146,67 @@
   });
 
   // ===========================
-  // Opiniones Carousel
+  // Opiniones Carousel — Fade + Slide
   // ===========================
   var quotes = document.querySelectorAll('.opinione');
   var dots = document.querySelectorAll('.opiniones__nav-dot');
   var currentQuote = 0;
+  var isAnimating = false;
 
   function showQuote(index) {
-    quotes.forEach(function(q, i) {
-      q.style.display = i === index ? 'flex' : 'none';
-    });
+    if (isAnimating || index === currentQuote) return;
+    isAnimating = true;
 
-    dots.forEach(function(d, i) {
-      d.classList.toggle('active', i === index);
-    });
+    var current = quotes[currentQuote];
+    var next = quotes[index];
+
+    // Fade out current
+    current.classList.remove('is-visible');
+
+    setTimeout(function() {
+      current.classList.remove('is-active');
+      current.style.display = 'none';
+
+      // Show next
+      next.style.display = 'flex';
+      next.classList.add('is-active');
+
+      // Force reflow
+      void next.offsetWidth;
+
+      // Fade in next
+      next.classList.add('is-visible');
+
+      // Update dots
+      dots.forEach(function(d, i) {
+        d.classList.toggle('active', i === index);
+      });
+
+      currentQuote = index;
+      isAnimating = false;
+    }, 600);
   }
 
   dots.forEach(function(dot, i) {
     dot.addEventListener('click', function() {
-      currentQuote = i;
-      showQuote(currentQuote);
+      showQuote(i);
     });
   });
 
+  // Init: show first quote
   if (quotes.length > 0) {
-    showQuote(0);
+    quotes[0].style.display = 'flex';
+    quotes[0].classList.add('is-active');
+    setTimeout(function() {
+      quotes[0].classList.add('is-visible');
+    }, 100);
   }
 
+  // Auto-advance
   if (quotes.length > 1) {
     setInterval(function() {
-      currentQuote = (currentQuote + 1) % quotes.length;
-      showQuote(currentQuote);
+      var next = (currentQuote + 1) % quotes.length;
+      showQuote(next);
     }, 6000);
   }
 
