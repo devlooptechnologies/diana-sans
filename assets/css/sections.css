@@ -523,14 +523,86 @@
   overflow: hidden;
   position: relative;
   cursor: pointer;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transform: translateY(30px) scale(1.02);
+  filter: blur(6px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.galeria__item.is-revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+.galeria__item[data-delay="0"] { transition-delay: 0ms; }
+.galeria__item[data-delay="1"] { transition-delay: 200ms; }
+.galeria__item[data-delay="2"] { transition-delay: 400ms; }
+
 .galeria__item .img-placeholder {
-  transition: transform var(--duration-slower) var(--ease-out);
+  transition: transform var(--duration-slower) var(--ease-out),
+              filter var(--duration-slower) var(--ease-out);
+}
+
+.galeria__item-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  transition: background var(--duration-normal) var(--ease-out);
+  pointer-events: none;
+}
+
+.galeria__item:hover .galeria__item-overlay {
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .galeria__item:hover .img-placeholder {
   transform: scale(1.03);
+  filter: brightness(1.08);
+}
+
+/* ── Captions — editorial ── */
+.galeria__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-32) var(--space-24) var(--space-20);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--duration-normal) var(--ease-out),
+              transform var(--duration-normal) var(--ease-out);
+  background: linear-gradient(0deg, rgba(10, 10, 10, 0.6) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.galeria__item:hover .galeria__caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.galeria__caption-title {
+  font-family: var(--font-heading);
+  font-size: clamp(0.875rem, 1.2vw, 1.125rem);
+  font-weight: var(--weight-heading-light);
+  color: var(--color-ivory);
+  letter-spacing: var(--tracking-wide);
+}
+
+.galeria__caption-detail {
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gray-warm);
+  opacity: 0.7;
 }
 
 /* Row 1: Wide + Tall */
@@ -573,6 +645,7 @@
   flex: 0.6;
   aspect-ratio: 1/1;
   align-self: center;
+  margin-top: -30px;
 }
 
 /* ===========================

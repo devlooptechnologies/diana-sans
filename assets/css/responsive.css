@@ -83,6 +83,10 @@
     gap: var(--space-16);
   }
 
+  .galeria__row--3 .galeria__item--small {
+    margin-top: 0;
+  }
+
   .galeria__row > * {
     min-width: 0;
     overflow: hidden;

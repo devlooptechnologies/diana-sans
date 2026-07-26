@@ -194,6 +194,64 @@
   }
 
   // ===========================
+  // Gallery — Staggered Reveal + Parallax
+  // ===========================
+  var galleryItems = document.querySelectorAll('.galeria__item');
+
+  if (galleryItems.length > 0) {
+    var hoveredItems = new Set();
+
+    galleryItems.forEach(function(item) {
+      var row = item.closest('.galeria__row');
+      var siblings = row ? row.querySelectorAll('.galeria__item') : [];
+      var indexInRow = Array.prototype.indexOf.call(siblings, item);
+
+      item.setAttribute('data-delay', String(indexInRow));
+
+      item.addEventListener('mouseenter', function() { hoveredItems.add(item); });
+      item.addEventListener('mouseleave', function() { hoveredItems.delete(item); });
+    });
+
+    function revealGallery() {
+      var windowHeight = window.innerHeight;
+      var triggerPoint = windowHeight * 0.85;
+
+      galleryItems.forEach(function(item) {
+        var rect = item.getBoundingClientRect();
+        if (rect.top < triggerPoint) {
+          item.classList.add('is-revealed');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealGallery, { passive: true });
+    window.addEventListener('load', revealGallery);
+
+    // Parallax on gallery items
+    function parallaxGallery() {
+      var windowHeight = window.innerHeight;
+
+      galleryItems.forEach(function(item) {
+        var rect = item.getBoundingClientRect();
+        var inView = rect.top < windowHeight && rect.bottom > 0;
+        var img = item.querySelector('.img-placeholder');
+
+        if (inView && item.classList.contains('is-revealed') && img) {
+          var speed = parseInt(item.getAttribute('data-parallax'), 10) || 10;
+          var offset = (rect.top - windowHeight * 0.5) * (speed / windowHeight);
+          var isHovered = hoveredItems.has(item);
+          var scaleVal = isHovered ? 1.03 : 1;
+          img.style.transform = 'translateY(' + offset + 'px) scale(' + scaleVal + ')';
+        } else if (img && !inView) {
+          img.style.transform = '';
+        }
+      });
+    }
+
+    window.addEventListener('scroll', parallaxGallery, { passive: true });
+  }
+
+  // ===========================
   // Experience Words — Scroll Narrative v3
   // Crossfade: current fades, next starts appearing
   // No empty moment between words
