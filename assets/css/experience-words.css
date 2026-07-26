@@ -1,6 +1,6 @@
 /* ===========================
-   Experience Words — Apple/Aesop style
-   Scroll-triggered single words
+   Experience Words — Scroll Narrative
+   Each word appears as previous fades
    =========================== */
 
 .experiencia-words {
@@ -23,29 +23,32 @@
   pointer-events: none;
 }
 
+/* ── Intro — pulled up ~40px ── */
 .experiencia-words__intro {
   text-align: center;
-  margin-bottom: var(--space-128);
+  margin-bottom: var(--space-80);
 }
 
 .experiencia-words__intro .overline {
   display: block;
   margin-bottom: var(--space-24);
+  letter-spacing: 0.35em;
 }
 
 .experiencia-words__intro .heading-section {
   text-align: center;
 }
 
-/* ── Words List ── */
+/* ── Words List — reduced gap ~20% ── */
 .experiencia-words__list {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-80);
-  padding: var(--space-80) 0;
+  gap: var(--space-64);
+  padding: var(--space-64) 0;
 }
 
+/* ── Base Word ── */
 .experience-word {
   font-family: var(--font-heading);
   font-size: clamp(2.5rem, 6vw, 5rem);
@@ -53,23 +56,97 @@
   color: var(--color-ivory);
   text-align: center;
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(30px);
+  filter: blur(6px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   letter-spacing: var(--tracking-tight);
+  will-change: opacity, transform, filter;
 }
 
+/* Visible state — word enters */
 .experience-word.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Fading state — previous word loses focus */
+.experience-word.is-past {
+  opacity: 0.15;
+  transform: translateY(-20px);
+  filter: blur(4px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Color Variations ── */
+.experience-word--gold-strong {
+  color: var(--color-gold);
+}
+
+.experience-word--gold-medium {
+  color: rgba(196, 168, 110, 0.7);
+}
+
+.experience-word--white {
+  color: var(--color-ivory);
+}
+
+.experience-word--gold-intense {
+  color: var(--color-gold);
+  text-shadow: 0 0 40px rgba(196, 168, 110, 0.15);
+}
+
+.experience-word--gold {
+  color: rgba(196, 168, 110, 0.85);
+}
+
+/* ── Size Variation — key words +8% ── */
+.experience-word--large {
+  font-size: clamp(2.7rem, 6.5vw, 5.4rem);
+}
+
+/* ── Closing Block ── */
+.experiencia-words__closing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-24);
+  margin-top: var(--space-96);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s,
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.experiencia-words__closing.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Active word — gold accent when in center */
-.experience-word.is-active {
-  color: var(--color-gold);
+.experiencia-words__closing-line {
+  width: 40px;
+  height: 1px;
+  background-color: var(--color-gold);
+  opacity: 0.3;
 }
 
-/* ── Responsive ── */
+.experiencia-words__closing-text {
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gray-warm);
+  opacity: 0.5;
+}
+
+/* ── Responsive — Mobile ── */
 
 @media (max-width: 768px) {
   .experiencia-words {
@@ -77,15 +154,24 @@
   }
 
   .experiencia-words__intro {
-    margin-bottom: var(--space-64);
+    margin-bottom: var(--space-48);
   }
 
   .experiencia-words__list {
-    gap: var(--space-48);
+    gap: var(--space-40);
     padding: var(--space-40) 0;
   }
 
   .experience-word {
     font-size: clamp(2rem, 10vw, 3.5rem);
+    transform: translateY(24px);
+  }
+
+  .experience-word--large {
+    font-size: clamp(2.2rem, 11vw, 3.8rem);
+  }
+
+  .experiencia-words__closing {
+    margin-top: var(--space-64);
   }
 }

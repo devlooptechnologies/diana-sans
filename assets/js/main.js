@@ -194,39 +194,59 @@
   }
 
   // ===========================
-  // Experience Words — Scroll-triggered
-  // Apple/Aesop style single words
+  // Experience Words — Scroll Narrative
+  // Each word appears, previous fades
   // ===========================
   var experienceWords = document.querySelectorAll('[data-word]');
+  var closingBlock = document.querySelector('.experiencia-words__closing');
 
   if (experienceWords.length > 0) {
-    var wordObserver = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
+    var currentActiveIndex = -1;
+
+    function updateWords() {
+      var windowHeight = window.innerHeight;
+      var center = windowHeight * 0.5;
+
+      var closestIndex = -1;
+      var closestDistance = Infinity;
+
+      experienceWords.forEach(function(word, i) {
+        var rect = word.getBoundingClientRect();
+        var wordCenter = rect.top + rect.height / 2;
+        var distance = Math.abs(wordCenter - center);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = i;
         }
       });
-    }, {
-      threshold: 0.3,
-      rootMargin: '0px 0px -10% 0px'
-    });
 
-    experienceWords.forEach(function(word) {
-      wordObserver.observe(word);
-    });
-
-    // Active state: word glows gold when most centered
-    var wordActiveObserver = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        entry.target.classList.toggle('is-active', entry.isIntersecting);
+      experienceWords.forEach(function(word, i) {
+        if (i < closestIndex) {
+          // Previous words — faded
+          word.classList.add('is-past');
+          word.classList.add('is-visible');
+        } else if (i === closestIndex) {
+          // Current word — fully visible
+          word.classList.add('is-visible');
+          word.classList.remove('is-past');
+        } else {
+          // Future words — hidden
+          word.classList.remove('is-visible');
+          word.classList.remove('is-past');
+        }
       });
-    }, {
-      threshold: 0.6
-    });
 
-    experienceWords.forEach(function(word) {
-      wordActiveObserver.observe(word);
-    });
+      // Closing block appears after last word
+      if (closingBlock && closestIndex === experienceWords.length - 1) {
+        closingBlock.classList.add('is-visible');
+      } else if (closingBlock) {
+        closingBlock.classList.remove('is-visible');
+      }
+    }
+
+    window.addEventListener('scroll', updateWords, { passive: true });
+    window.addEventListener('load', updateWords);
   }
 
   // ===========================
