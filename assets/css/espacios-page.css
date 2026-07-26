@@ -121,33 +121,35 @@
   overflow: hidden;
 }
 
-/* Placeholder — elegant dark gradient */
+/* Placeholder — elegant dark gradient + subtle texture */
 .es-hero__image-placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    178deg,
-    #0d0d0d 0%,
-    #111111 25%,
-    #0f0f0e 55%,
-    #121210 100%
-  );
+  background:
+    linear-gradient(
+      178deg,
+      #0d0d0d 0%,
+      #111111 25%,
+      #0f0f0e 55%,
+      #121210 100%
+    );
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
 }
 
-/* Subtle inner glow */
-.es-hero__image-placeholder::before {
+/* Subtle texture — barely perceptible depth */
+.es-hero__image-placeholder::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    ellipse 60% 40% at 50% 30%,
-    rgba(196, 168, 110, 0.025) 0%,
-    transparent 70%
-  );
+  background:
+    repeating-conic-gradient(
+      rgba(255, 255, 255, 0.004) 0% 25%,
+      transparent 0% 50%
+    ) 0 0 / 3px 3px;
+  opacity: 0.6;
   pointer-events: none;
 }
 
@@ -167,7 +169,7 @@
 /* Tag inside frame — bottom-left, Aman style */
 .es-hero__tag {
   position: absolute;
-  bottom: var(--space-40);
+  bottom: var(--space-60);
   left: var(--space-32);
   display: flex;
   flex-direction: column;
@@ -236,8 +238,8 @@
   font-weight: var(--weight-body-medium);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--color-gold);
-  opacity: 0.3;
+  color: var(--color-gray-warm);
+  opacity: 0.4;
   white-space: nowrap;
 }
 
@@ -249,13 +251,39 @@
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  max-width: 580px;
+  max-width: 680px;
   padding-left: clamp(80px, 10vw, 175px);
   padding-right: var(--grid-page-margin);
   margin-top: 120px;
 }
 
-/* ── Overline ── */
+/* ── Watermark — giant word behind everything ── */
+.es-hero__watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-heading);
+  font-size: clamp(6rem, 14vw, 16rem);
+  font-weight: var(--weight-heading-light);
+  color: var(--color-ivory);
+  opacity: 0.025;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 0;
+  user-select: none;
+}
+
+/* ── Overline — with editorial line ── */
+.es-hero__overline-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  margin-bottom: var(--space-40);
+}
+
 .es-hero__overline {
   font-family: var(--font-body);
   font-size: var(--text-eyebrow);
@@ -264,24 +292,18 @@
   text-transform: uppercase;
   color: var(--color-gold);
   opacity: 0.45;
-  margin-bottom: var(--space-40);
-  padding-bottom: var(--space-16);
-  position: relative;
   display: block;
+  padding-bottom: 0;
 }
 
-.es-hero__overline::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 20px;
+.es-hero__overline-line {
+  width: 44px;
   height: 1px;
   background-color: var(--color-gold);
   opacity: 0.3;
 }
 
-/* ── Title — reduced ~20%, editorial ── */
+/* ── Title — wider, editorial ── */
 .es-hero__title {
   font-family: var(--font-heading);
   font-size: clamp(2.2rem, 4vw, 4.2rem);
@@ -307,6 +329,7 @@
 /* ── CTA — reuse premium button from main landing ── */
 .es-hero__cta {
   margin-bottom: var(--space-128);
+  padding: 18px var(--space-56);
 }
 
 /* ===========================
