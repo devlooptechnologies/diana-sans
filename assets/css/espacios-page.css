@@ -347,7 +347,7 @@
 .interior__text {
   display: flex;
   flex-direction: column;
-  gap: var(--space-12);
+  gap: 0;
   padding-top: var(--space-40);
 }
 
@@ -369,7 +369,7 @@
   line-height: 1.15;
   color: var(--color-ivory);
   letter-spacing: -0.01em;
-  margin-bottom: var(--space-32);
+  margin-bottom: 70px;
 }
 
 .interior__copy {
@@ -379,15 +379,14 @@
   color: var(--color-gray-warm);
   line-height: 1.85;
   max-width: 380px;
-  margin-top: var(--space-12);
-  margin-bottom: var(--space-40);
+  margin-bottom: 60px;
 }
 
-/* ── CTA — editorial line style ── */
+/* ── CTA — editorial arrow ── */
 .interior__cta {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-12);
+  gap: 10px;
   font-family: var(--font-body);
   font-size: var(--text-caption);
   font-weight: var(--weight-body-medium);
@@ -403,18 +402,30 @@
 }
 
 .interior__cta-line {
-  display: block;
-  width: 32px;
+  display: inline-block;
+  width: 24px;
   height: 1px;
   background-color: var(--color-gold);
   opacity: 0.5;
-  transition: width var(--duration-normal) var(--ease-out),
-              opacity var(--duration-normal) var(--ease-out);
+  position: relative;
+  transition: width var(--duration-normal) var(--ease-out);
+}
+
+.interior__cta-line::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -2.5px;
+  width: 6px;
+  height: 6px;
+  border-right: 1px solid var(--color-gold);
+  border-bottom: 1px solid var(--color-gold);
+  transform: rotate(-45deg);
+  opacity: 0.6;
 }
 
 .interior__cta:hover .interior__cta-line {
-  width: 48px;
-  opacity: 0.8;
+  width: 36px;
 }
 
 /* ── Image column ── */
@@ -432,7 +443,7 @@
   font-weight: var(--weight-body-medium);
   letter-spacing: var(--tracking-wider);
   color: var(--color-gray-warm);
-  opacity: 0.45;
+  opacity: 0.55;
   z-index: 3;
 }
 
@@ -440,6 +451,18 @@
   width: 100%;
   overflow: hidden;
   position: relative;
+}
+
+/* Image extends slightly below grid — editorial break */
+.interior__image::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background-color: var(--color-black-absolute);
+  z-index: 1;
 }
 
 .interior__image-placeholder {
@@ -454,6 +477,8 @@
   );
   position: relative;
   border: 1px solid rgba(255, 255, 255, 0.04);
+  object-fit: cover;
+  transform-origin: center center;
 }
 
 /* Subtle texture */
@@ -509,20 +534,34 @@
   opacity: 0.45;
 }
 
-/* ── Scroll reveal animations ── */
-.interior .interior__overline,
-.interior .interior__title,
-.interior .interior__copy,
-.interior .interior__cta {
+/* ── Scroll reveal animations — sequential by blocks ── */
+.interior .interior__overline {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(12px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.interior .interior__title { transition-delay: 0.1s; }
-.interior .interior__copy { transition-delay: 0.25s; }
-.interior .interior__cta { transition-delay: 0.4s; }
+.interior .interior__title {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+}
+
+.interior .interior__copy {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.4s,
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
+}
+
+.interior .interior__cta {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.65s,
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.65s;
+}
 
 .interior.revealed .interior__overline,
 .interior.revealed .interior__title,
@@ -532,19 +571,19 @@
   transform: translateY(0);
 }
 
-/* Image reveal: 400ms after text */
+/* Image reveal: 400ms after text starts */
 .interior .interior__image-placeholder {
   opacity: 0;
   transform: scale(1.04) translateY(30px);
   filter: blur(8px);
   transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s,
-              transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s,
+              transform 8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s,
               filter 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
 }
 
 .interior.revealed .interior__image-placeholder {
   opacity: 1;
-  transform: scale(1) translateY(0);
+  transform: scale(1.03) translateY(0);
   filter: blur(0);
 }
 
@@ -568,7 +607,7 @@
 }
 
 .interior.revealed .interior__counter {
-  opacity: 0.45;
+  opacity: 0.55;
 }
 
 /* ===========================
