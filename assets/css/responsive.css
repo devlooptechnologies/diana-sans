@@ -104,12 +104,12 @@
   }
 
   .servicio-row__value {
-    min-width: 160px;
+    width: 160px;
     font-size: clamp(1.25rem, 2.2vw, 2rem);
   }
 
   .servicios__header {
-    margin-bottom: 64px;
+    margin-bottom: 90px;
   }
 
   .servicios__header-line {
@@ -340,7 +340,7 @@
   }
 
   .servicios__header {
-    margin-bottom: 48px;
+    margin-bottom: 56px;
   }
 
   .servicios__header-line {
@@ -354,8 +354,8 @@
   }
 
   .servicio-row__value {
+    width: 120px;
     font-size: clamp(1.25rem, 5vw, 1.75rem);
-    min-width: 100px;
   }
 
   .servicio-row__label {
@@ -447,7 +447,7 @@
   }
 
   .servicio-row__value {
-    min-width: 80px;
+    width: 100px;
   }
 
   .servicio-row__label {

@@ -653,7 +653,7 @@
    =========================== */
 
 /* ===========================
-   Servicios Section — Editorial v2
+   Servicios Section — Editorial v3
    =========================== */
 
 .servicios {
@@ -678,7 +678,7 @@
 /* ── Header with vertical gold accent line ── */
 .servicios__header {
   position: relative;
-  margin-bottom: 80px;
+  margin-bottom: 110px;
 }
 
 .servicios__header-line {
@@ -701,6 +701,7 @@
   display: flex;
   flex-direction: column;
   max-width: 720px;
+  padding-bottom: 70px;
 }
 
 /* ── Row base ── */
@@ -730,18 +731,29 @@
 .servicio-row[data-servicio-index="5"] { transition-delay: 400ms; }
 .servicio-row[data-servicio-index="6"] { transition-delay: 480ms; }
 
-/* ── Value (left) ── */
+/* ── Value (left) — fixed width for alignment ── */
 .servicio-row__value {
   font-family: var(--font-heading);
   font-size: clamp(1.5rem, 2.5vw, 2.25rem);
   font-weight: var(--weight-heading-light);
   color: var(--color-ivory);
   white-space: nowrap;
-  min-width: 200px;
+  width: 220px;
+  flex-shrink: 0;
   transition: color var(--duration-normal) var(--ease-out);
+  opacity: 0;
+  transform: translateX(-12px);
 }
 
-/* ── Divider (center) — line draws from center ── */
+.servicio-row.revealed .servicio-row__value {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0s,
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0s,
+              color var(--duration-normal) var(--ease-out);
+}
+
+/* ── Divider (center) — line draws left→right ── */
 .servicio-row__divider {
   flex: 1;
   height: 1px;
@@ -752,15 +764,21 @@
 .servicio-row__divider-line {
   position: absolute;
   inset: 0;
-  background-color: var(--color-divider);
+  background-color: rgba(255, 255, 255, 0.12);
   transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              background-color var(--duration-normal) var(--ease-out);
+  transform-origin: left center;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+              background-color 0.4s var(--ease-out);
 }
 
 .servicio-row.revealed .servicio-row__divider-line {
   transform: scaleX(1);
+}
+
+/* Hover: line grows from left in 0.4s */
+.servicio-row:hover .servicio-row__divider-line {
+  transform: scaleX(1.08);
+  background-color: rgba(196, 168, 110, 0.18);
 }
 
 /* Scanning glow on the divider */
@@ -786,23 +804,28 @@
   100% { transform: translateX(calc(100% + 60px)); }
 }
 
-/* ── Label (right) — Title Case ── */
+/* ── Label (right) — appears after line ── */
 .servicio-row__label {
   font-size: var(--text-caption);
   font-weight: var(--weight-body-medium);
   letter-spacing: var(--tracking-wider);
   color: var(--color-gray-warm);
   white-space: nowrap;
-  transition: color var(--duration-normal) var(--ease-out);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.35s,
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.35s,
+              color var(--duration-normal) var(--ease-out);
+}
+
+.servicio-row.revealed .servicio-row__label {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* ── Hover ── */
 .servicio-row:hover .servicio-row__value {
   color: var(--color-gold);
-}
-
-.servicio-row:hover .servicio-row__divider-line {
-  background-color: rgba(196, 168, 110, 0.15);
 }
 
 .servicio-row:hover .servicio-row__label {
