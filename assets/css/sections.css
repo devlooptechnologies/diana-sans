@@ -380,7 +380,7 @@
 
 /* ── Subtitle — editorial presence ── */
 .ubicacion__subtitle {
-  margin-top: var(--space-24);
+  margin-top: 32px;
   font-size: 1.125rem;
   line-height: 1.65;
   opacity: 0.65;
@@ -454,13 +454,14 @@
   gap: 4px;
 }
 
-/* Time as protagonist */
+/* Time as protagonist — optical alignment */
 .ubicacion__detail-value {
   font-family: var(--font-heading);
   font-size: clamp(1.375rem, 2vw, 1.75rem);
   font-weight: var(--weight-heading-light);
   color: var(--color-ivory);
   letter-spacing: var(--tracking-wide);
+  font-variant-numeric: tabular-nums;
   transition: color var(--duration-normal) var(--ease-out);
 }
 
@@ -500,7 +501,6 @@
   margin-top: var(--space-32);
   font-size: var(--text-body-small);
   color: var(--color-gray-warm);
-  opacity: 0.45;
   line-height: 1.6;
   max-width: 300px;
   opacity: 0;
@@ -510,7 +510,7 @@
 }
 
 .ubicacion__context.revealed {
-  opacity: 0.45;
+  opacity: 0.55;
   transform: translateY(0);
 }
 
@@ -659,7 +659,7 @@
   background-color: var(--color-gold);
   border-color: var(--color-gold);
   box-shadow: 0 0 0 5px rgba(196, 168, 110, 0.1),
-              0 0 20px rgba(196, 168, 110, 0.08);
+              0 0 24px rgba(196, 168, 110, 0.12);
 }
 
 /* Pulse — slower, more refined */
@@ -690,6 +690,11 @@
   color: var(--color-gray-warm);
   white-space: nowrap;
   transition: color 0.3s ease;
+}
+
+/* Long labels — reduce tracking */
+.map-point__label--wide {
+  letter-spacing: 0.06em;
 }
 
 .map-point__label--primary {
