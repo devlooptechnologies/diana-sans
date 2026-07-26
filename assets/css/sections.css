@@ -1284,23 +1284,26 @@
   font-size: 1.125rem;
   color: var(--color-gray-warm);
   line-height: 1.6;
-  max-width: 380px;
+  max-width: 405px;
 }
 
 /* ── CTA Button — gold border, elegant hover ── */
 .btn--cta {
-  padding: var(--space-16) var(--space-40);
+  padding: var(--space-16) var(--space-48);
   border: 1px solid var(--color-gold);
   color: var(--color-ivory);
+  margin-top: 8px;
   transition: background-color 0.35s var(--ease-out),
               color 0.35s var(--ease-out),
-              border-color 0.35s var(--ease-out);
+              border-color 0.35s var(--ease-out),
+              letter-spacing 0.35s var(--ease-out);
 }
 
 .btn--cta:hover {
-  background-color: rgba(196, 168, 110, 0.08);
-  border-color: var(--color-gold);
+  background-color: rgba(196, 168, 110, 0.1);
+  border-color: rgba(196, 168, 110, 0.9);
   color: var(--color-gold);
+  letter-spacing: 0.16em;
 }
 
 .btn--cta:hover .btn__arrow {
@@ -1313,10 +1316,18 @@
               width 0.35s var(--ease-out);
 }
 
-/* ── Context text ── */
+/* ── Context text — with top line ── */
 .cta-final__context {
   font-size: var(--text-caption);
   color: var(--color-gray-warm);
   opacity: 0.3;
   letter-spacing: var(--tracking-wider);
+  padding-top: var(--space-32);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin-top: 12px;
+}
+
+.cta-final__context .sep {
+  color: rgba(255, 255, 255, 0.2);
+  margin: 0 6px;
 }
