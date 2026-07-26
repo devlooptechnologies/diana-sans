@@ -344,7 +344,7 @@
    =========================== */
 
 /* ===========================
-   Entorno Section — Map + Destinos v2
+   Entorno Section — Map + Destinos v3
    =========================== */
 
 .ubicacion {
@@ -378,17 +378,21 @@
   line-height: 1.1;
 }
 
+/* ── Subtitle — editorial presence ── */
 .ubicacion__subtitle {
-  margin-top: var(--space-20);
-  opacity: 0.5;
+  margin-top: var(--space-24);
+  font-size: 1.125rem;
+  line-height: 1.65;
+  opacity: 0.65;
 }
 
 /* ── Layout — closer list↔map ── */
 .ubicacion__layout {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 60px;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 40px;
   align-items: start;
+  margin-top: -30px;
 }
 
 .ubicacion__content {
@@ -407,7 +411,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-20);
-  padding: var(--space-28) 0;
+  padding: var(--space-32) 0;
   border-bottom: 1px solid var(--color-divider);
   cursor: default;
   opacity: 0;
@@ -447,7 +451,7 @@
 .ubicacion__detail-text {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 /* Time as protagonist */
@@ -491,13 +495,53 @@
   background-color: var(--color-ivory);
 }
 
-/* ── Map ── */
+/* ── Context text below list ── */
+.ubicacion__context {
+  margin-top: var(--space-32);
+  font-size: var(--text-body-small);
+  color: var(--color-gray-warm);
+  opacity: 0.45;
+  line-height: 1.6;
+  max-width: 300px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s,
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+}
+
+.ubicacion__context.revealed {
+  opacity: 0.45;
+  transform: translateY(0);
+}
+
+/* ── Map — with texture ── */
 .ubicacion__map {
   aspect-ratio: 16/10;
   background-color: #0f0f0f;
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Subtle radial texture */
+.ubicacion__map::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 45% 38%, rgba(196, 168, 110, 0.03) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Noise texture */
+.ubicacion__map::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
 }
 
 .ubicacion__map-content {
@@ -511,10 +555,9 @@
   position: relative;
 }
 
-/* ── Streets — appear first on scroll ── */
+/* ── Streets — hierarchy ── */
 .map-street {
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.08);
   opacity: 0;
   transform: scaleX(0);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
@@ -526,11 +569,13 @@
   transform: scaleX(1);
 }
 
+/* Main axes — more visible */
 .map-street--main {
   top: 38%;
   left: 0;
   width: 100%;
   height: 1px;
+  background-color: rgba(255, 255, 255, 0.14);
   transform-origin: left center;
 }
 
@@ -539,6 +584,7 @@
   left: 45%;
   width: 1px;
   height: 100%;
+  background-color: rgba(255, 255, 255, 0.14);
   transform: none;
   transform-origin: top center;
 }
@@ -547,11 +593,13 @@
   transform: scaleY(1);
 }
 
+/* Secondary — more subtle */
 .map-street--cross-1 {
   top: 22%;
   left: 15%;
   width: 55%;
   height: 1px;
+  background-color: rgba(255, 255, 255, 0.05);
   transform-origin: left center;
 }
 
@@ -560,6 +608,7 @@
   left: 30%;
   width: 45%;
   height: 1px;
+  background-color: rgba(255, 255, 255, 0.05);
   transform-origin: left center;
 }
 
@@ -590,43 +639,47 @@
   transform: scale(1);
 }
 
+/* Secondary points — 20% larger */
 .map-point__dot {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  border: 1px solid rgba(196, 168, 110, 0.5);
+  border: 1.5px solid rgba(196, 168, 110, 0.6);
   background-color: transparent;
   transition: background-color 0.3s ease,
               border-color 0.3s ease,
-              box-shadow 0.3s ease;
+              box-shadow 0.3s ease,
+              transform 0.3s var(--ease-out);
 }
 
+/* Primary pin — enhanced */
 .map-point__dot--primary {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   background-color: var(--color-gold);
   border-color: var(--color-gold);
-  box-shadow: 0 0 0 4px rgba(196, 168, 110, 0.12);
+  box-shadow: 0 0 0 5px rgba(196, 168, 110, 0.1),
+              0 0 20px rgba(196, 168, 110, 0.08);
 }
 
-/* Pulse animation — Apple Maps style */
+/* Pulse — slower, more refined */
 .map-point__pulse {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  border: 1px solid rgba(196, 168, 110, 0.2);
+  border: 1px solid rgba(196, 168, 110, 0.15);
   opacity: 0;
-  animation: pinPulse 3.5s ease-in-out infinite;
+  animation: pinPulse 4s ease-in-out infinite;
 }
 
 @keyframes pinPulse {
-  0%, 100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
-  30% { opacity: 0.5; }
-  70% { transform: translate(-50%, -50%) scale(1.4); opacity: 0; }
+  0%, 100% { transform: translate(-50%, -50%) scale(0.85); opacity: 0; }
+  25% { opacity: 0.4; }
+  75% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
 }
 
 .map-point__label {
@@ -644,10 +697,11 @@
   font-weight: var(--weight-body-semibold);
 }
 
-/* Hover on map point */
+/* Hover on map point — enhanced */
 .map-point:hover .map-point__dot {
+  transform: scale(1.3);
   border-color: var(--color-gold);
-  box-shadow: 0 0 12px rgba(196, 168, 110, 0.3);
+  box-shadow: 0 0 16px rgba(196, 168, 110, 0.35);
 }
 
 .map-point:hover .map-point__label {
@@ -656,8 +710,9 @@
 
 /* Cross-hover: when row is hovered, highlight this map point */
 .map-point.is-active .map-point__dot {
+  transform: scale(1.3);
   border-color: var(--color-gold);
-  box-shadow: 0 0 12px rgba(196, 168, 110, 0.3);
+  box-shadow: 0 0 16px rgba(196, 168, 110, 0.35);
 }
 
 .map-point.is-active .map-point__label {

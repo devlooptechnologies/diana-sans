@@ -120,6 +120,7 @@
   .ubicacion__layout {
     grid-template-columns: 1fr;
     gap: var(--space-64);
+    margin-top: 0;
   }
 
   .ubicacion__header {
@@ -128,6 +129,10 @@
 
   .ubicacion__header-line {
     left: -24px;
+  }
+
+  .ubicacion__context {
+    max-width: 100%;
   }
 
   /* Footer — tablet */
@@ -388,6 +393,10 @@
 
   .ubicacion__detail-value {
     font-size: 1.25rem;
+  }
+
+  .ubicacion__subtitle {
+    font-size: 1rem;
   }
 
   /* Opiniones */
