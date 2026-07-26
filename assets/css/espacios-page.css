@@ -620,7 +620,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding: var(--space-120) 0;
+  padding: var(--space-120) 0 var(--space-200);
   position: relative;
 }
 
@@ -763,8 +763,8 @@
 .gallery-preview__stack {
   position: relative;
   width: 100%;
-  height: 75vh;
-  min-height: 500px;
+  height: 80vh;
+  min-height: 540px;
 }
 
 .gallery-preview__photo {
@@ -809,12 +809,12 @@
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
 }
 
-/* Photo 1 — front, largest (100%), perfectly straight */
+/* Photo 1 — front, biggest (110%), invades the screen */
 .gallery-preview__photo--1 {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: -5%;
+  left: -5%;
+  width: 110%;
+  height: 110%;
   z-index: 3;
 }
 
@@ -829,12 +829,12 @@
   border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-/* Photo 2 — middle (88%), shifted up-right 45px */
+/* Photo 2 — middle (85%), shifted up-right more */
 .gallery-preview__photo--2 {
-  top: -45px;
-  right: -45px;
-  width: 88%;
-  height: 88%;
+  top: -60px;
+  right: -60px;
+  width: 85%;
+  height: 85%;
   z-index: 2;
   opacity: 0.85;
 }
@@ -851,12 +851,12 @@
   filter: blur(0.5px);
 }
 
-/* Photo 3 — back (78%), shifted down-left 70px */
+/* Photo 3 — back (72%), shifted down-left more */
 .gallery-preview__photo--3 {
-  bottom: -70px;
-  left: -70px;
-  width: 78%;
-  height: 78%;
+  bottom: -90px;
+  left: -90px;
+  width: 72%;
+  height: 72%;
   z-index: 1;
   opacity: 0.7;
 }
@@ -871,6 +871,24 @@
   );
   border: 1px solid rgba(255, 255, 255, 0.03);
   filter: blur(1px);
+}
+
+/* ── Detail tag — top-right of hero photo ── */
+.gallery-preview__photo-detail {
+  position: absolute;
+  top: var(--space-24);
+  right: var(--space-24);
+  font-family: var(--font-body);
+  font-size: 0.5625rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-ivory);
+  opacity: 0.4;
+  z-index: 2;
+  text-align: right;
+  line-height: 1.6;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
 }
 
 /* ── Scroll reveal animations — sequential ── */
