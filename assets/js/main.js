@@ -252,6 +252,90 @@
   }
 
   // ===========================
+  // Servicios — Count-Up + Scanning Glow + Cursor Glow
+  // ===========================
+  var servicioRows = document.querySelectorAll('.servicio-row');
+
+  if (servicioRows.length > 0) {
+    var countedItems = new Set();
+    var scannedItems = new Set();
+
+    // Count-up animation: 0 → target in 800ms
+    function animateCountUp(el) {
+      var target = parseInt(el.getAttribute('data-count-to'), 10);
+      var suffix = el.getAttribute('data-suffix') || '';
+      var duration = 800;
+      var start = null;
+
+      function step(timestamp) {
+        if (!start) start = timestamp;
+        var progress = Math.min((timestamp - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var current = Math.round(eased * target);
+        el.textContent = current + suffix;
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        }
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    // Observe servicios rows for reveal
+    var servicioObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var row = entry.target;
+          var valueEl = row.querySelector('.servicio-row__value');
+          var glowEl = row.querySelector('.servicio-row__divider-glow');
+
+          // Count-up for numeric values
+          if (valueEl && valueEl.getAttribute('data-count-to') && !countedItems.has(row)) {
+            countedItems.add(row);
+            animateCountUp(valueEl);
+          }
+
+          // Start scanning glow after line draws
+          if (glowEl && !scannedItems.has(row)) {
+            scannedItems.add(row);
+            setTimeout(function() {
+              glowEl.classList.add('is-scanning');
+            }, 900);
+          }
+
+          servicioObserver.unobserve(row);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    servicioRows.forEach(function(row) {
+      servicioObserver.observe(row);
+    });
+
+    // Cursor glow tracking (desktop only)
+    if (window.matchMedia('(hover: hover)').matches) {
+      var serviciosSection = document.querySelector('.servicios');
+      var cursorGlow = document.createElement('div');
+      cursorGlow.className = 'servicios__cursor-glow';
+      serviciosSection.style.position = 'relative';
+      serviciosSection.appendChild(cursorGlow);
+
+      serviciosSection.addEventListener('mousemove', function(e) {
+        var rect = serviciosSection.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        cursorGlow.style.left = x + 'px';
+        cursorGlow.style.top = y + 'px';
+        cursorGlow.classList.add('is-visible');
+      });
+
+      serviciosSection.addEventListener('mouseleave', function() {
+        cursorGlow.classList.remove('is-visible');
+      });
+    }
+  }
+
+  // ===========================
   // Experience Words — Scroll Narrative v3
   // Crossfade: current fades, next starts appearing
   // No empty moment between words
