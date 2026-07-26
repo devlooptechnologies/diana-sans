@@ -378,7 +378,8 @@
   font-weight: var(--weight-body-light);
   color: var(--color-gray-warm);
   line-height: 1.85;
-  max-width: 340px;
+  max-width: 380px;
+  margin-top: var(--space-12);
   margin-bottom: var(--space-40);
 }
 
@@ -390,8 +391,7 @@
   font-family: var(--font-body);
   font-size: var(--text-caption);
   font-weight: var(--weight-body-medium);
-  letter-spacing: var(--tracking-widest);
-  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
   color: var(--color-gold);
   text-decoration: none;
   transition: opacity var(--duration-fast) var(--ease-out);
@@ -432,7 +432,7 @@
   font-weight: var(--weight-body-medium);
   letter-spacing: var(--tracking-wider);
   color: var(--color-gray-warm);
-  opacity: 0.35;
+  opacity: 0.45;
   z-index: 3;
 }
 
@@ -568,7 +568,7 @@
 }
 
 .interior.revealed .interior__counter {
-  opacity: 0.35;
+  opacity: 0.45;
 }
 
 /* ===========================
