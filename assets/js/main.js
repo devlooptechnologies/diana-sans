@@ -83,7 +83,7 @@
 
     hero.classList.add('loaded');
 
-    var timings = [500, 850, 1300, 1700, 2200, 2700, 4200];
+    var timings = [500, 850, 1300, 1700, 2200];
 
     elements.forEach(function(el) {
       var index = parseInt(el.getAttribute('data-hero'), 10);
