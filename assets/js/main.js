@@ -76,21 +76,13 @@
   // Each element 150-250ms apart
   // ===========================
   function heroEntrance() {
-    var hero = document.querySelector('.hero');
+    var hero = document.querySelector('.hero') || document.querySelector('.es-hero');
     var elements = document.querySelectorAll('[data-hero]');
 
     if (!hero || elements.length === 0) return;
 
     hero.classList.add('loaded');
 
-    // Timings: 150-250ms gaps, organic feel
-    // 0: signature   — 500ms
-    // 1: title       — 850ms   (+350)
-    // 2: boutique    — 1300ms  (+450 — title needs to land first)
-    // 3: subtitle    — 1700ms  (+400)
-    // 4: description — 2200ms  (+500 — breathing pause)
-    // 5: cta         — 2700ms  (+500)
-    // 6: scroll      — 4200ms  (late arrival, CSS handles delay too)
     var timings = [500, 850, 1300, 1700, 2200, 2700, 4200];
 
     elements.forEach(function(el) {
@@ -220,6 +212,28 @@
       var scrolled = window.pageYOffset;
       var rate = scrolled * 0.15;
       heroGlow.style.transform = 'translate(-50%, calc(-50% + ' + rate + 'px))';
+    }, { passive: true });
+  }
+
+  // ===========================
+  // Parallax on Espacios Hero Image
+  // ===========================
+  var esHeroImage = document.querySelector('.es-hero__image-placeholder');
+  var esHeroGlow = document.querySelector('.es-hero__glow');
+
+  if (esHeroImage) {
+    window.addEventListener('scroll', function() {
+      var scrolled = window.pageYOffset;
+      var rate = scrolled * 0.08;
+      esHeroImage.style.transform = 'translateY(' + rate + 'px) scale(1.02)';
+    }, { passive: true });
+  }
+
+  if (esHeroGlow) {
+    window.addEventListener('scroll', function() {
+      var scrolled = window.pageYOffset;
+      var rate = scrolled * 0.12;
+      esHeroGlow.style.transform = 'translate(-50%, calc(-50% + ' + rate + 'px))';
     }, { passive: true });
   }
 

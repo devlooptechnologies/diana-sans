@@ -22,6 +22,15 @@
   <link rel="stylesheet" href="assets/css/espacios-page.css">
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='24' font-size='24' font-family='serif' fill='%23B79A63'>D</text></svg>">
+
+  <style>
+    [data-hero] {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  </style>
 </head>
 <body>
 
@@ -29,7 +38,7 @@
     <div class="navbar__inner">
       <a href="index.html" class="navbar__logo">Diana <span>&</span> Sans</a>
       <div class="navbar__menu">
-        <a href="index.html#espacios" class="navbar__link">Espacios</a>
+        <a href="espacios.html" class="navbar__link">Espacios</a>
         <a href="experiencias.html" class="navbar__link">Experiencias</a>
         <a href="index.html#galeria" class="navbar__link">Galería</a>
         <a href="index.html#servicios" class="navbar__link">Servicios</a>
@@ -47,43 +56,62 @@
   </nav>
 
   <div class="navbar__mobile-menu">
-    <a href="index.html#espacios" class="navbar__link">Espacios</a>
+    <a href="espacios.html" class="navbar__link">Espacios</a>
     <a href="experiencias.html" class="navbar__link">Experiencias</a>
     <a href="index.html#galeria" class="navbar__link">Galería</a>
     <a href="index.html#servicios" class="navbar__link">Servicios</a>
     <a href="index.html#reservar" class="btn btn--primary">Reservar</a>
   </div>
 
-  <!-- CHAPTER INTRO — 75vh, 620px -->
-  <section class="chapter-intro">
-    <div class="container" style="max-width: 620px;">
-      <div class="chapter-intro__content" data-reveal>
-        <span class="chapter-intro__overline">Espacios</span>
-        <h1 class="chapter-intro__title">
-          Seis apartamentos.<br>
-          Seis maneras distintas<br>
-          <span class="gold-text">de descansar.</span>
-        </h1>
+  <!-- ======================== -->
+  <!-- HERO — Espacios -->
+  <!-- ======================== -->
+  <section class="es-hero" id="hero">
+    <div class="es-hero__bg">
+      <div class="es-hero__glow"></div>
+    </div>
+
+    <div class="es-hero__visual">
+      <div class="es-hero__image-frame">
+        <div class="es-hero__image-placeholder"></div>
       </div>
+      <div class="es-hero__visual-line es-hero__visual-line--1"></div>
+      <div class="es-hero__visual-line es-hero__visual-line--2"></div>
+    </div>
+
+    <div class="es-hero__content">
+      <span class="es-hero__overline" data-hero="0">Espacios</span>
+
+      <h1 class="es-hero__title" data-hero="1">
+        No diseñamos habitaciones.<br>
+        Diseñamos formas<br>
+        <em>de descansar.</em>
+      </h1>
+
+      <p class="es-hero__subtitle" data-hero="2">
+        Cada apartamento tiene su propia personalidad.<br>
+        La misma calma.<br>
+        El mismo nivel de detalle.
+      </p>
+
+      <a href="#espacios-lista" class="es-hero__cta" data-hero="3">
+        <span class="es-hero__cta-text">Explorar espacios</span>
+        <span class="es-hero__cta-line"></span>
+      </a>
+    </div>
+
+    <div class="es-hero__scroll" data-hero="4">
+      <div class="es-hero__scroll-line"></div>
+      <span class="es-hero__scroll-text">Scroll</span>
     </div>
   </section>
 
-  <!-- TRANSITION SENTENCE -->
-  <section class="apt-transition">
-    <div class="container">
-      <p class="apt-transition__text" data-reveal>
-        Cada estancia<br>
-        comienza con un espacio<br>
-        diseñado para permanecer<br>
-        <span class="gold-text">en la memoria.</span>
-      </p>
-    </div>
-  </section>
+  <!-- Espacios list anchor -->
 
   <!-- ================================================================
        APT 01 — Classic editorial: text left, image right. 35/65.
        ================================================================ -->
-  <section class="apt-block apt-block--first apt-animated" data-reveal>
+  <section class="apt-block apt-block--first apt-animated" data-reveal id="espacios-lista">
     <div class="apt-block__inner">
       <div class="apt-block__info">
         <span class="apt-block__number apt-reveal-1">01</span>
