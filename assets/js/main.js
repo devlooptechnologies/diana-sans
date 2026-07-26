@@ -366,6 +366,24 @@
   }
 
   // ===========================
+  // CTA Final — Staggered Reveal
+  // ===========================
+  var ctaContent = document.querySelector('.cta-final__content');
+
+  if (ctaContent) {
+    var ctaObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          ctaContent.classList.add('is-revealed');
+          ctaObserver.unobserve(ctaContent);
+        }
+      });
+    }, { threshold: 0.4 });
+
+    ctaObserver.observe(ctaContent);
+  }
+
+  // ===========================
   // Entorno — Map Reveal Sequence + Cross-Hover
   // ===========================
   var mapContainer = document.querySelector('[data-map="map"]');
