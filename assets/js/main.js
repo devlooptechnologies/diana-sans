@@ -336,6 +336,71 @@
   }
 
   // ===========================
+  // Entorno — Map Reveal Sequence + Cross-Hover
+  // ===========================
+  var mapContainer = document.querySelector('[data-map="map"]');
+  var ubicacionDetails = document.querySelectorAll('.ubicacion__detail[data-map-target]');
+  var mapPoints = document.querySelectorAll('.map-point[data-map-id]');
+  var mapStreets = document.querySelectorAll('.map-street');
+  var mapPin = document.querySelector('.map-point--primary');
+
+  if (mapContainer) {
+    // Scroll reveal sequence: streets → pin → names → list rows
+    var mapObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          // Phase 1: streets (0ms)
+          mapStreets.forEach(function(street, i) {
+            setTimeout(function() {
+              street.classList.add('is-revealed');
+            }, i * 100);
+          });
+
+          // Phase 2: pin (400ms after streets start)
+          setTimeout(function() {
+            if (mapPin) mapPin.classList.add('is-revealed');
+          }, 400);
+
+          // Phase 3: other names (700ms)
+          mapPoints.forEach(function(point) {
+            if (!point.classList.contains('map-point--primary')) {
+              setTimeout(function() {
+                point.classList.add('is-revealed');
+              }, 700);
+            }
+          });
+
+          mapObserver.unobserve(mapContainer);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    mapObserver.observe(mapContainer);
+
+    // Cross-hover: list row ↔ map point
+    ubicacionDetails.forEach(function(detail) {
+      var targetId = detail.getAttribute('data-map-target');
+      var point = document.querySelector('.map-point[data-map-id="' + targetId + '"]');
+
+      if (point) {
+        detail.addEventListener('mouseenter', function() {
+          point.classList.add('is-active');
+        });
+        detail.addEventListener('mouseleave', function() {
+          point.classList.remove('is-active');
+        });
+
+        point.addEventListener('mouseenter', function() {
+          detail.classList.add('is-active');
+        });
+        point.addEventListener('mouseleave', function() {
+          detail.classList.remove('is-active');
+        });
+      }
+    });
+  }
+
+  // ===========================
   // Experience Words — Scroll Narrative v3
   // Crossfade: current fades, next starts appearing
   // No empty moment between words

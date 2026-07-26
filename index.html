@@ -403,59 +403,73 @@
   <div class="container"><hr class="divider"></div>
 
   <!-- ======================== -->
-  <!-- UBICACIÓN — Stats + Map -->
+  <!-- ENTORNO — Map + Destinos -->
   <!-- ======================== -->
   <section class="section ubicacion" id="ubicacion">
     <div class="container">
-      <div class="section-header" data-reveal style="margin-bottom: var(--space-96);">
-        <span class="overline">Ubicación</span>
-        <h2 class="heading-section">Cartago,<br><span class="gold-text">Valle del Cauca</span></h2>
+      <div class="ubicacion__header" data-reveal>
+        <div class="ubicacion__header-line"></div>
+        <span class="overline">Entorno</span>
+        <h2 class="heading-section ubicacion__title">Cartago,<br><span class="gold-text">Valle del Cauca</span></h2>
+        <p class="ubicacion__subtitle body-small">Cerca de todo. Lo suficientemente lejos para descansar.</p>
       </div>
 
       <div class="ubicacion__layout">
         <div class="ubicacion__content">
           <div class="ubicacion__details">
-            <div class="ubicacion__detail" data-reveal>
+            <div class="ubicacion__detail" data-reveal data-map-target="aeropuerto">
               <div class="ubicacion__detail-icon"></div>
               <div class="ubicacion__detail-text">
-                <span class="ubicacion__detail-label">Aeropuerto</span>
                 <span class="ubicacion__detail-value">5 min</span>
+                <span class="ubicacion__detail-label">Aeropuerto Santa Ana</span>
               </div>
             </div>
-            <div class="ubicacion__detail" data-reveal="delay-1">
+            <div class="ubicacion__detail" data-reveal data-map-target="centro">
               <div class="ubicacion__detail-icon"></div>
               <div class="ubicacion__detail-text">
-                <span class="ubicacion__detail-label">Centro Comercial</span>
                 <span class="ubicacion__detail-value">2 min</span>
+                <span class="ubicacion__detail-label">Centro Comercial</span>
               </div>
             </div>
-            <div class="ubicacion__detail" data-reveal="delay-2">
+            <div class="ubicacion__detail" data-reveal data-map-target="parque">
               <div class="ubicacion__detail-icon"></div>
               <div class="ubicacion__detail-text">
-                <span class="ubicacion__detail-label">Parque Principal</span>
                 <span class="ubicacion__detail-value">15 min</span>
+                <span class="ubicacion__detail-label">Parque Simón Bolívar</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="ubicacion__map" data-reveal="delay-1">
+        <div class="ubicacion__map" data-reveal>
           <div class="ubicacion__map-content">
-            <div class="map-minimal">
-              <div class="map-line map-line--road-1"></div>
-              <div class="map-line map-line--road-2"></div>
-              <div class="map-line map-line--road-3"></div>
-              <div class="map-point" style="top: 30%; left: 40%;">
+            <div class="map-minimal" data-map="map">
+              <!-- Streets — revealed first -->
+              <div class="map-street map-street--main" data-map-element="streets"></div>
+              <div class="map-street map-street--avenue" data-map-element="streets"></div>
+              <div class="map-street map-street--cross-1" data-map-element="streets"></div>
+              <div class="map-street map-street--cross-2" data-map-element="streets"></div>
+              <div class="map-street map-street--river" data-map-element="streets"></div>
+
+              <!-- Diana & Sans pin — revealed after streets -->
+              <div class="map-point map-point--primary" style="top: 38%; left: 45%;" data-map-element="pin" data-map-id="diana">
+                <div class="map-point__pulse"></div>
                 <div class="map-point__dot map-point__dot--primary"></div>
-                <span class="map-point__label">Diana & Sans</span>
+                <span class="map-point__label map-point__label--primary">Diana & Sans</span>
               </div>
-              <div class="map-point" style="top: 60%; left: 70%;">
+
+              <!-- Other points — revealed last -->
+              <div class="map-point" style="top: 62%; left: 72%;" data-map-element="names" data-map-id="aeropuerto">
                 <div class="map-point__dot"></div>
                 <span class="map-point__label">Aeropuerto</span>
               </div>
-              <div class="map-point" style="top: 15%; left: 65%;">
+              <div class="map-point" style="top: 18%; left: 60%;" data-map-element="names" data-map-id="centro">
                 <div class="map-point__dot"></div>
                 <span class="map-point__label">Centro</span>
+              </div>
+              <div class="map-point" style="top: 72%; left: 25%;" data-map-element="names" data-map-id="parque">
+                <div class="map-point__dot"></div>
+                <span class="map-point__label">Parque</span>
               </div>
             </div>
           </div>

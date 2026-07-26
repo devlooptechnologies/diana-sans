@@ -343,142 +343,290 @@
    Ubicación Section
    =========================== */
 
+/* ===========================
+   Entorno Section — Map + Destinos v2
+   =========================== */
+
 .ubicacion {
   background-color: var(--color-black-absolute);
   overflow: hidden;
 }
 
+/* ── Header ── */
+.ubicacion__header {
+  position: relative;
+  margin-bottom: 80px;
+}
+
+.ubicacion__header-line {
+  position: absolute;
+  left: -40px;
+  top: 0;
+  width: 1px;
+  height: 0;
+  background: linear-gradient(180deg, var(--color-gold) 0%, transparent 100%);
+  opacity: 0.3;
+  transition: height 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-reveal].revealed .ubicacion__header-line,
+.ubicacion__header.revealed .ubicacion__header-line {
+  height: 100%;
+}
+
+.ubicacion__title {
+  line-height: 1.1;
+}
+
+.ubicacion__subtitle {
+  margin-top: var(--space-20);
+  opacity: 0.5;
+}
+
+/* ── Layout — closer list↔map ── */
 .ubicacion__layout {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
-  gap: var(--space-96);
+  gap: 60px;
   align-items: start;
 }
 
 .ubicacion__content {
   display: flex;
   flex-direction: column;
-  gap: var(--space-40);
-}
-
-.ubicacion__text {
-  color: var(--color-gray-warm);
-  line-height: var(--leading-relaxed);
-  max-width: 380px;
 }
 
 .ubicacion__details {
   display: flex;
   flex-direction: column;
-  gap: var(--space-24);
+  gap: 0;
 }
 
+/* ── Detail row — minutes as protagonist ── */
 .ubicacion__detail {
   display: flex;
   align-items: center;
-  gap: var(--space-16);
-  padding-bottom: var(--space-24);
+  gap: var(--space-20);
+  padding: var(--space-28) 0;
   border-bottom: 1px solid var(--color-divider);
+  cursor: default;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.ubicacion__detail.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ubicacion__detail:last-child {
+  border-bottom: none;
+}
+
+/* Stagger */
+.ubicacion__detail:nth-child(1) { transition-delay: 0.24s; }
+.ubicacion__detail:nth-child(2) { transition-delay: 0.32s; }
+.ubicacion__detail:nth-child(3) { transition-delay: 0.40s; }
+
 .ubicacion__detail-icon {
-  width: 32px;
+  width: 28px;
   height: 1px;
   background-color: var(--color-gold);
   flex-shrink: 0;
+  transition: width 0.3s var(--ease-out),
+              background-color 0.3s var(--ease-out);
+}
+
+.ubicacion__detail:hover .ubicacion__detail-icon {
+  width: 36px;
+  background-color: var(--color-ivory);
 }
 
 .ubicacion__detail-text {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: 2px;
+}
+
+/* Time as protagonist */
+.ubicacion__detail-value {
+  font-family: var(--font-heading);
+  font-size: clamp(1.375rem, 2vw, 1.75rem);
+  font-weight: var(--weight-heading-light);
+  color: var(--color-ivory);
+  letter-spacing: var(--tracking-wide);
+  transition: color var(--duration-normal) var(--ease-out);
 }
 
 .ubicacion__detail-label {
   font-size: var(--text-caption);
   font-weight: var(--weight-body-medium);
-  letter-spacing: var(--tracking-widest);
-  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
   color: var(--color-gray-warm);
+  transition: color var(--duration-normal) var(--ease-out);
 }
 
-.ubicacion__detail-value {
-  font-family: var(--font-heading);
-  font-size: 1.125rem;
-  font-weight: var(--weight-heading-light);
+/* Hover on row */
+.ubicacion__detail:hover .ubicacion__detail-value {
+  color: var(--color-gold);
+}
+
+.ubicacion__detail:hover .ubicacion__detail-label {
   color: var(--color-ivory);
 }
 
-/* Map */
+/* Cross-hover: when map point is hovered, highlight this row */
+.ubicacion__detail.is-active .ubicacion__detail-value {
+  color: var(--color-gold);
+}
+
+.ubicacion__detail.is-active .ubicacion__detail-label {
+  color: var(--color-ivory);
+}
+
+.ubicacion__detail.is-active .ubicacion__detail-icon {
+  width: 36px;
+  background-color: var(--color-ivory);
+}
+
+/* ── Map ── */
 .ubicacion__map {
   aspect-ratio: 16/10;
-  background-color: var(--color-black-warm);
+  background-color: #0f0f0f;
   position: relative;
   overflow: hidden;
-  border: 1px solid var(--color-divider);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .ubicacion__map-content {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .map-minimal {
-  width: 80%;
-  height: 70%;
+  width: 100%;
+  height: 100%;
   position: relative;
 }
 
-/* Minimal map lines */
-.map-line {
+/* ── Streets — appear first on scroll ── */
+.map-street {
   position: absolute;
-  background-color: var(--color-divider);
+  background-color: rgba(255, 255, 255, 0.08);
+  opacity: 0;
+  transform: scaleX(0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.map-line--road-1 {
-  top: 30%;
+.map-street.is-revealed {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.map-street--main {
+  top: 38%;
   left: 0;
   width: 100%;
   height: 1px;
+  transform-origin: left center;
 }
 
-.map-line--road-2 {
+.map-street--avenue {
   top: 0;
-  left: 40%;
+  left: 45%;
   width: 1px;
   height: 100%;
+  transform: none;
+  transform-origin: top center;
 }
 
-.map-line--road-3 {
-  top: 60%;
-  left: 10%;
-  width: 60%;
+.map-street.is-revealed.map-street--avenue {
+  transform: scaleY(1);
+}
+
+.map-street--cross-1 {
+  top: 22%;
+  left: 15%;
+  width: 55%;
   height: 1px;
-  transform: rotate(-15deg);
+  transform-origin: left center;
 }
 
+.map-street--cross-2 {
+  top: 62%;
+  left: 30%;
+  width: 45%;
+  height: 1px;
+  transform-origin: left center;
+}
+
+.map-street--river {
+  top: 80%;
+  left: 5%;
+  width: 70%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(100, 140, 180, 0.12), rgba(100, 140, 180, 0.06), transparent);
+  transform-origin: left center;
+}
+
+/* ── Map points ── */
 .map-point {
   position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-8);
+  gap: 6px;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.map-point.is-revealed {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .map-point__dot {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  border: 1px solid var(--color-gold);
+  border: 1px solid rgba(196, 168, 110, 0.5);
   background-color: transparent;
+  transition: background-color 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
 }
 
 .map-point__dot--primary {
+  width: 10px;
+  height: 10px;
   background-color: var(--color-gold);
-  box-shadow: 0 0 0 4px rgba(183, 154, 99, 0.15);
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 4px rgba(196, 168, 110, 0.12);
+}
+
+/* Pulse animation — Apple Maps style */
+.map-point__pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid rgba(196, 168, 110, 0.2);
+  opacity: 0;
+  animation: pinPulse 3.5s ease-in-out infinite;
+}
+
+@keyframes pinPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+  30% { opacity: 0.5; }
+  70% { transform: translate(-50%, -50%) scale(1.4); opacity: 0; }
 }
 
 .map-point__label {
@@ -488,6 +636,32 @@
   text-transform: uppercase;
   color: var(--color-gray-warm);
   white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.map-point__label--primary {
+  color: var(--color-gold);
+  font-weight: var(--weight-body-semibold);
+}
+
+/* Hover on map point */
+.map-point:hover .map-point__dot {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 12px rgba(196, 168, 110, 0.3);
+}
+
+.map-point:hover .map-point__label {
+  color: var(--color-ivory);
+}
+
+/* Cross-hover: when row is hovered, highlight this map point */
+.map-point.is-active .map-point__dot {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 12px rgba(196, 168, 110, 0.3);
+}
+
+.map-point.is-active .map-point__label {
+  color: var(--color-ivory);
 }
 
 /* ===========================

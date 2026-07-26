@@ -122,6 +122,14 @@
     gap: var(--space-64);
   }
 
+  .ubicacion__header {
+    margin-bottom: 64px;
+  }
+
+  .ubicacion__header-line {
+    left: -24px;
+  }
+
   /* Footer — tablet */
   .footer__columns {
     gap: var(--space-64);
@@ -368,6 +376,18 @@
   .ubicacion__layout {
     grid-template-columns: 1fr;
     gap: var(--space-48);
+  }
+
+  .ubicacion__header {
+    margin-bottom: 48px;
+  }
+
+  .ubicacion__header-line {
+    display: none;
+  }
+
+  .ubicacion__detail-value {
+    font-size: 1.25rem;
   }
 
   /* Opiniones */
