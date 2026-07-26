@@ -194,9 +194,9 @@
   }
 
   // ===========================
-  // Experience Words — Scroll Narrative v2
-  // Transitions at 60-70% viewport height
-  // Each word appears, previous becomes echo
+  // Experience Words — Scroll Narrative v3
+  // Crossfade: current fades, next starts appearing
+  // No empty moment between words
   // ===========================
   var experienceWords = document.querySelectorAll('[data-word]');
   var closingBlock = document.querySelector('.experiencia-words__closing');
@@ -221,15 +221,17 @@
       });
 
       experienceWords.forEach(function(word, i) {
+        word.classList.remove('is-visible', 'is-past', 'is-next');
+
         if (i < closestIndex) {
           word.classList.add('is-past');
           word.classList.add('is-visible');
         } else if (i === closestIndex) {
           word.classList.add('is-visible');
-          word.classList.remove('is-past');
-        } else {
-          word.classList.remove('is-visible');
-          word.classList.remove('is-past');
+          // Next word starts appearing (crossfade)
+          if (i + 1 < experienceWords.length) {
+            experienceWords[i + 1].classList.add('is-next');
+          }
         }
       });
 

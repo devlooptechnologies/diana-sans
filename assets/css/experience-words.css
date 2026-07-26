@@ -1,7 +1,6 @@
 /* ===========================
-   Experience Words — Scroll Narrative v2
-   Each word appears as previous fades
-   Transitions at 60-70% viewport height
+   Experience Words — Scroll Narrative v3
+   Crossfade, glow ambiental, eco suave
    =========================== */
 
 .experiencia-words {
@@ -24,10 +23,10 @@
   pointer-events: none;
 }
 
-/* ── Intro — pulled up ~40px ── */
+/* ── Intro — pulled up, less space to first word ── */
 .experiencia-words__intro {
   text-align: center;
-  margin-bottom: var(--space-80);
+  margin-bottom: var(--space-56);
 }
 
 .experiencia-words__intro .overline {
@@ -40,32 +39,35 @@
   text-align: center;
 }
 
-/* ── Words List — reduced gap ~20% ── */
+/* ── Words List ── */
 .experiencia-words__list {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-64);
   padding: var(--space-64) 0;
+  position: relative;
 }
 
-/* ── Base Word ── */
+/* ── Base Word — -10% size ── */
 .experience-word {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-size: clamp(2.25rem, 5.5vw, 4.5rem);
   font-weight: var(--weight-heading-light);
   color: var(--color-ivory);
   text-align: center;
   opacity: 0;
-  transform: translateY(30px) scale(0.97);
-  filter: blur(6px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+  transform: translateY(24px) scale(0.97);
+  filter: blur(5px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.65s cubic-bezier(0.16, 1, 0.3, 1),
               color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
               text-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   letter-spacing: var(--tracking-tight);
   will-change: opacity, transform, filter;
+  position: relative;
+  z-index: 1;
 }
 
 /* Visible state — word enters */
@@ -73,69 +75,90 @@
   opacity: 1;
   transform: translateY(0) scale(1);
   filter: blur(0);
+  z-index: 2;
 }
 
 /* Fading state — previous word becomes echo */
 .experience-word.is-past {
-  opacity: 0.12;
-  transform: translateY(-16px) scale(0.98);
-  filter: blur(2px);
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0.08;
+  transform: translateY(-12px) scale(0.98);
+  filter: blur(4px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 0;
+}
+
+/* Next word — starting to appear (crossfade) */
+.experience-word.is-next {
+  opacity: 0.25;
+  transform: translateY(16px) scale(0.98);
+  filter: blur(3px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+/* ── Glow ambiental — behind active word ── */
+.experience-word::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 120px;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(196, 168, 110, 0.03) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+}
+
+.experience-word.is-visible::before {
+  opacity: 1;
 }
 
 /* ── Llegar — first word, slower entrance ── */
 .experience-word:first-child {
-  transition-duration: 0.9s;
-}
-
-.experience-word:first-child.is-visible {
-  transition-delay: 0ms;
+  transition-duration: 0.85s;
 }
 
 /* ── Disfrutar — finale effect ── */
 .experience-word--gold-intense.is-visible {
   text-shadow: 0 0 60px rgba(196, 168, 110, 0.25),
                0 0 120px rgba(196, 168, 110, 0.08);
-  transition-duration: 0.9s;
+  transition-duration: 0.85s;
 }
 
-/* ── Color Variations ── */
-.experience-word--gold-strong {
+/* ── Color Variations — only start and end are gold ── */
+.experience-word--gold {
   color: var(--color-gold);
-}
-
-.experience-word--gold-medium {
-  color: rgba(196, 168, 110, 0.7);
 }
 
 .experience-word--white {
   color: rgba(255, 255, 255, 0.95);
 }
 
-.experience-word--gold-intense {
-  color: var(--color-gold);
-  text-shadow: 0 0 40px rgba(196, 168, 110, 0.15);
-}
-
-.experience-word--gold {
-  color: rgba(196, 168, 110, 0.85);
-}
-
-/* ── Size Variation — key words +8% ── */
+/* ── Size Variation — key words +8% over base ── */
 .experience-word--large {
-  font-size: clamp(2.7rem, 6.5vw, 5.4rem);
+  font-size: clamp(2.45rem, 6vw, 4.86rem);
 }
 
-/* ── Closing Block — pulled up ~50px ── */
+/* ── Closing Block — pulled up more ── */
 .experiencia-words__closing {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-24);
-  margin-top: var(--space-48);
-  padding-bottom: var(--space-40);
+  gap: var(--space-20);
+  margin-top: var(--space-16);
+  padding-bottom: var(--space-32);
   text-align: center;
   opacity: 0;
   transform: translateY(16px);
@@ -163,6 +186,7 @@
   text-transform: uppercase;
   color: var(--color-gray-warm);
   opacity: 0.5;
+  line-height: 2;
 }
 
 /* ── Responsive — Mobile ── */
@@ -173,7 +197,7 @@
   }
 
   .experiencia-words__intro {
-    margin-bottom: var(--space-48);
+    margin-bottom: var(--space-32);
   }
 
   .experiencia-words__list {
@@ -182,16 +206,21 @@
   }
 
   .experience-word {
-    font-size: clamp(2rem, 10vw, 3.5rem);
-    transform: translateY(24px) scale(0.97);
+    font-size: clamp(1.8rem, 9vw, 3.2rem);
+    transform: translateY(20px) scale(0.97);
   }
 
   .experience-word--large {
-    font-size: clamp(2.2rem, 11vw, 3.8rem);
+    font-size: clamp(1.95rem, 10vw, 3.46rem);
+  }
+
+  .experience-word::before {
+    width: 200px;
+    height: 80px;
   }
 
   .experiencia-words__closing {
-    margin-top: var(--space-32);
-    padding-bottom: var(--space-24);
+    margin-top: var(--space-8);
+    padding-bottom: var(--space-16);
   }
 }
