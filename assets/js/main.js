@@ -525,7 +525,46 @@
     var distribucionLines = distribucion.querySelectorAll('.distribucion__line--draw');
     var distribucionZones = distribucion.querySelectorAll('.distribucion__zone');
     var distribucionLabels = distribucion.querySelectorAll('.distribucion__label');
+    var distribucionFeatures = distribucion.querySelector('#distribucion-features');
     var distribucionDrawn = false;
+    var distribucionSwapping = false;
+
+    // Zone content map
+    var zoneContent = {
+      habitacion: ['King Bed', 'Baño privado', 'Blackout', 'Smart TV 55"'],
+      sala: ['Smart TV 55"', 'Zona de lectura', 'Wi-Fi Premium', 'Bocinas Sonos'],
+      cocina: ['Nevera', 'Cafetera', 'Microondas', 'Menaje completo'],
+      bano: ['Ducha de lluvia', 'Amenities premium', 'Toallas bogotanas', 'Espejo retroiluminado'],
+      balcon: ['Balcón privado', 'Zona de lectura', 'Vista panorámica', 'Plantas naturales']
+    };
+
+    var defaultFeatures = ['King Bed', 'Sala', 'Cocina equipada', 'Baño privado', 'Zona de trabajo', 'Balcón'];
+
+    function swapFeatures(items) {
+      if (distribucionSwapping) return;
+      distribucionSwapping = true;
+
+      var currentFeatures = distribucionFeatures.querySelectorAll('.distribucion__feature');
+
+      // Phase 1: fade out current
+      currentFeatures.forEach(function(f) {
+        f.classList.remove('distribucion__feature--entering');
+        f.classList.add('distribucion__feature--leaving');
+      });
+
+      setTimeout(function() {
+        // Phase 2: replace content
+        distribucionFeatures.innerHTML = '';
+        items.forEach(function(text) {
+          var li = document.createElement('li');
+          li.className = 'distribucion__feature distribucion__feature--entering';
+          li.textContent = text;
+          distribucionFeatures.appendChild(li);
+        });
+
+        distribucionSwapping = false;
+      }, 250);
+    }
 
     // Scroll reveal
     var distribucionObserver = new IntersectionObserver(function(entries) {
@@ -602,6 +641,11 @@
         if (correspondingLabel) {
           correspondingLabel.style.fill = '#C4A86E';
         }
+
+        // Swap features
+        if (zoneContent[zoneName]) {
+          swapFeatures(zoneContent[zoneName]);
+        }
       });
 
       zone.addEventListener('mouseleave', function() {
@@ -613,6 +657,9 @@
         distribucionLabels.forEach(function(l) {
           l.style.fill = 'rgba(255, 255, 255, 0.20)';
         });
+
+        // Restore default features
+        swapFeatures(defaultFeatures);
       });
     });
   }
