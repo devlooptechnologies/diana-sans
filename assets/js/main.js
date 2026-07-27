@@ -665,6 +665,24 @@
   }
 
   // ===========================
+  // Experiencia Pause — Scroll Reveal
+  // ===========================
+  var experienciaPause = document.querySelector('.experiencia-pause');
+
+  if (experienciaPause) {
+    var expPauseObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          experienciaPause.classList.add('revealed');
+          expPauseObserver.unobserve(experienciaPause);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    expPauseObserver.observe(experienciaPause);
+  }
+
+  // ===========================
   // Initialize on Load
   // ===========================
   window.addEventListener('load', function() {
