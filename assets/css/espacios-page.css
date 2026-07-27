@@ -2342,6 +2342,7 @@
   color: var(--color-gold);
   opacity: 0.5;
   margin-bottom: var(--space-40);
+  margin-top: var(--space-24);
 }
 
 .site-footer__title {
@@ -2360,7 +2361,7 @@
   font-weight: var(--weight-body-light);
   color: var(--color-gray-warm);
   line-height: 1.6;
-  opacity: 0.35;
+  opacity: 0.4;
   margin-bottom: var(--space-48);
 }
 
@@ -2390,6 +2391,7 @@
   text-decoration: none;
   transition: opacity var(--duration-fast) var(--ease-out);
   opacity: 0.6;
+  margin-top: var(--space-16);
 }
 
 .site-footer__cta:hover {
@@ -2442,7 +2444,7 @@
   width: 100vw;
   margin-left: calc(-50vw + 50%);
   height: 1px;
-  background-color: rgba(255, 255, 255, 0.04);
+  background-color: rgba(255, 255, 255, 0.03);
   margin-bottom: var(--space-48);
 }
 
@@ -2537,7 +2539,7 @@
 }
 
 .site-footer.revealed .site-footer__subtitle {
-  opacity: 0.35;
+  opacity: 0.4;
   transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
 }
 
