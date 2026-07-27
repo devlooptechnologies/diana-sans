@@ -683,6 +683,24 @@
   }
 
   // ===========================
+  // Reserva — Scroll Reveal
+  // ===========================
+  var reserva = document.querySelector('.reserva');
+
+  if (reserva) {
+    var reservaObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          reserva.classList.add('revealed');
+          reservaObserver.unobserve(reserva);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    reservaObserver.observe(reserva);
+  }
+
+  // ===========================
   // Initialize on Load
   // ===========================
   window.addEventListener('load', function() {
