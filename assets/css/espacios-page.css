@@ -1719,7 +1719,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  padding: var(--space-24) 0;
+  padding: var(--space-28) 0;
   position: relative;
 }
 
@@ -1729,7 +1729,7 @@
   width: 100%;
   height: 1px;
   background-color: rgba(255, 255, 255, 0.035);
-  margin-top: var(--space-24);
+  margin-top: var(--space-28);
 }
 
 .reserva__step:last-child::after {
@@ -1743,23 +1743,48 @@
   letter-spacing: var(--tracking-widest);
   color: var(--color-gold);
   opacity: 0.35;
+  margin-bottom: var(--space-4);
 }
 
-.reserva__step-text {
+.reserva__step-title {
   font-family: var(--font-body);
   font-size: var(--text-body-small);
+  font-weight: var(--weight-body-medium);
+  color: var(--color-ivory);
+  opacity: 0.7;
+  letter-spacing: var(--tracking-wide);
+  line-height: 1.4;
+  margin-bottom: var(--space-2);
+}
+
+.reserva__step-desc {
+  font-family: var(--font-body);
+  font-size: 13px;
   font-weight: var(--weight-body-light);
   color: var(--color-gray-warm);
   letter-spacing: var(--tracking-wide);
-  line-height: 1.7;
-  opacity: 0.6;
+  line-height: 1.6;
+  opacity: 0.35;
 }
 
 /* ── Right column: calendar ── */
 .reserva__calendar-col {
   display: flex;
   flex-direction: column;
-  gap: var(--space-56);
+  gap: var(--space-40);
+  align-self: start;
+  padding-top: var(--space-80);
+}
+
+.reserva__calendar-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: var(--weight-body-light);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gray-warm);
+  opacity: 0.25;
+  text-align: center;
 }
 
 .reserva__calendar {
@@ -1780,7 +1805,7 @@
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
   color: var(--color-ivory);
-  opacity: 0.4;
+  opacity: 0.85;
 }
 
 .reserva__calendar-weekdays {
@@ -1795,7 +1820,7 @@
   font-weight: var(--weight-body-medium);
   letter-spacing: var(--tracking-widest);
   color: var(--color-gray-warm);
-  opacity: 0.25;
+  opacity: 0.35;
   text-transform: uppercase;
 }
 
@@ -1810,9 +1835,10 @@
   font-size: var(--text-body-small);
   font-weight: var(--weight-body-light);
   color: var(--color-gray-warm);
-  opacity: 0.3;
+  opacity: 0.35;
   padding: var(--space-12) 0;
   letter-spacing: 0.02em;
+  position: relative;
 }
 
 .reserva__calendar-day--empty {
@@ -1820,8 +1846,28 @@
 }
 
 .reserva__calendar-day--active {
-  opacity: 0.6;
+  opacity: 0.7;
   color: var(--color-gold);
+}
+
+.reserva__calendar-day--selected {
+  opacity: 1;
+  color: var(--color-ivory);
+  position: relative;
+}
+
+.reserva__calendar-day--selected::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--color-gold);
+  opacity: 0.3;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
 }
 
 .reserva__calendar-note {
@@ -1832,6 +1878,46 @@
   color: var(--color-gray-warm);
   opacity: 0.3;
   text-align: center;
+}
+
+/* ── Check-in / Check-out ── */
+.reserva__checkin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-32);
+}
+
+.reserva__checkin-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.reserva__checkin-time {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-body-medium);
+  color: var(--color-ivory);
+  opacity: 0.55;
+  letter-spacing: 0.04em;
+}
+
+.reserva__checkin-label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: var(--weight-body-light);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gray-warm);
+  opacity: 0.3;
+}
+
+.reserva__checkin-divider {
+  width: 1px;
+  height: 36px;
+  background-color: rgba(255, 255, 255, 0.06);
 }
 
 /* ── CTA ── */
@@ -1848,6 +1934,7 @@
   text-decoration: none;
   transition: opacity var(--duration-fast) var(--ease-out);
   opacity: 0.6;
+  margin-top: var(--space-16);
 }
 
 .reserva__cta:hover {
@@ -1901,7 +1988,9 @@
 .reserva .reserva__copy,
 .reserva .reserva__steps,
 .reserva .reserva__cta,
-.reserva .reserva__calendar {
+.reserva .reserva__calendar,
+.reserva .reserva__calendar-label,
+.reserva .reserva__checkin {
   opacity: 0;
   transform: translateY(12px);
 }
@@ -1939,6 +2028,20 @@
   transform: translateY(0);
   transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.5s,
               transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+}
+
+.reserva.revealed .reserva__calendar-label {
+  opacity: 0.25;
+  transform: translateY(0);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.4s,
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
+}
+
+.reserva.revealed .reserva__checkin {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.7s,
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.7s;
 }
 
 .reserva.revealed .reserva__cta {
