@@ -2070,48 +2070,42 @@
 .closing-hero__bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    178deg,
-    #0d0d0d 0%,
-    #111111 30%,
-    #0f0f0e 60%,
-    #121210 100%
-  );
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 45%, rgba(30, 28, 24, 0.9) 0%, rgba(10, 10, 10, 0.97) 70%),
+    linear-gradient(178deg, #1a1814 0%, #151311 30%, #121010 60%, #0e0d0c 100%);
   z-index: 0;
 }
 
-/* Subtle cinematic grain */
+/* Subtle texture — photographic grain */
 .closing-hero__bg::before {
   content: '';
   position: absolute;
   inset: 0;
   background:
     repeating-conic-gradient(
-      rgba(255, 255, 255, 0.004) 0% 25%,
+      rgba(255, 255, 255, 0.003) 0% 25%,
       transparent 0% 50%
-    ) 0 0 / 3px 3px;
-  opacity: 0.5;
+    ) 0 0 / 2px 2px;
+  opacity: 0.6;
   pointer-events: none;
 }
 
-/* Gradient overlay for text legibility */
+/* Depth layers — simulates soft light through a window */
 .closing-hero__bg::after {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 50% 40% at 50% 50%, transparent 0%, rgba(10, 10, 10, 0.3) 100%),
-    linear-gradient(180deg, rgba(10, 10, 10, 0.15) 0%, transparent 30%, transparent 70%, rgba(10, 10, 10, 0.4) 100%);
+    radial-gradient(ellipse 35% 45% at 60% 40%, rgba(196, 168, 110, 0.025) 0%, transparent 70%),
+    radial-gradient(ellipse 25% 35% at 35% 55%, rgba(200, 190, 170, 0.015) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(10, 10, 10, 0.1) 0%, transparent 25%, transparent 75%, rgba(10, 10, 10, 0.25) 100%);
   pointer-events: none;
 }
 
-/* Atmospheric glow */
-.closing-hero__bg .closing-hero__glow {
-  position: absolute;
-  inset: -30%;
-  background:
-    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(196, 168, 110, 0.012) 0%, transparent 70%);
-  pointer-events: none;
+/* Continuous breathing zoom — lives while section is visible */
+@keyframes closingHeroBreathe {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
 }
 
 .closing-hero__content {
@@ -2141,7 +2135,7 @@
   font-family: var(--font-heading);
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   font-weight: var(--weight-heading-light);
-  line-height: 1.05;
+  line-height: 1.12;
   color: var(--color-ivory);
   letter-spacing: -0.01em;
   margin-bottom: var(--space-48);
@@ -2154,7 +2148,7 @@
   color: var(--color-gray-warm);
   line-height: 1.85;
   max-width: 420px;
-  margin-bottom: var(--space-64);
+  margin-bottom: var(--space-80);
 }
 
 /* ── CTA — the most elegant ── */
@@ -2226,7 +2220,7 @@
   font-weight: var(--weight-body-light);
   letter-spacing: var(--tracking-wide);
   color: var(--color-gray-warm);
-  opacity: 0.25;
+  opacity: 0.35;
 }
 
 /* ── Reveal animations ── */
@@ -2241,14 +2235,12 @@
 
 .closing-hero .closing-hero__bg {
   opacity: 0;
-  transform: scale(1.03);
-  transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 12s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .closing-hero.revealed .closing-hero__bg {
   opacity: 1;
-  transform: scale(1);
+  animation: closingHeroBreathe 20s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .closing-hero.revealed .closing-hero__overline {
@@ -2280,7 +2272,7 @@
 }
 
 .closing-hero.revealed .closing-hero__amenities {
-  opacity: 0.25;
+  opacity: 0.35;
   transform: translateY(0);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.2s,
               transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.2s;
