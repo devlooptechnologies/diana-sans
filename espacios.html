@@ -212,6 +212,87 @@
     </div>
   </section>
 
+  <!-- DISTRIBUCIÓN — Architectural Floor Plan -->
+  <section class="distribucion">
+    <div class="distribucion__inner">
+
+      <!-- Left column: editorial text -->
+      <div class="distribucion__content">
+        <span class="distribucion__overline" data-distribucion>Distribución</span>
+
+        <h2 class="distribucion__title" data-distribucion>
+          Cada metro<br>
+          tiene un<br>
+          propósito.
+        </h2>
+
+        <p class="distribucion__copy" data-distribucion>
+          Nada sobra. Cada espacio fue diseñado para que la circulación sea natural, la luz acompañe el recorrido y el descanso ocurra sin esfuerzo.
+        </p>
+
+        <ul class="distribucion__features" data-distribucion>
+          <li class="distribucion__feature">75 m²</li>
+          <li class="distribucion__feature">King Bed</li>
+          <li class="distribucion__feature">Sala</li>
+          <li class="distribucion__feature">Cocina equipada</li>
+          <li class="distribucion__feature">Baño privado</li>
+          <li class="distribucion__feature">Zona de trabajo</li>
+          <li class="distribucion__feature">Balcón</li>
+        </ul>
+
+        <a href="#interior-01" class="distribucion__cta" data-distribucion>
+          <span class="distribucion__cta-text">Ver plano</span>
+          <span class="distribucion__cta-arrow">&rarr;</span>
+        </a>
+      </div>
+
+      <!-- Right column: architectural floor plan SVG -->
+      <div class="distribucion__plan" data-distribucion>
+        <svg class="distribucion__svg" viewBox="0 0 600 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+          <!-- Outer walls -->
+          <rect class="distribucion__walls" x="20" y="20" width="560" height="400" rx="2"/>
+
+          <!-- Inner partition lines -->
+          <line class="distribucion__line distribucion__line--draw" x1="280" y1="20" x2="280" y2="280"/>
+          <line class="distribucion__line distribucion__line--draw" x1="280" y1="280" x2="580" y2="280"/>
+          <line class="distribucion__line distribucion__line--draw" x1="280" y1="180" x2="580" y2="180"/>
+          <line class="distribucion__line distribucion__line--draw" x1="420" y1="180" x2="420" y2="280"/>
+          <line class="distribucion__line distribucion__line--draw" x1="20" y1="320" x2="280" y2="320"/>
+
+          <!-- Door arcs -->
+          <path class="distribucion__line distribucion__line--draw distribucion__line--thin" d="M 280 260 A 20 20 0 0 1 260 280"/>
+          <path class="distribucion__line distribucion__line--draw distribucion__line--thin" d="M 420 200 A 20 20 0 0 0 440 180"/>
+          <path class="distribucion__line distribucion__line--draw distribucion__line--thin" d="M 400 280 A 20 20 0 0 1 420 260"/>
+
+          <!-- Window marks (small tick marks on outer walls) -->
+          <line class="distribucion__line distribucion__line--draw distribucion__line--thin" x1="80" y1="20" x2="80" y2="12"/>
+          <line class="distribucion__line distribucion__line--draw distribucion__line--thin" x1="140" y1="20" x2="140" y2="12"/>
+          <line class="distribucion__line distribucion__line--draw distribucion__line--thin" x1="200" y1="20" x2="200" y2="12"/>
+          <line class="distribucion__line distribucion__line--draw distribucion__line--thin" x1="490" y1="20" x2="490" y2="12"/>
+          <line class="distribucion__line distribucion__line--draw distribucion__line--thin" x1="580" y1="80" x2="588" y2="80"/>
+          <line class="distribucion__line distribucion__line--draw distribucion__line--thin" x1="580" y1="130" x2="588" y2="130"/>
+
+          <!-- Zones (hover areas — transparent fill) -->
+          <rect class="distribucion__zone" data-zone="habitacion" x="22" y="22" width="256" height="296" rx="1"/>
+          <rect class="distribucion__zone" data-zone="sala" x="282" y="22" width="296" height="156" rx="1"/>
+          <rect class="distribucion__zone" data-zone="cocina" x="282" y="182" width="136" height="96" rx="1"/>
+          <rect class="distribucion__zone" data-zone="bano" x="422" y="182" width="156" height="96" rx="1"/>
+          <rect class="distribucion__zone" data-zone="balcon" x="22" y="322" width="256" height="96" rx="1"/>
+
+          <!-- Zone labels -->
+          <text class="distribucion__label" x="150" y="170" data-label="habitacion">Habitación</text>
+          <text class="distribucion__label" x="430" y="105" data-label="sala">Sala</text>
+          <text class="distribucion__label" x="350" y="235" data-label="cocina">Cocina</text>
+          <text class="distribucion__label" x="500" y="235" data-label="bano">Baño</text>
+          <text class="distribucion__label" x="150" y="375" data-label="balcon">Balcón</text>
+
+        </svg>
+      </div>
+
+    </div>
+  </section>
+
   <!-- CTA FINAL -->
   <section class="cta-final" id="reservar">
     <div class="cta-final__bg"></div>

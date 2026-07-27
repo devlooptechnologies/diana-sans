@@ -1001,6 +1001,231 @@
 }
 
 /* ===========================
+   Distribución — Architectural Floor Plan
+   =========================== */
+
+.distribucion {
+  background-color: var(--color-black-absolute);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: var(--space-120) 0;
+  position: relative;
+}
+
+.distribucion__inner {
+  display: grid;
+  grid-template-columns: 45fr 55fr;
+  gap: clamp(48px, 6vw, 100px);
+  align-items: center;
+  max-width: var(--grid-container);
+  margin: 0 auto;
+  padding-left: var(--grid-page-margin);
+  padding-right: var(--grid-page-margin);
+  width: 100%;
+}
+
+/* ── Left column: editorial text ── */
+.distribucion__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-top: var(--space-40);
+}
+
+.distribucion__overline {
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: var(--space-8);
+}
+
+.distribucion__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: var(--weight-heading-light);
+  line-height: 1.15;
+  color: var(--color-ivory);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-40);
+}
+
+.distribucion__copy {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-body-light);
+  color: var(--color-gray-warm);
+  line-height: 1.85;
+  max-width: 380px;
+  margin-bottom: var(--space-48);
+}
+
+/* ── Features list ── */
+.distribucion__features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+  margin-bottom: var(--space-56);
+}
+
+.distribucion__feature {
+  font-family: var(--font-body);
+  font-size: var(--text-body-small);
+  font-weight: var(--weight-body-light);
+  color: var(--color-gray-warm);
+  letter-spacing: var(--tracking-wide);
+  opacity: 0.7;
+}
+
+/* ── CTA ── */
+.distribucion__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-gold);
+  text-decoration: none;
+  transition: opacity var(--duration-fast) var(--ease-out);
+  opacity: 0.6;
+}
+
+.distribucion__cta:hover {
+  opacity: 1;
+}
+
+.distribucion__cta-text {
+  transition: letter-spacing 0.3s var(--ease-out);
+}
+
+.distribucion__cta:hover .distribucion__cta-text {
+  letter-spacing: 0.2em;
+}
+
+.distribucion__cta-arrow {
+  transition: transform 0.3s var(--ease-out);
+}
+
+.distribucion__cta:hover .distribucion__cta-arrow {
+  transform: translateX(4px);
+}
+
+/* ── Right column: blueprint plan ── */
+.distribucion__plan {
+  position: relative;
+  width: 100%;
+}
+
+.distribucion__svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── SVG element styles ── */
+.distribucion__walls {
+  stroke: rgba(255, 255, 255, 0.15);
+  stroke-width: 1;
+  fill: none;
+}
+
+.distribucion__line {
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-width: 1;
+  fill: none;
+}
+
+.distribucion__line--thin {
+  stroke-width: 0.5;
+  stroke: rgba(255, 255, 255, 0.08);
+}
+
+.distribucion__zone {
+  fill: transparent;
+  cursor: pointer;
+  transition: fill 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.distribucion__label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  fill: rgba(255, 255, 255, 0.25);
+  text-anchor: middle;
+  transition: fill 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Plan container subtle glow ── */
+.distribucion__plan::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(196, 168, 110, 0.02) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ── Text reveal animations ── */
+.distribucion .distribucion__overline,
+.distribucion .distribucion__title,
+.distribucion .distribucion__copy,
+.distribucion .distribucion__features,
+.distribucion .distribucion__cta {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.distribucion.revealed .distribucion__overline {
+  opacity: 0.5;
+  transform: translateY(0);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.distribucion.revealed .distribucion__title {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+}
+
+.distribucion.revealed .distribucion__copy {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s,
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.distribucion.revealed .distribucion__features {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.45s,
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.45s;
+}
+
+.distribucion.revealed .distribucion__cta {
+  opacity: 0.6;
+  transform: translateY(0);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.6s,
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
+}
+
+/* ===========================
    Espacios Page — Responsive
    =========================== */
 
@@ -1757,6 +1982,44 @@
     left: var(--space-20);
   }
 
+  /* ── Distribución: mobile ── */
+  .distribucion {
+    min-height: auto;
+    padding: var(--space-96) 0;
+  }
+
+  .distribucion__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-40);
+  }
+
+  .distribucion__plan {
+    order: 1;
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .distribucion__content {
+    order: 2;
+    padding-top: 0;
+  }
+
+  .distribucion__title {
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
+    margin-bottom: var(--space-24);
+  }
+
+  .distribucion__copy {
+    font-size: 0.9375rem;
+    max-width: 100%;
+    margin-bottom: var(--space-32);
+  }
+
+  .distribucion__features {
+    margin-bottom: var(--space-40);
+  }
+
   /* ── Gallery Preview: mobile single-column ── */
   .gallery-preview {
     min-height: auto;
@@ -1903,5 +2166,17 @@
   .gallery-preview__stack {
     height: 55vh;
     min-height: 300px;
+  }
+
+  .distribucion {
+    padding: var(--space-64) 0;
+  }
+
+  .distribucion__plan {
+    width: 100%;
+  }
+
+  .distribucion__title {
+    font-size: clamp(1.5rem, 8vw, 2.2rem);
   }
 }

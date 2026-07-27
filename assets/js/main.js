@@ -516,6 +516,108 @@
   }
 
   // ===========================
+  // Distribución — Architectural Floor Plan
+  // ===========================
+  var distribucion = document.querySelector('.distribucion');
+
+  if (distribucion) {
+    var distribucionSvg = distribucion.querySelector('.distribucion__svg');
+    var distribucionLines = distribucion.querySelectorAll('.distribucion__line--draw');
+    var distribucionZones = distribucion.querySelectorAll('.distribucion__zone');
+    var distribucionLabels = distribucion.querySelectorAll('.distribucion__label');
+    var distribucionDrawn = false;
+
+    // Scroll reveal
+    var distribucionObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          distribucion.classList.add('revealed');
+
+          if (!distribucionDrawn) {
+            distribucionDrawn = true;
+            distribucionDrawLines();
+            distribucionShowLabels();
+          }
+
+          distribucionObserver.unobserve(distribucion);
+        }
+      });
+    }, { threshold: 0.25 });
+
+    distribucionObserver.observe(distribucion);
+
+    // Line drawing animation
+    function distribucionDrawLines() {
+      distribucionLines.forEach(function(line, index) {
+        var length = line.getTotalLength();
+        line.style.strokeDasharray = length;
+        line.style.strokeDashoffset = length;
+        line.style.transition = 'none';
+
+        void line.offsetWidth;
+
+        setTimeout(function() {
+          line.style.transition = 'stroke-dashoffset 1.8s cubic-bezier(0.16, 1, 0.3, 1)';
+          line.style.strokeDashoffset = '0';
+        }, 300 + index * 100);
+      });
+    }
+
+    // Sequential label appearance
+    function distribucionShowLabels() {
+      distribucionLabels.forEach(function(label, index) {
+        label.style.opacity = '0';
+        label.style.transition = 'none';
+
+        void label.offsetWidth;
+
+        setTimeout(function() {
+          label.style.transition = 'opacity 1s cubic-bezier(0.16, 1, 0.3, 1)';
+          label.style.opacity = '1';
+        }, 1400 + index * 200);
+      });
+    }
+
+    // Zone hover interactions
+    distribucionZones.forEach(function(zone) {
+      var zoneName = zone.getAttribute('data-zone');
+      var correspondingLabel = distribucionSvg.querySelector('.distribucion__label[data-label="' + zoneName + '"]');
+
+      zone.addEventListener('mouseenter', function() {
+        distribucionZones.forEach(function(z) {
+          if (z !== zone) {
+            z.style.opacity = '0.2';
+          }
+        });
+
+        zone.style.fill = 'rgba(196, 168, 110, 0.04)';
+        zone.style.opacity = '1';
+
+        distribucionLabels.forEach(function(l) {
+          if (l !== correspondingLabel) {
+            l.style.fill = 'rgba(255, 255, 255, 0.08)';
+          }
+        });
+
+        if (correspondingLabel) {
+          correspondingLabel.style.fill = '#C4A86E';
+        }
+      });
+
+      zone.addEventListener('mouseleave', function() {
+        distribucionZones.forEach(function(z) {
+          z.style.opacity = '1';
+          z.style.fill = 'transparent';
+        });
+
+        distribucionLabels.forEach(function(l) {
+          l.style.fill = 'rgba(255, 255, 255, 0.25)';
+        });
+      });
+    });
+  }
+
+  // ===========================
   // Initialize on Load
   // ===========================
   window.addEventListener('load', function() {
