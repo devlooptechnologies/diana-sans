@@ -2285,12 +2285,40 @@
 .site-footer {
   background-color: var(--color-black-absolute);
   position: relative;
+  overflow: hidden;
+}
+
+/* Subtle texture — dark concrete / soft fabric */
+.site-footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 30%, rgba(30, 28, 24, 0.7) 0%, rgba(10, 10, 10, 0.95) 70%),
+    linear-gradient(178deg, #141210 0%, #111010 40%, #0e0d0c 100%);
+  z-index: 0;
+}
+
+.site-footer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-conic-gradient(
+      rgba(255, 255, 255, 0.003) 0% 25%,
+      transparent 0% 50%
+    ) 0 0 / 2px 2px;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .site-footer__inner {
+  position: relative;
+  z-index: 1;
   max-width: var(--grid-container);
   margin: 0 auto;
-  padding: var(--space-160) var(--grid-page-margin) var(--space-80);
+  padding: var(--space-200) var(--grid-page-margin) var(--space-80);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2313,7 +2341,7 @@
   text-transform: uppercase;
   color: var(--color-gold);
   opacity: 0.5;
-  margin-bottom: var(--space-32);
+  margin-bottom: var(--space-40);
 }
 
 .site-footer__title {
@@ -2323,6 +2351,16 @@
   line-height: 1.1;
   color: var(--color-ivory);
   letter-spacing: -0.01em;
+  margin-bottom: var(--space-16);
+}
+
+.site-footer__subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-body-light);
+  color: var(--color-gray-warm);
+  line-height: 1.6;
+  opacity: 0.35;
   margin-bottom: var(--space-48);
 }
 
@@ -2335,7 +2373,7 @@
   letter-spacing: var(--tracking-wide);
   opacity: 0.4;
   text-align: center;
-  margin-bottom: var(--space-56);
+  margin-bottom: var(--space-80);
 }
 
 /* ── CTA ── */
@@ -2401,7 +2439,8 @@
 
 /* ── Divider ── */
 .site-footer__divider {
-  width: 100%;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
   height: 1px;
   background-color: rgba(255, 255, 255, 0.04);
   margin-bottom: var(--space-48);
@@ -2422,13 +2461,13 @@
   font-weight: var(--weight-body-light);
   letter-spacing: var(--tracking-wide);
   color: var(--color-gray-warm);
-  opacity: 0.3;
+  opacity: 0.4;
 }
 
 .site-footer__nav {
   display: flex;
   align-items: center;
-  gap: var(--space-32);
+  gap: var(--space-40);
 }
 
 .site-footer__link {
@@ -2437,14 +2476,32 @@
   font-weight: var(--weight-body-light);
   letter-spacing: var(--tracking-wide);
   color: var(--color-gray-warm);
-  opacity: 0.3;
+  opacity: 0.4;
   text-decoration: none;
+  position: relative;
+  padding-bottom: 4px;
   transition: opacity 0.4s var(--ease-out), color 0.4s var(--ease-out);
+}
+
+.site-footer__link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-ivory);
+  opacity: 0.3;
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .site-footer__link:hover {
   opacity: 0.7;
   color: var(--color-ivory);
+}
+
+.site-footer__link:hover::after {
+  width: 100%;
 }
 
 /* ── DevLoop credit ── */
@@ -2454,7 +2511,7 @@
   font-weight: var(--weight-body-light);
   letter-spacing: var(--tracking-wide);
   color: var(--color-gray-warm);
-  opacity: 0.15;
+  opacity: 0.25;
   align-self: flex-end;
 }
 
@@ -2465,14 +2522,23 @@
 /* ── Reveal animation ── */
 .site-footer .site-footer__closing {
   opacity: 0;
-  transform: translateY(16px);
+  transform: translateY(40px);
 }
 
 .site-footer.revealed .site-footer__closing {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s,
-              transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s,
+              transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.site-footer .site-footer__subtitle {
+  opacity: 0;
+}
+
+.site-footer.revealed .site-footer__subtitle {
+  opacity: 0.35;
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
 }
 
 /* ===========================
@@ -3450,11 +3516,15 @@
 
   /* ── Site Footer: mobile ── */
   .site-footer__inner {
-    padding: var(--space-120) var(--grid-page-margin) var(--space-64);
+    padding: var(--space-160) var(--grid-page-margin) var(--space-64);
   }
 
   .site-footer__title {
     font-size: clamp(1.75rem, 7vw, 2.5rem);
+  }
+
+  .site-footer__location {
+    margin-bottom: var(--space-64);
   }
 
   .site-footer__bottom {
@@ -3467,7 +3537,7 @@
   .site-footer__nav {
     flex-wrap: wrap;
     justify-content: center;
-    gap: var(--space-24);
+    gap: var(--space-28);
   }
 
   .site-footer__credit {
