@@ -701,6 +701,24 @@
   }
 
   // ===========================
+  // Closing Hero — Scroll Reveal
+  // ===========================
+  var closingHero = document.querySelector('.closing-hero');
+
+  if (closingHero) {
+    var closingHeroObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          closingHero.classList.add('revealed');
+          closingHeroObserver.unobserve(closingHero);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    closingHeroObserver.observe(closingHero);
+  }
+
+  // ===========================
   // Initialize on Load
   // ===========================
   window.addEventListener('load', function() {

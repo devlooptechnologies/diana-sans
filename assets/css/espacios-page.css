@@ -2054,6 +2054,239 @@
 }
 
 /* ===========================
+   Closing Hero — Cinematic Finale
+   =========================== */
+
+.closing-hero {
+  position: relative;
+  height: 100vh;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.closing-hero__bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    178deg,
+    #0d0d0d 0%,
+    #111111 30%,
+    #0f0f0e 60%,
+    #121210 100%
+  );
+  z-index: 0;
+}
+
+/* Subtle cinematic grain */
+.closing-hero__bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-conic-gradient(
+      rgba(255, 255, 255, 0.004) 0% 25%,
+      transparent 0% 50%
+    ) 0 0 / 3px 3px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Gradient overlay for text legibility */
+.closing-hero__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 40% at 50% 50%, transparent 0%, rgba(10, 10, 10, 0.3) 100%),
+    linear-gradient(180deg, rgba(10, 10, 10, 0.15) 0%, transparent 30%, transparent 70%, rgba(10, 10, 10, 0.4) 100%);
+  pointer-events: none;
+}
+
+/* Atmospheric glow */
+.closing-hero__bg .closing-hero__glow {
+  position: absolute;
+  inset: -30%;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(196, 168, 110, 0.012) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.closing-hero__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0;
+  max-width: 600px;
+  padding: 0 var(--grid-page-margin);
+}
+
+.closing-hero__overline {
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+  opacity: 0.5;
+  margin-bottom: var(--space-48);
+}
+
+.closing-hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: var(--weight-heading-light);
+  line-height: 1.05;
+  color: var(--color-ivory);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-48);
+}
+
+.closing-hero__copy {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-body-light);
+  color: var(--color-gray-warm);
+  line-height: 1.85;
+  max-width: 420px;
+  margin-bottom: var(--space-64);
+}
+
+/* ── CTA — the most elegant ── */
+.closing-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-gold);
+  text-decoration: none;
+  transition: opacity var(--duration-fast) var(--ease-out);
+  opacity: 0.7;
+  margin-bottom: var(--space-56);
+}
+
+.closing-hero__cta:hover {
+  opacity: 1;
+}
+
+.closing-hero__cta-text {
+  transition: letter-spacing 0.6s var(--ease-out);
+}
+
+.closing-hero__cta:hover .closing-hero__cta-text {
+  letter-spacing: 0.22em;
+}
+
+.closing-hero__cta-line {
+  display: inline-block;
+  width: 48px;
+  height: 1px;
+  background-color: var(--color-gold);
+  opacity: 0.5;
+  position: relative;
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+.closing-hero__cta-line::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: -2.5px;
+  width: 6px;
+  height: 6px;
+  border-right: 1px solid var(--color-gold);
+  border-bottom: 1px solid var(--color-gold);
+  transform: rotate(-45deg);
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+}
+
+.closing-hero__cta:hover .closing-hero__cta-line {
+  width: 64px;
+}
+
+.closing-hero__cta:hover .closing-hero__cta-line::after {
+  opacity: 0.7;
+}
+
+/* ── Amenities ── */
+.closing-hero__amenities {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: var(--weight-body-light);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-gray-warm);
+  opacity: 0.25;
+}
+
+/* ── Reveal animations ── */
+.closing-hero .closing-hero__overline,
+.closing-hero .closing-hero__title,
+.closing-hero .closing-hero__copy,
+.closing-hero .closing-hero__cta,
+.closing-hero .closing-hero__amenities {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.closing-hero .closing-hero__bg {
+  opacity: 0;
+  transform: scale(1.03);
+  transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 12s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.closing-hero.revealed .closing-hero__bg {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.closing-hero.revealed .closing-hero__overline {
+  opacity: 0.5;
+  transform: translateY(0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s,
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
+}
+
+.closing-hero.revealed .closing-hero__title {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.6s,
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
+}
+
+.closing-hero.revealed .closing-hero__copy {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.85s,
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.85s;
+}
+
+.closing-hero.revealed .closing-hero__cta {
+  opacity: 0.7;
+  transform: translateY(0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.05s,
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.05s;
+}
+
+.closing-hero.revealed .closing-hero__amenities {
+  opacity: 0.25;
+  transform: translateY(0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.2s,
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.2s;
+}
+
+/* ===========================
    Espacios Page — Responsive
    =========================== */
 
@@ -3005,6 +3238,26 @@
   .reserva__cta {
     order: 4;
   }
+
+  /* ── Closing Hero: mobile ── */
+  .closing-hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .closing-hero__title {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  .closing-hero__copy {
+    font-size: 0.9375rem;
+    max-width: 100%;
+    padding: 0 var(--space-16);
+  }
+
+  .closing-hero__cta {
+    margin-bottom: var(--space-40);
+  }
 }
 
 @media (max-width: 480px) {
@@ -3114,5 +3367,14 @@
 
   .reserva__title {
     font-size: clamp(1.5rem, 8vw, 2.2rem);
+  }
+
+  .closing-hero__title {
+    font-size: clamp(1.75rem, 9vw, 2.5rem);
+  }
+
+  .closing-hero__amenities {
+    font-size: 10px;
+    padding: 0 var(--space-16);
   }
 }
