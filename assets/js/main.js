@@ -611,7 +611,7 @@
         });
 
         distribucionLabels.forEach(function(l) {
-          l.style.fill = 'rgba(255, 255, 255, 0.25)';
+          l.style.fill = 'rgba(255, 255, 255, 0.20)';
         });
       });
     });
