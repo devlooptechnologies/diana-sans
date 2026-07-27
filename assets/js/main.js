@@ -719,6 +719,24 @@
   }
 
   // ===========================
+  // Site Footer — Scroll Reveal
+  // ===========================
+  var siteFooter = document.querySelector('.site-footer');
+
+  if (siteFooter) {
+    var footerObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          siteFooter.classList.add('revealed');
+          footerObserver.unobserve(siteFooter);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    footerObserver.observe(siteFooter);
+  }
+
+  // ===========================
   // Initialize on Load
   // ===========================
   window.addEventListener('load', function() {
