@@ -303,6 +303,51 @@
     </div>
   </section>
 
+  <!-- ================================================================
+       SECCIÓN 07 — VOLVER
+       Contracción: tras caminar y vivir el destino, el huésped
+       vuelve. No es un regreso al alojamiento; es volver a ese
+       lugar que ya empieza a sentirse propio. Noche, regreso,
+       calma. Una única fotografía horizontal nocturna casi
+       cinematográfica, el título por encima del marco (sin
+       superposición) y un lenguaje visual más silencioso.
+       ================================================================ -->
+  <section class="volver" id="volver">
+    <div class="volver__inner">
+
+      <div class="volver__head">
+        <span class="volver__chapter" data-ch="0">06</span>
+        <span class="volver__label" data-ch="1">Volver</span>
+      </div>
+
+      <h2 class="volver__title" data-ch="2">
+        <span class="volver__line">Después de afuera,</span>
+        <span class="volver__gap"></span>
+        <span class="volver__line">qué bien</span>
+        <span class="volver__line volver__line--gold" data-ch="4">volver aquí.</span>
+      </h2>
+
+      <div class="volver__photo-wrap" data-ch="3">
+        <div class="volver__photo"></div>
+      </div>
+
+      <span class="volver__meta" data-ch="5">
+        <span class="volver__dot"></span>
+        VOLVER · 22:36
+      </span>
+
+      <p class="volver__copy" data-ch="6">
+        Las llaves sobre la mesa.<br>
+        Una luz encendida.<br>
+        La ciudad queda afuera.<br>
+        <br>
+        Y por un rato,<br>
+        no hace falta nada más.
+      </p>
+
+    </div>
+  </section>
+
   <script src="assets/js/main.js"></script>
 
   <!-- Entrada cinematográfica del hero -->
@@ -541,6 +586,46 @@
               items.forEach(function(el) {
                 var i = parseInt(el.getAttribute('data-ch'), 10);
                 var delay = (times[i] !== undefined) ? times[i] : 2700;
+                setTimeout(function() {
+                  el.classList.add('is-visible');
+                }, delay);
+              });
+              observer.unobserve(section);
+            }
+          });
+        }, { threshold: 0.2 });
+        observer.observe(section);
+      }
+    })();
+  </script>
+
+  <!-- Revelado cinematográfico — Sección 07 VOLVER -->
+  <script>
+    (function() {
+      'use strict';
+      var section = document.querySelector('.volver');
+      if (!section) return;
+
+      var items = section.querySelectorAll('[data-ch]');
+
+      function showAll() {
+        items.forEach(function(el) {
+          el.classList.add('is-visible');
+        });
+      }
+
+      if (!('IntersectionObserver' in window)) {
+        showAll();
+      } else {
+        var done = false;
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting && !done) {
+              done = true;
+              var times = [0, 320, 700, 1200, 1700, 2500, 2800];
+              items.forEach(function(el) {
+                var i = parseInt(el.getAttribute('data-ch'), 10);
+                var delay = (times[i] !== undefined) ? times[i] : 2800;
                 setTimeout(function() {
                   el.classList.add('is-visible');
                 }, delay);
