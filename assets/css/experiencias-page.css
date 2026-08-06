@@ -2659,23 +2659,11 @@
   margin: 0 auto;
   box-sizing: border-box;
   min-height: 96svh;
-  padding: clamp(120px, 15vh, 180px) var(--grid-page-margin) clamp(80px, 9vh, 120px);
+  padding: clamp(96px, 12vh, 140px) var(--grid-page-margin) clamp(88px, 10vh, 120px);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-}
-
-/* ── Firma: DIANA & SANS ── */
-
-.epilogo__signature {
-  font-family: var(--font-body);
-  font-size: 0.5rem;
-  font-weight: var(--weight-body-medium);
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  color: var(--color-gold);
-  opacity: 0.55;
 }
 
 /* ── Titular principal ── */
@@ -2683,7 +2671,7 @@
 .epilogo__title {
   max-width: clamp(600px, 52vw, 1050px);
   margin-left: clamp(120px, 16vw, 320px);
-  margin-top: clamp(72px, 10vh, 120px);
+  margin-top: 0;
   font-family: var(--font-heading);
   font-size: clamp(4.5rem, 7vw, 8.5rem);
   font-weight: var(--weight-heading-light);
@@ -2705,14 +2693,14 @@
   color: var(--color-gold);
 }
 
-/* ── Pausa vertical ── */
+/* ── Pausa vertical — alineada al eje del microcopy ── */
 
 .epilogo__pause {
   display: block;
   width: 1px;
   height: clamp(40px, 6vh, 55px);
-  margin-top: clamp(80px, 9vh, 120px);
-  margin-left: clamp(120px, 16vw, 320px);
+  margin-top: clamp(44px, 5vh, 60px);
+  margin-left: clamp(240px, 24vw, 440px);
   background-color: var(--color-gold);
   opacity: 0.35;
   transform-origin: top;
@@ -2721,7 +2709,7 @@
 /* ── Microcopy ── */
 
 .epilogo__copy {
-  margin-top: clamp(32px, 4vh, 48px);
+  margin-top: clamp(36px, 4vh, 48px);
   margin-left: clamp(240px, 24vw, 440px);
   max-width: 340px;
   font-family: var(--font-body);
@@ -2737,7 +2725,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-16);
-  margin-top: clamp(42px, 5vh, 55px);
+  margin-top: clamp(44px, 5vh, 52px);
   margin-left: clamp(240px, 24vw, 440px);
   font-family: var(--font-body);
   font-size: 0.625rem;
@@ -2793,8 +2781,8 @@
 
 .epilogo__location {
   position: absolute;
-  right: var(--grid-page-margin);
-  bottom: clamp(36px, 5vh, 64px);
+  right: clamp(72px, 6.5vw, 130px);
+  bottom: clamp(48px, 7vh, 90px);
   font-family: var(--font-body);
   font-size: 0.5rem;
   font-weight: var(--weight-body-medium);
@@ -2854,7 +2842,7 @@
   }
 
   .epilogo__pause {
-    margin-left: clamp(80px, 10vw, 200px);
+    margin-left: clamp(160px, 18vw, 300px);
   }
 
   .epilogo__copy {
@@ -2884,41 +2872,37 @@
     justify-content: space-between;
   }
 
-  .epilogo__signature {
-    order: 0;
-  }
-
   .epilogo__title {
-    order: 1;
+    order: 0;
     max-width: 100%;
     margin-left: 0;
-    margin-top: clamp(72px, 14vh, 110px);
+    margin-top: 0;
     font-size: clamp(3.3rem, 15vw, 5rem);
     line-height: 0.95;
   }
 
   .epilogo__pause {
-    order: 2;
+    order: 1;
     height: clamp(36px, 5vh, 44px);
     margin-top: clamp(56px, 9vh, 72px);
     margin-left: 0;
   }
 
   .epilogo__copy {
-    order: 3;
+    order: 2;
     margin-top: clamp(28px, 4vh, 40px);
     margin-left: 0;
     font-size: 0.9375rem;
   }
 
   .epilogo__cta {
-    order: 4;
+    order: 3;
     margin-top: clamp(42px, 6vh, 52px);
     margin-left: 0;
   }
 
   .epilogo__location {
-    order: 5;
+    order: 4;
     position: static;
     margin-top: clamp(64px, 12vh, 96px);
   }

@@ -397,8 +397,6 @@
     <div class="epilogo__bg"></div>
     <div class="epilogo__inner">
 
-      <span class="epilogo__signature" data-ch="0">Diana &amp; Sans</span>
-
       <h2 class="epilogo__title" data-ch="1">
         <span class="epilogo__line">Tal vez</span>
         <span class="epilogo__line">la próxima historia</span>
@@ -784,7 +782,7 @@
           entries.forEach(function(entry) {
             if (entry.isIntersecting && !done) {
               done = true;
-              var times = [0, 300, 900, 1400, 1900, 2400];
+              var times = [0, 300, 800, 1300, 1900, 2400];
               items.forEach(function(el) {
                 var i = parseInt(el.getAttribute('data-ch'), 10);
                 var delay = (times[i] !== undefined) ? times[i] : 2400;
