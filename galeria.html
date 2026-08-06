@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería — Diana & Sans</title>
+  <meta name="description" content="Galería. Antes de enseñarte las fotografías, te enseñamos a mirar. Cartago, Valle del Cauca.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/typography.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="stylesheet" href="assets/css/gallery-page.css">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='24' font-size='24' font-family='serif' fill='%23B79A63'>D</text></svg>">
+</head>
+<body>
+
+  <!-- NAVBAR GLOBAL -->
+  <nav class="navbar navbar--visible" role="navigation">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">Diana <span>&</span> Sans</a>
+      <div class="navbar__menu">
+        <a href="espacios.html" class="navbar__link">Espacios</a>
+        <a href="experiencias.html" class="navbar__link">Experiencias</a>
+        <a href="galeria.html" class="navbar__link" aria-current="page">Galería</a>
+        <a href="index.html#servicios" class="navbar__link">Servicios</a>
+      </div>
+      <div class="navbar__right">
+        <span class="navbar__lang">ES</span>
+        <a href="index.html#reservar" class="navbar__cta">Reservar</a>
+      </div>
+      <div class="navbar__toggle" aria-label="Menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="navbar__mobile-menu">
+    <a href="espacios.html" class="navbar__link">Espacios</a>
+    <a href="experiencias.html" class="navbar__link">Experiencias</a>
+    <a href="galeria.html" class="navbar__link">Galería</a>
+    <a href="index.html#servicios" class="navbar__link">Servicios</a>
+    <a href="index.html#reservar" class="btn btn--primary">Reservar</a>
+  </div>
+
+  <!-- ================================================================
+       HERO — MIRADAS
+       Apertura editorial, fotográfica y silenciosa.
+       La sensación al entrar: "Antes de enseñarte las fotografías,
+       te enseñamos a mirar." Composición asimétrica en tres zonas:
+       identificación editorial, declaración principal y una primera
+       insinuación fotográfica. La tipografía y el encuadre se
+       encuentran sin que el texto llegue a vivir sobre la imagen.
+       ================================================================ -->
+  <section class="gal-hero" id="hero">
+
+    <!-- Fondo: negro profundo + textura papel + grano fino -->
+    <div class="gal-hero__bg" aria-hidden="true"></div>
+
+    <!-- Presencia cálida casi imperceptible, zona inferior izquierda -->
+    <div class="gal-hero__glow" aria-hidden="true"></div>
+
+    <div class="gal-hero__visual">
+
+      <!-- 01 — Identificador editorial -->
+      <span class="gal-hero__overline" data-ch="0">Miradas</span>
+      <span class="gal-hero__index" data-ch="1">01 / Galería</span>
+
+      <!-- 02 — Titular principal -->
+      <h1 class="gal-hero__title">
+        <span class="gal-hero__line" data-ch="3">Hay cosas</span>
+        <span class="gal-hero__line" data-ch="3">que solo existen</span>
+        <span class="gal-hero__line gal-hero__line--indent" data-ch="4">cuando alguien</span>
+        <span class="gal-hero__line gal-hero__line--emotive" data-ch="4">las mira.</span>
+      </h1>
+
+      <!-- 03 — Marco fotográfico (placeholder oscuro preparado para foto) -->
+      <figure class="gal-hero__frame" data-ch="2">
+        <div class="gal-hero__image"></div>
+        <span class="gal-hero__encuadre" aria-hidden="true"></span>
+        <!-- 05 — Pie de foto -->
+        <figcaption class="gal-hero__caption" data-ch="6">Cartago · Sin pose</figcaption>
+      </figure>
+
+      <!-- 04 — Microcopy -->
+      <p class="gal-hero__copy" data-ch="5">
+        No guardamos imágenes<br>
+        para recordar cómo era.<br>
+        <span class="gal-hero__copy-break"></span>
+        Las guardamos<br>
+        para recordar cómo se sentía.
+      </p>
+
+      <!-- 06 — Indicador de scroll -->
+      <div class="gal-hero__scroll" data-ch="7">
+        <span class="gal-hero__scroll-text">Mirar</span>
+        <span class="gal-hero__scroll-line">
+          <span class="gal-hero__scroll-pulse"></span>
+        </span>
+      </div>
+
+    </div>
+
+  </section>
+
+  <script src="assets/js/main.js"></script>
+
+  <!-- Entrada cinematográfica del hero — Galería -->
+  <script>
+    (function() {
+      'use strict';
+      var hero = document.querySelector('.gal-hero');
+      if (!hero) return;
+
+      requestAnimationFrame(function() {
+        setTimeout(function() {
+          hero.classList.add('is-loaded');
+        }, 150);
+      });
+
+      var items = document.querySelectorAll('.gal-hero [data-ch]');
+      var times = [0, 250, 500, 800, 1150, 1600, 2050, 2550];
+
+      items.forEach(function(el) {
+        var i = parseInt(el.getAttribute('data-ch'), 10);
+        var delay = (times[i] !== undefined) ? times[i] : 2700;
+        setTimeout(function() {
+          el.classList.add('is-visible');
+        }, delay);
+      });
+    })();
+  </script>
+</body>
+</html>

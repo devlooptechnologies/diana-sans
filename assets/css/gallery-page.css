@@ -1,0 +1,476 @@
+/* ============================================================
+   GALERÍA PAGE — MIRADAS
+   Apertura editorial, fotográfica y silenciosa.
+   Marca: negro profundo, marfil, dorado tenue.
+   Cormorant Garamond + Inter. Mucho espacio negativo.
+   Regla: un solo gesto gráfico (la línea dorada de encuadre).
+
+   Composición: HERO en tres zonas asimétricas:
+   1) identificación editorial (MIRADAS / 01 · GALERÍA)
+   2) declaración principal (titular con ruptura de eje)
+   3) primera insinuación fotográfica (marco 4:5 a la derecha)
+   La tipografía y el encuadre se encuentran: la última línea
+   del titular cruza ligeramente el borde izquierdo del marco,
+   sin que el texto viva por completo sobre la imagen.
+
+   Seguridad horizontal:
+   - Nunca width:100vw en internos.
+   - Elementos absolutos contenidos por paddings.
+   - overflow-x:clip como protección adicional.
+   ============================================================ */
+
+.gal-hero {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100svh;
+  background-color: var(--color-black-absolute);
+  overflow: hidden;
+  overflow-x: clip;
+}
+
+/* --- Fondo: base negra + textura papel + grano --- */
+
+.gal-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: var(--color-black-absolute);
+  opacity: 0;
+  transition: opacity 2.5s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.gal-hero.is-loaded .gal-hero__bg {
+  opacity: 1;
+}
+
+/* Textura papel — casi imperceptible */
+.gal-hero__bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-conic-gradient(
+      rgba(255, 255, 255, 0.003) 0% 25%,
+      transparent 0% 50%
+    ) 0 0 / 4px 4px;
+  pointer-events: none;
+}
+
+/* Grano fino — cinematográfico */
+.gal-hero__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* --- Presencia cálida — casi imperceptible, zona inferior izquierda --- */
+/* Solo profundidad. Nunca marrón. Sigue leyéndose negro. */
+
+.gal-hero__glow {
+  position: absolute;
+  bottom: -8%;
+  left: -10%;
+  width: min(64vw, 720px);
+  height: 60vh;
+  z-index: 0;
+  background: radial-gradient(
+    ellipse 55% 42% at 30% 62%,
+    rgba(196, 168, 110, 0.04) 0%,
+    rgba(196, 168, 110, 0.015) 42%,
+    transparent 72%
+  );
+  filter: blur(80px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 3.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gal-hero.is-loaded .gal-hero__glow {
+  opacity: 1;
+}
+
+/* ===========================
+   CONTENIDO — flujo editorial
+   =========================== */
+
+.gal-hero__visual {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--grid-container);
+  min-height: 100svh;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: calc(var(--navbar-height) + 44px) var(--grid-page-margin) clamp(88px, 10vh, 104px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* --- Identificador editorial: MIRADAS (superior izquierda) --- */
+
+.gal-hero__overline {
+  font-family: var(--font-body);
+  font-size: var(--text-eyebrow);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: clamp(32px, 4vh, 44px);
+}
+
+/* --- Numeración de publicación editorial (superior derecha) --- */
+
+.gal-hero__index {
+  position: absolute;
+  top: calc(var(--navbar-height) + 44px);
+  right: var(--grid-page-margin);
+  font-family: var(--font-body);
+  font-size: 0.5rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-ivory);
+  opacity: 0.35;
+}
+
+/* ===========================
+   TITULAR — ruptura de eje, composición de fotolibro
+   =========================== */
+
+.gal-hero__title {
+  position: relative;
+  z-index: 2;
+  width: 68%;
+  font-family: var(--font-heading);
+  font-size: clamp(2.6rem, 6.2vw, 5.25rem);
+  font-weight: var(--weight-heading-light);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--color-ivory);
+}
+
+.gal-hero__line {
+  display: block;
+}
+
+/* Ruptura de eje — las dos últimas líneas se desplazan al gotno */
+.gal-hero__line--indent {
+  margin-left: clamp(4rem, 10vw, 14rem);
+  margin-top: 0.12em;
+}
+
+/* Golpe emocional — "las mira." */
+.gal-hero__line--emotive {
+  margin-left: clamp(4rem, 10vw, 14rem);
+  margin-top: 0.1em;
+  font-style: italic;
+  font-weight: var(--weight-heading-light);
+  color: var(--color-gold);
+}
+
+/* ===========================
+   MARCO FOTOGRÁFICO — 4:5, derecha
+   El marco vive en absoluto para garantizar el encuentro
+   controlado entre tipografía y encuadre.
+   =========================== */
+
+.gal-hero__frame {
+  position: absolute;
+  right: clamp(96px, 13vw, 190px);
+  top: calc(var(--navbar-height) + clamp(96px, 16vh, 150px));
+  z-index: 1;
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gal-hero__frame.is-visible {
+  clip-path: inset(0 0 0 0);
+}
+
+/* Superficie fotográfica — lista para aceptar imagen sin reconstruir */
+.gal-hero__image {
+  width: clamp(260px, 27vw, 400px);
+  aspect-ratio: 4 / 5;
+  background-color: #0D0D0D;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-sizing: border-box;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+/* Un solo gesto gráfico: la línea dorada de encuadre.
+   Nace del borde izquierdo del marco y se extiende hacia el negro. */
+.gal-hero__encuadre {
+  position: absolute;
+  left: 0;
+  top: 18%;
+  width: clamp(48px, 6vw, 80px);
+  height: 1px;
+  background: var(--color-gold);
+  opacity: 0.12;
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+
+/* --- Caption / pie de foto --- */
+
+.gal-hero__caption {
+  margin-top: var(--space-24);
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gray-warm);
+  opacity: 0.85;
+}
+
+/* ===========================
+   MICROCOPY — inferior izquierda, descubierto después
+   =========================== */
+
+.gal-hero__copy {
+  margin-top: auto;
+  font-family: var(--font-body);
+  font-size: var(--text-body-small);
+  font-weight: var(--weight-body-light);
+  line-height: 1.85;
+  color: #B6B1A9;
+  max-width: 310px;
+  text-align: left;
+  padding-bottom: clamp(16px, 3vh, 20px);
+}
+
+.gal-hero__copy-break {
+  display: block;
+  height: var(--space-24);
+}
+
+/* ===========================
+   INDICADOR DE SCROLL — MIRAR
+   =========================== */
+
+.gal-hero__scroll {
+  position: absolute;
+  bottom: clamp(24px, 4vh, 36px);
+  right: var(--grid-page-margin);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-16);
+  z-index: 2;
+}
+
+.gal-hero__scroll-text {
+  font-family: var(--font-body);
+  font-size: 0.5625rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gray-warm);
+}
+
+.gal-hero__scroll-line {
+  position: relative;
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(196, 168, 110, 0.28) 50%,
+    transparent 100%
+  );
+  overflow: hidden;
+}
+
+.gal-hero__scroll-pulse {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, rgba(196, 168, 110, 0.85));
+  animation: galPulse 3s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes galPulse {
+  0%   { top: -100%; }
+  55%  { top: 100%; }
+  100% { top: 100%; }
+}
+
+/* ===========================
+   ENTRADA CINEMATOGRÁFICA — lenta, escalonada
+   =========================== */
+
+.gal-hero [data-ch] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.gal-hero [data-ch].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* El marco usa clip-path reveal; sin translate en él */
+.gal-hero__frame[data-ch] {
+  transform: none;
+  transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+              clip-path 2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gal-hero__frame.is-visible {
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+}
+
+/* ===========================
+   TABLET — 768–1024px
+   =========================== */
+
+@media (max-width: 1024px) {
+  .gal-hero__visual {
+    padding-top: calc(var(--navbar-height) + 32px);
+  }
+
+  .gal-hero__index {
+    top: calc(var(--navbar-height) + 32px);
+  }
+
+  .gal-hero__title {
+    width: 72%;
+    font-size: clamp(2.2rem, 6.5vw, 4.2rem);
+  }
+
+  .gal-hero__line--indent,
+  .gal-hero__line--emotive {
+    margin-left: clamp(2.5rem, 8vw, 9rem);
+  }
+
+  .gal-hero__frame {
+    right: clamp(48px, 8vw, 110px);
+    top: calc(var(--navbar-height) + clamp(120px, 20vh, 170px));
+  }
+
+  .gal-hero__image {
+    width: clamp(200px, 30vw, 300px);
+  }
+}
+
+/* ===========================
+   MOBILE — ≤768px
+   Composición propia, sin superposición agresiva.
+   =========================== */
+
+@media (max-width: 768px) {
+  .gal-hero {
+    min-height: 100svh;
+    overflow-x: clip;
+  }
+
+  .gal-hero__visual {
+    min-height: 100svh;
+    padding: calc(var(--navbar-height) + 20px) clamp(20px, 6vw, 24px) 48px;
+  }
+
+  .gal-hero__index {
+    position: absolute;
+    top: calc(var(--navbar-height) + 20px);
+    right: clamp(20px, 6vw, 24px);
+  }
+
+  .gal-hero__overline {
+    margin-bottom: clamp(24px, 4vh, 32px);
+  }
+
+  .gal-hero__title {
+    width: 100%;
+    font-size: clamp(1.9rem, 9.5vw, 2.9rem);
+    line-height: 1.08;
+  }
+
+  .gal-hero__line--indent,
+  .gal-hero__line--emotive {
+    margin-left: clamp(1.6rem, 9vw, 3.4rem);
+    margin-top: 0.12em;
+  }
+
+  .gal-hero__frame {
+    position: static;
+    width: 100%;
+    margin-top: clamp(48px, 8vh, 64px);
+    clip-path: inset(100% 0 0 0);
+  }
+
+  .gal-hero__image {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+  }
+
+  .gal-hero__encuadre {
+    left: 0;
+    top: 18%;
+  }
+
+  .gal-hero__copy {
+    margin-top: clamp(48px, 8vh, 64px);
+    max-width: 100%;
+    padding-bottom: 0;
+  }
+
+  .gal-hero__scroll {
+    position: static;
+    margin-top: clamp(48px, 8vh, 64px);
+    align-self: center;
+  }
+}
+
+/* ===========================
+   SMALL MOBILE — ≤480px
+   =========================== */
+
+@media (max-width: 480px) {
+  .gal-hero__visual {
+    padding-left: clamp(20px, 6.25vw, 24px);
+    padding-right: clamp(20px, 6.25vw, 24px);
+  }
+
+  .gal-hero__title {
+    font-size: clamp(1.75rem, 10vw, 2.5rem);
+  }
+
+  .gal-hero__index {
+    font-size: 0.4375rem;
+  }
+}
+
+/* ===========================
+   REDUCED MOTION
+   =========================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .gal-hero [data-ch],
+  .gal-hero__frame {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: inset(0 0 0 0) !important;
+    transition: none !important;
+  }
+
+  .gal-hero__scroll-pulse {
+    animation: none;
+  }
+}
