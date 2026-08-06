@@ -2936,8 +2936,8 @@
 
 .exp-footer {
   position: relative;
-  min-height: 60vh;
-  padding: clamp(80px, 12vh, 140px) var(--grid-page-margin) clamp(32px, 5vh, 56px);
+  min-height: 54vh;
+  padding: clamp(64px, 9vh, 112px) var(--grid-page-margin) clamp(32px, 5vh, 56px);
   background: var(--color-black);
 }
 
@@ -3039,7 +3039,7 @@
 .exp-footer__link:hover::after,
 .exp-footer__link--active::after {
   width: 100%;
-  opacity: 0.5;
+  opacity: 0.3;
 }
 
 .exp-footer__link--active {
@@ -3071,6 +3071,7 @@
   display: block;
   width: clamp(70px, 6vw, 100px);
   height: 1px;
+  margin-left: clamp(12px, 1.5vw, 14px);
   background: var(--color-ivory);
   opacity: 0.35;
   transform-origin: left center;
@@ -3089,7 +3090,7 @@
 
 /* 04 — Detalle editorial: nota manuscrita al pie del libro */
 .exp-footer__note {
-  margin-top: clamp(64px, 9vh, 120px);
+  margin-top: clamp(44px, 6vh, 96px);
   font-family: var(--font-heading);
   font-style: italic;
   font-weight: var(--weight-heading-light);
@@ -3120,7 +3121,7 @@
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
   color: var(--color-gray-warm);
-  opacity: 0.6;
+  opacity: 0.85;
 }
 
 .exp-footer__location {
@@ -3145,7 +3146,7 @@
 }
 
 .exp-footer__dot {
-  opacity: 0.4;
+  opacity: 0.55;
 }
 
 /* ---- Animaciones de entrada (lentas, escalonadas) ---- */
