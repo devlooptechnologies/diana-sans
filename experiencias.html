@@ -147,6 +147,40 @@
     </div>
   </section>
 
+  <!-- ================================================================
+       SECCIÓN 03 — HABITAR
+       Doble página editorial horizontal. Panorámica con superposición.
+       ================================================================ -->
+  <section class="habitar" id="habitar">
+    <div class="habitar__inner">
+
+      <div class="habitar__head" data-ch="0">
+        <span class="habitar__chapter">02</span>
+        <span class="habitar__label">Habitar</span>
+      </div>
+
+      <div class="habitar__detail" data-ch="5">Habitar · 02</div>
+
+      <div class="habitar__photo-wrap" data-ch="1">
+        <div class="habitar__photo"></div>
+      </div>
+
+      <div class="habitar__title" data-ch="2">
+        <span class="habitar__line">Por unos días,<br>no es un apartamento.</span>
+        <span class="habitar__line habitar__line--gold" data-ch="3">Es su lugar.</span>
+      </div>
+
+      <p class="habitar__copy" data-ch="4">
+        No hace falta aprender<br>
+        a estar aquí.<br>
+        <span class="habitar__copy-break"></span>
+        Las cosas encuentran su sitio.<br>
+        Y uno también.
+      </p>
+
+    </div>
+  </section>
+
   <script src="assets/js/main.js"></script>
 
   <!-- Entrada cinematográfica del hero -->
@@ -214,6 +248,67 @@
       }, { threshold: 0.22 });
 
       observer.observe(section);
+    })();
+  </script>
+
+  <!-- Revelado cinematográfico + parallax leve — Sección 03 HABITAR -->
+  <script>
+    (function() {
+      'use strict';
+      var section = document.querySelector('.habitar');
+      if (!section) return;
+
+      var items = section.querySelectorAll('[data-ch]');
+
+      function showAll() {
+        items.forEach(function(el) {
+          el.classList.add('is-visible');
+        });
+      }
+
+      if (!('IntersectionObserver' in window)) {
+        showAll();
+      } else {
+        var done = false;
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting && !done) {
+              done = true;
+              var times = [0, 400, 950, 1150, 1650, 2200];
+              items.forEach(function(el) {
+                var i = parseInt(el.getAttribute('data-ch'), 10);
+                var delay = (times[i] !== undefined) ? times[i] : 2200;
+                setTimeout(function() {
+                  el.classList.add('is-visible');
+                }, delay);
+              });
+              observer.unobserve(section);
+            }
+          });
+        }, { threshold: 0.2 });
+        observer.observe(section);
+      }
+
+      // Parallax vertical extremadamente leve en la fotografía
+      var photo = section.querySelector('.habitar__photo');
+      if (photo && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+        var ticking = false;
+        function updateParallax() {
+          ticking = false;
+          var rect = section.getBoundingClientRect();
+          if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+          var progress = (window.innerHeight - rect.top) / window.innerHeight;
+          var offset = ((progress - 0.5) * 40).toFixed(1); // -20 .. +20
+          photo.style.translate = '0px ' + offset + 'px';
+        }
+        window.addEventListener('scroll', function() {
+          if (!ticking) {
+            window.requestAnimationFrame(updateParallax);
+            ticking = true;
+          }
+        }, { passive: true });
+        updateParallax();
+      }
     })();
   </script>
 </body>
