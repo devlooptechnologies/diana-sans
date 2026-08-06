@@ -2623,3 +2623,322 @@
     transition: none !important;
   }
 }
+
+/* ============================================================
+   EPÍLOGO — cierre emocional y transición a la reserva.
+   Recupera el negro como protagonista absoluto: sin fotografías,
+   muchísimo espacio negativo, composición asimétrica. Se siente
+   como el último plano y los créditos finales de una película.
+   ============================================================ */
+
+.epilogo {
+  position: relative;
+  background-color: var(--color-black-absolute);
+  min-height: 96svh;
+  overflow: hidden;
+  overflow-x: clip;
+}
+
+/* Glow radial cálido, prácticamente imperceptible, tras "suya." */
+.epilogo__bg {
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  width: clamp(360px, 40vw, 640px);
+  height: clamp(360px, 40vw, 640px);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(196, 168, 110, 0.05) 0%, rgba(196, 168, 110, 0.02) 40%, rgba(196, 168, 110, 0) 70%);
+  pointer-events: none;
+}
+
+.epilogo__inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--grid-container);
+  margin: 0 auto;
+  box-sizing: border-box;
+  min-height: 96svh;
+  padding: clamp(120px, 15vh, 180px) var(--grid-page-margin) clamp(80px, 9vh, 120px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* ── Firma: DIANA & SANS ── */
+
+.epilogo__signature {
+  font-family: var(--font-body);
+  font-size: 0.5rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  opacity: 0.55;
+}
+
+/* ── Titular principal ── */
+
+.epilogo__title {
+  max-width: clamp(600px, 52vw, 1050px);
+  margin-left: clamp(120px, 16vw, 320px);
+  margin-top: clamp(72px, 10vh, 120px);
+  font-family: var(--font-heading);
+  font-size: clamp(4.5rem, 7vw, 8.5rem);
+  font-weight: var(--weight-heading-light);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--color-ivory);
+}
+
+.epilogo__line {
+  display: block;
+}
+
+.epilogo__line--italic {
+  font-style: italic;
+}
+
+.epilogo__gold {
+  font-style: italic;
+  color: var(--color-gold);
+}
+
+/* ── Pausa vertical ── */
+
+.epilogo__pause {
+  display: block;
+  width: 1px;
+  height: clamp(40px, 6vh, 55px);
+  margin-top: clamp(80px, 9vh, 120px);
+  margin-left: clamp(120px, 16vw, 320px);
+  background-color: var(--color-gold);
+  opacity: 0.35;
+  transform-origin: top;
+}
+
+/* ── Microcopy ── */
+
+.epilogo__copy {
+  margin-top: clamp(32px, 4vh, 48px);
+  margin-left: clamp(240px, 24vw, 440px);
+  max-width: 340px;
+  font-family: var(--font-body);
+  font-size: clamp(0.9375rem, 1vw, 1.0625rem);
+  font-weight: var(--weight-body-light);
+  line-height: 1.85;
+  color: var(--color-gray-warm);
+}
+
+/* ── CTA editorial ── */
+
+.epilogo__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-16);
+  margin-top: clamp(42px, 5vh, 55px);
+  margin-left: clamp(240px, 24vw, 440px);
+  font-family: var(--font-body);
+  font-size: 0.625rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-ivory);
+  position: relative;
+  transition: color var(--duration-normal) var(--ease-out);
+}
+
+.epilogo__arrow {
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.epilogo__line-bar {
+  position: absolute;
+  left: 0;
+  bottom: -14px;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-ivory);
+  opacity: 0.4;
+  transform: scaleX(0.2);
+  transform-origin: left center;
+  transition: transform var(--duration-normal) var(--ease-out),
+              opacity var(--duration-normal) var(--ease-out),
+              background-color var(--duration-normal) var(--ease-out);
+}
+
+.epilogo__cta:hover {
+  color: var(--color-gold);
+}
+
+.epilogo__cta:hover .epilogo__arrow {
+  transform: translateX(6px);
+}
+
+.epilogo__cta:hover .epilogo__line-bar {
+  transform: scaleX(1);
+  opacity: 0.7;
+  background-color: var(--color-gold);
+}
+
+.epilogo__cta:focus-visible {
+  outline: 1px solid var(--color-gold);
+  outline-offset: 8px;
+  color: var(--color-gold);
+}
+
+/* ── Ubicación ── */
+
+.epilogo__location {
+  position: absolute;
+  right: var(--grid-page-margin);
+  bottom: clamp(36px, 5vh, 64px);
+  font-family: var(--font-body);
+  font-size: 0.5rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-gray-warm);
+  opacity: 0.45;
+}
+
+/* ============================================================
+   REVELADO EN SCROLL — la más lenta de la página
+   ============================================================ */
+
+.epilogo [data-ch] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.epilogo [data-ch].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* La pausa crece lentamente al entrar */
+.epilogo .epilogo__pause {
+  transform: scaleY(0);
+  transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.epilogo .epilogo__pause.is-visible {
+  opacity: 0.35;
+  transform: scaleY(1);
+}
+
+/* ============================================================
+   TABLET — ≤1024px
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .epilogo {
+    min-height: 100svh;
+  }
+
+  .epilogo__inner {
+    min-height: 100svh;
+    padding: clamp(96px, 12vh, 140px) clamp(24px, 4vw, 40px);
+  }
+
+  .epilogo__title {
+    max-width: clamp(520px, 62vw, 780px);
+    margin-left: clamp(80px, 10vw, 200px);
+    font-size: clamp(4rem, 9vw, 6rem);
+  }
+
+  .epilogo__pause {
+    margin-left: clamp(80px, 10vw, 200px);
+  }
+
+  .epilogo__copy {
+    margin-left: clamp(160px, 18vw, 300px);
+  }
+
+  .epilogo__cta {
+    margin-left: clamp(160px, 18vw, 300px);
+  }
+}
+
+/* ============================================================
+   MOBILE — ≤768px
+   Alineación principal a la izquierda, sin desplazamientos
+   horizontales extremos, padding 20–24px, overflow-x: clip.
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .epilogo {
+    min-height: 100svh;
+    overflow-x: clip;
+  }
+
+  .epilogo__inner {
+    min-height: 100svh;
+    padding: clamp(110px, 18vh, 150px) 20px clamp(96px, 14vh, 120px);
+    justify-content: space-between;
+  }
+
+  .epilogo__signature {
+    order: 0;
+  }
+
+  .epilogo__title {
+    order: 1;
+    max-width: 100%;
+    margin-left: 0;
+    margin-top: clamp(72px, 14vh, 110px);
+    font-size: clamp(3.3rem, 15vw, 5rem);
+    line-height: 0.95;
+  }
+
+  .epilogo__pause {
+    order: 2;
+    height: clamp(36px, 5vh, 44px);
+    margin-top: clamp(56px, 9vh, 72px);
+    margin-left: 0;
+  }
+
+  .epilogo__copy {
+    order: 3;
+    margin-top: clamp(28px, 4vh, 40px);
+    margin-left: 0;
+    font-size: 0.9375rem;
+  }
+
+  .epilogo__cta {
+    order: 4;
+    margin-top: clamp(42px, 6vh, 52px);
+    margin-left: 0;
+  }
+
+  .epilogo__location {
+    order: 5;
+    position: static;
+    margin-top: clamp(64px, 12vh, 96px);
+  }
+}
+
+/* ============================================================
+   ACCESIBILIDAD — prefers-reduced-motion
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .epilogo [data-ch],
+  .epilogo .epilogo__pause {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .epilogo__cta,
+  .epilogo__arrow,
+  .epilogo__line-bar {
+    transition: none !important;
+  }
+}

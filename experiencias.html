@@ -387,6 +387,42 @@
     </div>
   </section>
 
+  <!-- ================================================================
+       EPÍLOGO — cierre emocional de la narrativa y transición a la
+       reserva. Recupera el negro como protagonista absoluto: sin
+       fotografías, muchísimo espacio negativo, composición asimétrica.
+       Se siente como el último plano y los créditos de una película.
+       ================================================================ -->
+  <section class="epilogo" id="epilogo">
+    <div class="epilogo__bg"></div>
+    <div class="epilogo__inner">
+
+      <span class="epilogo__signature" data-ch="0">Diana &amp; Sans</span>
+
+      <h2 class="epilogo__title" data-ch="1">
+        <span class="epilogo__line">Tal vez</span>
+        <span class="epilogo__line">la próxima historia</span>
+        <span class="epilogo__line epilogo__line--italic">sea la <span class="epilogo__gold">suya.</span></span>
+      </h2>
+
+      <span class="epilogo__pause" data-ch="2"></span>
+
+      <p class="epilogo__copy" data-ch="3">
+        Cartago espera.<br>
+        Y Diana &amp; Sans también.
+      </p>
+
+      <a class="epilogo__cta" href="index.html#reservar" data-ch="4">
+        <span class="epilogo__cta-text">Descubrir disponibilidad</span>
+        <span class="epilogo__arrow">→</span>
+        <span class="epilogo__line-bar"></span>
+      </a>
+
+      <span class="epilogo__location" data-ch="5">Cartago · Colombia</span>
+
+    </div>
+  </section>
+
   <script src="assets/js/main.js"></script>
 
   <!-- Entrada cinematográfica del hero -->
@@ -716,6 +752,46 @@
                   photo.classList.add('is-visible');
                 }, 800);
               }
+              observer.unobserve(section);
+            }
+          });
+        }, { threshold: 0.2 });
+        observer.observe(section);
+      }
+    })();
+  </script>
+
+  <!-- Revelado cinematográfico — Epílogo -->
+  <script>
+    (function() {
+      'use strict';
+      var section = document.querySelector('.epilogo');
+      if (!section) return;
+
+      var items = section.querySelectorAll('[data-ch]');
+
+      function showAll() {
+        items.forEach(function(el) {
+          el.classList.add('is-visible');
+        });
+      }
+
+      if (!('IntersectionObserver' in window)) {
+        showAll();
+      } else {
+        var done = false;
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting && !done) {
+              done = true;
+              var times = [0, 300, 900, 1400, 1900, 2400];
+              items.forEach(function(el) {
+                var i = parseInt(el.getAttribute('data-ch'), 10);
+                var delay = (times[i] !== undefined) ? times[i] : 2400;
+                setTimeout(function() {
+                  el.classList.add('is-visible');
+                }, delay);
+              });
               observer.unobserve(section);
             }
           });
