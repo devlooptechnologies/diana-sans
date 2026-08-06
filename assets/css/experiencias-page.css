@@ -590,12 +590,14 @@
   grid-row: 2;
   align-self: end;
   justify-self: start;
+  margin-left: clamp(70px, 6vw, 100px);
+  margin-bottom: clamp(20px, 2.5vh, 30px);
   max-width: 340px;
   font-family: var(--font-body);
   font-size: var(--text-body);
   font-weight: var(--weight-body-light);
   line-height: 1.85;
-  color: var(--color-gray-warm);
+  color: #B5B0A8;
 }
 
 .mom-llegada__copy-break {
@@ -709,6 +711,8 @@
     order: 3;
     max-width: 100%;
     margin-top: var(--space-56);
+    margin-left: 0;
+    margin-bottom: 0;
     font-size: var(--text-body-small);
     line-height: 1.8;
   }
