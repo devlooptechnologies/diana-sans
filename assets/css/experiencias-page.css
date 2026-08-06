@@ -1328,3 +1328,307 @@
     transition: none !important;
   }
 }
+
+/* ============================================================
+   SECCIÓN 05 — LOS DETALLES
+   Colección de pequeños recuerdos. Composición editorial
+   asimétrica y fragmentada: tres espacios fotográficos
+   independientes con distintos formatos, escalonamiento
+   vertical, tensión diagonal, y mucho espacio negativo.
+   Más alta que las anteriores (130-150svh).
+   ============================================================ */
+
+.detalles {
+  position: relative;
+  background-color: var(--color-black-absolute);
+  min-height: 140svh;
+  overflow: hidden;
+  overflow-x: clip;
+}
+
+.detalles__inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--grid-container);
+  margin: 0 auto;
+  box-sizing: border-box;
+  min-height: 140svh;
+  padding: clamp(88px, 12vh, 150px) var(--grid-page-margin) clamp(96px, 14vh, 170px);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto auto auto auto;
+  column-gap: var(--grid-gutter);
+  row-gap: clamp(36px, 4.5vh, 56px);
+  align-content: start;
+}
+
+/* ── Identificador: 04 / LOS DETALLES ── */
+
+.detalles__head {
+  grid-column: 1 / 4;
+  grid-row: 1;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-8);
+}
+
+.detalles__chapter {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 1.8vw, 1.75rem);
+  font-weight: var(--weight-heading-light);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-gold);
+  opacity: 0.85;
+}
+
+.detalles__label {
+  font-family: var(--font-body);
+  font-size: var(--text-eyebrow);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  opacity: 0.5;
+}
+
+/* ── Espacios fotográficos ── */
+
+.detalles__set {
+  justify-self: start;
+  align-self: start;
+  width: 100%;
+}
+
+.detalles__set--1 {
+  grid-column: 2 / 4;
+  grid-row: 2;
+}
+
+.detalles__set--2 {
+  grid-column: 7 / 11;
+  grid-row: 3;
+}
+
+.detalles__set--3 {
+  grid-column: 9 / 11;
+  grid-row: 4;
+}
+
+.detalles__photo {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background-color: var(--color-black-warm);
+  background-size: cover;
+  background-position: center;
+  background:
+    repeating-conic-gradient(
+      rgba(255, 255, 255, 0.004) 0% 25%,
+      transparent 0% 50%
+    ) 0 0 / 4px 4px,
+    linear-gradient(150deg, rgba(255, 255, 255, 0.02) 0%, transparent 50%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.detalles__photo--1 {
+  aspect-ratio: 3 / 4;
+}
+
+.detalles__photo--2 {
+  aspect-ratio: 3 / 2;
+}
+
+.detalles__photo--3 {
+  aspect-ratio: 4 / 5;
+}
+
+/* ── Microcaptions — anotaciones de diario visual ── */
+
+.detalles__caption {
+  display: block;
+  margin-top: clamp(14px, 2vh, 20px);
+  font-family: var(--font-body);
+  font-size: 0.5rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-gray-warm);
+  opacity: 0.65;
+  white-space: nowrap;
+}
+
+/* ── Statement editorial ── */
+
+.detalles__statement {
+  grid-column: 4 / 10;
+  grid-row: 2;
+  align-self: start;
+  z-index: 2;
+  font-family: var(--font-heading);
+  font-size: clamp(34px, 3.2vw, 60px);
+  font-weight: var(--weight-heading-light);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  color: var(--color-ivory);
+}
+
+.detalles__line {
+  display: block;
+}
+
+.detalles__line--gold {
+  font-style: italic;
+  color: var(--color-gold);
+}
+
+/* ── Microcopy ── */
+
+.detalles__copy {
+  grid-column: 2 / 5;
+  grid-row: 4;
+  justify-self: start;
+  align-self: start;
+  width: clamp(260px, 20vw, 320px);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: var(--weight-body-light);
+  line-height: 1.85;
+  color: #B5B0A8;
+}
+
+/* ===========================
+   REVELADO EN SCROLL — cinematográfico
+   =========================== */
+
+.detalles [data-ch] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.detalles [data-ch].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===========================
+   TABLET — ≤1024px
+   Se acerca la composición, se reducen superposiciones.
+   =========================== */
+
+@media (max-width: 1024px) {
+  .detalles {
+    min-height: 108svh;
+  }
+
+  .detalles__inner {
+    min-height: 108svh;
+    padding: clamp(88px, 10vh, 130px) var(--grid-page-margin) clamp(96px, 12vh, 150px);
+  }
+
+  .detalles__set--1 {
+    grid-column: 1 / 3;
+  }
+
+  .detalles__statement {
+    grid-column: 4 / 10;
+    font-size: clamp(28px, 4.2vw, 44px);
+  }
+
+  .detalles__set--2 {
+    grid-column: 6 / 11;
+  }
+
+  .detalles__copy {
+    grid-column: 1 / 4;
+  }
+
+  .detalles__set--3 {
+    grid-column: 9 / 11;
+  }
+}
+
+/* ===========================
+   MOBILE — ≤768px
+   Narrativa vertical fragmentada con variaciones de alineación:
+   04/LOS DETALLES → foto01 → statement → foto02 → microcopy → foto03.
+   Las tres fotografías con anchos distintos.
+   =========================== */
+
+@media (max-width: 768px) {
+  .detalles {
+    min-height: auto;
+    overflow-x: clip;
+  }
+
+  .detalles__inner {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: clamp(88px, 16vh, 120px) clamp(20px, 6vw, 24px) clamp(96px, 16vh, 128px);
+  }
+
+  .detalles__head {
+    order: 0;
+  }
+
+  .detalles__set--1 {
+    order: 1;
+    width: 62%;
+  }
+
+  .detalles__statement {
+    order: 2;
+    margin-top: var(--space-56);
+    font-size: clamp(1.9rem, 8vw, 2.6rem);
+  }
+
+  .detalles__set--2 {
+    order: 3;
+    width: 88%;
+    margin-top: var(--space-56);
+    align-self: flex-end;
+  }
+
+  .detalles__copy {
+    order: 4;
+    width: 100%;
+    max-width: 100%;
+    margin-top: var(--space-56);
+    font-size: var(--text-body-small);
+    line-height: 1.8;
+  }
+
+  .detalles__set--3 {
+    order: 5;
+    width: 66%;
+    margin-top: var(--space-56);
+    align-self: flex-end;
+  }
+
+  .detalles__caption {
+    margin-top: var(--space-16);
+    white-space: normal;
+  }
+
+  .detalles [data-ch] {
+    transform: translateY(20px);
+  }
+}
+
+/* ===========================
+   ACCESIBILIDAD — prefers-reduced-motion
+   =========================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .detalles [data-ch] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

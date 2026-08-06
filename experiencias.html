@@ -216,6 +216,52 @@
     </div>
   </section>
 
+  <!-- ================================================================
+       SECCIÓN 05 — LOS DETALLES
+       Colección de pequeños recuerdos. Composición editorial asimétrica
+       fragmentada: tres espacios fotográficos independientes, statement
+       que convive entre ellos, microcopy en otra zona, microcaptions
+       como anotaciones de diario visual.
+       ================================================================ -->
+  <section class="detalles" id="detalles">
+    <div class="detalles__inner">
+
+      <div class="detalles__head">
+        <span class="detalles__chapter" data-ch="0">04</span>
+        <span class="detalles__label" data-ch="1">Los Detalles</span>
+      </div>
+
+      <div class="detalles__set detalles__set--1" data-ch="2">
+        <div class="detalles__photo detalles__photo--1"></div>
+        <span class="detalles__caption" data-ch="7">MAÑANA · 08:17</span>
+      </div>
+
+      <div class="detalles__statement" data-ch="3">
+        <span class="detalles__line">Al final,</span>
+        <span class="detalles__line">son <em class="detalles__line--gold">las pequeñas</em></span>
+        <span class="detalles__line"><em class="detalles__line--gold">cosas.</em></span>
+      </div>
+
+      <div class="detalles__set detalles__set--2" data-ch="4">
+        <div class="detalles__photo detalles__photo--2"></div>
+        <span class="detalles__caption" data-ch="8">ENTRE HORAS</span>
+      </div>
+
+      <p class="detalles__copy" data-ch="5">
+        Una luz encendida.<br>
+        Una conversación sin hora.<br>
+        La sensación de no tener<br>
+        que irse todavía.
+      </p>
+
+      <div class="detalles__set detalles__set--3" data-ch="6">
+        <div class="detalles__photo detalles__photo--3"></div>
+        <span class="detalles__caption" data-ch="9">SIN PRISA · 18:42</span>
+      </div>
+
+    </div>
+  </section>
+
   <script src="assets/js/main.js"></script>
 
   <!-- Entrada cinematográfica del hero -->
@@ -382,6 +428,46 @@
             }
           });
         }, { threshold: 0.2 });
+        observer.observe(section);
+      }
+    })();
+  </script>
+
+  <!-- Revelado cinematográfico — Sección 05 LOS DETALLES -->
+  <script>
+    (function() {
+      'use strict';
+      var section = document.querySelector('.detalles');
+      if (!section) return;
+
+      var items = section.querySelectorAll('[data-ch]');
+
+      function showAll() {
+        items.forEach(function(el) {
+          el.classList.add('is-visible');
+        });
+      }
+
+      if (!('IntersectionObserver' in window)) {
+        showAll();
+      } else {
+        var done = false;
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting && !done) {
+              done = true;
+              var times = [0, 350, 700, 1100, 1500, 2000, 2400, 2800, 3050, 3300];
+              items.forEach(function(el) {
+                var i = parseInt(el.getAttribute('data-ch'), 10);
+                var delay = (times[i] !== undefined) ? times[i] : 3300;
+                setTimeout(function() {
+                  el.classList.add('is-visible');
+                }, delay);
+              });
+              observer.unobserve(section);
+            }
+          });
+        }, { threshold: 0.15 });
         observer.observe(section);
       }
     })();
