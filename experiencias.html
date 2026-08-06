@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Momentos — Diana & Sans</title>
-  <meta name="description" content="No es hospedaje. Es un ritual. Experiencias que no necesitan explicación. Boutique en Cartago, Valle del Cauca.">
+  <title>Experiencias — Diana & Sans</title>
+  <meta name="description" content="Momentos. Una estancia no se mide solo en noches. Boutique en Cartago, Valle del Cauca.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,8 +15,6 @@
   <link rel="stylesheet" href="assets/css/typography.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/navbar.css">
-  <link rel="stylesheet" href="assets/css/hero.css">
-  <link rel="stylesheet" href="assets/css/footer.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
   <link rel="stylesheet" href="assets/css/experiencias-page.css">
 
@@ -24,7 +22,7 @@
 </head>
 <body>
 
-  <!-- NAVBAR -->
+  <!-- NAVBAR GLOBAL -->
   <nav class="navbar navbar--visible" role="navigation">
     <div class="navbar__inner">
       <a href="index.html" class="navbar__logo">Diana <span>&</span> Sans</a>
@@ -55,268 +53,86 @@
   </div>
 
   <!-- ================================================================
-       SECCION 1 — HERO
-       ¿Qué somos? — Mucho aire. Título enorme.
+       HERO — MOMENTOS
+       Editorial boutique. Memoria y momentos.
+       Composición deliberadamente asimétrica.
        ================================================================ -->
-  <section class="exp-hero" data-reveal>
-    <div class="exp-hero__texture"></div>
-    <div class="exp-hero__glow"></div>
-    <div class="exp-hero__content">
-      <span class="exp-hero__signature ch-reveal-5">Momentos</span>
-      <h1 class="exp-hero__title ch-reveal-1">
-        Hospitalidad<br>
-        <em>Boutique</em>
-      </h1>
-      <div class="exp-hero__anchor ch-reveal-3"></div>
-      <p class="exp-hero__subtitle ch-reveal-4">
-        Porque viajar también debería<br>
-        sentirse como llegar a casa.
-      </p>
-    </div>
-  </section>
+  <section class="mom-hero" id="hero">
 
-  <!-- ================================================================
-       SECCION 2 — LLEGADA
-       ¿Cómo empieza? — Composición rota, frases distribuidas.
-       ================================================================ -->
-  <section class="exp-llegada" data-reveal>
-    <div class="exp-llegada__frame"></div>
-    <div class="exp-llegada__content">
-      <div class="exp-llegada__phrase exp-llegada__phrase--1 ch-reveal-1">
-        <span class="exp-llegada__label">Check-in</span>
-      </div>
-      <div class="exp-llegada__phrase exp-llegada__phrase--2 ch-reveal-2">
-        <span class="exp-llegada__text">Inteligente</span>
-      </div>
-      <div class="exp-llegada__phrase exp-llegada__phrase--3 ch-reveal-3">
-        <span class="exp-llegada__text">Reserva directa</span>
-      </div>
-      <div class="exp-llegada__phrase exp-llegada__phrase--4 ch-reveal-4">
-        <span class="exp-llegada__text">Acceso inmediato</span>
-      </div>
-      <div class="exp-llegada__phrase exp-llegada__phrase--5 ch-reveal-5">
-        <span class="exp-llegada__text exp-llegada__text--gold">Sin esperas.</span>
-      </div>
-    </div>
-  </section>
+    <!-- Fondo: negro profundo + textura papel + grano -->
+    <div class="mom-hero__bg" aria-hidden="true"></div>
 
-  <!-- ================================================================
-       SECCION 3 — DENTRO
-       ¿Cómo se siente? — Bloques con ritmos distintos.
-       ================================================================ -->
-  <section class="exp-dentro" data-reveal>
+    <!-- Glow cálido tenue, asimétrico, desde el extremo inferior izquierdo -->
+    <div class="mom-hero__glow" aria-hidden="true"></div>
 
-    <!-- Bloque 1: Horizontal — valor izquierda, texto derecha -->
-    <div class="exp-dentro__block exp-dentro__block--horizontal">
-      <div class="exp-dentro__value ch-reveal-1">400 Mbps</div>
-      <div class="exp-dentro__line ch-reveal-2"></div>
-      <div class="exp-dentro__desc ch-reveal-3">
-        Para trabajar,<br>
-        ver películas<br>
-        o simplemente<br>
-        olvidarse del WiFi.
+    <!-- Capa de fotografía futura — lista para aceptar imagen sin reconstruir el layout -->
+    <div class="mom-hero__photo" aria-hidden="true"></div>
+
+    <!-- Eje editorial — única intervención gráfica -->
+    <span class="mom-hero__axis" aria-hidden="true"></span>
+
+    <!-- Numeración de revista -->
+    <span class="mom-hero__index" data-hr="0">01 / Experiencias</span>
+
+    <div class="mom-hero__inner">
+
+      <div class="mom-hero__top">
+        <span class="mom-hero__overline" data-hr="1">Momentos</span>
+
+        <h1 class="mom-hero__title">
+          <span class="mom-hero__line" data-hr="2">Hay lugares<br>que se visitan.</span>
+          <span class="mom-hero__line mom-hero__line--spaced" data-hr="3">Y otros</span>
+          <span class="mom-hero__line mom-hero__line--emotive" data-hr="4">que se recuerdan.</span>
+        </h1>
       </div>
-    </div>
 
-    <!-- Bloque 2: Centrado hero — Silencio/Siempre enorme, junto -->
-    <div class="exp-dentro__block exp-dentro__block--centered exp-dentro__block--hero">
-      <div class="exp-dentro__value exp-dentro__value--gold ch-reveal-1">
-        Silencio.<br>
-        <em>Siempre.</em>
-      </div>
-    </div>
+      <div class="mom-hero__spacer" aria-hidden="true"></div>
 
-    <!-- Bloque 3: Vertical — valor arriba, texto abajo -->
-    <div class="exp-dentro__block exp-dentro__block--vertical">
-      <div class="exp-dentro__label ch-reveal-1">Aire acondicionado</div>
-      <div class="exp-dentro__value ch-reveal-2">Agua caliente</div>
-      <div class="exp-dentro__line ch-reveal-3"></div>
-      <div class="exp-dentro__desc ch-reveal-4">
-        Cada ducha<br>
-        a la temperatura correcta.
-      </div>
-    </div>
+      <div class="mom-hero__baseline">
+        <p class="mom-hero__copy" data-hr="5">
+          Una estancia no se mide<br>
+          solo en noches.<br>
+          <span class="mom-hero__copy-break"></span>
+          Se mide en los momentos<br>
+          que permanecen después.
+        </p>
 
-    <!-- Bloque 5: Duo — Cocina + SmartTV conviven -->
-    <div class="exp-dentro__block exp-dentro__block--duo">
-      <div class="exp-dentro__duo-item">
-        <div class="exp-dentro__value ch-reveal-1">Cocina</div>
-        <div class="exp-dentro__desc ch-reveal-2">
-          Cuando quedarse<br>
-          también es un plan.
+        <div class="mom-hero__scroll" data-hr="6">
+          <span class="mom-hero__scroll-text">Descubrir</span>
+          <span class="mom-hero__scroll-line">
+            <span class="mom-hero__scroll-pulse"></span>
+          </span>
         </div>
       </div>
-      <div class="exp-dentro__duo-divider ch-reveal-3"></div>
-      <div class="exp-dentro__duo-item">
-        <div class="exp-dentro__value ch-reveal-4">Smart TV</div>
-        <div class="exp-dentro__desc ch-reveal-5">
-          55 pulgadas<br>
-          de silencio.
-        </div>
-      </div>
-    </div>
 
-    <!-- Bloque 6: Offset izquierda -->
-    <div class="exp-dentro__block exp-dentro__block--offset-left">
-      <div class="exp-dentro__value ch-reveal-1">Café</div>
-      <div class="exp-dentro__desc ch-reveal-2">
-        El primer ritual<br>
-        de la mañana.
-      </div>
-    </div>
-
-    <!-- Bloque 7: Centrado, cierre de sección -->
-    <div class="exp-dentro__block exp-dentro__block--centered">
-      <div class="exp-dentro__value ch-reveal-1">Colchones</div>
-      <div class="exp-dentro__desc ch-reveal-2">
-        Donde el descanso<br>
-        no es negociable.
-      </div>
-    </div>
-
-  </section>
-
-  <!-- ================================================================
-       SECCION 4 — CARTAGO
-       ¿Qué tengo cerca? — Grid editorial, números enormes.
-       ================================================================ -->
-  <section class="exp-cartago" data-reveal>
-    <div class="exp-cartago__grid">
-      <div class="exp-cartago__row ch-reveal-1">
-        <span class="exp-cartago__number">05</span>
-        <span class="exp-cartago__unit">Minutos</span>
-        <span class="exp-cartago__dot"></span>
-        <span class="exp-cartago__label">Aeropuerto</span>
-      </div>
-      <div class="exp-cartago__row ch-reveal-2">
-        <span class="exp-cartago__number">03</span>
-        <span class="exp-cartago__unit">Minutos</span>
-        <span class="exp-cartago__dot"></span>
-        <span class="exp-cartago__label">Centro Comercial</span>
-      </div>
-      <div class="exp-cartago__row ch-reveal-3">
-        <span class="exp-cartago__number">08</span>
-        <span class="exp-cartago__unit">Minutos</span>
-        <span class="exp-cartago__dot"></span>
-        <span class="exp-cartago__label">Zona Gastronómica</span>
-      </div>
-      <div class="exp-cartago__row ch-reveal-4">
-        <span class="exp-cartago__number">10</span>
-        <span class="exp-cartago__unit">Minutos</span>
-        <span class="exp-cartago__dot"></span>
-        <span class="exp-cartago__label">Cafés</span>
-      </div>
-      <div class="exp-cartago__row ch-reveal-5">
-        <span class="exp-cartago__number">15</span>
-        <span class="exp-cartago__unit">Minutos</span>
-        <span class="exp-cartago__dot"></span>
-        <span class="exp-cartago__label">Parques</span>
-      </div>
-      <div class="exp-cartago__row" data-reveal="delay-1">
-        <span class="exp-cartago__number">20</span>
-        <span class="exp-cartago__unit">Minutos</span>
-        <span class="exp-cartago__dot"></span>
-        <span class="exp-cartago__label">Terminal</span>
-      </div>
     </div>
   </section>
-
-  <!-- ================================================================
-       SECCION 5 — DETALLES
-       ¿Por qué somos diferentes? — Tres momentos scroll.
-       ================================================================ -->
-  <section class="exp-detalles" data-reveal>
-    <div class="exp-detalles__axis"></div>
-
-    <div class="exp-detalles__moment" data-reveal>
-      <h2 class="exp-detalles__line exp-detalles__line--1 ch-reveal-1">
-        No creemos
-      </h2>
-      <h2 class="exp-detalles__line exp-detalles__line--2 ch-reveal-2">
-        <em>...en ofrecer más.</em>
-      </h2>
-    </div>
-
-    <div class="exp-detalles__moment" data-reveal>
-      <h2 class="exp-detalles__line exp-detalles__line--1 ch-reveal-1">
-        Creemos
-      </h2>
-      <h2 class="exp-detalles__line exp-detalles__line--2 exp-detalles__line--gold ch-reveal-2">
-        <em>...en ofrecer mejor.</em>
-      </h2>
-    </div>
-
-    <div class="exp-detalles__moment exp-detalles__moment--final" data-reveal>
-      <h2 class="exp-detalles__line ch-reveal-1">
-        Porque el verdadero lujo
-      </h2>
-      <h2 class="exp-detalles__line ch-reveal-2">
-        está en lo que no hace<br>
-        falta explicar.
-      </h2>
-    </div>
-
-    <div class="exp-detalles__firma">Lo mejor<br>de lo mejor.</div>
-  </section>
-
-  <!-- ================================================================
-       SECCION 6 — CTA
-       ¿Reservamos? — Vacío. Línea. Botón.
-       ================================================================ -->
-  <section class="exp-cta" data-reveal>
-    <div class="exp-cta__content">
-      <h2 class="exp-cta__title ch-reveal-1">
-        Su próxima estancia<br>
-        <em>empieza aquí.</em>
-      </h2>
-      <div class="exp-cta__line ch-reveal-2"></div>
-      <a href="index.html#reservar" class="btn btn--white ch-reveal-3">
-        Reservar ahora
-        <span class="btn__arrow"></span>
-      </a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__bottom">
-        <div class="footer__bottom-inner">
-          <span class="footer__copyright">&copy; 2026 Diana & Sans. Todos los derechos reservados.</span>
-          <span class="footer__firma">Lo mejor de lo mejor.</span>
-        </div>
-      </div>
-    </div>
-  </footer>
 
   <script src="assets/js/main.js"></script>
 
-  <!-- Disappearing scroll — secciones se desvanecen al pasar -->
+  <!-- Entrada cinematográfica del hero -->
   <script>
     (function() {
       'use strict';
-      var sections = document.querySelectorAll('.exp-detalles__moment, .exp-dentro__block');
-      if (!sections.length || !('IntersectionObserver' in window)) return;
+      var hero = document.querySelector('.mom-hero');
+      if (!hero) return;
 
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            entry.target.classList.remove('is-past');
-          } else {
-            var rect = entry.boundingClientRect;
-            if (rect.top < 0) {
-              entry.target.classList.add('is-past');
-              entry.target.classList.remove('is-visible');
-            }
-          }
-        });
-      }, {
-        threshold: [0, 0.1, 0.4, 0.8],
-        rootMargin: '0px'
+      requestAnimationFrame(function() {
+        setTimeout(function() {
+          hero.classList.add('is-loaded');
+        }, 150);
       });
 
-      sections.forEach(function(el) { observer.observe(el); });
+      var items = document.querySelectorAll('[data-hr]');
+      var times = [300, 550, 900, 1500, 2050, 2600, 3200];
+
+      items.forEach(function(el) {
+        var i = parseInt(el.getAttribute('data-hr'), 10);
+        var delay = (times[i] !== undefined) ? times[i] : 3200;
+        setTimeout(function() {
+          el.classList.add('is-shown');
+        }, delay);
+      });
     })();
   </script>
 </body>
