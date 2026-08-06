@@ -181,6 +181,41 @@
     </div>
   </section>
 
+  <!-- ================================================================
+       SECCIÓN 04 — LA PAUSA
+       Capítulo del tiempo. Composición horizontal cinematográfica.
+       Ritmo distinto: imagen ancha, titular que invade la fotografía,
+       microcopy en zona opuesta. Mucho silencio visual.
+       ================================================================ -->
+  <section class="pausa" id="pausa">
+    <div class="pausa__inner">
+
+      <div class="pausa__head">
+        <span class="pausa__chapter" data-ch="0">03</span>
+        <span class="pausa__label" data-ch="1">La Pausa</span>
+      </div>
+
+      <div class="pausa__photo-wrap" data-ch="2">
+        <div class="pausa__photo"></div>
+      </div>
+
+      <div class="pausa__title" data-ch="3">
+        <span class="pausa__line">No todo momento</span>
+        <span class="pausa__line">necesita <em class="pausa__line--gold" data-ch="4">un plan.</em></span>
+      </div>
+
+      <p class="pausa__copy" data-ch="5">
+        Hay días para salir.
+        <span class="pausa__copy-break"></span>
+        Y otros para quedarse<br>
+        sin sentir que falta nada.
+      </p>
+
+      <span class="pausa__meta" data-ch="6">PAUSA · SIN PRISA</span>
+
+    </div>
+  </section>
+
   <script src="assets/js/main.js"></script>
 
   <!-- Entrada cinematográfica del hero -->
@@ -308,6 +343,46 @@
           }
         }, { passive: true });
         updateParallax();
+      }
+    })();
+  </script>
+
+  <!-- Revelado cinematográfico — Sección 04 LA PAUSA -->
+  <script>
+    (function() {
+      'use strict';
+      var section = document.querySelector('.pausa');
+      if (!section) return;
+
+      var items = section.querySelectorAll('[data-ch]');
+
+      function showAll() {
+        items.forEach(function(el) {
+          el.classList.add('is-visible');
+        });
+      }
+
+      if (!('IntersectionObserver' in window)) {
+        showAll();
+      } else {
+        var done = false;
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting && !done) {
+              done = true;
+              var times = [0, 350, 800, 1200, 1500, 1900, 2300];
+              items.forEach(function(el) {
+                var i = parseInt(el.getAttribute('data-ch'), 10);
+                var delay = (times[i] !== undefined) ? times[i] : 2300;
+                setTimeout(function() {
+                  el.classList.add('is-visible');
+                }, delay);
+              });
+              observer.unobserve(section);
+            }
+          });
+        }, { threshold: 0.2 });
+        observer.observe(section);
       }
     })();
   </script>

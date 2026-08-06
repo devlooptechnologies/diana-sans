@@ -1038,3 +1038,288 @@
     transition: none !important;
   }
 }
+
+/* ============================================================
+   SECCIÓN 04 — LA PAUSA
+   Capítulo del tiempo. Composición horizontal cinematográfica.
+   Imagen ancha desplazada a la izquierda, titular que invade
+   la fotografía, microcopy en zona opuesta, metadata como
+   anotación. Ritmo distinto a LA LLEGADA y HABITAR.
+   ============================================================ */
+
+.pausa {
+  position: relative;
+  background-color: var(--color-black-absolute);
+  min-height: 105svh;
+  overflow: hidden;
+  overflow-x: clip;
+}
+
+.pausa__inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--grid-container);
+  margin: 0 auto;
+  box-sizing: border-box;
+  min-height: 105svh;
+  padding: clamp(100px, 13vh, 150px) var(--grid-page-margin) clamp(80px, 11vh, 140px);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto auto auto;
+  column-gap: var(--grid-gutter);
+  row-gap: clamp(40px, 5vh, 64px);
+  align-content: start;
+}
+
+/* ── Identificador: 03 / LA PAUSA ── */
+
+.pausa__head {
+  grid-column: 1 / 4;
+  grid-row: 1;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-8);
+}
+
+.pausa__chapter {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 1.8vw, 1.75rem);
+  font-weight: var(--weight-heading-light);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-gold);
+  opacity: 0.85;
+}
+
+.pausa__label {
+  font-family: var(--font-body);
+  font-size: var(--text-eyebrow);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  opacity: 0.5;
+}
+
+/* ── Espacio fotográfico horizontal cinematográfico ── */
+
+.pausa__photo-wrap {
+  position: relative;
+  grid-column: 3 / 11;
+  grid-row: 2;
+  justify-self: start;
+  align-self: start;
+  width: 100%;
+  aspect-ratio: 21 / 11;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background-color: var(--color-black-warm);
+}
+
+.pausa__photo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -28px;
+  bottom: -28px;
+  background-size: cover;
+  background-position: center;
+  background:
+    repeating-conic-gradient(
+      rgba(255, 255, 255, 0.004) 0% 25%,
+      transparent 0% 50%
+    ) 0 0 / 4px 4px,
+    linear-gradient(150deg, rgba(255, 255, 255, 0.02) 0%, transparent 50%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+/* ── Titular — invade parcialmente la fotografía ── */
+
+.pausa__title {
+  grid-column: 1 / 8;
+  grid-row: 2;
+  justify-self: start;
+  align-self: end;
+  z-index: 2;
+  font-family: var(--font-heading);
+  font-size: clamp(50px, 4.6vw, 84px);
+  font-weight: var(--weight-heading-light);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  color: var(--color-ivory);
+}
+
+.pausa__line {
+  display: block;
+}
+
+.pausa__line--gold {
+  font-style: italic;
+  color: var(--color-gold);
+}
+
+/* ── Microcopy — zona opuesta al titular ── */
+
+.pausa__copy {
+  grid-column: 8 / 11;
+  grid-row: 3;
+  justify-self: end;
+  align-self: start;
+  width: clamp(260px, 20vw, 310px);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: var(--weight-body-light);
+  line-height: 1.85;
+  color: #B5B0A8;
+}
+
+.pausa__copy-break {
+  display: block;
+  height: var(--space-24);
+}
+
+/* ── Metadata — anotación de fotografía editorial ── */
+
+.pausa__meta {
+  grid-column: 11 / 12;
+  grid-row: 2;
+  justify-self: end;
+  align-self: end;
+  font-family: var(--font-body);
+  font-size: 0.5rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-gray-warm);
+  opacity: 0.6;
+  white-space: nowrap;
+}
+
+/* ===========================
+   REVELADO EN SCROLL — cinematográfico
+   =========================== */
+
+.pausa [data-ch] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.pausa [data-ch].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* La fotografía se revela más lentamente */
+.pausa .pausa__photo-wrap {
+  transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ===========================
+   TABLET — ≤1024px
+   Se reduce la superposición del titular.
+   =========================== */
+
+@media (max-width: 1024px) {
+  .pausa {
+    min-height: 100svh;
+  }
+
+  .pausa__inner {
+    min-height: 100svh;
+    padding: clamp(96px, 12vh, 140px) var(--grid-page-margin);
+  }
+
+  .pausa__title {
+    grid-column: 2 / 8;
+    font-size: clamp(38px, 5.5vw, 56px);
+  }
+
+  .pausa__photo-wrap {
+    aspect-ratio: 16 / 9;
+  }
+
+  .pausa__copy {
+    grid-column: 8 / 11;
+    width: clamp(240px, 26vw, 300px);
+  }
+}
+
+/* ===========================
+   MOBILE — ≤768px
+   Composición propia:
+   03/LA PAUSA → titular → fotografía → microcopy → metadata.
+   =========================== */
+
+@media (max-width: 768px) {
+  .pausa {
+    min-height: auto;
+    overflow-x: clip;
+  }
+
+  .pausa__inner {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: clamp(88px, 16vh, 120px) clamp(20px, 6vw, 24px) clamp(72px, 12vh, 96px);
+  }
+
+  .pausa__head {
+    order: 0;
+  }
+
+  .pausa__title {
+    order: 1;
+    margin-top: var(--space-64);
+    font-size: clamp(2rem, 9vw, 2.8rem);
+    line-height: 1.05;
+  }
+
+  .pausa__photo-wrap {
+    order: 2;
+    width: 100%;
+    margin-top: var(--space-48);
+    aspect-ratio: 21 / 11;
+  }
+
+  .pausa__copy {
+    order: 3;
+    width: 100%;
+    max-width: 100%;
+    margin-top: var(--space-56);
+    font-size: var(--text-body-small);
+    line-height: 1.8;
+  }
+
+  .pausa__copy-break {
+    height: var(--space-16);
+  }
+
+  .pausa__meta {
+    order: 4;
+    align-self: flex-start;
+    margin-top: var(--space-40);
+  }
+
+  .pausa [data-ch] {
+    transform: translateY(20px);
+  }
+}
+
+/* ===========================
+   ACCESIBILIDAD — prefers-reduced-motion
+   =========================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .pausa [data-ch] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
