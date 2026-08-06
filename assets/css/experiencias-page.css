@@ -1353,8 +1353,8 @@
   max-width: var(--grid-container);
   margin: 0 auto;
   box-sizing: border-box;
-  min-height: 120svh;
-  padding: clamp(88px, 11vh, 140px) var(--grid-page-margin) clamp(40px, 5vh, 80px);
+  min-height: 110svh;
+  padding: clamp(88px, 11vh, 140px) var(--grid-page-margin) clamp(16px, 2vh, 40px);
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: auto auto auto auto;
@@ -1416,8 +1416,8 @@
 .detalles__set--3 {
   grid-column: 9 / 11;
   grid-row: 4;
-  margin-top: clamp(48px, 6vh, 88px);
-  margin-left: clamp(40px, 4vw, 60px);
+  margin-top: clamp(-32px, -3.5vh, -12px);
+  margin-left: clamp(0px, 2vw, 40px);
 }
 
 .detalles__photo {
