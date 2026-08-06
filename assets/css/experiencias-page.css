@@ -1354,7 +1354,7 @@
   margin: 0 auto;
   box-sizing: border-box;
   min-height: 120svh;
-  padding: clamp(88px, 11vh, 140px) var(--grid-page-margin) clamp(88px, 12vh, 150px);
+  padding: clamp(88px, 11vh, 140px) var(--grid-page-margin) clamp(40px, 5vh, 80px);
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: auto auto auto auto;
@@ -1416,8 +1416,8 @@
 .detalles__set--3 {
   grid-column: 9 / 11;
   grid-row: 4;
-  margin-top: clamp(-80px, -9vh, -50px);
-  margin-left: clamp(-70px, -6vw, -40px);
+  margin-top: clamp(48px, 6vh, 88px);
+  margin-left: clamp(40px, 4vw, 60px);
 }
 
 .detalles__photo {
