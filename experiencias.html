@@ -108,6 +108,45 @@
     </div>
   </section>
 
+  <!-- ================================================================
+       SECCIÓN 02 — LA LLEGADA
+       Primer momento. Editorial e íntima.
+       Secuencia en scroll: 01/La Llegada → marco → título → copy+meta.
+       ================================================================ -->
+  <section class="mom-llegada" id="llegada">
+    <div class="mom-llegada__inner">
+
+      <div class="mom-llegada__head" data-ch="0">
+        <span class="mom-llegada__chapter">01</span>
+        <span class="mom-llegada__label">La Llegada</span>
+      </div>
+
+      <div class="mom-llegada__frame-col">
+        <div class="mom-llegada__frame-box" data-ch="1">
+          <div class="mom-llegada__frame-photo"></div>
+        </div>
+        <span class="mom-llegada__meta" data-ch="5">Llegada · 15:00</span>
+      </div>
+
+      <div class="mom-llegada__title" data-ch="2">
+        <span class="mom-llegada__line">Todo empieza</span>
+        <span class="mom-llegada__line">cuando el ruido</span>
+        <span class="mom-llegada__line mom-llegada__line--emotive">queda afuera.</span>
+      </div>
+
+      <p class="mom-llegada__copy" data-ch="5">
+        Llegar no debería sentirse<br>
+        como un proceso.<br>
+        <span class="mom-llegada__copy-break"></span>
+        La puerta se abre,<br>
+        las maletas descansan<br>
+        y el tiempo empieza a ir<br>
+        un poco más despacio.
+      </p>
+
+    </div>
+  </section>
+
   <script src="assets/js/main.js"></script>
 
   <!-- Entrada cinematográfica del hero -->
@@ -133,6 +172,48 @@
           el.classList.add('is-shown');
         }, delay);
       });
+    })();
+  </script>
+
+  <!-- Revelado cinematográfico — Sección 02 LA LLEGADA -->
+  <script>
+    (function() {
+      'use strict';
+      var section = document.querySelector('.mom-llegada');
+      if (!section) return;
+
+      var items = section.querySelectorAll('[data-ch]');
+
+      function showAll() {
+        items.forEach(function(el) {
+          el.classList.add('is-visible');
+        });
+      }
+
+      if (!('IntersectionObserver' in window)) {
+        showAll();
+        return;
+      }
+
+      var done = false;
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting && !done) {
+            done = true;
+            var times = [0, 350, 900, 1350, 1800, 2300];
+            items.forEach(function(el) {
+              var i = parseInt(el.getAttribute('data-ch'), 10);
+              var delay = (times[i] !== undefined) ? times[i] : 2300;
+              setTimeout(function() {
+                el.classList.add('is-visible');
+              }, delay);
+            });
+            observer.unobserve(section);
+          }
+        });
+      }, { threshold: 0.22 });
+
+      observer.observe(section);
     })();
   </script>
 </body>
