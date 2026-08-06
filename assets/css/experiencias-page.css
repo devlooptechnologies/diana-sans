@@ -753,7 +753,7 @@
 .habitar {
   position: relative;
   background-color: var(--color-black-absolute);
-  min-height: 120svh;
+  min-height: 100svh;
   overflow: hidden;
   overflow-x: clip;
 }
@@ -765,13 +765,13 @@
   max-width: var(--grid-container);
   margin: 0 auto;
   box-sizing: border-box;
-  min-height: 120svh;
-  padding: clamp(104px, 14vh, 150px) var(--grid-page-margin) clamp(88px, 11vh, 120px);
+  min-height: 100svh;
+  padding: clamp(96px, 13vh, 136px) var(--grid-page-margin) clamp(72px, 9vh, 100px);
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: auto auto auto;
   column-gap: var(--grid-gutter);
-  row-gap: clamp(32px, 4vh, 56px);
+  row-gap: clamp(24px, 3.5vh, 40px);
 }
 
 /* ── Identificador: 02 / HABITAR ── */
@@ -808,10 +808,10 @@
 /* ── Detalle editorial — HABITAR · 02 ── */
 
 .habitar__detail {
-  grid-column: 11 / 13;
-  grid-row: 2;
-  align-self: end;
-  justify-self: end;
+  grid-column: 10 / 12;
+  grid-row: 3;
+  align-self: start;
+  justify-self: start;
   font-family: var(--font-body);
   font-size: 0.5rem;
   font-weight: var(--weight-body-medium);
@@ -863,7 +863,7 @@
   align-self: start;
   z-index: 2;
   font-family: var(--font-heading);
-  font-size: clamp(58px, 5vw, 92px);
+  font-size: clamp(54px, 4.7vw, 86px);
   font-weight: var(--weight-heading-light);
   line-height: 0.98;
   letter-spacing: -0.02em;
@@ -883,16 +883,16 @@
 /* ── Microcopy ── */
 
 .habitar__copy {
-  grid-column: 8 / 11;
+  grid-column: 7 / 10;
   grid-row: 3;
   align-self: end;
-  justify-self: end;
+  justify-self: start;
   max-width: 340px;
   font-family: var(--font-body);
   font-size: 1rem;
   font-weight: var(--weight-body-light);
   line-height: 1.85;
-  color: var(--color-gray-warm);
+  color: #B5B0A8;
 }
 
 .habitar__copy-break {
@@ -930,11 +930,11 @@
 
 @media (max-width: 1024px) {
   .habitar {
-    min-height: 110svh;
+    min-height: 100svh;
   }
 
   .habitar__inner {
-    min-height: 110svh;
+    min-height: 100svh;
     padding: clamp(80px, 10vh, 112px) var(--grid-page-margin);
   }
 
