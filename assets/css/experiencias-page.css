@@ -1709,7 +1709,7 @@
 
 .salir__rule {
   display: block;
-  width: clamp(180px, 16vw, 240px);
+  width: clamp(170px, 12vw, 190px);
   height: 1px;
   margin-top: var(--space-24);
   background-color: var(--color-gold);
@@ -1786,7 +1786,8 @@
   grid-row: 2;
   justify-self: end;
   align-self: end;
-  margin-top: clamp(-110px, -9vh, -80px);
+  margin-top: clamp(-150px, -13vh, -120px);
+  margin-right: clamp(25px, 2vw, 35px);
   width: clamp(260px, 20vw, 300px);
   font-family: var(--font-body);
   font-size: var(--text-body-small);
@@ -1802,6 +1803,7 @@
   grid-row: 3;
   justify-self: start;
   margin-top: clamp(18px, 2vh, 24px);
+  margin-left: clamp(15px, 1.5vw, 25px);
   font-family: var(--font-body);
   font-size: 0.5rem;
   font-weight: var(--weight-body-medium);
@@ -1870,7 +1872,7 @@
   }
 
   .salir__copy {
-    margin-top: clamp(-80px, -8vh, -60px);
+    margin-top: clamp(-120px, -12vh, -100px);
   }
 
   .salir__meta {
