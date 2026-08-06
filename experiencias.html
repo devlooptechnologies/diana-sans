@@ -262,6 +262,46 @@
     </div>
   </section>
 
+  <!-- ================================================================
+       SECCIÓN 06 — SALIR
+       Cambio de ritmo: la experiencia deja de ocurrir solo dentro del
+       apartamento y se extiende hacia Cartago. Una sola fotografía
+       dominante muy horizontal y expansiva; el titular se superpone
+       sobre su borde izquierdo. Más abierta, exterior y luminosa,
+       conservando el fondo oscuro y la identidad premium.
+       ================================================================ -->
+  <section class="salir" id="salir">
+    <div class="salir__inner">
+
+      <div class="salir__head">
+        <span class="salir__chapter" data-ch="0">05</span>
+        <span class="salir__label" data-ch="1">Salir</span>
+        <span class="salir__rule" data-ch="1"></span>
+      </div>
+
+      <div class="salir__photo-wrap" data-ch="2">
+        <div class="salir__photo"></div>
+        <span class="salir__meta" data-ch="5">AFUERA · SIN ITINERARIO</span>
+      </div>
+
+      <h2 class="salir__title" data-ch="3">
+        <span class="salir__line">A veces,</span>
+        <span class="salir__line">lo mejor del viaje</span>
+        <span class="salir__line">empieza al cruzar</span>
+        <span class="salir__line salir__line--gold" data-ch="4">la puerta.</span>
+      </h2>
+
+      <p class="salir__copy" data-ch="6">
+        No hace falta ir muy lejos.<br>
+        A veces basta caminar,<br>
+        mirar alrededor<br>
+        y dejar que el lugar<br>
+        haga el resto.
+      </p>
+
+    </div>
+  </section>
+
   <script src="assets/js/main.js"></script>
 
   <!-- Entrada cinematográfica del hero -->
@@ -468,6 +508,46 @@
             }
           });
         }, { threshold: 0.15 });
+        observer.observe(section);
+      }
+    })();
+  </script>
+
+  <!-- Revelado cinematográfico — Sección 06 SALIR -->
+  <script>
+    (function() {
+      'use strict';
+      var section = document.querySelector('.salir');
+      if (!section) return;
+
+      var items = section.querySelectorAll('[data-ch]');
+
+      function showAll() {
+        items.forEach(function(el) {
+          el.classList.add('is-visible');
+        });
+      }
+
+      if (!('IntersectionObserver' in window)) {
+        showAll();
+      } else {
+        var done = false;
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting && !done) {
+              done = true;
+              var times = [0, 350, 800, 1300, 1900, 2300, 2700];
+              items.forEach(function(el) {
+                var i = parseInt(el.getAttribute('data-ch'), 10);
+                var delay = (times[i] !== undefined) ? times[i] : 2700;
+                setTimeout(function() {
+                  el.classList.add('is-visible');
+                }, delay);
+              });
+              observer.unobserve(section);
+            }
+          });
+        }, { threshold: 0.2 });
         observer.observe(section);
       }
     })();
