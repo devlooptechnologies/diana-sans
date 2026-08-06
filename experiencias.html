@@ -364,9 +364,10 @@
       </div>
 
       <div class="stay__photo-wrap" data-ch="2">
-        <div class="stay__photo experience-stay__photo"></div>
-        <span class="stay__marker">QUEDARSE · SIN FECHA</span>
-        <span class="stay__overlay"></span>
+        <div class="stay__photo experience-stay__photo">
+          <span class="stay__overlay"></span>
+        </div>
+        <span class="stay__marker" data-ch="4">QUEDARSE · SIN FECHA</span>
       </div>
 
       <h2 class="stay__title" data-ch="3">
@@ -375,7 +376,7 @@
         <span class="stay__line">al que quieras <span class="stay__gold">volver.</span></span>
       </h2>
 
-      <p class="stay__copy" data-ch="4">
+      <p class="stay__copy" data-ch="5">
         Hay lugares que forman parte del viaje.<br>
         <br>
         Y otros que,<br>
@@ -702,10 +703,10 @@
           entries.forEach(function(entry) {
             if (entry.isIntersecting && !done) {
               done = true;
-              var times = [0, 320, 800, 1500, 2400];
+              var times = [0, 320, 800, 1500, 2400, 2700];
               items.forEach(function(el) {
                 var i = parseInt(el.getAttribute('data-ch'), 10);
-                var delay = (times[i] !== undefined) ? times[i] : 2400;
+                var delay = (times[i] !== undefined) ? times[i] : 2700;
                 setTimeout(function() {
                   el.classList.add('is-visible');
                 }, delay);
