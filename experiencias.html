@@ -421,6 +421,48 @@
     </div>
   </section>
 
+  <!-- ================================================================
+       FOOTER — cierre editorial de Experiencias.
+       Créditos finales de una historia: silencio, espacio, marca,
+       navegación mínima. Baja completamente el ritmo tras la
+       narrativa y funciona como transición final hacia la reserva.
+       ================================================================ -->
+  <footer class="exp-footer" id="footer">
+    <div class="exp-footer__inner">
+
+      <div class="exp-footer__top">
+        <div class="exp-footer__brand" data-ch="0">
+          <a class="exp-footer__logo" href="index.html">Diana <span>&</span> Sans</a>
+          <span class="exp-footer__tagline">Apartamentos Boutique</span>
+        </div>
+
+        <nav class="exp-footer__nav" data-ch="1">
+          <a class="exp-footer__link" href="espacios.html">Espacios</a>
+          <a class="exp-footer__link exp-footer__link--active" href="experiencias.html" aria-current="page">Experiencias</a>
+          <a class="exp-footer__link" href="index.html#galeria">Galería</a>
+          <a class="exp-footer__link" href="index.html#servicios">Servicios</a>
+        </nav>
+
+        <div class="exp-footer__reserva" data-ch="2">
+          <a class="exp-footer__cta" href="index.html#reservar">
+            <span class="exp-footer__cta-text">Reservar estancia</span>
+            <span class="exp-footer__cta-arrow">→</span>
+            <span class="exp-footer__cta-line"></span>
+          </a>
+        </div>
+      </div>
+
+      <p class="exp-footer__note" data-ch="3">Hasta la próxima historia.</p>
+
+      <div class="exp-footer__bottom" data-ch="4">
+        <span class="exp-footer__legal">© 2026 Diana &amp; Sans</span>
+        <span class="exp-footer__location">Cartago · Colombia</span>
+        <span class="exp-footer__legallinks"><a href="#">Privacidad</a><span class="exp-footer__dot">·</span><a href="#">Términos</a></span>
+      </div>
+
+    </div>
+  </footer>
+
   <script src="assets/js/main.js"></script>
 
   <!-- Entrada cinematográfica del hero -->
@@ -794,6 +836,46 @@
             }
           });
         }, { threshold: 0.2 });
+        observer.observe(section);
+      }
+    })();
+  </script>
+
+  <!-- Revelado suave — Footer editorial -->
+  <script>
+    (function() {
+      'use strict';
+      var section = document.querySelector('.exp-footer');
+      if (!section) return;
+
+      var items = section.querySelectorAll('[data-ch]');
+
+      function showAll() {
+        items.forEach(function(el) {
+          el.classList.add('is-visible');
+        });
+      }
+
+      if (!('IntersectionObserver' in window)) {
+        showAll();
+      } else {
+        var done = false;
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting && !done) {
+              done = true;
+              var times = [0, 150, 350, 700, 1000];
+              items.forEach(function(el) {
+                var i = parseInt(el.getAttribute('data-ch'), 10);
+                var delay = (times[i] !== undefined) ? times[i] : 1000;
+                setTimeout(function() {
+                  el.classList.add('is-visible');
+                }, delay);
+              });
+              observer.unobserve(section);
+            }
+          });
+        }, { threshold: 0.15 });
         observer.observe(section);
       }
     })();

@@ -2926,3 +2926,327 @@
     transition: none !important;
   }
 }
+
+/* ============================================================
+   FOOTER — cierre editorial de Experiencias
+   Créditos finales de una historia. Silencio, espacio,
+   marca y navegación mínima. Baja el ritmo por completo
+   tras la narrativa del epílogo.
+   ============================================================ */
+
+.exp-footer {
+  position: relative;
+  min-height: 60vh;
+  padding: clamp(80px, 12vh, 140px) var(--grid-page-margin) clamp(32px, 5vh, 56px);
+  background: var(--color-black);
+}
+
+/* Línea horizontal de separación con el epílogo */
+.exp-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--grid-page-margin);
+  right: var(--grid-page-margin);
+  height: 1px;
+  background: var(--color-ivory);
+  opacity: 0.1;
+}
+
+.exp-footer__inner {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  width: 100%;
+  max-width: var(--grid-container);
+  margin: 0 auto;
+}
+
+/* ---- Zona superior: asimetría editorial (marca / nav / reserva) ---- */
+
+.exp-footer__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: clamp(48px, 6vw, 96px);
+}
+
+/* 01 — Marca / firma */
+.exp-footer__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.exp-footer__logo {
+  font-family: var(--font-heading);
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  font-weight: var(--weight-heading-light);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-ivory);
+  white-space: nowrap;
+}
+
+.exp-footer__logo span {
+  color: var(--color-gold);
+}
+
+.exp-footer__tagline {
+  margin-top: clamp(20px, 3vh, 36px);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-regular);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gray-warm);
+}
+
+/* 02 — Navegación vertical, muy espaciada */
+.exp-footer__nav {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(22px, 3vh, 34px);
+  margin-left: clamp(8vw, 12vw, 180px);
+}
+
+.exp-footer__link {
+  position: relative;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-regular);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gray-warm);
+  transition: color var(--duration-slow) var(--ease-out);
+  padding-bottom: 4px;
+}
+
+.exp-footer__link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-gold);
+  opacity: 0;
+  transition: width var(--duration-slow) var(--ease-out),
+              opacity var(--duration-slow) var(--ease-out);
+}
+
+.exp-footer__link:hover {
+  color: var(--color-ivory);
+}
+
+.exp-footer__link:hover::after,
+.exp-footer__link--active::after {
+  width: 100%;
+  opacity: 0.5;
+}
+
+.exp-footer__link--active {
+  color: var(--color-ivory);
+}
+
+/* 03 — Reserva / CTA final */
+.exp-footer__reserva {
+  margin-left: auto;
+}
+
+.exp-footer__cta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: clamp(10px, 1.2vw, 18px);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-regular);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-ivory);
+}
+
+.exp-footer__cta-arrow {
+  color: var(--color-gold);
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.exp-footer__cta-line {
+  display: block;
+  width: clamp(70px, 6vw, 100px);
+  height: 1px;
+  background: var(--color-ivory);
+  opacity: 0.35;
+  transform-origin: left center;
+  transition: width var(--duration-slow) var(--ease-out),
+              opacity var(--duration-slow) var(--ease-out);
+}
+
+.exp-footer__cta:hover .exp-footer__cta-line {
+  width: clamp(110px, 9vw, 150px);
+  opacity: 0.7;
+}
+
+.exp-footer__cta:hover .exp-footer__cta-arrow {
+  transform: translateX(6px);
+}
+
+/* 04 — Detalle editorial: nota manuscrita al pie del libro */
+.exp-footer__note {
+  margin-top: clamp(64px, 9vh, 120px);
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: var(--weight-heading-light);
+  font-size: clamp(1rem, 1.3vw, 1.25rem);
+  letter-spacing: var(--tracking-normal);
+  color: var(--color-gold);
+  opacity: 0.55;
+}
+
+/* ---- Zona inferior: línea tenue + fila legal ---- */
+
+.exp-footer__bottom {
+  margin-top: clamp(48px, 7vh, 88px);
+  padding-top: clamp(24px, 3.5vh, 40px);
+  border-top: 1px solid rgba(246, 242, 235, 0.08);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: clamp(16px, 3vw, 40px);
+}
+
+.exp-footer__legal,
+.exp-footer__location,
+.exp-footer__legallinks,
+.exp-footer__dot {
+  font-size: 0.625rem;
+  font-weight: var(--weight-body-regular);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gray-warm);
+  opacity: 0.6;
+}
+
+.exp-footer__location {
+  margin-left: clamp(8vw, 14vw, 220px);
+}
+
+.exp-footer__legallinks {
+  display: inline-flex;
+  align-items: baseline;
+  gap: clamp(12px, 2vw, 24px);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.exp-footer__legallinks a {
+  color: inherit;
+  transition: color var(--duration-slow) var(--ease-out);
+}
+
+.exp-footer__legallinks a:hover {
+  color: var(--color-ivory);
+}
+
+.exp-footer__dot {
+  opacity: 0.4;
+}
+
+/* ---- Animaciones de entrada (lentas, escalonadas) ---- */
+
+.exp-footer [data-ch] {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 1s var(--ease-out),
+              transform 1s var(--ease-out);
+  will-change: opacity, transform;
+}
+
+.exp-footer [data-ch].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- Tablet: reducir espacios exagerados ---- */
+
+@media (max-width: 1024px) {
+  .exp-footer {
+    min-height: 56vh;
+  }
+
+  .exp-footer__nav {
+    margin-left: 4vw;
+    gap: clamp(18px, 2.5vh, 26px);
+  }
+
+  .exp-footer__location {
+    margin-left: 6vw;
+  }
+}
+
+/* ---- Mobile: composición vertical ---- */
+
+@media (max-width: 720px) {
+  .exp-footer {
+    min-height: auto;
+    padding-top: clamp(72px, 14vh, 110px);
+  }
+
+  .exp-footer__top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(56px, 9vh, 80px);
+  }
+
+  .exp-footer__logo {
+    font-size: clamp(1.7rem, 8vw, 2.2rem);
+  }
+
+  .exp-footer__tagline {
+    margin-top: clamp(16px, 2.5vh, 24px);
+  }
+
+  .exp-footer__nav {
+    order: 3;
+    margin-left: 0;
+    gap: clamp(20px, 3vh, 28px);
+  }
+
+  .exp-footer__reserva {
+    order: 2;
+    margin-left: 0;
+  }
+
+  .exp-footer__note {
+    order: 4;
+    margin-top: clamp(48px, 8vh, 64px);
+  }
+
+  .exp-footer__bottom {
+    order: 5;
+    flex-wrap: wrap;
+    margin-top: clamp(40px, 6vh, 56px);
+  }
+
+  .exp-footer__location {
+    order: 4;
+    margin-left: 0;
+  }
+
+  .exp-footer__legallinks {
+    order: 5;
+    margin-left: 0;
+  }
+}
+
+/* ---- Accesibilidad ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .exp-footer [data-ch] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .exp-footer__cta-line,
+  .exp-footer__cta-arrow,
+  .exp-footer__link::after {
+    transition: none !important;
+  }
+}
