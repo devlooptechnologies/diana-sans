@@ -2300,3 +2300,325 @@
     transform: none !important;
   }
 }
+
+/* ============================================================
+   SECCIÓN 08 — QUEDARSE (último capítulo narrativo)
+   El último plano de la película. Una fotografía horizontal muy
+   grande y una frase final que atraviesa parcialmente su límite
+   izquierdo. Silencioso, contemplativo, cálido. Rompe el patrón
+   de las secciones previas (sin foto lateral + texto).
+   ============================================================ */
+
+.stay {
+  position: relative;
+  background-color: var(--color-black-absolute);
+  min-height: 132svh;
+  overflow: hidden;
+  overflow-x: clip;
+}
+
+.stay__inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--grid-container);
+  margin: 0 auto;
+  box-sizing: border-box;
+  min-height: 132svh;
+  padding: clamp(130px, 16vh, 200px) var(--grid-page-margin) clamp(110px, 13vh, 160px);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto 1fr auto;
+  column-gap: var(--grid-gutter);
+  row-gap: clamp(24px, 3vh, 40px);
+  align-content: start;
+  align-items: start;
+}
+
+/* ── Identificador: 07 / QUEDARSE ── */
+
+.stay__head {
+  z-index: 3;
+  grid-column: 1 / 4;
+  grid-row: 1;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-8);
+}
+
+.stay__chapter {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 1.8vw, 1.75rem);
+  font-weight: var(--weight-heading-light);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-gold);
+  opacity: 0.85;
+}
+
+.stay__label {
+  font-family: var(--font-body);
+  font-size: var(--text-eyebrow);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  opacity: 0.5;
+}
+
+/* ── Fotografía principal — la más importante de la página ── */
+
+.stay__photo-wrap {
+  position: relative;
+  grid-column: 2 / 12;
+  grid-row: 2;
+  justify-self: end;
+  align-self: start;
+  width: min(74vw, 1400px);
+  aspect-ratio: 16 / 8.5;
+  margin-top: clamp(28px, 3.5vh, 48px);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background-color: var(--color-black-warm);
+}
+
+.stay__photo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  background:
+    repeating-conic-gradient(
+      rgba(255, 255, 255, 0.004) 0% 25%,
+      transparent 0% 50%
+    ) 0 0 / 4px 4px,
+    linear-gradient(155deg, rgba(255, 255, 255, 0.03) 0%, transparent 55%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+/* Overlay de legibilidad: izquierda oscura → transparente. Sutil. */
+.stay__overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 55%;
+  background: linear-gradient(90deg, rgba(10, 10, 10, 0.5) 0%, rgba(10, 10, 10, 0) 100%);
+  pointer-events: none;
+}
+
+/* ── Marcador editorial — extremo inferior izquierdo de la fotografía ── */
+
+.stay__marker {
+  position: absolute;
+  left: clamp(16px, 1.6vw, 24px);
+  bottom: clamp(14px, 1.6vh, 22px);
+  z-index: 2;
+  font-family: var(--font-body);
+  font-size: 0.5rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-ivory);
+  opacity: 0.55;
+  white-space: nowrap;
+}
+
+/* ── Frase principal — atraviesa parcialmente el límite izquierdo ── */
+
+.stay__title {
+  position: relative;
+  grid-column: 1 / 8;
+  grid-row: 2;
+  justify-self: start;
+  align-self: center;
+  margin-left: clamp(30px, 5vw, 90px);
+  max-width: clamp(540px, 46vw, 760px);
+  z-index: 2;
+  font-family: var(--font-heading);
+  font-size: clamp(3.5rem, 5vw, 6.5rem);
+  font-weight: var(--weight-heading-light);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--color-ivory);
+  text-shadow: 0 1px 24px rgba(10, 10, 10, 0.6);
+}
+
+.stay__line {
+  display: block;
+}
+
+.stay__gold {
+  font-style: italic;
+  color: var(--color-gold);
+}
+
+/* ── Microcopy — debajo de la fotografía, hacia la derecha ── */
+
+.stay__copy {
+  grid-column: 8 / 12;
+  grid-row: 3;
+  justify-self: end;
+  align-self: start;
+  margin-top: clamp(24px, 3vh, 36px);
+  width: clamp(280px, 24vw, 320px);
+  font-family: var(--font-body);
+  font-size: var(--text-body-small);
+  font-weight: var(--weight-body-light);
+  line-height: 1.85;
+  color: var(--color-gray-warm);
+}
+
+/* ============================================================
+   REVELADO EN SCROLL — cinematográfico, MUY lento
+   ============================================================ */
+
+.stay [data-ch] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1.3s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.stay [data-ch].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* El titular entra con translateY(30px) */
+.stay .stay__title {
+  transform: translateY(30px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stay .stay__title.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* La fotografía entra con opacity + scale sutil. */
+.stay .stay__photo-wrap {
+  opacity: 0;
+  transform: scale(1.015);
+  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stay .stay__photo-wrap.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ============================================================
+   TABLET — ≤1024px
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .stay {
+    min-height: 120svh;
+  }
+
+  .stay__inner {
+    min-height: 120svh;
+    padding: clamp(100px, 12vh, 140px) clamp(24px, 4vw, 40px);
+  }
+
+  .stay__photo-wrap {
+    width: 80%;
+  }
+
+  .stay__title {
+    grid-column: 1 / 9;
+    max-width: clamp(440px, 52vw, 640px);
+    font-size: clamp(3rem, 7vw, 4.5rem);
+    margin-top: clamp(20px, 4vh, 40px);
+  }
+
+  .stay__copy {
+    grid-column: 7 / 12;
+  }
+}
+
+/* ============================================================
+   MOBILE — ≤768px
+   Composición vertical: 07 → QUEDARSE → fotografía → titular →
+   marcador → microcopy. Cero solapamiento, overflow-x: clip.
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .stay {
+    min-height: auto;
+    overflow-x: clip;
+  }
+
+  .stay__inner {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: clamp(96px, 15vh, 120px) 20px clamp(100px, 14vh, 130px);
+  }
+
+  .stay__head {
+    order: 0;
+  }
+
+  .stay__photo-wrap {
+    order: 1;
+    grid-column: auto;
+    grid-row: auto;
+    justify-self: start;
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 3 / 4;
+    margin-top: clamp(44px, 10vw, 60px);
+  }
+
+  .stay__overlay {
+    width: 70%;
+  }
+
+  .stay__title {
+    order: 2;
+    grid-column: auto;
+    grid-row: auto;
+    justify-self: start;
+    align-self: auto;
+    max-width: 100%;
+    margin-top: clamp(40px, 9vw, 56px);
+    margin-left: 0;
+    font-size: clamp(2.2rem, 10vw, 3rem);
+    line-height: 1.05;
+    text-shadow: none;
+  }
+
+  .stay__copy {
+    order: 4;
+    grid-column: auto;
+    grid-row: auto;
+    justify-self: start;
+    width: 100%;
+    max-width: 320px;
+    margin-top: clamp(36px, 7vw, 48px);
+  }
+}
+
+/* ============================================================
+   ACCESIBILIDAD — prefers-reduced-motion
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .stay [data-ch],
+  .stay .stay__title,
+  .stay .stay__photo-wrap {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

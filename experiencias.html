@@ -348,6 +348,44 @@
     </div>
   </section>
 
+  <!-- ================================================================
+       SECCIÓN 08 — QUEDARSE (último capítulo narrativo)
+       El último plano de la película: silencioso, contemplativo,
+       cálido. Una única fotografía horizontal muy grande y una
+       frase final que atraviesa parcialmente su límite izquierdo.
+       Rompe deliberadamente el patrón de las secciones previas.
+       ================================================================ -->
+  <section class="stay" id="quedarse">
+    <div class="stay__inner">
+
+      <div class="stay__head">
+        <span class="stay__chapter" data-ch="0">07</span>
+        <span class="stay__label" data-ch="1">Quedarse</span>
+      </div>
+
+      <div class="stay__photo-wrap" data-ch="2">
+        <div class="stay__photo experience-stay__photo"></div>
+        <span class="stay__marker">QUEDARSE · SIN FECHA</span>
+        <span class="stay__overlay"></span>
+      </div>
+
+      <h2 class="stay__title" data-ch="3">
+        <span class="stay__line">Quizás viajar también sea</span>
+        <span class="stay__line">encontrar un lugar</span>
+        <span class="stay__line">al que quieras <span class="stay__gold">volver.</span></span>
+      </h2>
+
+      <p class="stay__copy" data-ch="4">
+        Hay lugares que forman parte del viaje.<br>
+        <br>
+        Y otros que,<br>
+        sin darte cuenta,<br>
+        se convierten en la razón para volver.
+      </p>
+
+    </div>
+  </section>
+
   <script src="assets/js/main.js"></script>
 
   <!-- Entrada cinematográfica del hero -->
@@ -630,6 +668,53 @@
                   el.classList.add('is-visible');
                 }, delay);
               });
+              observer.unobserve(section);
+            }
+          });
+        }, { threshold: 0.2 });
+        observer.observe(section);
+      }
+    })();
+  </script>
+
+  <!-- Revelado cinematográfico — Sección 08 QUEDARSE -->
+  <script>
+    (function() {
+      'use strict';
+      var section = document.querySelector('.stay');
+      if (!section) return;
+
+      var items = section.querySelectorAll('[data-ch]');
+      var photo = section.querySelector('.stay__photo-wrap');
+
+      function showAll() {
+        items.forEach(function(el) {
+          el.classList.add('is-visible');
+        });
+        if (photo) photo.classList.add('is-visible');
+      }
+
+      if (!('IntersectionObserver' in window)) {
+        showAll();
+      } else {
+        var done = false;
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting && !done) {
+              done = true;
+              var times = [0, 320, 800, 1500, 2400];
+              items.forEach(function(el) {
+                var i = parseInt(el.getAttribute('data-ch'), 10);
+                var delay = (times[i] !== undefined) ? times[i] : 2400;
+                setTimeout(function() {
+                  el.classList.add('is-visible');
+                }, delay);
+              });
+              if (photo) {
+                setTimeout(function() {
+                  photo.classList.add('is-visible');
+                }, 800);
+              }
               observer.unobserve(section);
             }
           });
