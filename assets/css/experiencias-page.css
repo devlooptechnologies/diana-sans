@@ -885,11 +885,11 @@
 /* ── Microcopy ── */
 
 .habitar__copy {
-  grid-column: 7 / 9;
+  grid-column: 8 / 12;
   grid-row: 3;
   align-self: start;
   justify-self: start;
-  margin-left: clamp(70px, 6vw, 100px);
+  width: clamp(300px, 22vw, 340px);
   max-width: 340px;
   font-family: var(--font-body);
   font-size: 1rem;
