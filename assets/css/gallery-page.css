@@ -1233,7 +1233,20 @@
   padding-top: clamp(24px, 3vh, 40px);
 }
 
+/* Eyebrow — continuidad con ESPACIOS de la sección anterior */
+.gal-experience__overline {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-eyebrow);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+  opacity: 0.9;
+}
+
 .gal-experience__title {
+  margin-top: clamp(24px, 3vh, 36px);
   font-family: var(--font-heading);
   font-size: clamp(1.9rem, 4.3vw, 2.9rem);
   font-weight: var(--weight-heading-light);
@@ -1291,22 +1304,23 @@
 
 /* @FOTO: sustituir las capas de gradiente por
    url('../img/galeria-experiencias.jpg') para la fotografía real.
-   Conserva el grano (::after) y la línea vertical (::before). */
+   Idealmente una persona: trabajando, descansando, junto a la ventana
+   o tomando café. Conserva el grano (::after) y la línea vertical (::before). */
 .gal-experience__main-photo {
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 5;
   box-sizing: border-box;
   overflow: hidden;
-  background-color: #181410;
+  background-color: #211C16;
   background-image:
-    radial-gradient(100% 60% at 55% 30%, rgba(203, 172, 110, 0.20) 0%, rgba(196, 168, 110, 0.07) 46%, transparent 70%),
-    linear-gradient(118deg, rgba(196, 168, 110, 0.08) 0%, transparent 40%),
-    radial-gradient(125% 115% at 50% 118%, rgba(0, 0, 0, 0.6) 0%, transparent 62%),
-    linear-gradient(180deg, #2C2620 0%, #1C1915 55%, #121110 100%);
+    radial-gradient(100% 62% at 58% 28%, rgba(216, 184, 118, 0.30) 0%, rgba(196, 168, 110, 0.11) 46%, transparent 72%),
+    linear-gradient(115deg, rgba(196, 168, 110, 0.10) 0%, transparent 44%),
+    radial-gradient(125% 115% at 50% 118%, rgba(0, 0, 0, 0.48) 0%, transparent 62%),
+    linear-gradient(180deg, #3C332A 0%, #262019 52%, #181512 100%);
   background-size: cover;
   background-position: center;
-  filter: saturate(0.72) contrast(1.05) brightness(1.02);
+  filter: saturate(0.7) contrast(1.04) brightness(1.05);
   border: 1px solid rgba(255, 255, 255, 0.05);
   transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
@@ -1350,27 +1364,28 @@
   position: absolute;
   left: -16%;
   bottom: 5%;
-  width: 33%;
+  width: 35%;
   margin: 0;
   z-index: 2;
 }
 
 /* @FOTO: reemplazar las capas de gradiente por
-   url('../img/galeria-experiencias-detalle.jpg') para la fotografía real. */
+   url('../img/galeria-experiencias-detalle.jpg') para la fotografía real.
+   Puede ser: cama, madera, iluminación, café, ventana o textura. */
 .gal-experience__detail-photo {
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 5;
   box-sizing: border-box;
   overflow: hidden;
-  background-color: #191511;
+  background-color: #1D1813;
   background-image:
-    radial-gradient(110% 85% at 60% 26%, rgba(196, 168, 110, 0.14) 0%, rgba(196, 168, 110, 0.04) 52%, transparent 74%),
-    radial-gradient(120% 120% at 50% 115%, rgba(0, 0, 0, 0.55) 0%, transparent 64%),
-    linear-gradient(150deg, #251F18 0%, #191511 55%, #100F0D 100%);
+    radial-gradient(110% 85% at 60% 26%, rgba(216, 184, 118, 0.20) 0%, rgba(196, 168, 110, 0.07) 50%, transparent 74%),
+    radial-gradient(120% 120% at 50% 115%, rgba(0, 0, 0, 0.45) 0%, transparent 64%),
+    linear-gradient(150deg, #2E271F 0%, #1D1813 55%, #141210 100%);
   background-size: cover;
   background-position: center;
-  filter: saturate(0.75) contrast(1.05);
+  filter: saturate(0.72) contrast(1.04) brightness(1.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
   transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -1383,19 +1398,17 @@
 
 .gal-experience__indicators {
   grid-area: indicators;
-  margin-top: clamp(56px, 9vh, 88px);
+  margin-top: clamp(32px, 4vh, 48px);
   max-width: 380px;
   display: flex;
   flex-direction: column;
+  gap: clamp(20px, 3vh, 28px);
 }
 
 .gal-experience__indicator {
   display: flex;
   gap: var(--space-24);
   align-items: baseline;
-  padding-top: var(--space-16);
-  padding-bottom: var(--space-16);
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .gal-experience__indicator-num {
