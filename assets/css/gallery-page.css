@@ -649,7 +649,7 @@
   min-height: 100svh;
   margin: 0 auto;
   box-sizing: border-box;
-  padding: calc(var(--navbar-height) + 44px) var(--grid-page-margin) clamp(64px, 8vh, 88px);
+  padding: calc(var(--navbar-height) + 56px) var(--grid-page-margin) clamp(64px, 8vh, 88px);
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -676,7 +676,7 @@
 .gal-essence__heading {
   flex: 0 0 auto;
   width: min(44%, 520px);
-  padding-top: clamp(16px, 4vh, 40px);
+  padding-top: clamp(40px, 5vh, 64px);
 }
 
 .gal-essence__overline {
@@ -724,9 +724,9 @@
 
 .gal-essence__composition {
   position: relative;
-  width: clamp(340px, 41vw, 560px);
+  width: clamp(320px, 38vw, 480px);
   margin-left: auto;
-  margin-top: clamp(40px, 7vh, 76px);
+  margin-top: clamp(28px, 4vh, 48px);
 }
 
 /* Fotografía protagonista */
@@ -867,7 +867,7 @@
 /* --- Meta / pie de la fotografía --- */
 
 .gal-essence__meta {
-  margin-top: var(--space-24);
+  margin-top: var(--space-32);
   display: flex;
   flex-direction: column;
   gap: var(--space-8);
@@ -899,11 +899,23 @@
 .gal-essence__signature {
   margin-top: clamp(40px, 6vh, 64px);
   padding-top: var(--space-24);
-  border-top: 1px solid rgba(196, 168, 110, 0.18);
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--space-8);
   max-width: 220px;
+}
+
+/* Línea corta y sutil — 60–70% del ancho del bloque, dorada tenue */
+.gal-essence__signature::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: min(64%, 140px);
+  height: 1px;
+  background: var(--color-gold);
+  opacity: 0.12;
 }
 
 .gal-essence__signature-place {
@@ -924,13 +936,33 @@
   opacity: 0.6;
 }
 
+/* Conexión editorial mínima bajo la firma — sin convertirse en texto */
+.gal-essence__signature-note {
+  margin-top: var(--space-12);
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-8);
+  font-family: var(--font-body);
+  font-size: 0.4375rem;
+  font-weight: var(--weight-body-light);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gray-warm);
+  opacity: 0.5;
+}
+
+.gal-essence__signature-note-mark {
+  color: var(--color-gold);
+  opacity: 0.7;
+}
+
 /* --- Detalle superpuesto — esquina inferior izquierda de la principal --- */
 /* Fotografía editorial físicamente superpuesta: sobresale hacia la
    izquierda y hacia abajo, sin parecer una tarjeta. Asimetría intencional. */
 
 .gal-essence__detail {
   position: absolute;
-  left: -12%;
+  left: -16%;
   bottom: 5%;
   width: 34%;
   margin: 0;
@@ -945,15 +977,15 @@
   aspect-ratio: 4 / 5;
   box-sizing: border-box;
   overflow: hidden;
-  background-color: #0E0D0C;
+  background-color: #1A1612;
   background-image:
-    radial-gradient(120% 100% at 62% 20%, rgba(196, 168, 110, 0.08) 0%, rgba(196, 168, 110, 0.02) 50%, transparent 70%),
-    radial-gradient(130% 130% at 50% 50%, transparent 60%, rgba(0, 0, 0, 0.5) 100%),
-    linear-gradient(150deg, #151210 0%, #0C0B0A 55%, #0A0A0A 100%);
+    radial-gradient(110% 90% at 58% 30%, rgba(196, 168, 110, 0.12) 0%, rgba(196, 168, 110, 0.04) 50%, transparent 72%),
+    radial-gradient(120% 120% at 50% 115%, rgba(0, 0, 0, 0.55) 0%, transparent 65%),
+    linear-gradient(160deg, #262019 0%, #191512 55%, #100F0D 100%);
   background-size: cover;
   background-position: center;
-  filter: saturate(0.8) contrast(1.08);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  filter: saturate(0.75) contrast(1.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* ===========================
@@ -1007,6 +1039,7 @@
 
   .gal-essence__heading {
     width: 44%;
+    padding-top: clamp(28px, 4vh, 44px);
   }
 
   .gal-essence__title {
@@ -1015,7 +1048,7 @@
 
   .gal-essence__composition {
     width: clamp(300px, 45vw, 460px);
-    margin-top: clamp(36px, 6vh, 56px);
+    margin-top: clamp(20px, 3vh, 36px);
   }
 }
 
