@@ -56,10 +56,11 @@
        HERO — MIRADAS
        Apertura editorial, fotográfica y silenciosa.
        La sensación al entrar: "Antes de enseñarte las fotografías,
-       te enseñamos a mirar." Composición asimétrica en tres zonas:
-       identificación editorial, declaración principal y una primera
-       insinuación fotográfica. La tipografía y el encuadre se
-       encuentran sin que el texto llegue a vivir sobre la imagen.
+       te enseñamos a mirar." Composición en dos ejes editoriales:
+       IZQUIERDA — identificación, declaración principal y manifiesto.
+       DERECHA — fotografía protagonista, categoría y CTA de entrada.
+       La tipografía y el encuadre se encuentran sin que el texto
+       llegue a vivir sobre la imagen.
        ================================================================ -->
   <section class="gal-hero" id="hero">
 
@@ -83,26 +84,35 @@
         <span class="gal-hero__line gal-hero__line--emotive" data-ch="4">las mira.</span>
       </h1>
 
-      <!-- 03 — Marco fotográfico (placeholder oscuro preparado para foto) -->
+      <!-- 03 — Marco fotográfico protagonista: imagen + categoría + CTA.
+           @FOTO: la superficie usa un fallback editorial; reemplázalo por la
+           fotografía real en assets/css/gallery-page.css (bloque .gal-hero__image). -->
       <figure class="gal-hero__frame" data-ch="2">
-        <div class="gal-hero__image"></div>
-        <span class="gal-hero__encuadre" aria-hidden="true"></span>
-        <!-- 05 — Pie de foto -->
-        <figcaption class="gal-hero__caption" data-ch="6">Cartago · Sin pose</figcaption>
+        <a class="gal-hero__image-link" href="#galeria" aria-label="Entrar en la galería">
+          <div class="gal-hero__image" role="img" aria-label="Vista previa de la galería — Diana &amp; Sans"></div>
+          <span class="gal-hero__encuadre" aria-hidden="true"></span>
+        </a>
+        <!-- 05 — Categoría de la galería -->
+        <figcaption class="gal-hero__caption" data-ch="6">Cartago · Momentos</figcaption>
+        <!-- 05b — CTA de entrada -->
+        <a class="gal-hero__cta" href="#galeria" data-ch="8">
+          Entrar en la galería
+          <span class="gal-hero__cta-arrow" aria-hidden="true">&rarr;</span>
+        </a>
       </figure>
 
-      <!-- 04 — Microcopy -->
+      <!-- 04 — Microcopy: manifiesto corto -->
       <p class="gal-hero__copy" data-ch="5">
         No guardamos imágenes<br>
         para recordar cómo era.<br>
         <span class="gal-hero__copy-break"></span>
-        Las guardamos<br>
-        para recordar cómo se sentía.
+        Las guardamos para recordar<br>
+        cómo se sentía.
       </p>
 
-      <!-- 06 — Indicador de scroll -->
+      <!-- 06 — Indicador de scroll / siguiente historia -->
       <div class="gal-hero__scroll" data-ch="7">
-        <span class="gal-hero__scroll-text">Mirar</span>
+        <span class="gal-hero__scroll-text">Siguiente historia</span>
         <span class="gal-hero__scroll-line">
           <span class="gal-hero__scroll-pulse"></span>
         </span>
@@ -128,7 +138,7 @@
       });
 
       var items = document.querySelectorAll('.gal-hero [data-ch]');
-      var times = [0, 250, 500, 800, 1150, 1600, 2050, 2550];
+      var times = [0, 250, 500, 800, 1150, 1600, 2050, 2550, 2750];
 
       items.forEach(function(el) {
         var i = parseInt(el.getAttribute('data-ch'), 10);
