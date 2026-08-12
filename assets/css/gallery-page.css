@@ -649,7 +649,7 @@
   min-height: 100svh;
   margin: 0 auto;
   box-sizing: border-box;
-  padding: calc(var(--navbar-height) + 44px) var(--grid-page-margin) clamp(72px, 9vh, 104px);
+  padding: calc(var(--navbar-height) + 44px) var(--grid-page-margin) clamp(64px, 8vh, 88px);
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -724,7 +724,7 @@
 
 .gal-essence__composition {
   position: relative;
-  width: clamp(320px, 38vw, 520px);
+  width: clamp(340px, 41vw, 560px);
   margin-left: auto;
   margin-top: clamp(40px, 7vh, 76px);
 }
@@ -740,29 +740,31 @@
   position: relative;
   text-decoration: none;
   overflow: hidden;
+  cursor: zoom-in;
 }
 
-/* Superficie fotográfica — lista para aceptar imagen sin reconstruir.
+/* Superficie fotográfica — placeholder con presencia cálida.
+   No es negro plano: sugiere luz de tarde entrando por un hueco
+   arquitectónico y un medio tono cálido donde vivirá la foto real.
    @FOTO: para poner la fotografía real, sustituye las capas de gradiente
    de background-image por url('../img/galeria-espacios.jpg'); conserva el
-   grano (::after) y la línea vertical (::before) si quieres atmósfera.
-   Ajusta el tono con el filter. */
+   grano (::after) y la línea vertical (::before) si quieres atmósfera. */
 .gal-essence__main-photo {
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 5;
   box-sizing: border-box;
   overflow: hidden;
-  background-color: #0D0D0D;
+  background-color: #17130F;
   background-image:
-    linear-gradient(155deg, rgba(196, 168, 110, 0.07) 0%, transparent 40%),
-    radial-gradient(120% 100% at 68% 22%, rgba(196, 168, 110, 0.10) 0%, rgba(196, 168, 110, 0.02) 45%, transparent 66%),
-    radial-gradient(140% 120% at 18% 88%, rgba(255, 255, 255, 0.035) 0%, transparent 55%),
-    radial-gradient(130% 130% at 50% 50%, transparent 58%, rgba(0, 0, 0, 0.5) 100%),
-    linear-gradient(160deg, #161210 0%, #0D0C0B 55%, #0A0A0A 100%);
+    radial-gradient(95% 65% at 62% 26%, rgba(203, 172, 110, 0.24) 0%, rgba(196, 168, 110, 0.09) 44%, transparent 72%),
+    linear-gradient(112deg, rgba(196, 168, 110, 0.10) 0%, transparent 38%),
+    linear-gradient(155deg, transparent 55%, rgba(196, 168, 110, 0.05) 74%, transparent 86%),
+    radial-gradient(120% 100% at 50% 112%, rgba(0, 0, 0, 0.62) 0%, transparent 62%),
+    linear-gradient(180deg, #2E2821 0%, #1D1A16 52%, #121110 100%);
   background-size: cover;
   background-position: center;
-  filter: saturate(0.8) contrast(1.06);
+  filter: saturate(0.72) contrast(1.05) brightness(1.02);
   border: 1px solid rgba(255, 255, 255, 0.05);
   transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
@@ -881,22 +883,56 @@
   opacity: 0.85;
 }
 
-.gal-essence__meta-tag {
+/* Línea discreta — muy tenue, sin protagonismo */
+.gal-essence__meta-tags {
+  font-family: var(--font-body);
+  font-size: 0.5rem;
+  font-weight: var(--weight-body-light);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-gray-warm);
+  opacity: 0.55;
+}
+
+/* --- Firma editorial — columna izquierda --- */
+
+.gal-essence__signature {
+  margin-top: clamp(40px, 6vh, 64px);
+  padding-top: var(--space-24);
+  border-top: 1px solid rgba(196, 168, 110, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  max-width: 220px;
+}
+
+.gal-essence__signature-place {
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-gray-warm);
+  opacity: 0.85;
+}
+
+.gal-essence__signature-brand {
   font-family: var(--font-heading);
-  font-size: var(--text-body-small);
+  font-size: 1.0625rem;
   font-style: italic;
   color: var(--color-ivory);
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 /* --- Detalle superpuesto — esquina inferior izquierda de la principal --- */
-/* Asimetría intencional: no alineado a cuadrícula */
+/* Fotografía editorial físicamente superpuesta: sobresale hacia la
+   izquierda y hacia abajo, sin parecer una tarjeta. Asimetría intencional. */
 
 .gal-essence__detail {
   position: absolute;
-  left: -10%;
-  bottom: 14%;
-  width: 30%;
+  left: -12%;
+  bottom: 5%;
+  width: 34%;
   margin: 0;
   z-index: 2;
 }
@@ -942,6 +978,7 @@
 .gal-essence.is-visible [data-es="2"] { transition-delay: 240ms; }
 .gal-essence.is-visible [data-es="3"] { transition-delay: 360ms; }
 .gal-essence.is-visible [data-es="4"] { transition-delay: 480ms; }
+.gal-essence.is-visible [data-es="5"] { transition-delay: 520ms; }
 
 /* La composición usa clip-path reveal; sin translate en ella */
 .gal-essence__composition[data-es] {
@@ -977,7 +1014,7 @@
   }
 
   .gal-essence__composition {
-    width: clamp(280px, 44vw, 420px);
+    width: clamp(300px, 45vw, 460px);
     margin-top: clamp(36px, 6vh, 56px);
   }
 }
@@ -1025,9 +1062,9 @@
     position: relative;
     left: auto;
     bottom: auto;
-    width: 52%;
-    margin-top: -10%;
-    margin-left: 14%;
+    width: 46%;
+    margin-top: -11%;
+    margin-left: 10%;
   }
 }
 
