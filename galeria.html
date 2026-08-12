@@ -218,6 +218,111 @@
     })();
   </script>
 
+  <!-- ================================================================
+       SECCIÓN 3 — EXPERIENCIAS
+       "No vienes solo a quedarte. Vienes a sentirte bien."
+       Filosofía de la estancia: lujo discreto, privacidad y descanso.
+       Composición asimétrica en grid: texto e indicadores editoriales
+       a la izquierda, fotografía protagonista de experiencia a la
+       derecha con un detalle superpuesto. Sin separadores.
+       @FOTO: reemplazar los placeholders en gallery-page.css
+       (.gal-experience__main-photo y .gal-experience__detail-photo).
+       ================================================================ -->
+  <section class="gal-experience" id="experiencias">
+
+    <!-- Fondo: mismo negro profundo + textura papel + grano -->
+    <div class="gal-experience__bg" aria-hidden="true"></div>
+
+    <div class="gal-experience__visual">
+
+      <!-- Numeración de sección — continuidad con 01 y 02 -->
+      <span class="gal-experience__index" data-xp="0">03 / Experiencias</span>
+
+      <!-- Texto principal — columna izquierda -->
+      <div class="gal-experience__left" data-xp="1">
+        <h2 class="gal-experience__title">
+          <span class="gal-experience__title-line">No vienes solo a quedarte.</span>
+          <span class="gal-experience__title-line gal-experience__title-line--em">Vienes a sentirte bien.</span>
+        </h2>
+        <p class="gal-experience__lede" data-xp="2">
+          Cada detalle fue pensado para que el tiempo aquí se sienta
+          diferente: más tranquilo, más cómodo y más tuyo.
+        </p>
+      </div>
+
+      <!-- Composición fotográfica — columna derecha -->
+      <div class="gal-experience__composition" data-xp="3">
+
+        <!-- Fotografía protagonista: la experiencia, no la arquitectura -->
+        <figure class="gal-experience__main">
+          <a class="gal-experience__main-link" href="#galeria-lightbox" aria-label="Abrir fotografía — experiencia Diana &amp; Sans">
+            <div class="gal-experience__main-photo" role="img" aria-label="Espacio reservado para fotografía de experiencia en Diana &amp; Sans"></div>
+          </a>
+        </figure>
+
+        <!-- Detalle superpuesto — esquina inferior izquierda -->
+        <figure class="gal-experience__detail">
+          <div class="gal-experience__detail-photo" role="img" aria-label="Detalle de estancia — espacio reservado para fotografía"></div>
+        </figure>
+
+      </div>
+
+      <!-- Indicadores editoriales — notas de revista de arquitectura -->
+      <div class="gal-experience__indicators" data-xp="4">
+
+        <div class="gal-experience__indicator">
+          <span class="gal-experience__indicator-num" aria-hidden="true">01</span>
+          <div class="gal-experience__indicator-body">
+            <h3 class="gal-experience__indicator-title">Descanso</h3>
+            <p class="gal-experience__indicator-desc">Espacios pensados para desconectar.</p>
+          </div>
+        </div>
+
+        <div class="gal-experience__indicator">
+          <span class="gal-experience__indicator-num" aria-hidden="true">02</span>
+          <div class="gal-experience__indicator-body">
+            <h3 class="gal-experience__indicator-title">Privacidad</h3>
+            <p class="gal-experience__indicator-desc">Tu propio espacio, tu propio ritmo.</p>
+          </div>
+        </div>
+
+        <div class="gal-experience__indicator">
+          <span class="gal-experience__indicator-num" aria-hidden="true">03</span>
+          <div class="gal-experience__indicator-body">
+            <h3 class="gal-experience__indicator-title">Conexión</h3>
+            <p class="gal-experience__indicator-desc">Todo lo necesario para sentirte conectado.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Entrada en scroll de la sección 3 — movimiento suave -->
+  <script>
+    (function() {
+      'use strict';
+      var section = document.querySelector('.gal-experience');
+      if (!section) return;
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              section.classList.add('is-visible');
+              observer.unobserve(section);
+            }
+          });
+        }, { threshold: 0.2 });
+        observer.observe(section);
+      } else {
+        section.classList.add('is-visible');
+      }
+    })();
+  </script>
+
   <script src="assets/js/main.js"></script>
 
   <!-- Entrada cinematográfica del hero — Galería -->
