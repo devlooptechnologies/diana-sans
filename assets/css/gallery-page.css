@@ -108,7 +108,7 @@
   min-height: 100svh;
   margin: 0 auto;
   box-sizing: border-box;
-  padding: calc(var(--navbar-height) + 44px) var(--grid-page-margin) clamp(88px, 10vh, 104px);
+  padding: calc(var(--navbar-height) + 44px) var(--grid-page-margin) clamp(136px, 15vh, 152px);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -185,7 +185,7 @@
 .gal-hero__frame {
   position: absolute;
   right: clamp(96px, 13vw, 190px);
-  top: calc(var(--navbar-height) + clamp(80px, 12vh, 120px));
+  top: calc(var(--navbar-height) + clamp(56px, 8vh, 84px));
   z-index: 1;
   clip-path: inset(100% 0 0 0);
   transition: clip-path 2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -205,17 +205,19 @@
 /* Superficie fotográfica — lista para aceptar imagen sin reconstruir.
    @FOTO: para poner la fotografía real, sustituye las capas de gradiente
    de background-image por url('../img/galeria-hero.jpg'); conserva el
-   grano (::after) si quieres atmósfera. Ajusta el tono con el filter. */
+   grano (::after) y la línea vertical (::before) si quieres atmósfera.
+   Ajusta el tono con el filter. */
 .gal-hero__image {
   position: relative;
-  width: clamp(280px, 30vw, 460px);
+  width: clamp(320px, 33vw, 500px);
   aspect-ratio: 4 / 5;
   box-sizing: border-box;
   overflow: hidden;
   background-color: #0D0D0D;
   background-image:
-    radial-gradient(130% 90% at 75% 15%, rgba(196, 168, 110, 0.13) 0%, rgba(196, 168, 110, 0.03) 40%, transparent 62%),
-    radial-gradient(150% 120% at 15% 95%, rgba(255, 255, 255, 0.05) 0%, transparent 55%),
+    radial-gradient(130% 90% at 75% 15%, rgba(196, 168, 110, 0.11) 0%, rgba(196, 168, 110, 0.03) 42%, transparent 64%),
+    radial-gradient(150% 120% at 12% 100%, rgba(196, 168, 110, 0.05) 0%, transparent 55%),
+    radial-gradient(130% 130% at 50% 50%, transparent 58%, rgba(0, 0, 0, 0.5) 100%),
     linear-gradient(165deg, #171310 0%, #0E0D0C 48%, #0A0A0A 100%);
   background-size: cover;
   background-position: center;
@@ -225,14 +227,26 @@
   will-change: transform;
 }
 
-/* Grano cinematográfico sobre la superficie fotográfica */
+/* Línea vertical dorada extremadamente tenue — solo textura, no imagen */
+.gal-hero__image::before {
+  content: '';
+  position: absolute;
+  top: 12%;
+  bottom: 12%;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(196, 168, 110, 0.07) 50%, transparent);
+  pointer-events: none;
+}
+
+/* Grano cinematográfico sutil sobre la superficie */
 .gal-hero__image::after {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
-  opacity: 0.6;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+  background-size: 150px 150px;
+  opacity: 0.55;
   mix-blend-mode: overlay;
   pointer-events: none;
 }
@@ -282,6 +296,8 @@
   align-items: center;
   gap: 0.75em;
   margin-top: var(--space-16);
+  padding-bottom: 6px;
+  position: relative;
   font-family: var(--font-body);
   font-size: var(--text-cta);
   font-weight: var(--weight-body-medium);
@@ -293,6 +309,21 @@
               gap 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Línea fina que se dibuja debajo al pasar el cursor */
+.gal-hero__cta::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--color-gold);
+  opacity: 0.6;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .gal-hero__cta-arrow {
   color: var(--color-gold);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -302,6 +333,11 @@
 .gal-hero__cta:hover,
 .gal-hero__cta:focus-visible {
   color: var(--color-gold);
+}
+
+.gal-hero__cta:hover::after,
+.gal-hero__cta:focus-visible::after {
+  transform: scaleX(1);
 }
 
 .gal-hero__cta:hover .gal-hero__cta-arrow,
@@ -316,12 +352,12 @@
 .gal-hero__copy {
   margin-top: auto;
   font-family: var(--font-body);
-  font-size: var(--text-body-small);
+  font-size: var(--text-body);
   font-weight: var(--weight-body-light);
-  line-height: 1.9;
-  letter-spacing: 0.01em;
-  color: #B6B1A9;
-  max-width: 310px;
+  line-height: 2;
+  letter-spacing: 0.015em;
+  color: #CAC5BD;
+  max-width: 320px;
   text-align: left;
   padding-bottom: clamp(16px, 3vh, 20px);
 }
@@ -340,19 +376,8 @@
   bottom: clamp(24px, 4vh, 36px);
   right: var(--grid-page-margin);
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: var(--space-16);
   z-index: 2;
-}
-
-.gal-hero__scroll-text {
-  font-family: var(--font-body);
-  font-size: 0.5625rem;
-  font-weight: var(--weight-body-medium);
-  letter-spacing: var(--tracking-widest);
-  text-transform: uppercase;
-  color: var(--color-gray-warm);
 }
 
 .gal-hero__scroll-line {
@@ -438,11 +463,11 @@
 
   .gal-hero__frame {
     right: clamp(48px, 8vw, 110px);
-    top: calc(var(--navbar-height) + clamp(104px, 16vh, 140px));
+    top: calc(var(--navbar-height) + clamp(80px, 12vh, 108px));
   }
 
   .gal-hero__image {
-    width: clamp(230px, 34vw, 330px);
+    width: clamp(260px, 38vw, 360px);
   }
 }
 
@@ -548,6 +573,7 @@
 
   .gal-hero__image,
   .gal-hero__cta,
+  .gal-hero__cta::after,
   .gal-hero__cta-arrow {
     transform: none !important;
     transition: none !important;
