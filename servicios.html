@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servicios — Diana & Sans</title>
+  <meta name="description" content="Servicios. Todo lo que necesitas para sentirte como en casa. Una estancia pensada para que llegues, te instales y simplemente disfrutes. Diana & Sans, Cartago, Valle del Cauca.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/typography.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="stylesheet" href="assets/css/servicios-page.css">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='24' font-size='24' font-family='serif' fill='%23B79A63'>D</text></svg>">
+</head>
+<body>
+
+  <!-- NAVBAR GLOBAL -->
+  <nav class="navbar navbar--visible" role="navigation">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">Diana <span>&</span> Sans</a>
+      <div class="navbar__menu">
+        <a href="espacios.html" class="navbar__link">Espacios</a>
+        <a href="experiencias.html" class="navbar__link">Experiencias</a>
+        <a href="galeria.html" class="navbar__link">Galería</a>
+        <a href="servicios.html" class="navbar__link" aria-current="page">Servicios</a>
+      </div>
+      <div class="navbar__right">
+        <span class="navbar__lang">ES</span>
+        <a href="index.html#reservar" class="navbar__cta">Reservar</a>
+      </div>
+      <div class="navbar__toggle" aria-label="Menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="navbar__mobile-menu">
+    <a href="espacios.html" class="navbar__link">Espacios</a>
+    <a href="experiencias.html" class="navbar__link">Experiencias</a>
+    <a href="galeria.html" class="navbar__link">Galería</a>
+    <a href="servicios.html" class="navbar__link">Servicios</a>
+    <a href="index.html#reservar" class="btn btn--primary">Reservar</a>
+  </div>
+
+  <!-- ================================================================
+       HERO — SERVICIOS
+       "Todo lo que necesitas para sentirte como en casa."
+       Apertura editorial silenciosa. Dos grandes áreas: a la izquierda
+       la promesa de la estancia, a la derecha la pieza visual que la
+       sostiene. Espacio negativo, alineaciones precisas y líneas finas.
+       @FOTO: el placeholder (.srv-hero__image) se reemplaza por la
+       fotografía real en assets/css/servicios-page.css sin tocar el
+       layout.
+       ================================================================ -->
+  <section class="srv-hero" id="hero">
+
+    <!-- Fondo: negro profundo + textura papel + grano fino -->
+    <div class="srv-hero__bg" aria-hidden="true"></div>
+
+    <div class="srv-hero__visual">
+
+      <!-- Identificador editorial — superior izquierda -->
+      <span class="srv-hero__overline" data-sr="0">Servicios</span>
+
+      <!-- Numeración — superior derecha, mismo lenguaje que 01 / Galería -->
+      <span class="srv-hero__index" data-sr="1">01 / Servicios</span>
+
+      <div class="srv-hero__layout">
+
+        <!-- Contenido editorial — izquierda -->
+        <div class="srv-hero__content">
+          <h1 class="srv-hero__title" data-sr="2">
+            <span class="srv-hero__title-line">Todo lo que necesitas</span>
+            <span class="srv-hero__title-line srv-hero__title-line--em">para sentirte como en casa.</span>
+          </h1>
+          <p class="srv-hero__lede" data-sr="3">
+            Una estancia pensada para que llegues,<br>
+            te instales y simplemente disfrutes.
+          </p>
+          <!-- Detalle editorial — línea dorada + frase en serif itálica -->
+          <div class="srv-hero__detail" data-sr="4">
+            <span class="srv-hero__detail-mark" aria-hidden="true"></span>
+            <span class="srv-hero__detail-text">Pensado para quedarse.</span>
+          </div>
+        </div>
+
+        <!-- Pieza visual — derecha -->
+        <figure class="srv-hero__frame" data-sr="5">
+          <a class="srv-hero__image-link" href="#" aria-label="Fotografía de Diana &amp; Sans — Cartago, Valle del Cauca">
+            <div class="srv-hero__image" role="img" aria-label="Espacio reservado para la fotografía principal — Diana &amp; Sans"></div>
+          </a>
+          <!-- Referencia editorial — esquina inferior derecha de la imagen -->
+          <figcaption class="srv-hero__caption" data-sr="6">Cartago · Diana &amp; Sans</figcaption>
+        </figure>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <script src="assets/js/main.js"></script>
+
+  <!-- Entrada cinematográfica del hero — Servicios -->
+  <script>
+    (function() {
+      'use strict';
+      var hero = document.querySelector('.srv-hero');
+      if (!hero) return;
+
+      requestAnimationFrame(function() {
+        setTimeout(function() {
+          hero.classList.add('is-loaded');
+        }, 150);
+      });
+    })();
+  </script>
+</body>
+</html>

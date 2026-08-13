@@ -1,0 +1,464 @@
+/* ============================================================
+   SERVICIOS PAGE — TODO LO QUE NECESITAS
+   Apertura editorial silenciosa.
+   Marca: negro profundo, marfil, dorado tenue.
+   Cormorant Garamond + Inter. Mucho espacio negativo.
+   Regla: un solo gesto gráfico (la línea dorada del detalle).
+
+   Composición: HERO en dos grandes áreas en rejilla editorial.
+   1) IZQUIERDA — identificación (SERVICIOS / 01 · SERVICIOS),
+      declaración principal y la promesa de la estancia.
+   2) DERECHA — pieza visual protagonista + referencia editorial.
+   La última línea del titular (itálica dorada) empuja suavemente
+   hacia el marco, encontrándose con el encuadre sin vivir sobre él.
+
+   Entrada: cada elemento [data-sr] se revela escalonadamente con
+   la clase .is-loaded que inyecta el script inline de la página.
+
+   Seguridad horizontal:
+   - Nunca width:100vw en internos.
+   - Elementos absolutos contenidos por paddings.
+   - overflow-x:clip como protección adicional.
+   ============================================================ */
+
+.srv-hero {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100svh;
+  background-color: var(--color-black-absolute);
+  overflow: hidden;
+  overflow-x: clip;
+}
+
+/* --- Fondo: base negra + presencia cálida + textura papel + grano --- */
+
+.srv-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: var(--color-black-absolute);
+  background-image:
+    radial-gradient(
+      ellipse 55% 42% at 30% 62%,
+      rgba(196, 168, 110, 0.04) 0%,
+      rgba(196, 168, 110, 0.015) 42%,
+      transparent 72%
+    );
+  opacity: 0;
+  transition: opacity 2.5s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.srv-hero.is-loaded .srv-hero__bg {
+  opacity: 1;
+}
+
+/* Textura papel — casi imperceptible */
+.srv-hero__bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-conic-gradient(
+      rgba(255, 255, 255, 0.003) 0% 25%,
+      transparent 0% 50%
+    ) 0 0 / 4px 4px;
+  pointer-events: none;
+}
+
+/* Grano fino — cinematográfico */
+.srv-hero__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* ===========================
+   CONTENIDO — flujo editorial
+   =========================== */
+
+.srv-hero__visual {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--grid-container);
+  min-height: 100svh;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: calc(var(--navbar-height) + 44px) var(--grid-page-margin) clamp(120px, 14vh, 144px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* --- Identificador editorial: SERVICIOS (superior izquierda) --- */
+
+.srv-hero__overline {
+  font-family: var(--font-body);
+  font-size: var(--text-eyebrow);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: clamp(32px, 4.5vh, 48px);
+}
+
+/* --- Numeración de publicación editorial (superior derecha) --- */
+
+.srv-hero__index {
+  position: absolute;
+  top: calc(var(--navbar-height) + 44px);
+  right: var(--grid-page-margin);
+  font-family: var(--font-body);
+  font-size: 0.5rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-ivory);
+  opacity: 0.35;
+}
+
+/* ===========================
+   REJILLA — dos áreas editoriales
+   =========================== */
+
+.srv-hero__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: clamp(48px, 6vw, 96px);
+  width: 100%;
+  margin-top: clamp(48px, 8vh, 72px);
+}
+
+/* ===========================
+   COLUMNA IZQUIERDA — la promesa
+   =========================== */
+
+.srv-hero__content {
+  max-width: 620px;
+  padding-top: clamp(24px, 5vh, 48px);
+}
+
+.srv-hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.35rem, 5.5vw, 4.6rem);
+  font-weight: var(--weight-heading-light);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--color-ivory);
+}
+
+.srv-hero__title-line {
+  display: block;
+}
+
+/* Golpe emocional — "para sentirte como en casa." Se desplaza
+   suavemente hacia el marco como continuidad del fotolibro. */
+.srv-hero__title-line--em {
+  margin-top: 0.1em;
+  margin-left: clamp(1.5rem, 4vw, 3.5rem);
+  font-style: italic;
+  font-weight: var(--weight-heading-light);
+  color: var(--color-gold);
+}
+
+.srv-hero__lede {
+  margin-top: clamp(28px, 4.5vh, 44px);
+  max-width: 460px;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-body-light);
+  line-height: 1.9;
+  letter-spacing: 0.015em;
+  color: var(--color-gray-warm);
+}
+
+/* --- Detalle editorial: línea dorada + frase en serif itálica --- */
+
+.srv-hero__detail {
+  display: flex;
+  align-items: center;
+  gap: var(--space-24);
+  margin-top: clamp(32px, 5vh, 48px);
+}
+
+.srv-hero__detail-mark {
+  flex: none;
+  width: 36px;
+  height: 1px;
+  background: var(--color-gold);
+  opacity: 0.85;
+}
+
+.srv-hero__detail-text {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: var(--weight-heading-light);
+  font-size: clamp(1.05rem, 1.7vw, 1.4rem);
+  letter-spacing: 0.01em;
+  color: rgba(246, 242, 235, 0.92);
+}
+
+/* ===========================
+   COLUMNA DERECHA — pieza visual
+   =========================== */
+
+.srv-hero__frame {
+  width: clamp(300px, 30vw, 460px);
+  margin-top: clamp(24px, 4vh, 40px);
+}
+
+/* Envoltorio clicable — toda la superficie invita a entrar */
+.srv-hero__image-link {
+  display: block;
+  position: relative;
+  text-decoration: none;
+}
+
+/* Superficie fotográfica — lista para aceptar imagen sin reconstruir.
+   @FOTO: para poner la fotografía real, sustituye las capas de gradiente
+   de background-image por url('../img/servicios-hero.jpg'); conserva el
+   grano (::after) y la línea vertical (::before) si quieres atmósfera.
+   Ajusta el tono con el filter. */
+.srv-hero__image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #0D0D0D;
+  background-image:
+    radial-gradient(130% 90% at 75% 15%, rgba(196, 168, 110, 0.11) 0%, rgba(196, 168, 110, 0.03) 42%, transparent 64%),
+    radial-gradient(150% 120% at 12% 100%, rgba(196, 168, 110, 0.05) 0%, transparent 55%),
+    radial-gradient(130% 130% at 50% 50%, transparent 58%, rgba(0, 0, 0, 0.5) 100%),
+    linear-gradient(165deg, #171310 0%, #0E0D0C 48%, #0A0A0A 100%);
+  background-size: cover;
+  background-position: center;
+  filter: saturate(0.8) contrast(1.08);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.srv-hero.is-loaded .srv-hero__image {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Línea vertical dorada extremadamente tenue — solo textura, no imagen */
+.srv-hero__image::before {
+  content: '';
+  position: absolute;
+  top: 12%;
+  bottom: 12%;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(196, 168, 110, 0.07) 50%, transparent);
+  pointer-events: none;
+}
+
+/* Grano cinematográfico sutil sobre la superficie */
+.srv-hero__image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+  background-size: 150px 150px;
+  opacity: 0.55;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* Microinteracción — zoom sutil 1.03 al pasar el cursor */
+.srv-hero__image-link:hover .srv-hero__image,
+.srv-hero__image-link:focus-visible .srv-hero__image {
+  transform: scale(1.03);
+}
+
+.srv-hero__image-link:focus-visible {
+  outline: 1px solid var(--color-gold);
+  outline-offset: 4px;
+}
+
+/* --- Caption / referencia editorial --- */
+
+.srv-hero__caption {
+  margin-top: var(--space-24);
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gray-warm);
+  opacity: 0.85;
+}
+
+/* ===========================
+   ENTRADA CINEMATOGRÁFICA — lenta, escalonada
+   =========================== */
+
+.srv-hero [data-sr] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transition-delay 0s;
+  will-change: opacity, transform;
+}
+
+.srv-hero.is-loaded [data-sr] {
+  opacity: 1;
+  transform: none;
+}
+
+.srv-hero [data-sr="0"] { transition-delay: 0.2s; }
+.srv-hero [data-sr="1"] { transition-delay: 0.4s; }
+.srv-hero [data-sr="2"] { transition-delay: 0.6s; }
+.srv-hero [data-sr="3"] { transition-delay: 0.8s; }
+.srv-hero [data-sr="4"] { transition-delay: 1s; }
+.srv-hero [data-sr="5"] { transition-delay: 1.2s; }
+.srv-hero [data-sr="6"] { transition-delay: 1.4s; }
+
+/* ===========================
+   TABLET — 768–1024px
+   =========================== */
+
+@media (max-width: 1024px) {
+  .srv-hero__visual {
+    padding-top: calc(var(--navbar-height) + 32px);
+  }
+
+  .srv-hero__index {
+    top: calc(var(--navbar-height) + 32px);
+  }
+
+  .srv-hero__layout {
+    gap: clamp(32px, 4.5vw, 48px);
+  }
+
+  .srv-hero__title {
+    font-size: clamp(2rem, 5.7vw, 3.7rem);
+  }
+
+  .srv-hero__title-line--em {
+    margin-left: clamp(1rem, 3vw, 2.5rem);
+  }
+
+  .srv-hero__frame {
+    width: clamp(260px, 34vw, 360px);
+  }
+}
+
+/* ===========================
+   MOBILE — ≤768px
+   Composición propia: todo se apila, el titular es el protagonista.
+   =========================== */
+
+@media (max-width: 768px) {
+  .srv-hero {
+    min-height: 100svh;
+    overflow-x: clip;
+  }
+
+  .srv-hero__visual {
+    min-height: 100svh;
+    padding: calc(var(--navbar-height) + 20px) clamp(20px, 6vw, 24px) 48px;
+  }
+
+  .srv-hero__index {
+    position: absolute;
+    top: calc(var(--navbar-height) + 20px);
+    right: clamp(20px, 6vw, 24px);
+  }
+
+  .srv-hero__overline {
+    margin-bottom: clamp(24px, 4vh, 32px);
+  }
+
+  .srv-hero__layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: clamp(40px, 7vh, 56px);
+  }
+
+  .srv-hero__content {
+    max-width: 100%;
+    padding-top: 0;
+  }
+
+  .srv-hero__title {
+    width: 100%;
+    font-size: clamp(1.8rem, 8.8vw, 2.7rem);
+    line-height: 1.08;
+  }
+
+  .srv-hero__title-line--em {
+    margin-left: clamp(1.4rem, 6vw, 2.4rem);
+    margin-top: 0.12em;
+  }
+
+  .srv-hero__lede {
+    margin-top: clamp(24px, 4vh, 32px);
+    max-width: 100%;
+  }
+
+  .srv-hero__detail {
+    margin-top: clamp(28px, 4vh, 36px);
+  }
+
+  .srv-hero__frame {
+    width: 100%;
+    margin-top: clamp(48px, 8vh, 64px);
+  }
+
+  .srv-hero__image {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+  }
+
+  .srv-hero__caption {
+    margin-top: var(--space-16);
+  }
+}
+
+/* ===========================
+   SMALL MOBILE — ≤480px
+   =========================== */
+
+@media (max-width: 480px) {
+  .srv-hero__visual {
+    padding-left: clamp(20px, 6.25vw, 24px);
+    padding-right: clamp(20px, 6.25vw, 24px);
+  }
+
+  .srv-hero__title {
+    font-size: clamp(1.75rem, 10vw, 2.5rem);
+  }
+
+  .srv-hero__index {
+    font-size: 0.4375rem;
+  }
+}
+
+/* ===========================
+   REDUCED MOTION
+   =========================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .srv-hero [data-sr],
+  .srv-hero__image {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
