@@ -687,25 +687,127 @@
     })();
   </script>
 
-  <!-- FOOTER — transición final -->
+  <!-- FOOTER — el cierre de la experiencia -->
   <footer class="gal-footer">
+
     <div class="gal-footer__inner">
-      <div class="gal-footer__top">
-        <span class="gal-footer__brand">Diana <span>&amp;</span> Sans</span>
+
+      <!-- 1. Cierre editorial principal -->
+      <div class="gal-footer__closing" data-fr="0">
+        <span class="gal-footer__closing-mark" aria-hidden="true"></span>
+        <h2 class="gal-footer__closing-title">Nos vemos en Cartago.</h2>
+        <p class="gal-footer__closing-tagline">Donde quedarse se convierte en parte del viaje.</p>
+      </div>
+
+      <!-- 2. Marca -->
+      <div class="gal-footer__brand" data-fr="1">
+        <a class="gal-footer__logo" href="index.html">Diana <span>&amp;</span> Sans</a>
         <span class="gal-footer__location">Cartago · Valle del Cauca · Colombia</span>
       </div>
-      <div class="gal-footer__divider" aria-hidden="true"></div>
-      <div class="gal-footer__bottom">
-        <span class="gal-footer__copyright">&copy; 2026 Diana &amp; Sans</span>
-        <nav class="gal-footer__nav" aria-label="Pie de página">
-          <a class="gal-footer__link" href="index.html">Inicio</a>
-          <a class="gal-footer__link" href="espacios.html">Espacios</a>
-          <a class="gal-footer__link" href="experiencias.html">Experiencias</a>
-          <a class="gal-footer__link" href="#reservar">Reservar</a>
+
+      <!-- 3 · 4 · 5. Navegación, contacto y CTA final -->
+      <div class="gal-footer__columns" data-fr="2">
+
+        <nav class="gal-footer__group" aria-label="Explorar">
+          <span class="gal-footer__group-title">Explorar</span>
+          <a class="gal-footer__navlink" href="espacios.html">
+            <span>Espacios</span>
+            <span class="gal-footer__navlink-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="gal-footer__navlink" href="experiencias.html">
+            <span>Experiencias</span>
+            <span class="gal-footer__navlink-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="gal-footer__navlink" href="galeria.html">
+            <span>Galería</span>
+            <span class="gal-footer__navlink-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="gal-footer__navlink" href="index.html#servicios">
+            <span>Servicios</span>
+            <span class="gal-footer__navlink-arrow" aria-hidden="true">&rarr;</span>
+          </a>
         </nav>
+
+        <nav class="gal-footer__group" aria-label="Reservar">
+          <span class="gal-footer__group-title">Reservar</span>
+          <a class="gal-footer__navlink" href="#reservar">
+            <span>Reservar</span>
+            <span class="gal-footer__navlink-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="gal-footer__navlink" href="#contacto">
+            <span>Contacto</span>
+            <span class="gal-footer__navlink-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="gal-footer__navlink" href="#contacto">
+            <span>Ubicación</span>
+            <span class="gal-footer__navlink-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </nav>
+
+        <div class="gal-footer__group">
+          <span class="gal-footer__group-title">Contacto</span>
+          <!-- TODO: reemplazar href por https://wa.me/57XXXXXXXXXX -->
+          <a class="gal-footer__contact" href="#" data-placeholder="whatsapp">
+            <span class="gal-footer__contact-label">WhatsApp</span>
+            <span class="gal-footer__contact-value">+57 XXX XXX XXXX</span>
+          </a>
+          <a class="gal-footer__contact" href="mailto:correo@dianaysans.com">
+            <span class="gal-footer__contact-label">Correo</span>
+            <span class="gal-footer__contact-value">correo@dianaysans.com</span>
+          </a>
+        </div>
+
+        <div class="gal-footer__cta-wrap">
+          <!-- TODO: enlazar al sistema de reservas definitivo -->
+          <a class="gal-footer__cta" href="#reservar">
+            Reservar ahora
+            <span class="gal-footer__cta-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+
       </div>
+
+      <!-- 6. Línea final -->
+      <div class="gal-footer__divider" aria-hidden="true"></div>
+
+      <div class="gal-footer__bottom" data-fr="3">
+        <span class="gal-footer__copyright">&copy; 2026 Diana &amp; Sans</span>
+        <span class="gal-footer__center">Cartago, Colombia</span>
+        <span class="gal-footer__legal">
+          <a class="gal-footer__legallink" href="#">Privacidad</a>
+          <span class="gal-footer__dot" aria-hidden="true">&middot;</span>
+          <a class="gal-footer__legallink" href="#">Términos</a>
+        </span>
+      </div>
+
+      <!-- 7. Detalle editorial final -->
+      <p class="gal-footer__farewell" data-fr="4">Hasta pronto.</p>
+
     </div>
   </footer>
+
+  <!-- Entrada en scroll del footer — movimiento suave -->
+  <script>
+    (function() {
+      'use strict';
+      var footer = document.querySelector('.gal-footer');
+      if (!footer) return;
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              footer.classList.add('is-visible');
+              observer.unobserve(footer);
+            }
+          });
+        }, { threshold: 0.12 });
+        observer.observe(footer);
+      } else {
+        footer.classList.add('is-visible');
+      }
+    })();
+  </script>
 
   <script src="assets/js/main.js"></script>
 
