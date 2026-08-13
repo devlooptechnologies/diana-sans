@@ -2229,7 +2229,7 @@
 .gal-reserva__title {
   margin-top: clamp(24px, 3vh, 36px);
   font-family: var(--font-heading);
-  font-size: clamp(2.2rem, 4.9vw, 3.4rem);
+  font-size: clamp(2.05rem, 4.6vw, 3.2rem);
   font-weight: var(--weight-heading-light);
   line-height: 1.08;
   letter-spacing: -0.02em;
@@ -2240,8 +2240,10 @@
   display: block;
 }
 
-/* "Solo tienes que venir." — serif itálica dorada sutil */
+/* "Solo tienes que venir." — serif itálica dorada sutil.
+   Se mantiene en el tamaño original: es el golpe emocional. */
 .gal-reserva__title-line--em {
+  font-size: clamp(2.2rem, 4.9vw, 3.4rem);
   font-style: italic;
   color: var(--color-gold);
   opacity: 0.85;
@@ -2261,7 +2263,8 @@
 /* Firma editorial — anclada al fondo de la columna */
 .gal-reserva__signature {
   margin-top: auto;
-  padding-top: clamp(32px, 5vh, 48px);
+  margin-bottom: clamp(16px, 2.5vh, 28px);
+  padding-top: clamp(24px, 3.5vh, 40px);
 }
 
 .gal-reserva__signature::before {
@@ -2304,7 +2307,7 @@
   flex-direction: column;
   justify-content: center;
   box-sizing: border-box;
-  padding: clamp(28px, 3.5vh, 40px) clamp(24px, 2.5vw, 36px) clamp(64px, 8vh, 96px);
+  padding: clamp(28px, 3.5vh, 40px) clamp(24px, 2.5vw, 36px) clamp(28px, 4vh, 48px);
 }
 
 .gal-reserva__form {
@@ -2354,7 +2357,21 @@
 
 .gal-reserva__input::placeholder {
   color: var(--color-gray-warm);
-  opacity: 0.7;
+  opacity: 0.35;
+}
+
+/* Fechas: el valor vacío (dd/mm/aaaa) se ve más tenue que el texto real.
+   Al elegir una fecha, el texto pasa a marfil con plena opacidad. */
+.gal-reserva__input--date::-webkit-datetime-edit {
+  color: var(--color-ivory);
+}
+
+.gal-reserva__input--date::-webkit-datetime-edit-fields-wrapper {
+  color: rgba(166, 162, 155, 0.4);
+}
+
+.gal-reserva__input--date:not([value=""])::-webkit-datetime-edit-fields-wrapper {
+  color: var(--color-ivory);
 }
 
 .gal-reserva__input:focus,
@@ -2397,12 +2414,12 @@
   text-align: left;
   color: var(--color-gold);
   cursor: pointer;
-  transition: border-color 0.5s ease, background-color 0.5s ease,
-              color 0.5s ease;
+  transition: border-color 0.35s ease, background-color 0.35s ease,
+              color 0.35s ease;
 }
 
 .gal-reserva__cta-arrow {
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .gal-reserva__cta:hover,
@@ -2414,7 +2431,7 @@
 
 .gal-reserva__cta:hover .gal-reserva__cta-arrow,
 .gal-reserva__cta:focus-visible .gal-reserva__cta-arrow {
-  transform: translateX(8px);
+  transform: translateX(5px);
 }
 
 .gal-reserva__cta:focus-visible {
@@ -2431,7 +2448,7 @@
   justify-content: flex-end;
   gap: var(--space-16);
   padding-right: clamp(80px, 7vw, 100px);
-  margin-top: clamp(24px, 3vh, 32px);
+  margin-top: clamp(-8px, -1vh, 0px);
   font-family: var(--font-heading);
   font-style: italic;
   font-size: clamp(1.3rem, 2.2vw, 1.75rem);
@@ -2495,7 +2512,7 @@
   }
 
   .gal-reserva__panel {
-    padding: clamp(24px, 3vh, 32px) clamp(20px, 2.5vw, 28px) clamp(56px, 7vh, 80px);
+    padding: clamp(24px, 3vh, 32px) clamp(20px, 2.5vw, 28px) clamp(24px, 3vh, 40px);
   }
 }
 
