@@ -2304,8 +2304,7 @@
   flex-direction: column;
   justify-content: center;
   box-sizing: border-box;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  padding: clamp(28px, 3.5vh, 40px) clamp(24px, 2.5vw, 36px);
+  padding: clamp(28px, 3.5vh, 40px) clamp(24px, 2.5vw, 36px) clamp(64px, 8vh, 96px);
 }
 
 .gal-reserva__form {
@@ -2408,14 +2407,14 @@
 
 .gal-reserva__cta:hover,
 .gal-reserva__cta:focus-visible {
-  background-color: rgba(196, 168, 110, 0.08);
-  border-color: rgba(196, 168, 110, 0.7);
-  color: var(--color-ivory);
+  background-color: rgba(196, 168, 110, 0.85);
+  border-color: rgba(196, 168, 110, 0.85);
+  color: var(--color-black-absolute);
 }
 
 .gal-reserva__cta:hover .gal-reserva__cta-arrow,
 .gal-reserva__cta:focus-visible .gal-reserva__cta-arrow {
-  transform: translateX(6px);
+  transform: translateX(8px);
 }
 
 .gal-reserva__cta:focus-visible {
@@ -2431,7 +2430,8 @@
   align-items: center;
   justify-content: flex-end;
   gap: var(--space-16);
-  margin-top: clamp(32px, 5vh, 48px);
+  padding-right: clamp(80px, 7vw, 100px);
+  margin-top: clamp(24px, 3vh, 32px);
   font-family: var(--font-heading);
   font-style: italic;
   font-size: clamp(1.3rem, 2.2vw, 1.75rem);
@@ -2441,7 +2441,7 @@
 
 .gal-reserva__closing::before {
   content: '';
-  width: 36px;
+  width: clamp(56px, 5vw, 72px);
   height: 1px;
   background: var(--color-gold);
   opacity: 0.35;
@@ -2495,7 +2495,7 @@
   }
 
   .gal-reserva__panel {
-    padding: clamp(24px, 3vh, 32px) clamp(20px, 2.5vw, 28px);
+    padding: clamp(24px, 3vh, 32px) clamp(20px, 2.5vw, 28px) clamp(56px, 7vh, 80px);
   }
 }
 
@@ -2559,6 +2559,7 @@
   .gal-reserva__closing {
     order: 6;
     justify-content: flex-start;
+    padding-right: 0;
     margin-top: clamp(40px, 7vh, 56px);
   }
 
