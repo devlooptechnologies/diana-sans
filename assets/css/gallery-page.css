@@ -1830,14 +1830,14 @@
 /* --- Dato técnico premium — 200 Mbps --- */
 
 .gal-servicios__stat {
-  margin-top: clamp(28px, 4vh, 40px);
+  margin-top: clamp(20px, 3vh, 28px);
 }
 
-/* Filete corto — 64% de la columna, termina antes del borde */
+/* Filete corto — 52% de la columna, termina antes del borde */
 .gal-servicios__stat::before {
   content: '';
   display: block;
-  width: 64%;
+  width: 52%;
   height: 1px;
   background: rgba(196, 168, 110, 0.16);
   margin-bottom: clamp(20px, 3vh, 26px);
@@ -1846,7 +1846,7 @@
 .gal-servicios__stat-value {
   display: block;
   font-family: var(--font-heading);
-  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-size: clamp(1.7rem, 3.4vw, 2.3rem);
   font-weight: var(--weight-heading-light);
   line-height: 1;
   letter-spacing: -0.02em;
@@ -1933,7 +1933,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-16);
-  margin-top: clamp(24px, 3.5vh, 32px);
+  margin-top: clamp(16px, 2.5vh, 24px);
   font-family: var(--font-heading);
   font-style: italic;
   font-size: 0.9375rem;
@@ -1942,7 +1942,7 @@
 }
 
 .gal-servicios__closing-mark {
-  width: 48px;
+  width: 36px;
   height: 1px;
   background: var(--color-gold);
   opacity: 0.35;
@@ -2067,7 +2067,7 @@
   }
 
   .gal-servicios__stat-value {
-    font-size: clamp(1.8rem, 9vw, 2.3rem);
+    font-size: clamp(1.7rem, 9vw, 2.2rem);
   }
 
   .gal-servicios__list {
