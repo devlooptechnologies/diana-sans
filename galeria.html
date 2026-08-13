@@ -455,6 +455,112 @@
     })();
   </script>
 
+  <!-- ================================================================
+       SECCIÓN 5 — RESERVA
+       "No tienes que imaginarlo. Solo tienes que venir."
+       Cierre de la narrativa: la estancia se reserva, no se describe.
+       Dos columnas editoriales; la derecha es una invitación a reservar,
+       no un panel administrativo. Sin precios ni disponibilidad ficticia.
+       La lógica queda preparada para conectar el channel manager cuando
+       se defina el sistema de reservas real.
+       ================================================================ -->
+  <section class="gal-reserva" id="reservar">
+
+    <!-- Fondo: mismo negro profundo + textura papel + grano -->
+    <div class="gal-reserva__bg" aria-hidden="true"></div>
+
+    <div class="gal-reserva__visual">
+
+      <!-- Numeración de sección — continuidad con 01–04 -->
+      <span class="gal-reserva__index" data-rz="0">05 / Reserva</span>
+
+      <!-- Columna izquierda — cierre de la narrativa -->
+      <div class="gal-reserva__left">
+        <span class="gal-reserva__overline" data-rz="1">Reserva</span>
+        <h2 class="gal-reserva__title" data-rz="2">
+          <span class="gal-reserva__title-line">No tienes que imaginarlo.</span>
+          <span class="gal-reserva__title-line gal-reserva__title-line--em">Solo tienes que venir.</span>
+        </h2>
+        <p class="gal-reserva__lede" data-rz="3">
+          Un espacio pensado para quedarse, disfrutar y sentirse como en casa.
+        </p>
+        <!-- Firma editorial — anclada al fondo de la columna -->
+        <div class="gal-reserva__signature" data-rz="4">
+          <span class="gal-reserva__signature-place">Cartago · Colombia</span>
+          <span class="gal-reserva__signature-brand">Diana &amp; Sans</span>
+        </div>
+      </div>
+
+      <!-- Columna derecha — invitación a reservar -->
+      <div class="gal-reserva__panel">
+        <form class="gal-reserva__form" action="#" method="post" aria-label="Solicitar reserva">
+          <div class="gal-reserva__field" data-rz="5">
+            <label class="gal-reserva__label" for="rz-checkin">Fecha de entrada</label>
+            <input class="gal-reserva__input gal-reserva__input--date" type="date" id="rz-checkin" name="checkin">
+          </div>
+
+          <div class="gal-reserva__field" data-rz="6">
+            <label class="gal-reserva__label" for="rz-checkout">Fecha de salida</label>
+            <input class="gal-reserva__input gal-reserva__input--date" type="date" id="rz-checkout" name="checkout">
+          </div>
+
+          <div class="gal-reserva__field" data-rz="7">
+            <label class="gal-reserva__label" for="rz-guests">Huéspedes</label>
+            <select class="gal-reserva__input gal-reserva__select" id="rz-guests" name="guests">
+              <option value="1" selected>1 huésped</option>
+              <option value="2">2 huéspedes</option>
+              <option value="3">3 huéspedes</option>
+              <option value="4">4 huéspedes</option>
+              <option value="5">5 o más</option>
+            </select>
+          </div>
+
+          <button type="submit" class="gal-reserva__cta" data-rz="8">
+            Reservar ahora
+            <span class="gal-reserva__cta-arrow" aria-hidden="true">&rarr;</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Cierre editorial -->
+      <p class="gal-reserva__closing" data-rz="9">Nos vemos en Cartago.</p>
+
+    </div>
+
+  </section>
+
+  <!-- Entrada en scroll de la sección 5 — movimiento suave -->
+  <script>
+    (function() {
+      'use strict';
+      var section = document.querySelector('.gal-reserva');
+      if (!section) return;
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              section.classList.add('is-visible');
+              observer.unobserve(section);
+            }
+          });
+        }, { threshold: 0.15 });
+        observer.observe(section);
+      } else {
+        section.classList.add('is-visible');
+      }
+
+      /* Bloqueo de envío mientras no exista el sistema de reservas.
+         Conectar aquí el channel manager del proyecto cuando se defina. */
+      var form = section.querySelector('.gal-reserva__form');
+      if (form) {
+        form.addEventListener('submit', function(event) {
+          event.preventDefault();
+        });
+      }
+    })();
+  </script>
+
   <script src="assets/js/main.js"></script>
 
   <!-- Entrada cinematográfica del hero — Galería -->

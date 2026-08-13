@@ -2123,3 +2123,487 @@
     transition: none !important;
   }
 }
+
+/* ===========================
+   SECCIÓN 5 — RESERVA
+   "No tienes que imaginarlo. Solo tienes que venir."
+   Cierre de la narrativa. Dos columnas editoriales:
+   la izquierda recoge la promesa, la derecha invita a reservar.
+   =========================== */
+
+.gal-reserva {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100svh;
+  background-color: var(--color-black-absolute);
+  overflow: hidden;
+  overflow-x: clip;
+  color-scheme: dark;
+}
+
+/* --- Fondo: mismo negro + textura papel + grano --- */
+
+.gal-reserva__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: var(--color-black-absolute);
+  pointer-events: none;
+}
+
+.gal-reserva__bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-conic-gradient(
+      rgba(255, 255, 255, 0.003) 0% 25%,
+      transparent 0% 50%
+    ) 0 0 / 4px 4px;
+  pointer-events: none;
+}
+
+.gal-reserva__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* --- Contenido: dos columnas editoriales --- */
+
+.gal-reserva__visual {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--grid-container);
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: calc(var(--navbar-height) + 56px) var(--grid-page-margin) clamp(64px, 8vh, 88px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: clamp(40px, 5vw, 88px);
+}
+
+/* Numeración de sección — continuidad con 01–04 */
+.gal-reserva__index {
+  position: absolute;
+  top: calc(var(--navbar-height) + 44px);
+  right: var(--grid-page-margin);
+  z-index: 3;
+  font-family: var(--font-body);
+  font-size: 0.5rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  opacity: 0.5;
+}
+
+/* --- Columna izquierda — el cierre narrativo --- */
+
+.gal-reserva__left {
+  flex: 0 1 44%;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+.gal-reserva__overline {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-eyebrow);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+  opacity: 0.9;
+}
+
+.gal-reserva__title {
+  margin-top: clamp(24px, 3vh, 36px);
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 4.9vw, 3.4rem);
+  font-weight: var(--weight-heading-light);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--color-ivory);
+}
+
+.gal-reserva__title-line {
+  display: block;
+}
+
+/* "Solo tienes que venir." — serif itálica dorada sutil */
+.gal-reserva__title-line--em {
+  font-style: italic;
+  color: var(--color-gold);
+  opacity: 0.85;
+}
+
+.gal-reserva__lede {
+  margin-top: var(--space-32);
+  max-width: 38ch;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-body-light);
+  line-height: 1.9;
+  letter-spacing: 0.01em;
+  color: var(--color-gray-warm);
+}
+
+/* Firma editorial — anclada al fondo de la columna */
+.gal-reserva__signature {
+  margin-top: auto;
+  padding-top: clamp(32px, 5vh, 48px);
+}
+
+.gal-reserva__signature::before {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 1px;
+  background: var(--color-gold);
+  opacity: 0.35;
+  margin-bottom: var(--space-16);
+}
+
+.gal-reserva__signature-place {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gray-warm);
+  opacity: 0.8;
+}
+
+.gal-reserva__signature-brand {
+  display: block;
+  margin-top: var(--space-4);
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.125rem;
+  color: var(--color-gold);
+  opacity: 0.85;
+}
+
+/* --- Columna derecha — invitación a reservar --- */
+
+.gal-reserva__panel {
+  flex: 1 1 48%;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: clamp(28px, 3.5vh, 40px) clamp(24px, 2.5vw, 36px);
+}
+
+.gal-reserva__form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(20px, 2.5vw, 32px);
+  row-gap: clamp(26px, 3.5vh, 36px);
+}
+
+.gal-reserva__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* Huéspedes y CTA ocupan todo el ancho del panel */
+.gal-reserva__field:nth-child(3),
+.gal-reserva__cta {
+  grid-column: 1 / -1;
+}
+
+.gal-reserva__label {
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-ivory);
+  opacity: 0.6;
+}
+
+.gal-reserva__input {
+  width: 100%;
+  box-sizing: border-box;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 0;
+  padding: clamp(8px, 1.2vh, 10px) 0;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: var(--weight-body-light);
+  letter-spacing: 0.01em;
+  color: var(--color-ivory);
+  transition: border-color 0.4s ease, color 0.4s ease;
+}
+
+.gal-reserva__input::placeholder {
+  color: var(--color-gray-warm);
+  opacity: 0.7;
+}
+
+.gal-reserva__input:focus,
+.gal-reserva__input:focus-visible {
+  outline: none;
+  border-bottom-color: rgba(196, 168, 110, 0.6);
+}
+
+/* Selector sin caja — misma línea sutil, con flecha dorada discreta */
+.gal-reserva__select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23C4A86E' stroke-opacity='0.6' stroke-width='1'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 2px center;
+  padding-right: 24px;
+}
+
+.gal-reserva__select option {
+  color: var(--color-ivory);
+  background-color: #141414;
+}
+
+/* CTA rectangular de borde fino */
+.gal-reserva__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-16);
+  margin-top: clamp(6px, 1vh, 12px);
+  padding: clamp(14px, 2vh, 18px) clamp(24px, 2.6vw, 32px);
+  border: 1px solid rgba(196, 168, 110, 0.4);
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: var(--text-cta);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--color-gold);
+  cursor: pointer;
+  transition: border-color 0.5s ease, background-color 0.5s ease,
+              color 0.5s ease;
+}
+
+.gal-reserva__cta-arrow {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gal-reserva__cta:hover,
+.gal-reserva__cta:focus-visible {
+  background-color: rgba(196, 168, 110, 0.08);
+  border-color: rgba(196, 168, 110, 0.7);
+  color: var(--color-ivory);
+}
+
+.gal-reserva__cta:hover .gal-reserva__cta-arrow,
+.gal-reserva__cta:focus-visible .gal-reserva__cta-arrow {
+  transform: translateX(6px);
+}
+
+.gal-reserva__cta:focus-visible {
+  outline: 1px solid var(--color-gold);
+  outline-offset: 4px;
+}
+
+/* --- Cierre editorial — fila completa, alineado a la derecha --- */
+
+.gal-reserva__closing {
+  flex-basis: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-16);
+  margin-top: clamp(32px, 5vh, 48px);
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+  color: var(--color-gold);
+  opacity: 0.85;
+}
+
+.gal-reserva__closing::before {
+  content: '';
+  width: 36px;
+  height: 1px;
+  background: var(--color-gold);
+  opacity: 0.35;
+  flex-shrink: 0;
+}
+
+/* ===========================
+   ENTRADA EN SCROLL — movimiento suave
+   =========================== */
+
+.gal-reserva [data-rz] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.gal-reserva.is-visible [data-rz] {
+  opacity: 1;
+  transform: none;
+}
+
+.gal-reserva.is-visible [data-rz="0"] { transition-delay: 40ms; }
+.gal-reserva.is-visible [data-rz="1"] { transition-delay: 140ms; }
+.gal-reserva.is-visible [data-rz="2"] { transition-delay: 240ms; }
+.gal-reserva.is-visible [data-rz="3"] { transition-delay: 340ms; }
+.gal-reserva.is-visible [data-rz="4"] { transition-delay: 440ms; }
+.gal-reserva.is-visible [data-rz="5"] { transition-delay: 320ms; }
+.gal-reserva.is-visible [data-rz="6"] { transition-delay: 480ms; }
+.gal-reserva.is-visible [data-rz="7"] { transition-delay: 560ms; }
+.gal-reserva.is-visible [data-rz="8"] { transition-delay: 640ms; }
+.gal-reserva.is-visible [data-rz="9"] { transition-delay: 720ms; }
+
+/* ===========================
+   TABLET — 768–1024px
+   =========================== */
+
+@media (max-width: 1024px) {
+  .gal-reserva__visual {
+    padding-top: calc(var(--navbar-height) + 32px);
+    gap: clamp(28px, 4vw, 56px);
+  }
+
+  .gal-reserva__index {
+    top: calc(var(--navbar-height) + 32px);
+  }
+
+  .gal-reserva__title {
+    font-size: clamp(1.9rem, 4.5vw, 2.6rem);
+  }
+
+  .gal-reserva__panel {
+    padding: clamp(24px, 3vh, 32px) clamp(20px, 2.5vw, 28px);
+  }
+}
+
+/* ===========================
+   MOBILE — ≤768px
+   Orden: etiqueta → titular → párrafo → fechas → huéspedes → CTA →
+   firma → frase final.
+   =========================== */
+
+@media (max-width: 768px) {
+  .gal-reserva {
+    overflow-x: clip;
+  }
+
+  .gal-reserva__visual {
+    padding: calc(var(--navbar-height) + 20px) clamp(20px, 6vw, 24px) 64px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  .gal-reserva__left,
+  .gal-reserva__panel {
+    display: contents;
+  }
+
+  .gal-reserva__overline {
+    order: 1;
+  }
+
+  .gal-reserva__title {
+    order: 2;
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+  }
+
+  .gal-reserva__lede {
+    order: 3;
+    max-width: 100%;
+  }
+
+  .gal-reserva__panel {
+    min-width: 0;
+  }
+
+  .gal-reserva__form {
+    order: 4;
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: clamp(36px, 6vh, 48px);
+  }
+
+  .gal-reserva__field:nth-child(3),
+  .gal-reserva__cta {
+    grid-column: auto;
+  }
+
+  .gal-reserva__signature {
+    order: 5;
+    margin-top: clamp(36px, 6vh, 48px);
+  }
+
+  .gal-reserva__closing {
+    order: 6;
+    justify-content: flex-start;
+    margin-top: clamp(40px, 7vh, 56px);
+  }
+
+  .gal-reserva__index {
+    top: calc(var(--navbar-height) + 20px);
+    right: clamp(20px, 6vw, 24px);
+  }
+}
+
+/* ===========================
+   SMALL MOBILE — ≤480px
+   =========================== */
+
+@media (max-width: 480px) {
+  .gal-reserva__visual {
+    padding-left: clamp(20px, 6.25vw, 24px);
+    padding-right: clamp(20px, 6.25vw, 24px);
+  }
+
+  .gal-reserva__title {
+    font-size: clamp(1.65rem, 8.5vw, 2.1rem);
+  }
+
+  .gal-reserva__closing {
+    font-size: clamp(1.15rem, 5.5vw, 1.5rem);
+  }
+}
+
+/* ===========================
+   REDUCED MOTION — sección 5
+   =========================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .gal-reserva [data-rz] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .gal-reserva__cta {
+    transition: none !important;
+  }
+
+  .gal-reserva__cta-arrow {
+    transform: none !important;
+    transition: none !important;
+  }
+}
