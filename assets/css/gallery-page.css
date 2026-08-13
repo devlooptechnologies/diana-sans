@@ -1638,7 +1638,7 @@
   pointer-events: none;
 }
 
-/* --- Contenido: grid editorial asimétrico --- */
+/* --- Contenido: dos columnas editoriales de igual altura --- */
 
 .gal-servicios__visual {
   position: relative;
@@ -1648,14 +1648,9 @@
   margin: 0 auto;
   box-sizing: border-box;
   padding: calc(var(--navbar-height) + 56px) var(--grid-page-margin) clamp(64px, 8vh, 88px);
-  display: grid;
-  grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.15fr);
-  grid-template-areas:
-    "left    side"
-    "stat    side"
-    "closing side";
-  column-gap: clamp(40px, 5vw, 88px);
-  align-items: start;
+  display: flex;
+  align-items: stretch;
+  gap: clamp(40px, 5vw, 88px);
 }
 
 /* Numeración de sección — dorado muy sutil, alineada con 01, 02 y 03 */
@@ -1676,7 +1671,8 @@
 /* --- Encabezado — columna izquierda --- */
 
 .gal-servicios__left {
-  grid-area: left;
+  flex: 0 1 44%;
+  min-width: 320px;
 }
 
 .gal-servicios__overline {
@@ -1724,7 +1720,7 @@
 
 /* Cierre editorial de la columna — dorado muy sutil */
 .gal-servicios__editorial {
-  margin-top: clamp(40px, 6vh, 64px);
+  margin-top: clamp(24px, 4vh, 40px);
   display: flex;
   align-items: center;
   gap: var(--space-16);
@@ -1749,13 +1745,13 @@
 /* --- Composición — columna derecha --- */
 
 .gal-servicios__side {
-  grid-area: side;
+  flex: 1 1 56%;
+  min-width: 0;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(240px, 1.05fr);
   grid-template-areas:
     "list main";
   column-gap: clamp(24px, 3vw, 48px);
-  align-items: start;
 }
 
 /* Fotografía protagonista — un servicio, una experiencia */
@@ -1764,6 +1760,7 @@
   position: relative;
   margin: 0;
   justify-self: end;
+  align-self: start;
 }
 
 .gal-servicios__main-link {
@@ -1833,16 +1830,23 @@
 /* --- Dato técnico premium — 200 Mbps --- */
 
 .gal-servicios__stat {
-  grid-area: stat;
-  margin-top: clamp(28px, 4vh, 44px);
-  border-top: 1px solid rgba(196, 168, 110, 0.16);
-  padding-top: clamp(20px, 3vh, 28px);
+  margin-top: clamp(28px, 4vh, 40px);
+}
+
+/* Filete corto — 64% de la columna, termina antes del borde */
+.gal-servicios__stat::before {
+  content: '';
+  display: block;
+  width: 64%;
+  height: 1px;
+  background: rgba(196, 168, 110, 0.16);
+  margin-bottom: clamp(20px, 3vh, 26px);
 }
 
 .gal-servicios__stat-value {
   display: block;
   font-family: var(--font-heading);
-  font-size: clamp(2.2rem, 4.3vw, 2.9rem);
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
   font-weight: var(--weight-heading-light);
   line-height: 1;
   letter-spacing: -0.02em;
@@ -1851,7 +1855,7 @@
 
 .gal-servicios__stat-label {
   display: block;
-  margin-top: var(--space-12);
+  margin-top: var(--space-16);
   font-family: var(--font-body);
   font-size: var(--text-caption);
   font-weight: var(--weight-body-medium);
@@ -1868,13 +1872,14 @@
   margin: 0;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .gal-servicios__item {
   display: grid;
   grid-template-columns: clamp(2.25rem, 2.6vw, 3rem) minmax(0, 1fr);
   column-gap: clamp(14px, 1.8vw, 24px);
-  padding: clamp(24px, 3vh, 34px) 0;
+  padding: clamp(16px, 2.2vh, 22px) 0;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
@@ -1925,7 +1930,6 @@
 /* --- Cierre editorial --- */
 
 .gal-servicios__closing {
-  grid-area: closing;
   display: flex;
   align-items: center;
   gap: var(--space-16);
@@ -1993,7 +1997,7 @@
 @media (max-width: 1024px) {
   .gal-servicios__visual {
     padding-top: calc(var(--navbar-height) + 32px);
-    column-gap: clamp(28px, 4vw, 56px);
+    gap: clamp(28px, 4vw, 56px);
   }
 
   .gal-servicios__index {
@@ -2023,57 +2027,62 @@
 
   .gal-servicios__visual {
     padding: calc(var(--navbar-height) + 20px) clamp(20px, 6vw, 24px) 64px;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "left"
-      "main"
-      "stat"
-      "list"
-      "closing";
+    display: flex;
+    flex-direction: column;
+  }
+
+  .gal-servicios__left,
+  .gal-servicios__side {
+    display: contents;
+  }
+
+  .gal-servicios__overline {
+    order: 1;
+  }
+
+  .gal-servicios__title {
+    order: 2;
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+  }
+
+  .gal-servicios__lede {
+    order: 3;
+    max-width: 100%;
+  }
+
+  .gal-servicios__editorial {
+    order: 4;
+    margin-top: clamp(24px, 4vh, 32px);
+  }
+
+  .gal-servicios__main {
+    order: 5;
+    width: 100%;
+    margin-top: clamp(36px, 6vh, 48px);
+  }
+
+  .gal-servicios__stat {
+    order: 6;
+    margin-top: clamp(24px, 4vh, 32px);
+  }
+
+  .gal-servicios__stat-value {
+    font-size: clamp(1.8rem, 9vw, 2.3rem);
+  }
+
+  .gal-servicios__list {
+    order: 7;
+    margin-top: clamp(20px, 3vh, 28px);
+  }
+
+  .gal-servicios__closing {
+    order: 8;
+    margin-top: clamp(24px, 4vh, 32px);
   }
 
   .gal-servicios__index {
     top: calc(var(--navbar-height) + 20px);
     right: clamp(20px, 6vw, 24px);
-  }
-
-  .gal-servicios__title {
-    font-size: clamp(1.8rem, 8vw, 2.5rem);
-  }
-
-  .gal-servicios__lede {
-    max-width: 100%;
-  }
-
-  .gal-servicios__editorial {
-    margin-top: clamp(36px, 5vh, 48px);
-  }
-
-  .gal-servicios__side {
-    display: contents;
-  }
-
-  .gal-servicios__main {
-    grid-area: main;
-    width: 100%;
-    margin-top: clamp(40px, 6vh, 56px);
-  }
-
-  .gal-servicios__stat {
-    margin-top: clamp(24px, 4vh, 32px);
-  }
-
-  .gal-servicios__stat-value {
-    font-size: clamp(2.2rem, 11vw, 2.8rem);
-  }
-
-  .gal-servicios__list {
-    grid-area: list;
-    margin-top: clamp(20px, 3vh, 28px);
-  }
-
-  .gal-servicios__closing {
-    margin-top: clamp(24px, 4vh, 32px);
   }
 }
 
