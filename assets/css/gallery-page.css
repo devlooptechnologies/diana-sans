@@ -1202,13 +1202,6 @@
   margin: 0 auto;
   box-sizing: border-box;
   padding: calc(var(--navbar-height) + 56px) var(--grid-page-margin) clamp(64px, 8vh, 88px);
-  display: grid;
-  grid-template-columns: min(48%, 540px) minmax(0, 1fr);
-  grid-template-areas:
-    "left         composition"
-    "indicators   composition";
-  column-gap: clamp(40px, 6vw, 96px);
-  align-items: start;
 }
 
 /* Numeración de sección — dorado muy sutil, alineada con 01 y 02 */
@@ -1229,7 +1222,7 @@
 /* --- Texto principal — izquierda --- */
 
 .gal-experience__left {
-  grid-area: left;
+  width: min(48%, 620px);
   padding-top: clamp(24px, 3vh, 40px);
 }
 
@@ -1248,7 +1241,7 @@
 .gal-experience__title {
   margin-top: clamp(24px, 3vh, 36px);
   font-family: var(--font-heading);
-  font-size: clamp(1.9rem, 4.3vw, 2.9rem);
+  font-size: clamp(2rem, 4.6vw, 3.1rem);
   font-weight: var(--weight-heading-light);
   line-height: 1.08;
   letter-spacing: -0.02em;
@@ -1280,12 +1273,12 @@
 /* --- Composición fotográfica — derecha --- */
 
 .gal-experience__composition {
-  grid-area: composition;
-  justify-self: end;
-  position: relative;
-  width: clamp(320px, 38vw, 520px);
+  position: absolute;
+  top: calc(var(--navbar-height) + 56px + clamp(24px, 3vh, 40px));
+  right: var(--grid-page-margin);
+  z-index: 1;
+  width: clamp(300px, 38vw, 480px);
   max-width: 100%;
-  margin-top: clamp(24px, 3vh, 40px);
 }
 
 /* Fotografía protagonista: la experiencia, no la arquitectura */
@@ -1310,6 +1303,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 5;
+  max-height: calc(100svh - 280px);
   box-sizing: border-box;
   overflow: hidden;
   background-color: #211C16;
@@ -1362,9 +1356,9 @@
 
 .gal-experience__detail {
   position: absolute;
-  left: -16%;
-  bottom: 5%;
-  width: 35%;
+  left: -18%;
+  bottom: -6%;
+  width: 38%;
   margin: 0;
   z-index: 2;
 }
@@ -1385,7 +1379,7 @@
     linear-gradient(150deg, #2E271F 0%, #1D1813 55%, #141210 100%);
   background-size: cover;
   background-position: center;
-  filter: saturate(0.72) contrast(1.04) brightness(1.05);
+  filter: saturate(0.85) contrast(1.12) brightness(1.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
   transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -1397,8 +1391,7 @@
 /* --- Indicadores editoriales — notas de revista --- */
 
 .gal-experience__indicators {
-  grid-area: indicators;
-  margin-top: clamp(32px, 4vh, 48px);
+  margin-top: clamp(24px, 3vh, 36px);
   max-width: 380px;
   display: flex;
   flex-direction: column;
@@ -1483,8 +1476,6 @@
 
 @media (max-width: 1024px) {
   .gal-experience__visual {
-    grid-template-columns: min(46%, 440px) minmax(0, 1fr);
-    column-gap: clamp(28px, 4vw, 56px);
     padding-top: calc(var(--navbar-height) + 32px);
   }
 
@@ -1496,10 +1487,14 @@
     font-size: clamp(1.7rem, 4vw, 2.4rem);
   }
 
+  .gal-experience__left {
+    width: min(44%, 460px);
+  }
+
   .gal-experience__composition {
+    top: calc(var(--navbar-height) + 32px + clamp(24px, 3vh, 40px));
     width: clamp(280px, 44vw, 420px);
     max-width: 100%;
-    margin-top: clamp(16px, 2.5vh, 28px);
   }
 }
 
@@ -1518,12 +1513,6 @@
   .gal-experience__visual {
     min-height: 100svh;
     padding: calc(var(--navbar-height) + 20px) clamp(20px, 6vw, 24px) 64px;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "left"
-      "composition"
-      "indicators";
-    column-gap: 0;
   }
 
   .gal-experience__index {
@@ -1532,6 +1521,8 @@
   }
 
   .gal-experience__left {
+    width: auto;
+    max-width: 100%;
     padding-top: clamp(20px, 4vh, 32px);
   }
 
@@ -1540,7 +1531,7 @@
   }
 
   .gal-experience__composition {
-    justify-self: stretch;
+    position: static;
     width: 100%;
     margin-top: clamp(44px, 7vh, 60px);
   }
