@@ -324,6 +324,137 @@
     })();
   </script>
 
+  <!-- ================================================================
+       SECCIÓN 4 — SERVICIOS
+       "Todo lo que necesitas. Nada que sobre."
+       Demostración de calidad, no un listado comercial. Los diferenciales
+       reales del proyecto se presentan como una zona vertical editorial
+       junto a la fotografía protagonista, con el dato técnico "200 Mbps"
+       como elemento memorable. Sin cards, sin iconos, sin sombras.
+       @FOTO: reemplazar el placeholder en gallery-page.css
+       (.gal-servicios__main-photo).
+       ================================================================ -->
+  <section class="gal-servicios" id="servicios">
+
+    <!-- Fondo: mismo negro profundo + textura papel + grano -->
+    <div class="gal-servicios__bg" aria-hidden="true"></div>
+
+    <div class="gal-servicios__visual">
+
+      <!-- Numeración de sección — continuidad con 01, 02 y 03 -->
+      <span class="gal-servicios__index" data-sv="0">04 / Servicios</span>
+
+      <!-- Encabezado — columna izquierda -->
+      <div class="gal-servicios__left">
+        <span class="gal-servicios__overline" data-sv="1">Servicios</span>
+        <h2 class="gal-servicios__title" data-sv="2">
+          <span class="gal-servicios__title-line">Todo lo que necesitas.</span>
+          <span class="gal-servicios__title-line gal-servicios__title-line--em">Nada que sobre.</span>
+        </h2>
+        <p class="gal-servicios__lede" data-sv="3">
+          Pensado para que puedas llegar, instalarte y simplemente disfrutar.
+        </p>
+        <!-- Cierre editorial de la columna -->
+        <p class="gal-servicios__editorial" data-sv="4">Hecho para estancias que importan.</p>
+      </div>
+
+      <!-- Composición — columna derecha -->
+      <div class="gal-servicios__side">
+
+        <!-- Fotografía protagonista: un servicio, una experiencia -->
+        <figure class="gal-servicios__main" data-sv="5">
+          <a class="gal-servicios__main-link" href="#galeria-lightbox" aria-label="Abrir fotografía — servicios Diana &amp; Sans">
+            <div class="gal-servicios__main-photo" role="img" aria-label="Espacio reservado para fotografía de servicios en Diana &amp; Sans"></div>
+          </a>
+        </figure>
+
+        <!-- Dato técnico premium -->
+        <div class="gal-servicios__stat" data-sv="6">
+          <span class="gal-servicios__stat-value">200 Mbps</span>
+          <span class="gal-servicios__stat-label">Para cada apartamento</span>
+        </div>
+
+        <!-- Servicios — zona vertical editorial -->
+        <dl class="gal-servicios__list">
+          <div class="gal-servicios__item" data-sv="7">
+            <span class="gal-servicios__item-num" aria-hidden="true">01</span>
+            <div class="gal-servicios__item-body">
+              <dt class="gal-servicios__item-title">WiFi dedicado</dt>
+              <dd class="gal-servicios__item-desc">
+                200 Mbps para cada apartamento, pensado para trabajar,
+                crear y disfrutar sin compartir la conexión.
+              </dd>
+            </div>
+          </div>
+          <div class="gal-servicios__item" data-sv="8">
+            <span class="gal-servicios__item-num" aria-hidden="true">02</span>
+            <div class="gal-servicios__item-body">
+              <dt class="gal-servicios__item-title">Vigilancia 24h</dt>
+              <dd class="gal-servicios__item-desc">
+                Conserjería y vigilancia permanente para una estancia
+                tranquila y cuidada.
+              </dd>
+            </div>
+          </div>
+          <div class="gal-servicios__item" data-sv="9">
+            <span class="gal-servicios__item-num" aria-hidden="true">03</span>
+            <div class="gal-servicios__item-body">
+              <dt class="gal-servicios__item-title">Traslados</dt>
+              <dd class="gal-servicios__item-desc">
+                Recogida y traslado al aeropuerto, con opciones de transporte
+                adaptadas a la estancia.
+              </dd>
+              <!-- Mención discreta — ajustable cuando se confirme la operación -->
+              <span class="gal-servicios__item-note">Servicio de recogida para pilotos de parapente.</span>
+            </div>
+          </div>
+          <div class="gal-servicios__item" data-sv="10">
+            <span class="gal-servicios__item-num" aria-hidden="true">04</span>
+            <div class="gal-servicios__item-body">
+              <dt class="gal-servicios__item-title">Estancias largas</dt>
+              <dd class="gal-servicios__item-desc">
+                Condiciones pensadas para quienes vienen por semanas o meses,
+                ya sea por trabajo, entrenamiento o descanso.
+              </dd>
+            </div>
+          </div>
+        </dl>
+
+      </div>
+
+      <!-- Cierre editorial -->
+      <p class="gal-servicios__closing" data-sv="11">
+        <span class="gal-servicios__closing-mark" aria-hidden="true"></span>
+        Calidad en cada detalle.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- Entrada en scroll de la sección 4 — movimiento suave -->
+  <script>
+    (function() {
+      'use strict';
+      var section = document.querySelector('.gal-servicios');
+      if (!section) return;
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              section.classList.add('is-visible');
+              observer.unobserve(section);
+            }
+          });
+        }, { threshold: 0.2 });
+        observer.observe(section);
+      } else {
+        section.classList.add('is-visible');
+      }
+    })();
+  </script>
+
   <script src="assets/js/main.js"></script>
 
   <!-- Entrada cinematográfica del hero — Galería -->

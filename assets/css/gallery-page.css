@@ -1585,3 +1585,521 @@
     transition: none !important;
   }
 }
+
+/* ================================================================
+   SECCIÓN 4 — SERVICIOS
+   "Todo lo que necesitas. Nada que sobre."
+   Demostración de calidad, no un listado comercial. Los diferenciales
+   se presentan como una zona vertical editorial junto a la fotografía,
+   con el dato técnico "200 Mbps" como elemento memorable.
+   @FOTO: reemplazar el placeholder (.gal-servicios__main-photo) por
+   url('../img/galeria-servicios.jpg') para la fotografía real.
+   ================================================================ */
+
+.gal-servicios {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100svh;
+  background-color: var(--color-black-absolute);
+  overflow: hidden;
+  overflow-x: clip;
+}
+
+/* --- Fondo: mismo negro + textura papel + grano --- */
+
+.gal-servicios__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: var(--color-black-absolute);
+  pointer-events: none;
+}
+
+.gal-servicios__bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-conic-gradient(
+      rgba(255, 255, 255, 0.003) 0% 25%,
+      transparent 0% 50%
+    ) 0 0 / 4px 4px;
+  pointer-events: none;
+}
+
+.gal-servicios__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* --- Contenido: grid editorial asimétrico --- */
+
+.gal-servicios__visual {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--grid-container);
+  min-height: 100svh;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: calc(var(--navbar-height) + 56px) var(--grid-page-margin) clamp(72px, 9vh, 104px);
+  display: grid;
+  grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.15fr);
+  column-gap: clamp(40px, 5vw, 88px);
+  align-items: start;
+}
+
+/* Numeración de sección — dorado muy sutil, alineada con 01, 02 y 03 */
+.gal-servicios__index {
+  position: absolute;
+  top: calc(var(--navbar-height) + 44px);
+  right: var(--grid-page-margin);
+  z-index: 3;
+  font-family: var(--font-body);
+  font-size: 0.5rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  opacity: 0.5;
+}
+
+/* --- Encabezado — columna izquierda --- */
+
+.gal-servicios__overline {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-eyebrow);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+  opacity: 0.9;
+}
+
+.gal-servicios__title {
+  margin-top: clamp(24px, 3vh, 36px);
+  font-family: var(--font-heading);
+  font-size: clamp(2.1rem, 4.8vw, 3.3rem);
+  font-weight: var(--weight-heading-light);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--color-ivory);
+}
+
+.gal-servicios__title-line {
+  display: block;
+}
+
+/* "Nada que sobre." — serif itálica dorada sutil */
+.gal-servicios__title-line--em {
+  font-style: italic;
+  color: var(--color-gold);
+  opacity: 0.85;
+}
+
+.gal-servicios__lede {
+  margin-top: var(--space-32);
+  max-width: 38ch;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-body-light);
+  line-height: 1.9;
+  letter-spacing: 0.01em;
+  color: var(--color-gray-warm);
+}
+
+/* Cierre editorial de la columna — dorado muy sutil */
+.gal-servicios__editorial {
+  margin-top: clamp(56px, 9vh, 104px);
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+  opacity: 0.55;
+}
+
+.gal-servicios__editorial::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--color-gold);
+  opacity: 0.35;
+  flex-shrink: 0;
+}
+
+/* --- Composición — columna derecha --- */
+
+.gal-servicios__side {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 1.05fr);
+  grid-template-areas:
+    "list main"
+    "stat stat";
+  column-gap: clamp(24px, 3vw, 48px);
+  row-gap: clamp(28px, 4vh, 44px);
+  align-items: start;
+}
+
+/* Fotografía protagonista — un servicio, una experiencia */
+.gal-servicios__main {
+  grid-area: main;
+  position: relative;
+  margin: 0;
+  justify-self: end;
+}
+
+.gal-servicios__main-link {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+/* @FOTO: sustituir las capas de gradiente por
+   url('../img/galeria-servicios.jpg') para la fotografía real.
+   Idealmente: persona trabajando con portátil, llegada al alojamiento
+   o detalle de recepción. Conserva el grano (::after) y la línea (::before). */
+.gal-servicios__main-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #221C15;
+  background-image:
+    radial-gradient(100% 58% at 52% 30%, rgba(216, 184, 118, 0.24) 0%, rgba(196, 168, 110, 0.08) 48%, transparent 74%),
+    linear-gradient(115deg, rgba(196, 168, 110, 0.08) 0%, transparent 46%),
+    radial-gradient(120% 112% at 50% 118%, rgba(0, 0, 0, 0.5) 0%, transparent 62%),
+    linear-gradient(150deg, #3A3128 0%, #262019 55%, #161310 100%);
+  background-size: cover;
+  background-position: center;
+  filter: saturate(0.72) contrast(1.1) brightness(1.04);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.gal-servicios__main-photo::before {
+  content: '';
+  position: absolute;
+  top: 16%;
+  bottom: 16%;
+  left: 28%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(196, 168, 110, 0.06) 50%, transparent);
+  pointer-events: none;
+}
+
+.gal-servicios__main-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+  background-size: 150px 150px;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.gal-servicios__main-link:hover .gal-servicios__main-photo,
+.gal-servicios__main-link:focus-visible .gal-servicios__main-photo {
+  transform: scale(1.02);
+}
+
+.gal-servicios__main-link:focus-visible {
+  outline: 1px solid var(--color-gold);
+  outline-offset: 4px;
+}
+
+/* --- Dato técnico premium — 200 Mbps --- */
+
+.gal-servicios__stat {
+  grid-area: stat;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: clamp(20px, 3vh, 28px);
+}
+
+.gal-servicios__stat-value {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: clamp(2.75rem, 5.6vw, 4.75rem);
+  font-weight: var(--weight-heading-light);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-gold);
+}
+
+.gal-servicios__stat-label {
+  display: block;
+  margin-top: var(--space-12);
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-ivory);
+  opacity: 0.6;
+}
+
+/* --- Servicios — zona vertical editorial --- */
+
+.gal-servicios__list {
+  grid-area: list;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.gal-servicios__item {
+  display: grid;
+  grid-template-columns: clamp(2.25rem, 2.6vw, 3rem) minmax(0, 1fr);
+  column-gap: clamp(14px, 1.8vw, 24px);
+  padding: clamp(20px, 2.6vh, 30px) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.gal-servicios__item:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.gal-servicios__item-num {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.125rem;
+  line-height: 1;
+  color: var(--color-gold);
+  opacity: 0.7;
+}
+
+.gal-servicios__item-title {
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-ivory);
+  opacity: 0.9;
+}
+
+.gal-servicios__item-desc {
+  margin: var(--space-8) 0 0;
+  font-family: var(--font-body);
+  font-size: var(--text-body-small);
+  font-weight: var(--weight-body-light);
+  line-height: 1.7;
+  color: var(--color-gray-warm);
+  opacity: 0.8;
+}
+
+/* Mención discreta — ajustable cuando se confirme la operación */
+.gal-servicios__item-note {
+  display: block;
+  margin-top: var(--space-8);
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: var(--text-body-small);
+  color: var(--color-gold);
+  opacity: 0.6;
+}
+
+/* --- Cierre editorial --- */
+
+.gal-servicios__closing {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  margin-top: clamp(40px, 6vh, 64px);
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 0.9375rem;
+  color: var(--color-gray-warm);
+  opacity: 0.75;
+}
+
+.gal-servicios__closing-mark {
+  width: 48px;
+  height: 1px;
+  background: var(--color-gold);
+  opacity: 0.35;
+}
+
+/* ===========================
+   ENTRADA EN SCROLL — movimiento suave
+   =========================== */
+
+.gal-servicios [data-sv] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.gal-servicios.is-visible [data-sv] {
+  opacity: 1;
+  transform: none;
+}
+
+.gal-servicios.is-visible [data-sv="0"] { transition-delay: 40ms; }
+.gal-servicios.is-visible [data-sv="1"] { transition-delay: 140ms; }
+.gal-servicios.is-visible [data-sv="2"] { transition-delay: 240ms; }
+.gal-servicios.is-visible [data-sv="3"] { transition-delay: 340ms; }
+.gal-servicios.is-visible [data-sv="4"] { transition-delay: 440ms; }
+.gal-servicios.is-visible [data-sv="5"] { transition-delay: 320ms; }
+.gal-servicios.is-visible [data-sv="6"] { transition-delay: 760ms; }
+.gal-servicios.is-visible [data-sv="7"] { transition-delay: 480ms; }
+.gal-servicios.is-visible [data-sv="8"] { transition-delay: 560ms; }
+.gal-servicios.is-visible [data-sv="9"] { transition-delay: 640ms; }
+.gal-servicios.is-visible [data-sv="10"] { transition-delay: 720ms; }
+.gal-servicios.is-visible [data-sv="11"] { transition-delay: 840ms; }
+
+/* La fotografía usa clip-path reveal; sin translate en ella */
+.gal-servicios__main[data-sv] {
+  transform: none;
+  clip-path: inset(0 0 100% 0);
+  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+              clip-path 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gal-servicios.is-visible .gal-servicios__main {
+  clip-path: inset(0 0 0 0);
+}
+
+/* ===========================
+   TABLET — 768–1024px
+   =========================== */
+
+@media (max-width: 1024px) {
+  .gal-servicios__visual {
+    padding-top: calc(var(--navbar-height) + 32px);
+    column-gap: clamp(28px, 4vw, 56px);
+  }
+
+  .gal-servicios__index {
+    top: calc(var(--navbar-height) + 32px);
+  }
+
+  .gal-servicios__title {
+    font-size: clamp(1.9rem, 4.5vw, 2.6rem);
+  }
+
+  .gal-servicios__side {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 1.05fr);
+    column-gap: clamp(20px, 3vw, 32px);
+  }
+}
+
+/* ===========================
+   MOBILE — ≤768px
+   Orden: eyebrow → título → párrafo → fotografía → dato 200 Mbps →
+   servicios 01–04 → frase final. Sin cards horizontales.
+   =========================== */
+
+@media (max-width: 768px) {
+  .gal-servicios {
+    min-height: 100svh;
+    overflow-x: clip;
+  }
+
+  .gal-servicios__visual {
+    min-height: 100svh;
+    padding: calc(var(--navbar-height) + 20px) clamp(20px, 6vw, 24px) 72px;
+    grid-template-columns: 1fr;
+  }
+
+  .gal-servicios__index {
+    top: calc(var(--navbar-height) + 20px);
+    right: clamp(20px, 6vw, 24px);
+  }
+
+  .gal-servicios__title {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+  }
+
+  .gal-servicios__lede {
+    max-width: 100%;
+  }
+
+  .gal-servicios__editorial {
+    margin-top: clamp(40px, 6vh, 56px);
+  }
+
+  .gal-servicios__side {
+    display: block;
+    margin-top: clamp(44px, 7vh, 60px);
+  }
+
+  .gal-servicios__main {
+    width: 100%;
+  }
+
+  .gal-servicios__stat {
+    margin-top: clamp(28px, 4vh, 40px);
+  }
+
+  .gal-servicios__stat-value {
+    font-size: clamp(2.6rem, 12vw, 3.5rem);
+  }
+
+  .gal-servicios__list {
+    margin-top: clamp(28px, 4vh, 40px);
+  }
+
+  .gal-servicios__closing {
+    grid-column: auto;
+    margin-top: clamp(36px, 5vh, 48px);
+  }
+}
+
+/* ===========================
+   SMALL MOBILE — ≤480px
+   =========================== */
+
+@media (max-width: 480px) {
+  .gal-servicios__visual {
+    padding-left: clamp(20px, 6.25vw, 24px);
+    padding-right: clamp(20px, 6.25vw, 24px);
+  }
+
+  .gal-servicios__title {
+    font-size: clamp(1.65rem, 8.5vw, 2.1rem);
+  }
+
+  .gal-servicios__item {
+    grid-template-columns: 2rem minmax(0, 1fr);
+  }
+}
+
+/* ===========================
+   REDUCED MOTION — sección 4
+   =========================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .gal-servicios [data-sv],
+  .gal-servicios__main {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: inset(0 0 0 0) !important;
+    transition: none !important;
+  }
+
+  .gal-servicios__main-photo {
+    transform: none !important;
+    transition: none !important;
+  }
+}
