@@ -560,6 +560,134 @@
     })();
   </script>
 
+  <!-- ================================================================
+       SECCIÓN 6 — CONTACTO / UBICACIÓN
+       "Cartago está más cerca de lo que imaginas."
+       Último momento editorial antes del footer: cercanía, confianza
+       y tranquilidad. Sin formulario, sin mapa incrustado, sin iconos.
+       Los datos prácticos usan placeholders claros, listos para
+       reemplazar por la información real cuando esté confirmada.
+       ================================================================ -->
+  <section class="gal-contacto" id="contacto">
+
+    <!-- Fondo: mismo negro profundo + textura papel + grano -->
+    <div class="gal-contacto__bg" aria-hidden="true"></div>
+
+    <div class="gal-contacto__visual">
+
+      <!-- Numeración de sección — continuidad con 01–05 -->
+      <span class="gal-contacto__index" data-ct="0">06 / Contacto</span>
+
+      <!-- Columna izquierda — el cierre narrativo -->
+      <div class="gal-contacto__left">
+        <span class="gal-contacto__overline" data-ct="1">Contacto</span>
+        <h2 class="gal-contacto__title" data-ct="2">
+          <span class="gal-contacto__title-line">Cartago está más cerca</span>
+          <span class="gal-contacto__title-line">de lo que imaginas.</span>
+          <span class="gal-contacto__title-line gal-contacto__title-line--em">Y aquí empieza la experiencia.</span>
+        </h2>
+        <p class="gal-contacto__lede" data-ct="3">
+          Estamos aquí para recibirte, ayudarte
+          y hacer que tu estancia sea sencilla
+          desde el primer momento.
+        </p>
+      </div>
+
+      <!-- Columna derecha — información práctica, limpia -->
+      <div class="gal-contacto__side">
+
+        <div class="gal-contacto__block" data-ct="4">
+          <span class="gal-contacto__block-label">Ubicación</span>
+          <p class="gal-contacto__block-location">
+            Cartago · Valle del Cauca<br>
+            Colombia
+          </p>
+        </div>
+
+        <div class="gal-contacto__block" data-ct="5">
+          <span class="gal-contacto__block-label">Llegar</span>
+          <p class="gal-contacto__block-note">
+            <!-- TODO: reemplazar por la dirección real de la propiedad -->
+            Dirección de la propiedad<br>
+            Indicaciones desde el aeropuerto<br>
+            Información de acceso
+          </p>
+        </div>
+
+        <div class="gal-contacto__block" data-ct="6">
+          <span class="gal-contacto__block-label">Contacto</span>
+          <div class="gal-contacto__block-contact">
+            <!-- TODO: reemplazar href por https://wa.me/57XXXXXXXXXX -->
+            <a class="gal-contacto__link" href="#" data-placeholder="whatsapp">+57 XXX XXX XXXX</a>
+            <a class="gal-contacto__link" href="mailto:correo@dianaysans.com">correo@dianaysans.com</a>
+          </div>
+        </div>
+
+        <div class="gal-contacto__actions" data-ct="7">
+          <!-- TODO: enlazar WhatsApp cuando el número real esté configurado -->
+          <a class="gal-contacto__cta" href="#" data-placeholder="whatsapp">
+            Escríbenos
+            <span class="gal-contacto__cta-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <!-- TODO: enlazar a Google Maps cuando se confirme la ubicación -->
+          <a class="gal-contacto__cta gal-contacto__cta--quiet" href="#" data-placeholder="map">
+            Ver ubicación
+            <span class="gal-contacto__cta-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Despedida editorial -->
+      <p class="gal-contacto__closing" data-ct="8">Hasta pronto.</p>
+
+    </div>
+
+  </section>
+
+  <!-- Entrada en scroll de la sección 6 — movimiento suave -->
+  <script>
+    (function() {
+      'use strict';
+      var section = document.querySelector('.gal-contacto');
+      if (!section) return;
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              section.classList.add('is-visible');
+              observer.unobserve(section);
+            }
+          });
+        }, { threshold: 0.15 });
+        observer.observe(section);
+      } else {
+        section.classList.add('is-visible');
+      }
+    })();
+  </script>
+
+  <!-- FOOTER — transición final -->
+  <footer class="gal-footer">
+    <div class="gal-footer__inner">
+      <div class="gal-footer__top">
+        <span class="gal-footer__brand">Diana <span>&amp;</span> Sans</span>
+        <span class="gal-footer__location">Cartago · Valle del Cauca · Colombia</span>
+      </div>
+      <div class="gal-footer__divider" aria-hidden="true"></div>
+      <div class="gal-footer__bottom">
+        <span class="gal-footer__copyright">&copy; 2026 Diana &amp; Sans</span>
+        <nav class="gal-footer__nav" aria-label="Pie de página">
+          <a class="gal-footer__link" href="index.html">Inicio</a>
+          <a class="gal-footer__link" href="espacios.html">Espacios</a>
+          <a class="gal-footer__link" href="experiencias.html">Experiencias</a>
+          <a class="gal-footer__link" href="#reservar">Reservar</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
   <script src="assets/js/main.js"></script>
 
   <!-- Entrada cinematográfica del hero — Galería -->
