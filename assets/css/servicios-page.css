@@ -7,13 +7,17 @@
 
    Composición: HERO en dos grandes áreas en rejilla editorial.
    1) IZQUIERDA — identificación (SERVICIOS / 01 · SERVICIOS),
-      declaración principal y la promesa de la estancia.
-   2) DERECHA — pieza visual protagonista + referencia editorial.
-   La última línea del titular (itálica dorada) empuja suavemente
-   hacia el marco, encontrándose con el encuadre sin vivir sobre él.
+      declaración principal en dos líneas y la promesa de la
+      estancia. El titular gobierna; la línea itálica dorada
+      funciona como acento, no como segundo titular.
+   2) DERECHA — pieza visual protagonista con lectura fotográfica
+      (interior con luz cálida de ventana) y referencia editorial
+      en la esquina inferior de la imagen.
 
    Entrada: cada elemento [data-sr] se revela escalonadamente con
    la clase .is-loaded que inyecta el script inline de la página.
+   Los elementos son visibles por defecto; la animación solo
+   embellece el arranque, nunca los oculta si el script falla.
 
    Seguridad horizontal:
    - Nunca width:100vw en internos.
@@ -91,7 +95,7 @@
   min-height: 100svh;
   margin: 0 auto;
   box-sizing: border-box;
-  padding: calc(var(--navbar-height) + 44px) var(--grid-page-margin) clamp(120px, 14vh, 144px);
+  padding: calc(var(--navbar-height) + 44px) var(--grid-page-margin) clamp(112px, 13vh, 136px);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -134,7 +138,7 @@
   align-items: start;
   gap: clamp(48px, 6vw, 96px);
   width: 100%;
-  margin-top: clamp(48px, 8vh, 72px);
+  margin-top: clamp(40px, 7vh, 64px);
 }
 
 /* ===========================
@@ -142,15 +146,17 @@
    =========================== */
 
 .srv-hero__content {
-  max-width: 620px;
-  padding-top: clamp(24px, 5vh, 48px);
+  max-width: 700px;
+  padding-top: clamp(20px, 4vh, 40px);
 }
 
+/* Titular — reducido para equilibrar el peso visual de la
+   columna. Dos líneas, la segunda como acento itálico. */
 .srv-hero__title {
   font-family: var(--font-heading);
-  font-size: clamp(2.35rem, 5.5vw, 4.6rem);
+  font-size: clamp(1.9rem, 4.3vw, 3.6rem);
   font-weight: var(--weight-heading-light);
-  line-height: 1.04;
+  line-height: 1.06;
   letter-spacing: -0.02em;
   color: var(--color-ivory);
 }
@@ -159,14 +165,16 @@
   display: block;
 }
 
-/* Golpe emocional — "para sentirte como en casa." Se desplaza
-   suavemente hacia el marco como continuidad del fotolibro. */
+/* Acento, no segundo titular: ligeramente más pequeño y con un
+   dorado desaturado. Se desplaza suavemente hacia el marco como
+   continuidad del fotolibro. */
 .srv-hero__title-line--em {
-  margin-top: 0.1em;
-  margin-left: clamp(1.5rem, 4vw, 3.5rem);
+  margin-top: 0.12em;
+  margin-left: clamp(1rem, 2.5vw, 2.75rem);
   font-style: italic;
   font-weight: var(--weight-heading-light);
-  color: var(--color-gold);
+  font-size: clamp(1.45rem, 3.4vw, 2.9rem);
+  color: #C0AE83;
 }
 
 .srv-hero__lede {
@@ -180,13 +188,14 @@
   color: var(--color-gray-warm);
 }
 
-/* --- Detalle editorial: línea dorada + frase en serif itálica --- */
+/* --- Detalle editorial: firma. Línea dorada + frase en serif
+   itálica. Mucho aire respecto al párrafo. --- */
 
 .srv-hero__detail {
   display: flex;
   align-items: center;
   gap: var(--space-24);
-  margin-top: clamp(32px, 5vh, 48px);
+  margin-top: clamp(56px, 9vh, 88px);
 }
 
 .srv-hero__detail-mark {
@@ -211,8 +220,9 @@
    =========================== */
 
 .srv-hero__frame {
+  position: relative;
   width: clamp(300px, 30vw, 460px);
-  margin-top: clamp(24px, 4vh, 40px);
+  margin-top: clamp(28px, 5vh, 48px);
 }
 
 /* Envoltorio clicable — toda la superficie invita a entrar */
@@ -222,48 +232,51 @@
   text-decoration: none;
 }
 
-/* Superficie fotográfica — lista para aceptar imagen sin reconstruir.
-   @FOTO: para poner la fotografía real, sustituye las capas de gradiente
-   de background-image por url('../img/servicios-hero.jpg'); conserva el
-   grano (::after) y la línea vertical (::before) si quieres atmósfera.
-   Ajusta el tono con el filter. */
+/* Superficie fotográfica — placeholder con lectura fotográfica:
+   interior arquitectónico, luz cálida de ventana, textura de
+   pared, sombras profundas y overlay negro suave.
+   @FOTO: para poner la fotografía real, sustituye las capas de
+   background-image por url('../img/servicios-hero.jpg'); conserva
+   el haz de luz (::before) y el grano (::after) si quieres
+   atmósfera. Ajusta el tono con el filter. */
 .srv-hero__image {
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 5;
   box-sizing: border-box;
   overflow: hidden;
-  background-color: #0D0D0D;
+  background-color: #0E0C0B;
   background-image:
-    radial-gradient(130% 90% at 75% 15%, rgba(196, 168, 110, 0.11) 0%, rgba(196, 168, 110, 0.03) 42%, transparent 64%),
-    radial-gradient(150% 120% at 12% 100%, rgba(196, 168, 110, 0.05) 0%, transparent 55%),
-    radial-gradient(130% 130% at 50% 50%, transparent 58%, rgba(0, 0, 0, 0.5) 100%),
-    linear-gradient(165deg, #171310 0%, #0E0D0C 48%, #0A0A0A 100%);
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.014) 0 1px, transparent 1px 4px),
+    radial-gradient(130% 130% at 50% 42%, transparent 42%, rgba(0, 0, 0, 0.78) 100%),
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.32) 0 1px, transparent 1px 58px),
+    linear-gradient(115deg, rgba(196, 168, 110, 0.18) 0%, rgba(196, 168, 110, 0.06) 28%, transparent 54%),
+    radial-gradient(85% 65% at 32% 26%, rgba(196, 168, 110, 0.1) 0%, transparent 62%),
+    linear-gradient(168deg, #1C1613 0%, #13100E 48%, #0A0908 100%);
   background-size: cover;
   background-position: center;
-  filter: saturate(0.8) contrast(1.08);
+  filter: saturate(0.75) contrast(1.05);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  opacity: 0;
-  transform: scale(1.05);
-  transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  transform: scale(1.04);
+  transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
 }
 
 .srv-hero.is-loaded .srv-hero__image {
-  opacity: 1;
   transform: scale(1);
 }
 
-/* Línea vertical dorada extremadamente tenue — solo textura, no imagen */
+/* Haz de luz cálida entrando por una ventana — difuso, superior
+   izquierda. Sugiere el interior sin ser una imagen literal. */
 .srv-hero__image::before {
   content: '';
   position: absolute;
-  top: 12%;
-  bottom: 12%;
-  left: 50%;
-  width: 1px;
-  background: linear-gradient(180deg, transparent, rgba(196, 168, 110, 0.07) 50%, transparent);
+  top: -10%;
+  left: -8%;
+  width: 72%;
+  height: 90%;
+  background: linear-gradient(118deg, rgba(196, 168, 110, 0.16) 0%, rgba(196, 168, 110, 0.04) 46%, transparent 78%);
+  filter: blur(22px);
   pointer-events: none;
 }
 
@@ -290,44 +303,57 @@
   outline-offset: 4px;
 }
 
-/* --- Caption / referencia editorial --- */
+/* --- Caption / referencia editorial — esquina inferior izquierda
+   de la imagen, sobre un fondo oscuro. Conecta con Galería. --- */
 
 .srv-hero__caption {
-  margin-top: var(--space-24);
+  position: absolute;
+  left: 24px;
+  bottom: 20px;
+  z-index: 1;
+  margin: 0;
   font-family: var(--font-body);
   font-size: var(--text-caption);
   font-weight: var(--weight-body-medium);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--color-gray-warm);
-  opacity: 0.85;
+  color: rgba(246, 242, 235, 0.9);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.75), 0 1px 2px rgba(0, 0, 0, 0.55);
+  pointer-events: none;
 }
 
 /* ===========================
    ENTRADA CINEMATOGRÁFICA — lenta, escalonada
+   Los elementos son visibles por defecto; la animación solo se
+   dispara con .is-loaded, así las etiquetas editoriales nunca
+   quedan ocultas aunque el script falle.
    =========================== */
 
 .srv-hero [data-sr] {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 1.5s cubic-bezier(0.16, 1, 0.3, 1),
-              transition-delay 0s;
-  will-change: opacity, transform;
-}
-
-.srv-hero.is-loaded [data-sr] {
   opacity: 1;
   transform: none;
 }
 
-.srv-hero [data-sr="0"] { transition-delay: 0.2s; }
-.srv-hero [data-sr="1"] { transition-delay: 0.4s; }
-.srv-hero [data-sr="2"] { transition-delay: 0.6s; }
-.srv-hero [data-sr="3"] { transition-delay: 0.8s; }
-.srv-hero [data-sr="4"] { transition-delay: 1s; }
-.srv-hero [data-sr="5"] { transition-delay: 1.2s; }
-.srv-hero [data-sr="6"] { transition-delay: 1.4s; }
+.srv-hero.is-loaded [data-sr] {
+  animation-name: srvReveal;
+  animation-duration: 1.4s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: backwards;
+  animation-delay: var(--sr-delay, 0s);
+}
+
+.srv-hero [data-sr="0"] { --sr-delay: 0.2s; }
+.srv-hero [data-sr="1"] { --sr-delay: 0.4s; }
+.srv-hero [data-sr="2"] { --sr-delay: 0.6s; }
+.srv-hero [data-sr="3"] { --sr-delay: 0.8s; }
+.srv-hero [data-sr="4"] { --sr-delay: 1s; }
+.srv-hero [data-sr="5"] { --sr-delay: 1.2s; }
+.srv-hero [data-sr="6"] { --sr-delay: 1.4s; }
+
+@keyframes srvReveal {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: none; }
+}
 
 /* ===========================
    TABLET — 768–1024px
@@ -344,14 +370,6 @@
 
   .srv-hero__layout {
     gap: clamp(32px, 4.5vw, 48px);
-  }
-
-  .srv-hero__title {
-    font-size: clamp(2rem, 5.7vw, 3.7rem);
-  }
-
-  .srv-hero__title-line--em {
-    margin-left: clamp(1rem, 3vw, 2.5rem);
   }
 
   .srv-hero__frame {
@@ -388,7 +406,7 @@
   .srv-hero__layout {
     grid-template-columns: 1fr;
     gap: 0;
-    margin-top: clamp(40px, 7vh, 56px);
+    margin-top: clamp(32px, 6vh, 48px);
   }
 
   .srv-hero__content {
@@ -398,13 +416,14 @@
 
   .srv-hero__title {
     width: 100%;
-    font-size: clamp(1.8rem, 8.8vw, 2.7rem);
+    font-size: clamp(1.7rem, 8vw, 2.3rem);
     line-height: 1.08;
   }
 
   .srv-hero__title-line--em {
-    margin-left: clamp(1.4rem, 6vw, 2.4rem);
     margin-top: 0.12em;
+    margin-left: clamp(1rem, 5vw, 1.8rem);
+    font-size: clamp(1.4rem, 6.4vw, 1.95rem);
   }
 
   .srv-hero__lede {
@@ -413,7 +432,7 @@
   }
 
   .srv-hero__detail {
-    margin-top: clamp(28px, 4vh, 36px);
+    margin-top: clamp(48px, 8vh, 64px);
   }
 
   .srv-hero__frame {
@@ -427,7 +446,8 @@
   }
 
   .srv-hero__caption {
-    margin-top: var(--space-16);
+    left: 16px;
+    bottom: 14px;
   }
 }
 
@@ -441,10 +461,6 @@
     padding-right: clamp(20px, 6.25vw, 24px);
   }
 
-  .srv-hero__title {
-    font-size: clamp(1.75rem, 10vw, 2.5rem);
-  }
-
   .srv-hero__index {
     font-size: 0.4375rem;
   }
@@ -455,9 +471,15 @@
    =========================== */
 
 @media (prefers-reduced-motion: reduce) {
-  .srv-hero [data-sr],
-  .srv-hero__image {
+  .srv-hero [data-sr] {
+    animation: none !important;
     opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .srv-hero__image,
+  .srv-hero__image-link:hover .srv-hero__image,
+  .srv-hero__image-link:focus-visible .srv-hero__image {
     transform: none !important;
     transition: none !important;
   }
