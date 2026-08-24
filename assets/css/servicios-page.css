@@ -224,7 +224,7 @@
 .srv-hero__foot {
   width: 100%;
   margin-top: auto;
-  padding-top: clamp(20px, 3vh, 28px);
+  padding-top: clamp(28px, 4vh, 38px);
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   display: flex;
   align-items: baseline;
@@ -244,11 +244,11 @@
 
 .srv-hero__foot-items {
   font-family: var(--font-body);
-  font-size: 0.5625rem;
+  font-size: 0.625rem;
   font-weight: var(--weight-body-light);
-  letter-spacing: 0.26em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(246, 242, 235, 0.62);
+  color: rgba(246, 242, 235, 0.66);
   text-align: right;
 }
 
@@ -270,13 +270,16 @@
 }
 
 /* Superficie fotográfica — placeholder con lectura arquitectónica
-   clara: pared cálida iluminada, ventana con montantes verticales,
-   luz de día diagonal y piso en sombra. Se percibe "alojamiento"
-   sin dejar de ser oscura y elegante.
+   clara: pared cálida iluminada, ventana de piso a techo con
+   montantes verticales y traviesa, luz de día diagonal y piso en
+   sombra. Se percibe "alojamiento" sin dejar de ser oscura y
+   elegante.
    @FOTO: para poner la fotografía real, sustituye las capas de
    background-image por url('../img/servicios-hero.jpg'); conserva
    el haz de luz (::before) y el grano (::after) si quieres
-   atmósfera. Ajusta el tono con el filter. */
+   atmósfera. La foto debe ser arquitectónica/interior real de
+   Diana & Sans — vertical 4/5, oscura pero con suficiente
+   contraste para que se lean materia, luz y volumen. */
 .srv-hero__image {
   position: relative;
   width: 100%;
@@ -287,7 +290,8 @@
   background-image:
     repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.016) 0 1px, transparent 1px 4px),
     radial-gradient(135% 125% at 50% 42%, transparent 52%, rgba(0, 0, 0, 0.62) 100%),
-    repeating-linear-gradient(90deg, rgba(26, 20, 15, 0.5) 0 2px, transparent 2px 62px),
+    linear-gradient(180deg, transparent 37.6%, rgba(26, 20, 15, 0.55) 38%, rgba(26, 20, 15, 0.55) calc(38% + 2px), transparent calc(38% + 2px)),
+    repeating-linear-gradient(90deg, rgba(26, 20, 15, 0.55) 0 2px, transparent 2px 62px),
     linear-gradient(0deg, rgba(31, 24, 18, 0.55) 0%, transparent 22%),
     linear-gradient(115deg, rgba(228, 198, 140, 0.34) 0%, rgba(214, 182, 124, 0.16) 32%, transparent 58%),
     radial-gradient(92% 68% at 30% 24%, rgba(230, 200, 142, 0.22) 0%, transparent 64%),
