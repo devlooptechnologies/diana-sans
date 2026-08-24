@@ -446,6 +446,75 @@
 
   </section>
 
+  <!-- ================================================================
+       SECCIÓN 06 — RESERVA (CIERRE)
+       "Quizás este sea tu próximo lugar. Nos vemos en Cartago."
+       Último capítulo: la intención se vuelve acción sin agresión.
+       Titular amplio ligeramente desplazado del centro, fotografía
+       lateral muy integrada al negro (~22%), un único botón con
+       borde dorado y un enlace discreto de contacto. Detalles
+       mínimos en los extremos inferiores.
+       @FOTO: la imagen real va en assets/img/reserva.jpg — interior
+       de Diana & Sans (habitación, sala o ventana), vertical 3/4,
+       oscura y cálida, sin personas. Mientras no exista se muestra
+       un placeholder; el tratamiento oscuro se aplica solo.
+       ================================================================ -->
+  <section class="srv-fin" id="reserva">
+
+    <div class="srv-fin__inner">
+
+      <!-- Cabecera editorial -->
+      <header class="srv-fin__head">
+        <span class="srv-fin__overline" data-fn="0">06 / Reserva</span>
+        <span class="srv-fin__index" data-fn="1">Diana &amp; Sans</span>
+      </header>
+
+      <!-- Cierre — titular, texto y acciones -->
+      <div class="srv-fin__stage">
+
+        <div class="srv-fin__content">
+          <h2 class="srv-fin__title" data-fn="2">
+            <span class="srv-fin__title-line">Quizás este sea</span>
+            <span class="srv-fin__title-line">tu próximo lugar.</span>
+          </h2>
+          <p class="srv-fin__accent" data-fn="3">Nos vemos en Cartago.</p>
+          <p class="srv-fin__lede" data-fn="4">
+            Un espacio para llegar, instalarte y quedarte
+            el tiempo que necesites.
+          </p>
+
+          <div class="srv-fin__actions">
+            <a class="srv-fin__cta" href="index.html#reservar" data-fn="5">
+              <span>Reservar ahora</span>
+              <span class="srv-fin__cta-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="srv-fin__write" href="index.html#contacto" data-fn="6">
+              ¿Tienes alguna pregunta? Escríbenos
+              <span class="srv-fin__write-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Pieza fotográfica lateral — discreta, integrada al negro.
+             En pantallas pequeñas baja debajo del contenido. -->
+        <figure class="srv-fin__figure">
+          <div class="srv-fin__photo" role="img" aria-label="Interior de Diana &amp; Sans en penumbra cálida — el lugar que podría ser tuyo">
+            <img class="srv-fin__photo-img" src="assets/img/reserva.jpg" alt="" loading="lazy" onerror="this.remove()">
+          </div>
+        </figure>
+
+      </div>
+
+      <!-- Detalles editoriales en los extremos -->
+      <footer class="srv-fin__foot">
+        <span class="srv-fin__foot-left" data-fn="7">Cartago&ensp;·&ensp;Valle del Cauca&ensp;·&ensp;Colombia</span>
+        <span class="srv-fin__foot-right" data-fn="8">Pensado para quedarse.</span>
+      </footer>
+
+    </div>
+
+  </section>
+
   <script src="assets/js/main.js"></script>
 
   <!-- Entrada cinematográfica del hero — Servicios -->
@@ -544,6 +613,27 @@
       }, { threshold: 0.1 });
 
       ctgObserver.observe(ctgSection);
+    })();
+  </script>
+
+  <!-- Revelado escalonado de la sección 06 — cierre. Visible por
+       defecto; la animación embellece al entrar en pantalla -->
+  <script>
+    (function() {
+      'use strict';
+      var finSection = document.querySelector('.srv-fin');
+      if (!finSection || !('IntersectionObserver' in window)) return;
+
+      var finObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            finSection.classList.add('is-revealed');
+            finObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.1 });
+
+      finObserver.observe(finSection);
     })();
   </script>
 </body>
