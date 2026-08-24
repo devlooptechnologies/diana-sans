@@ -198,6 +198,78 @@
 
   </section>
 
+  <!-- ================================================================
+       SECCIÓN 03 — EXPERIENCIA
+       "Lo importante no siempre se ve. Pero se siente."
+       Cambio de ritmo: de explicar QUÉ ofrecemos a mostrar CÓMO se
+       siente. Composición asimétrica de revista con dos bloques
+       fotográficos verticales de distinto tamaño —principal al
+       centro/derecha, secundaria más pequeña, más abajo y desplazada
+       a la izquierda— separados por zona negra. Textos extremadamente
+       discretos como pies editoriales. Sin cards, sin iconos.
+       @FOTO: los placeholders (.srv-exp__photo) se reemplazan por las
+       fotografías reales en assets/css/servicios-page.css. Interiores
+       reales de Diana & Sans, verticales, oscuras, luz cálida, sin
+       personas. Misma sesión fotográfica ambas.
+       ================================================================ -->
+  <section class="srv-exp" id="experiencia">
+
+    <div class="srv-exp__inner">
+
+      <!-- Cabecera editorial — label izquierda, índice derecha -->
+      <header class="srv-exp__head">
+        <span class="srv-exp__overline" data-sx="0">Experiencia</span>
+        <span class="srv-exp__index" data-sx="1">03 / Experiencia</span>
+      </header>
+
+      <!-- Titular emocional -->
+      <div class="srv-exp__intro">
+        <h2 class="srv-exp__title" data-sx="2">
+          <span class="srv-exp__title-line">Lo importante</span>
+          <span class="srv-exp__title-line">no siempre se ve.</span>
+          <span class="srv-exp__title-accent">Pero se siente.</span>
+        </h2>
+        <p class="srv-exp__lede" data-sx="3">
+          Desde el primer momento, todo está pensado para que puedas llegar,
+          instalarte y concentrarte en lo que realmente importa.
+        </p>
+      </div>
+
+      <!-- Composición asimétrica — dos piezas fotográficas -->
+      <div class="srv-exp__gallery">
+
+        <!-- Pieza principal — centro/derecha -->
+        <figure class="srv-exp__piece srv-exp__piece--main" data-sx="4">
+          <div class="srv-exp__photo srv-exp__photo--main" role="img" aria-label="Sala de Diana &amp; Sans con luz cálida de atardecer entrando por la ventana"></div>
+          <figcaption class="srv-exp__meta">
+            <span class="srv-exp__num">01</span>
+            <span class="srv-exp__phrase">Llegar sin complicaciones.</span>
+            <span class="srv-exp__note">Todo preparado para que tu llegada sea sencilla.</span>
+          </figcaption>
+        </figure>
+
+        <!-- Pieza secundaria — más pequeña, más abajo, a la izquierda -->
+        <figure class="srv-exp__piece srv-exp__piece--secondary" data-sx="5">
+          <div class="srv-exp__photo srv-exp__photo--secondary" role="img" aria-label="Escritorio de trabajo junto a la ventana, con luz cálida de lámpara — Diana &amp; Sans"></div>
+          <figcaption class="srv-exp__meta">
+            <span class="srv-exp__num">02</span>
+            <span class="srv-exp__phrase">Sentirte en casa.</span>
+            <span class="srv-exp__note">Un espacio pensado para quedarse.</span>
+          </figcaption>
+        </figure>
+
+      </div>
+
+      <!-- Detalle editorial de cierre -->
+      <footer class="srv-exp__closing" data-sx="6">
+        <span class="srv-exp__closing-mark" aria-hidden="true"></span>
+        <p class="srv-exp__closing-text">Cada detalle tiene un propósito.</p>
+      </footer>
+
+    </div>
+
+  </section>
+
   <script src="assets/js/main.js"></script>
 
   <!-- Entrada cinematográfica del hero — Servicios -->
@@ -233,6 +305,27 @@
       }, { threshold: 0.12 });
 
       observer.observe(section);
+    })();
+  </script>
+
+  <!-- Revelado escalonado de la sección 03 — mismo criterio:
+       visible por defecto, la animación embellece al entrar en pantalla -->
+  <script>
+    (function() {
+      'use strict';
+      var expSection = document.querySelector('.srv-exp');
+      if (!expSection || !('IntersectionObserver' in window)) return;
+
+      var expObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            expSection.classList.add('is-revealed');
+            expObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.1 });
+
+      expObserver.observe(expSection);
     })();
   </script>
 </body>

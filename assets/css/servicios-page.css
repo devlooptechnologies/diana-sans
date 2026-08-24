@@ -21,6 +21,13 @@
    titular asimétrico a la izquierda con interludio fotográfico
    vertical y cierre itálico dorado "Lo esencial está cuidado.".
 
+   SECCIÓN 03 — experiencia: cambio de ritmo hacia lo visual.
+   Titular emocional y composición asimétrica de revista con dos
+   piezas fotográficas verticales (principal centro/derecha ~47%,
+   secundaria izquierda más pequeña y descendida), pies editoriales
+   discretos y cierre itálico dorado "Cada detalle tiene un
+   propósito.".
+
    Entrada: cada elemento [data-sr] se revela escalonadamente con
    la clase .is-loaded que inyecta el script inline de la página.
    Los elementos son visibles por defecto; la animación solo
@@ -743,6 +750,364 @@
 .srv-services [data-ssr="8"] { --ssr-delay: 1.3s; }
 .srv-services [data-ssr="9"] { --ssr-delay: 1.55s; }
 
+/* ============================================================
+   SECCIÓN 03 — EXPERIENCIA
+   "Lo importante no siempre se ve. Pero se siente."
+   Cambio de ritmo: más visual, menos información. Composición
+   asimétrica de revista con dos piezas fotográficas verticales
+   de distinto tamaño — principal ~47% al centro/derecha,
+   secundaria ~28% más abajo y desplazada a la izquierda—
+   separadas por una columna de negro. Pies editoriales
+   discretos bajo cada pieza. Cierre itálico dorado.
+   ============================================================ */
+
+.srv-exp {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  /* Mismo negro profundo que la sección anterior: continuidad total */
+  background-color: #080808;
+  overflow-x: clip;
+}
+
+.srv-exp__inner {
+  position: relative;
+  z-index: var(--z-base);
+  width: 100%;
+  max-width: var(--grid-container);
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: clamp(112px, 15vh, 184px) var(--grid-page-margin) clamp(128px, 17vh, 200px);
+}
+
+/* --- Cabecera editorial --- */
+
+.srv-exp__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-24);
+}
+
+.srv-exp__overline {
+  font-family: var(--font-body);
+  font-size: var(--text-eyebrow);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.srv-exp__index {
+  font-family: var(--font-body);
+  font-size: 0.5rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-ivory);
+  opacity: 0.35;
+}
+
+/* --- Titular emocional --- */
+
+.srv-exp__intro {
+  margin-top: clamp(56px, 9vh, 104px);
+  max-width: 720px;
+}
+
+.srv-exp__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.9rem, 3.8vw, 3.4rem);
+  font-weight: var(--weight-heading-light);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-ivory);
+}
+
+.srv-exp__title-line {
+  display: block;
+}
+
+/* Acento itálico dorado — el gesto emocional de la sección */
+.srv-exp__title-accent {
+  display: block;
+  margin-top: 0.22em;
+  margin-left: clamp(1rem, 2.2vw, 2.25rem);
+  font-style: italic;
+  font-weight: var(--weight-heading-light);
+  font-size: clamp(1.4rem, 2.9vw, 2.5rem);
+  line-height: 1.2;
+  color: #C0AE83;
+}
+
+.srv-exp__lede {
+  margin-top: clamp(28px, 4vh, 44px);
+  max-width: 52ch;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-body-light);
+  line-height: 1.95;
+  letter-spacing: 0.015em;
+  color: var(--color-gray-warm);
+}
+
+/* --- Galería asimétrica — rejilla de 12 columnas --- */
+
+.srv-exp__gallery {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(24px, 2.5vw, 40px);
+  align-items: start;
+  margin-top: clamp(72px, 11vh, 136px);
+}
+
+.srv-exp__piece {
+  margin: 0;
+}
+
+/* Principal — centro/derecha, ~47% del ancho, vertical */
+.srv-exp__piece--main {
+  grid-column: 7 / 13;
+}
+
+/* Secundaria — izquierda, más pequeña y descendida: la tensión
+   de página de revista vive en este desnivel */
+.srv-exp__piece--secondary {
+  grid-column: 1 / 5;
+  margin-top: clamp(140px, 22vh, 264px);
+}
+
+/* @FOTO PRINCIPAL: sustituir las capas de background-image por
+   url('../img/experiencia-principal.jpg'). Sala, dormitorio o zona
+   de trabajo real de Diana & Sans. Vertical 3/4, oscura pero
+   legible, luz cálida de atardecer, sin personas. Conservar grano
+   (::after) y hairline. */
+/* @FOTO SECUNDARIA: url('../img/experiencia-detalle.jpg'). Detalle
+   del apartamento — escritorio junto a la ventana, cama o textura —
+   vertical 2/3, misma sesión que la principal. */
+
+.srv-exp__photo {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 600ms var(--ease-out), filter 600ms var(--ease-out);
+  will-change: transform;
+}
+
+.srv-exp__piece--main .srv-exp__photo {
+  aspect-ratio: 3 / 4;
+}
+
+.srv-exp__piece--secondary .srv-exp__photo {
+  aspect-ratio: 2 / 3;
+}
+
+/* Principal — sala al atardecer: ventanal encendido sobre pared
+   cálida, respaldo de sofá en sombra con su canto iluminado */
+.srv-exp__photo--main {
+  background-color: #0F0C0A;
+  background-image:
+    /* Viñeta cinematográfica */
+    radial-gradient(130% 115% at 50% 40%, transparent 46%, rgba(0, 0, 0, 0.68) 100%),
+    /* Montante vertical izquierdo del ventanal */
+    linear-gradient(90deg, transparent calc(33% - 1px), rgba(14, 11, 9, 0.75) 33%, transparent calc(33% + 1px)),
+    /* Montante vertical derecho del ventanal */
+    linear-gradient(90deg, transparent calc(66% - 1px), rgba(14, 11, 9, 0.75) 66%, transparent calc(66% + 1px)),
+    /* Travesaño horizontal */
+    linear-gradient(180deg, transparent calc(38% - 1px), rgba(14, 11, 9, 0.7) 38%, transparent calc(38% + 1px)),
+    /* Cristal encendido al atardecer */
+    linear-gradient(178deg, rgba(238, 206, 146, 0.48) 0%, rgba(212, 178, 120, 0.24) 52%, rgba(178, 148, 98, 0.09) 100%),
+    /* Canto del respaldo — línea cálida */
+    linear-gradient(180deg, transparent calc(62% - 2px), rgba(222, 190, 132, 0.22) 62%, rgba(222, 190, 132, 0.04) calc(62% + 1px), transparent calc(62% + 2px)),
+    /* Masa del sofá / zona baja en sombra */
+    linear-gradient(180deg, transparent 63%, rgba(13, 10, 8, 0.94) 76%, rgba(8, 6, 5, 0.98) 100%),
+    /* Resplandor interior reflejado */
+    linear-gradient(105deg, rgba(210, 180, 124, 0.16) 0%, rgba(196, 168, 110, 0.06) 36%, transparent 60%),
+    /* Pared cálida en penumbra */
+    linear-gradient(170deg, #33291F 0%, #1F1812 52%, #0D0A08 100%);
+  background-size:
+    cover,
+    78% 46%,
+    78% 46%,
+    78% 46%,
+    78% 46%,
+    100% 100%,
+    100% 100%,
+    cover,
+    cover;
+  background-position:
+    center,
+    50% 14%,
+    50% 14%,
+    50% 14%,
+    50% 14%,
+    center,
+    center,
+    center,
+    center;
+  background-repeat: no-repeat;
+  filter: saturate(0.88) contrast(1.05) brightness(1);
+}
+
+/* Secundaria — detalle de escritorio: charco de lámpara arriba a la
+   derecha, superficie con línea cálida, zona baja en sombra íntima */
+.srv-exp__photo--secondary {
+  background-color: #0E0B09;
+  background-image:
+    /* Viñeta íntima */
+    radial-gradient(125% 115% at 42% 36%, transparent 44%, rgba(0, 0, 0, 0.7) 100%),
+    /* Charco de luz de lámpara */
+    radial-gradient(closest-side, rgba(238, 208, 150, 0.42) 0%, rgba(226, 192, 134, 0.16) 55%, transparent 78%),
+    /* Superficie del escritorio — línea cálida */
+    linear-gradient(180deg, transparent calc(58% - 2px), rgba(224, 192, 136, 0.26) 58%, rgba(224, 192, 136, 0.05) calc(58% + 1px), transparent calc(58% + 2px)),
+    /* Masa bajo la superficie */
+    linear-gradient(180deg, transparent 59%, rgba(12, 9, 7, 0.94) 74%, rgba(7, 5, 4, 0.98) 100%),
+    /* Lavado cálido ambiente */
+    linear-gradient(115deg, rgba(206, 176, 122, 0.2) 0%, rgba(196, 168, 110, 0.07) 40%, transparent 64%),
+    /* Base en penumbra */
+    linear-gradient(168deg, #302619 0%, #1C1610 54%, #0C0908 100%);
+  background-size:
+    cover,
+    64% 40%,
+    100% 100%,
+    100% 100%,
+    cover,
+    cover;
+  background-position:
+    center,
+    68% 14%,
+    center,
+    center,
+    center,
+    center;
+  background-repeat: no-repeat;
+  filter: saturate(0.88) contrast(1.05) brightness(1);
+}
+
+/* Grano finísimo — cohesión con toda la sesión fotográfica */
+.srv-exp__photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 150px 150px;
+  opacity: 0.45;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* Microinteracción — zoom máximo 1.03 + un punto más de luz */
+@media (hover: hover) {
+  .srv-exp__piece:hover .srv-exp__photo {
+    transform: scale(1.03);
+    filter: saturate(0.9) contrast(1.05) brightness(1.08);
+  }
+}
+
+.srv-exp__piece:hover .srv-exp__photo,
+.srv-exp__piece:hover .srv-exp__meta {
+  transition-duration: 600ms;
+}
+
+/* --- Pie editorial — discreto, bajo cada pieza --- */
+
+.srv-exp__meta {
+  display: block;
+  margin-top: clamp(16px, 2.5vh, 24px);
+  transition: transform 600ms var(--ease-out);
+}
+
+@media (hover: hover) {
+  .srv-exp__piece:hover .srv-exp__meta {
+    transform: translateX(6px);
+  }
+}
+
+.srv-exp__num {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.625rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.22em;
+  color: rgba(196, 168, 110, 0.65);
+}
+
+.srv-exp__phrase {
+  display: block;
+  margin-top: var(--space-8);
+  font-family: var(--font-heading);
+  font-weight: var(--weight-heading-light);
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  letter-spacing: 0.01em;
+  color: var(--color-ivory);
+}
+
+.srv-exp__note {
+  display: block;
+  margin-top: var(--space-8);
+  max-width: 34ch;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: var(--weight-body-light);
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  color: var(--color-gray-warm);
+}
+
+/* --- Detalle editorial de cierre --- */
+
+.srv-exp__closing {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  margin-top: clamp(104px, 15vh, 168px);
+}
+
+.srv-exp__closing-mark {
+  flex: none;
+  width: 28px;
+  height: 1px;
+  background: var(--color-gold);
+  opacity: 0.85;
+}
+
+.srv-exp__closing-text {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: var(--weight-heading-light);
+  font-size: clamp(0.95rem, 1.3vw, 1.125rem);
+  letter-spacing: 0.01em;
+  color: #C0AE83;
+}
+
+/* ===========================
+   SECCIÓN 03 — ENTRADA ESCALONADA
+   Visible por defecto; la animación corre al entrar en pantalla.
+   =========================== */
+
+.srv-exp [data-sx] {
+  opacity: 1;
+  transform: none;
+}
+
+.srv-exp.is-revealed [data-sx] {
+  animation-name: srvReveal;
+  animation-duration: 1.3s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: backwards;
+  animation-delay: var(--sx-delay, 0s);
+}
+
+.srv-exp [data-sx="0"] { --sx-delay: 0s; }
+.srv-exp [data-sx="1"] { --sx-delay: 0.15s; }
+.srv-exp [data-sx="2"] { --sx-delay: 0.3s; }
+.srv-exp [data-sx="3"] { --sx-delay: 0.5s; }
+.srv-exp [data-sx="4"] { --sx-delay: 0.65s; }
+.srv-exp [data-sx="5"] { --sx-delay: 0.85s; }
+.srv-exp [data-sx="6"] { --sx-delay: 1.05s; }
+
 /* ===========================
    TABLET — 768–1024px
    =========================== */
@@ -781,6 +1146,16 @@
   .srv-services__row {
     grid-template-columns: 36px minmax(130px, 190px) 1fr;
     column-gap: var(--space-16);
+  }
+
+  /* Sección 03 */
+  .srv-exp__inner {
+    padding-top: calc(var(--navbar-height) + clamp(64px, 9vh, 96px));
+    padding-bottom: clamp(96px, 13vh, 144px);
+  }
+
+  .srv-exp__piece--secondary {
+    margin-top: clamp(96px, 16vh, 184px);
   }
 }
 
@@ -939,6 +1314,57 @@
   .srv-services__closing {
     margin-top: clamp(72px, 11vh, 104px);
   }
+
+  /* Sección 03 — una sola columna: titular → principal → secundaria */
+  .srv-exp__inner {
+    padding-top: calc(var(--navbar-height) + clamp(56px, 9vh, 88px));
+    padding-bottom: clamp(88px, 13vh, 120px);
+  }
+
+  .srv-exp__head {
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .srv-exp__intro {
+    margin-top: clamp(40px, 6vh, 56px);
+    max-width: 100%;
+  }
+
+  .srv-exp__title {
+    font-size: clamp(1.7rem, 7vw, 2.2rem);
+  }
+
+  .srv-exp__title-accent {
+    margin-left: clamp(0.75rem, 4.5vw, 1.5rem);
+    font-size: clamp(1.25rem, 5.5vw, 1.75rem);
+  }
+
+  .srv-exp__lede {
+    margin-top: clamp(24px, 4vh, 32px);
+    max-width: 100%;
+  }
+
+  .srv-exp__gallery {
+    grid-template-columns: 1fr;
+    margin-top: clamp(56px, 9vh, 80px);
+  }
+
+  .srv-exp__piece--main,
+  .srv-exp__piece--secondary {
+    grid-column: 1 / -1;
+  }
+
+  /* La secundaria conserva su carácter: más estrecha y descendida,
+     nunca convertida en card ni centrada */
+  .srv-exp__piece--secondary {
+    width: min(100%, 380px);
+    margin-top: clamp(64px, 10vh, 96px);
+  }
+
+  .srv-exp__closing {
+    margin-top: clamp(80px, 12vh, 112px);
+  }
 }
 
 /* ===========================
@@ -990,6 +1416,26 @@
 
   .srv-services__row:hover .srv-services__name,
   .srv-services__row:hover .srv-services__desc {
+    transform: none !important;
+  }
+
+  .srv-exp [data-sx] {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .srv-exp__photo,
+  .srv-exp__meta {
+    transition: none !important;
+  }
+
+  .srv-exp__piece:hover .srv-exp__photo {
+    transform: none !important;
+    filter: saturate(0.88) contrast(1.05) brightness(1) !important;
+  }
+
+  .srv-exp__piece:hover .srv-exp__meta {
     transform: none !important;
   }
 }
