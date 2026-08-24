@@ -206,11 +206,14 @@
        fotográficos verticales de distinto tamaño —principal al
        centro/derecha, secundaria más pequeña, más abajo y desplazada
        a la izquierda— separados por zona negra. Textos extremadamente
-       discretos como pies editoriales. Sin cards, sin iconos.
-       @FOTO: los placeholders (.srv-exp__photo) se reemplazan por las
-       fotografías reales en assets/css/servicios-page.css. Interiores
-       reales de Diana & Sans, verticales, oscuras, luz cálida, sin
-       personas. Misma sesión fotográfica ambas.
+       discretos bajo cada pieza. Sin cards, sin iconos.
+       @FOTO: las fotografías reales van en assets/img/ —
+       experiencia-principal.jpg (sala/dormitorio, vertical 3/4) y
+       experiencia-detalle.jpg (escritorio/cama/ventana, vertical 2/3).
+       Mientras no existan se muestra un placeholder discreto; al
+       añadirlas, el overlay negro sutil y el grano se aplican solos.
+       Interiores reales, oscuras, luz cálida, sin personas. Misma
+       sesión fotográfica ambas.
        ================================================================ -->
   <section class="srv-exp" id="experiencia">
 
@@ -230,17 +233,23 @@
           <span class="srv-exp__title-accent">Pero se siente.</span>
         </h2>
         <p class="srv-exp__lede" data-sx="3">
-          Desde el primer momento, todo está pensado para que puedas llegar,
-          instalarte y concentrarte en lo que realmente importa.
+          Desde el primer momento, todo está pensado para que llegues,
+          te instales y simplemente disfrutes.
         </p>
       </div>
 
-      <!-- Composición asimétrica — dos piezas fotográficas -->
+      <!-- Composición asimétrica — dos piezas fotográficas.
+           Las imágenes reales viven en assets/img/ (experiencia-
+           principal.jpg y experiencia-detalle.jpg): mientras no
+           existan, se muestra un placeholder discreto; al añadirlas,
+           el overlay negro sutil y el grano se aplican solos. -->
       <div class="srv-exp__gallery">
 
         <!-- Pieza principal — centro/derecha -->
         <figure class="srv-exp__piece srv-exp__piece--main" data-sx="4">
-          <div class="srv-exp__photo srv-exp__photo--main" role="img" aria-label="Sala de Diana &amp; Sans con luz cálida de atardecer entrando por la ventana"></div>
+          <div class="srv-exp__photo srv-exp__photo--main" role="img" aria-label="Interior de Diana &amp; Sans con luz cálida de atardecer entrando por la ventana">
+            <img class="srv-exp__photo-img" src="assets/img/experiencia-principal.jpg" alt="" loading="lazy" onerror="this.remove()">
+          </div>
           <figcaption class="srv-exp__meta">
             <span class="srv-exp__num">01</span>
             <span class="srv-exp__phrase">Llegar sin complicaciones.</span>
@@ -250,7 +259,9 @@
 
         <!-- Pieza secundaria — más pequeña, más abajo, a la izquierda -->
         <figure class="srv-exp__piece srv-exp__piece--secondary" data-sx="5">
-          <div class="srv-exp__photo srv-exp__photo--secondary" role="img" aria-label="Escritorio de trabajo junto a la ventana, con luz cálida de lámpara — Diana &amp; Sans"></div>
+          <div class="srv-exp__photo srv-exp__photo--secondary" role="img" aria-label="Detalle íntimo del apartamento — escritorio junto a la ventana con luz cálida de lámpara">
+            <img class="srv-exp__photo-img" src="assets/img/experiencia-detalle.jpg" alt="" loading="lazy" onerror="this.remove()">
+          </div>
           <figcaption class="srv-exp__meta">
             <span class="srv-exp__num">02</span>
             <span class="srv-exp__phrase">Sentirte en casa.</span>

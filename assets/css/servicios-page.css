@@ -777,7 +777,7 @@
   max-width: var(--grid-container);
   margin: 0 auto;
   box-sizing: border-box;
-  padding: clamp(112px, 15vh, 184px) var(--grid-page-margin) clamp(128px, 17vh, 200px);
+  padding: clamp(96px, 13vh, 152px) var(--grid-page-margin) clamp(104px, 14vh, 160px);
 }
 
 /* --- Cabecera editorial --- */
@@ -811,7 +811,7 @@
 /* --- Titular emocional --- */
 
 .srv-exp__intro {
-  margin-top: clamp(56px, 9vh, 104px);
+  margin-top: clamp(48px, 8vh, 88px);
   max-width: 720px;
 }
 
@@ -858,33 +858,32 @@
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: clamp(24px, 2.5vw, 40px);
   align-items: start;
-  margin-top: clamp(72px, 11vh, 136px);
+  margin-top: clamp(56px, 8.5vh, 104px);
 }
 
 .srv-exp__piece {
   margin: 0;
 }
 
-/* Principal — centro/derecha, ~47% del ancho, vertical */
+/* Principal — protagonista, centro/derecha, ~55% del ancho */
 .srv-exp__piece--main {
-  grid-column: 7 / 13;
+  grid-column: 6 / 13;
 }
 
-/* Secundaria — izquierda, más pequeña y descendida: la tensión
-   de página de revista vive en este desnivel */
+/* Secundaria — izquierda, claramente más pequeña y descendida:
+   el desnivel de página de revista vive en este desfase */
 .srv-exp__piece--secondary {
   grid-column: 1 / 5;
-  margin-top: clamp(140px, 22vh, 264px);
+  margin-top: clamp(108px, 16.5vh, 200px);
 }
 
-/* @FOTO PRINCIPAL: sustituir las capas de background-image por
-   url('../img/experiencia-principal.jpg'). Sala, dormitorio o zona
-   de trabajo real de Diana & Sans. Vertical 3/4, oscura pero
-   legible, luz cálida de atardecer, sin personas. Conservar grano
-   (::after) y hairline. */
-/* @FOTO SECUNDARIA: url('../img/experiencia-detalle.jpg'). Detalle
-   del apartamento — escritorio junto a la ventana, cama o textura —
-   vertical 2/3, misma sesión que la principal. */
+/* Fotografías — estructura lista para las imágenes reales:
+   basta con añadir assets/img/experiencia-principal.jpg y
+   experiencia-detalle.jpg (interiores reales de Diana & Sans,
+   verticales, oscuras, luz cálida, sin personas, misma sesión).
+   Mientras no existan se muestra este placeholder discreto; al
+   añadir la foto, <img> la cubre y el overlay (::before) más el
+   grano (::after) se aplican solos para conservar el lenguaje. */
 
 .srv-exp__photo {
   position: relative;
@@ -895,6 +894,28 @@
   will-change: transform;
 }
 
+/* Imagen real — cubre el placeholder en cuanto existe el archivo */
+.srv-exp__photo-img {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-base);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Overlay negro muy sutil — unifica cualquier fotografía con el
+   negro profundo de la página */
+.srv-exp__photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-above);
+  background: linear-gradient(180deg, rgba(8, 8, 8, 0.18) 0%, rgba(8, 8, 8, 0.04) 42%, rgba(8, 8, 8, 0.3) 100%);
+  pointer-events: none;
+}
+
 .srv-exp__piece--main .srv-exp__photo {
   aspect-ratio: 3 / 4;
 }
@@ -903,46 +924,31 @@
   aspect-ratio: 2 / 3;
 }
 
-/* Principal — sala al atardecer: ventanal encendido sobre pared
-   cálida, respaldo de sofá en sombra con su canto iluminado */
+/* Principal (fallback) — masa cálida de atardecer sobre la pared,
+   luz difusa arriba y zona baja en sombra profunda. Sin líneas
+   duras: solo masas de luz, como una fotografía desenfocada. */
 .srv-exp__photo--main {
   background-color: #0F0C0A;
   background-image:
     /* Viñeta cinematográfica */
-    radial-gradient(130% 115% at 50% 40%, transparent 46%, rgba(0, 0, 0, 0.68) 100%),
-    /* Montante vertical izquierdo del ventanal */
-    linear-gradient(90deg, transparent calc(33% - 1px), rgba(14, 11, 9, 0.75) 33%, transparent calc(33% + 1px)),
-    /* Montante vertical derecho del ventanal */
-    linear-gradient(90deg, transparent calc(66% - 1px), rgba(14, 11, 9, 0.75) 66%, transparent calc(66% + 1px)),
-    /* Travesaño horizontal */
-    linear-gradient(180deg, transparent calc(38% - 1px), rgba(14, 11, 9, 0.7) 38%, transparent calc(38% + 1px)),
-    /* Cristal encendido al atardecer */
-    linear-gradient(178deg, rgba(238, 206, 146, 0.48) 0%, rgba(212, 178, 120, 0.24) 52%, rgba(178, 148, 98, 0.09) 100%),
-    /* Canto del respaldo — línea cálida */
-    linear-gradient(180deg, transparent calc(62% - 2px), rgba(222, 190, 132, 0.22) 62%, rgba(222, 190, 132, 0.04) calc(62% + 1px), transparent calc(62% + 2px)),
-    /* Masa del sofá / zona baja en sombra */
-    linear-gradient(180deg, transparent 63%, rgba(13, 10, 8, 0.94) 76%, rgba(8, 6, 5, 0.98) 100%),
+    radial-gradient(130% 115% at 50% 40%, transparent 46%, rgba(0, 0, 0, 0.64) 100%),
+    /* Masa de luz del ventanal — borde difuso, sin montantes */
+    radial-gradient(closest-side, rgba(240, 210, 152, 0.4) 0%, rgba(216, 184, 128, 0.18) 58%, transparent 85%),
     /* Resplandor interior reflejado */
-    linear-gradient(105deg, rgba(210, 180, 124, 0.16) 0%, rgba(196, 168, 110, 0.06) 36%, transparent 60%),
+    linear-gradient(105deg, rgba(210, 180, 124, 0.14) 0%, rgba(196, 168, 110, 0.05) 36%, transparent 60%),
+    /* Zona baja — muebles disueltos en sombra, transición suave */
+    linear-gradient(180deg, transparent 56%, rgba(222, 190, 132, 0.07) 63%, rgba(20, 15, 11, 0.38) 70%, rgba(13, 10, 8, 0.92) 80%, rgba(8, 6, 5, 0.98) 100%),
     /* Pared cálida en penumbra */
     linear-gradient(170deg, #33291F 0%, #1F1812 52%, #0D0A08 100%);
   background-size:
     cover,
-    78% 46%,
-    78% 46%,
-    78% 46%,
-    78% 46%,
-    100% 100%,
-    100% 100%,
+    84% 52%,
     cover,
+    100% 100%,
     cover;
   background-position:
     center,
-    50% 14%,
-    50% 14%,
-    50% 14%,
-    50% 14%,
-    center,
+    50% 16%,
     center,
     center,
     center;
@@ -950,46 +956,43 @@
   filter: saturate(0.88) contrast(1.05) brightness(1);
 }
 
-/* Secundaria — detalle de escritorio: charco de lámpara arriba a la
-   derecha, superficie con línea cálida, zona baja en sombra íntima */
+/* Secundaria (fallback) — charco cálido de lámpara arriba a la
+   derecha y superficie que se funde en sombra íntima */
 .srv-exp__photo--secondary {
   background-color: #0E0B09;
   background-image:
     /* Viñeta íntima */
-    radial-gradient(125% 115% at 42% 36%, transparent 44%, rgba(0, 0, 0, 0.7) 100%),
-    /* Charco de luz de lámpara */
-    radial-gradient(closest-side, rgba(238, 208, 150, 0.42) 0%, rgba(226, 192, 134, 0.16) 55%, transparent 78%),
-    /* Superficie del escritorio — línea cálida */
-    linear-gradient(180deg, transparent calc(58% - 2px), rgba(224, 192, 136, 0.26) 58%, rgba(224, 192, 136, 0.05) calc(58% + 1px), transparent calc(58% + 2px)),
-    /* Masa bajo la superficie */
-    linear-gradient(180deg, transparent 59%, rgba(12, 9, 7, 0.94) 74%, rgba(7, 5, 4, 0.98) 100%),
+    radial-gradient(125% 115% at 42% 36%, transparent 44%, rgba(0, 0, 0, 0.68) 100%),
+    /* Charco de luz de lámpara — difuso */
+    radial-gradient(closest-side, rgba(238, 208, 150, 0.36) 0%, rgba(226, 192, 134, 0.14) 55%, transparent 80%),
     /* Lavado cálido ambiente */
-    linear-gradient(115deg, rgba(206, 176, 122, 0.2) 0%, rgba(196, 168, 110, 0.07) 40%, transparent 64%),
+    linear-gradient(115deg, rgba(206, 176, 122, 0.16) 0%, rgba(196, 168, 110, 0.06) 40%, transparent 64%),
+    /* Superficie disuelta en sombra, transición progresiva */
+    linear-gradient(180deg, transparent 54%, rgba(224, 192, 136, 0.06) 61%, rgba(16, 12, 9, 0.42) 68%, rgba(12, 9, 7, 0.94) 78%, rgba(7, 5, 4, 0.98) 100%),
     /* Base en penumbra */
     linear-gradient(168deg, #302619 0%, #1C1610 54%, #0C0908 100%);
   background-size:
     cover,
     64% 40%,
-    100% 100%,
-    100% 100%,
     cover,
+    100% 100%,
     cover;
   background-position:
     center,
     68% 14%,
     center,
     center,
-    center,
     center;
   background-repeat: no-repeat;
   filter: saturate(0.88) contrast(1.05) brightness(1);
 }
 
-/* Grano finísimo — cohesión con toda la sesión fotográfica */
+/* Grano finísimo — por encima de imagen, overlay y todo */
 .srv-exp__photo::after {
   content: '';
   position: absolute;
   inset: 0;
+  z-index: 3;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   background-size: 150px 150px;
   opacity: 0.45;
@@ -1014,7 +1017,7 @@
 
 .srv-exp__meta {
   display: block;
-  margin-top: clamp(16px, 2.5vh, 24px);
+  margin-top: clamp(10px, 1.5vh, 16px);
   transition: transform 600ms var(--ease-out);
 }
 
@@ -1035,7 +1038,7 @@
 
 .srv-exp__phrase {
   display: block;
-  margin-top: var(--space-8);
+  margin-top: var(--space-4);
   font-family: var(--font-heading);
   font-weight: var(--weight-heading-light);
   font-size: clamp(1rem, 1.4vw, 1.2rem);
@@ -1045,7 +1048,7 @@
 
 .srv-exp__note {
   display: block;
-  margin-top: var(--space-8);
+  margin-top: var(--space-4);
   max-width: 34ch;
   font-family: var(--font-body);
   font-size: 0.75rem;
@@ -1061,7 +1064,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-16);
-  margin-top: clamp(104px, 15vh, 168px);
+  margin-top: clamp(80px, 11vh, 128px);
 }
 
 .srv-exp__closing-mark {
@@ -1155,7 +1158,7 @@
   }
 
   .srv-exp__piece--secondary {
-    margin-top: clamp(96px, 16vh, 184px);
+    margin-top: clamp(80px, 13vh, 144px);
   }
 }
 
@@ -1347,7 +1350,7 @@
 
   .srv-exp__gallery {
     grid-template-columns: 1fr;
-    margin-top: clamp(56px, 9vh, 80px);
+    margin-top: clamp(48px, 7vh, 64px);
   }
 
   .srv-exp__piece--main,
@@ -1359,11 +1362,11 @@
      nunca convertida en card ni centrada */
   .srv-exp__piece--secondary {
     width: min(100%, 380px);
-    margin-top: clamp(64px, 10vh, 96px);
+    margin-top: clamp(56px, 9vh, 80px);
   }
 
   .srv-exp__closing {
-    margin-top: clamp(80px, 12vh, 112px);
+    margin-top: clamp(64px, 10vh, 88px);
   }
 }
 
