@@ -515,29 +515,63 @@
   color: var(--color-gray-warm);
 }
 
-/* Interludio fotográfico — bloque vertical pequeño y discreto,
-   alineado con la sangría del acento. @FOTO: sustituir las capas de
-   background-image por url('../img/servicios-detalle.jpg'). Foto
-   arquitectónica/interior real, vertical 3/4, oscura, luz cálida,
-   mucho espacio negativo. Conservar el grano (::after). */
+/* Interludio fotográfico — bloque vertical que cierra la narrativa
+   del titular: Titular → descripción → foto. 15-20% más grande y
+   más cerca del texto para que la columna izquierda no flote.
+   @FOTO: sustituir las capas de background-image por
+   url('../img/servicios-detalle.jpg'). Fotografía real de un
+   detalle del apartamento de Diana & Sans — habitación, sala,
+   ventana o textura arquitectónica — vertical 3/4, muy oscura,
+   luz cálida de tarde y tratamiento editorial. Conservar el grano
+   (::after). */
 .srv-services__figure {
-  margin: clamp(48px, 7vh, 80px) 0 0 clamp(1rem, 2.2vw, 2.25rem);
-  width: clamp(148px, 12.5vw, 216px);
+  margin: clamp(32px, 4.5vh, 52px) 0 0 clamp(1rem, 2.2vw, 2.25rem);
+  width: clamp(170px, 15vw, 256px);
 }
 
+/* Superficie fotográfica — placeholder con lectura de interior
+   real: una ventana encendida al atardecer sobre pared cálida y,
+   abajo, la masa en sombra de un mueble con su canto iluminado.
+   Se lee como fotografía editorial, no como rectángulo decorativo. */
 .srv-services__photo {
   position: relative;
   width: 100%;
   aspect-ratio: 3 / 4;
   overflow: hidden;
-  background-color: #12100D;
+  background-color: #100D0B;
   background-image:
-    radial-gradient(120% 120% at 50% 45%, transparent 50%, rgba(0, 0, 0, 0.6) 100%),
-    linear-gradient(115deg, rgba(214, 184, 126, 0.22) 0%, rgba(196, 168, 110, 0.08) 34%, transparent 60%),
-    linear-gradient(168deg, #332A21 0%, #211A14 52%, #0F0C0A 100%);
-  background-size: cover;
-  background-position: center;
-  filter: saturate(0.85) contrast(1.04);
+    /* Viñeta editorial */
+    radial-gradient(120% 110% at 50% 42%, transparent 48%, rgba(0, 0, 0, 0.66) 100%),
+    /* Montante central de la ventana */
+    linear-gradient(90deg, transparent calc(50% - 1px), rgba(16, 13, 10, 0.85) 50%, transparent calc(50% + 1px)),
+    /* Cristal encendido al atardecer */
+    linear-gradient(168deg, rgba(240, 210, 152, 0.5) 0%, rgba(216, 184, 128, 0.26) 55%, rgba(190, 160, 108, 0.1) 100%),
+    /* Canto superior del mueble — línea cálida */
+    linear-gradient(180deg, transparent calc(64% - 2px), rgba(226, 194, 138, 0.28) 64%, rgba(226, 194, 138, 0.05) calc(64% + 1px), transparent calc(64% + 2px)),
+    /* Masa del mueble / zona baja en sombra profunda */
+    linear-gradient(180deg, transparent 65%, rgba(14, 11, 9, 0.92) 78%, rgba(9, 7, 6, 0.98) 100%),
+    /* Resplandor cálido de tarde sobre la pared */
+    linear-gradient(115deg, rgba(214, 184, 126, 0.24) 0%, rgba(196, 168, 110, 0.09) 38%, transparent 62%),
+    /* Pared cálida en penumbra descendente */
+    linear-gradient(172deg, #372C22 0%, #211A14 54%, #0F0C0A 100%);
+  background-size:
+    cover,
+    58% 44%,
+    58% 44%,
+    100% 100%,
+    100% 100%,
+    cover,
+    cover;
+  background-position:
+    center,
+    16% 10%,
+    16% 10%,
+    center,
+    center,
+    center,
+    center;
+  background-repeat: no-repeat;
+  filter: saturate(0.88) contrast(1.05);
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -555,13 +589,16 @@
 
 /* --- Lista editorial — filas horizontales, nunca cards --- */
 
+.srv-services__listwrap {
+  /* Tensión visual: la lista arranca más abajo que el titular */
+  margin-top: clamp(48px, 8vh, 96px);
+}
+
 .srv-services__list {
   margin: 0;
   padding: 0;
   list-style: none;
   border-top: 1px solid var(--color-divider);
-  /* Tensión visual: la lista arranca más abajo que el titular */
-  margin-top: clamp(48px, 8vh, 96px);
 }
 
 .srv-services__row {
@@ -572,10 +609,11 @@
   align-items: baseline;
   padding: clamp(36px, 5.5vh, 56px) 0;
   border-bottom: 1px solid var(--color-divider);
+  transition: border-color 600ms var(--ease-out);
 }
 
-/* La línea divisoria gana presencia con un trazo dorado que se
-   dibuja desde la izquierda, lento y contenido. */
+/* La línea divisoria se extiende con un trazo dorado que se dibuja
+   desde la izquierda; además el hairline gana un poco de presencia. */
 .srv-services__row::after {
   content: '';
   position: absolute;
@@ -586,8 +624,12 @@
   background: linear-gradient(90deg, rgba(196, 168, 110, 0.35) 0%, rgba(196, 168, 110, 0.08) 100%);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 900ms var(--ease-out);
+  transition: transform 600ms var(--ease-out);
   pointer-events: none;
+}
+
+.srv-services__row:hover {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
 .srv-services__row:hover::after {
@@ -600,7 +642,7 @@
   font-weight: var(--weight-body-medium);
   letter-spacing: 0.22em;
   color: rgba(196, 168, 110, 0.55);
-  transition: color 700ms var(--ease-out);
+  transition: color 500ms var(--ease-out);
 }
 
 .srv-services__row:hover .srv-services__num {
@@ -616,11 +658,13 @@
   text-transform: uppercase;
   line-height: var(--text-caption-lh);
   color: var(--color-ivory);
-  transition: transform 700ms var(--ease-out);
+  transform-origin: left center;
+  transition: transform 500ms var(--ease-out);
+  will-change: transform;
 }
 
 .srv-services__row:hover .srv-services__name {
-  transform: translateX(10px);
+  transform: scale(1.025);
 }
 
 .srv-services__desc {
@@ -632,20 +676,28 @@
   line-height: 1.9;
   letter-spacing: 0.01em;
   color: var(--color-gray-warm);
+  transition: transform 500ms var(--ease-out), color 500ms var(--ease-out);
+  will-change: transform;
 }
 
-/* --- Detalle editorial de cierre — línea dorada + cursiva --- */
+.srv-services__row:hover .srv-services__desc {
+  transform: translateX(6px);
+  color: #B4B0A9;
+}
+
+/* --- Detalle editorial de cierre — bajo la lista, alineado con el
+   comienzo de las filas. La marca funciona como raya editorial "—". --- */
 
 .srv-services__closing {
   display: flex;
   align-items: center;
-  gap: var(--space-24);
-  margin-top: clamp(112px, 16vh, 176px);
+  gap: var(--space-16);
+  margin-top: clamp(48px, 7vh, 80px);
 }
 
 .srv-services__closing-mark {
   flex: none;
-  width: 36px;
+  width: 28px;
   height: 1px;
   background: var(--color-gold);
   opacity: 0.85;
@@ -656,7 +708,7 @@
   font-family: var(--font-heading);
   font-style: italic;
   font-weight: var(--weight-heading-light);
-  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-size: clamp(0.95rem, 1.3vw, 1.125rem);
   letter-spacing: 0.01em;
   color: #C0AE83;
 }
@@ -723,7 +775,7 @@
   }
 
   .srv-services__figure {
-    width: clamp(132px, 15vw, 184px);
+    width: clamp(150px, 17vw, 208px);
   }
 
   .srv-services__row {
@@ -851,10 +903,10 @@
 
   .srv-services__figure {
     margin-left: clamp(0.75rem, 4.5vw, 1.5rem);
-    width: clamp(128px, 34vw, 168px);
+    width: clamp(144px, 40vw, 192px);
   }
 
-  .srv-services__list {
+  .srv-services__listwrap {
     margin-top: clamp(56px, 9vh, 80px);
   }
 
@@ -929,12 +981,15 @@
   }
 
   .srv-services__row::after,
+  .srv-services__row,
   .srv-services__num,
-  .srv-services__name {
+  .srv-services__name,
+  .srv-services__desc {
     transition: none !important;
   }
 
-  .srv-services__row:hover .srv-services__name {
+  .srv-services__row:hover .srv-services__name,
+  .srv-services__row:hover .srv-services__desc {
     transform: none !important;
   }
 }
