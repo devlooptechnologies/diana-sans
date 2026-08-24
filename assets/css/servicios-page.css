@@ -1892,7 +1892,8 @@
 
 .srv-fin__stage {
   position: relative;
-  margin-top: clamp(56px, 9vh, 104px);
+  /* El contenido manda: poco aire tras la cabecera editorial */
+  margin-top: clamp(16px, 3.5vh, 52px);
 }
 
 .srv-fin__content {
@@ -1973,14 +1974,15 @@
 
 .srv-fin__cta:hover,
 .srv-fin__cta:focus-visible {
-  background-color: #C4A86E;
-  border-color: #C4A86E;
+  /* Dorado suave, no plano: gana presencia sin gritar */
+  background-color: rgba(196, 168, 110, 0.9);
+  border-color: var(--color-gold);
   color: #16130F;
 }
 
 .srv-fin__cta:hover .srv-fin__cta-arrow,
 .srv-fin__cta:focus-visible .srv-fin__cta-arrow {
-  transform: translateX(6px);
+  transform: translateX(5px);
 }
 
 .srv-fin__cta:focus-visible {
@@ -2029,7 +2031,8 @@
 .srv-fin__figure {
   position: absolute;
   top: clamp(32px, 8vh, 96px);
-  right: 0;
+  /* Se acerca al bloque central sin invadir el texto */
+  right: clamp(32px, 3.5vw, 48px);
   z-index: var(--z-base);
   margin: 0;
   width: clamp(200px, 21vw, 310px);
@@ -2051,9 +2054,10 @@
 }
 
 /* @FOTO: assets/img/reserva.jpg — interior real de Diana & Sans
-   (habitación, sala o ventana), vertical 3/4, oscura y cálida,
-   sin personas. El tratamiento oscuro (::before) la funde con el
-   fondo para que no compita con el titular. */
+   (dormitorio de noche, sala con luz cálida o detalle
+   arquitectónico), vertical 3/4, sin personas. Última imagen
+   antes del footer: tratamiento más luminoso que en secciones
+   anteriores — el fundido la integra al negro sin apagarla. */
 
 .srv-fin__photo-img {
   position: absolute;
@@ -2065,39 +2069,40 @@
   object-position: center;
 }
 
-/* Tratamiento oscuro — doble fundido hacia el fondo de la página */
+/* Tratamiento luminoso — fundido ligero hacia el fondo, la foto
+   respira más que en el resto de la página */
 .srv-fin__photo::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: var(--z-above);
   background:
-    linear-gradient(90deg, rgba(8, 8, 8, 0.55) 0%, rgba(8, 8, 8, 0.12) 45%, rgba(8, 8, 8, 0.28) 100%),
-    linear-gradient(180deg, rgba(8, 8, 8, 0.35) 0%, rgba(8, 8, 8, 0.15) 40%, rgba(8, 8, 8, 0.45) 100%);
+    linear-gradient(90deg, rgba(8, 8, 8, 0.38) 0%, rgba(8, 8, 8, 0.06) 45%, rgba(8, 8, 8, 0.16) 100%),
+    linear-gradient(180deg, rgba(8, 8, 8, 0.2) 0%, rgba(8, 8, 8, 0.06) 40%, rgba(8, 8, 8, 0.26) 100%);
   pointer-events: none;
 }
 
-/* Fallback — penumbra cálida de interior: masa de luz difusa arriba
-   y sombra profunda abajo */
+/* Fallback — interior nocturno cálido y luminoso: masa de luz
+   dorada protagonista arriba, sombra solo al pie */
 .srv-fin__photo {
-  background-color: #0E0B09;
+  background-color: #12100D;
   background-image:
-    radial-gradient(125% 115% at 50% 40%, transparent 46%, rgba(0, 0, 0, 0.6) 100%),
-    radial-gradient(closest-side, rgba(230, 198, 140, 0.28) 0%, rgba(210, 178, 122, 0.11) 55%, transparent 80%),
-    linear-gradient(180deg, transparent 58%, rgba(14, 10, 8, 0.55) 72%, rgba(7, 5, 4, 0.95) 92%),
-    linear-gradient(170deg, #2B221A 0%, #1A1410 52%, #0C0908 100%);
+    radial-gradient(125% 115% at 50% 40%, transparent 52%, rgba(0, 0, 0, 0.42) 100%),
+    radial-gradient(closest-side, rgba(236, 206, 148, 0.4) 0%, rgba(214, 182, 126, 0.16) 55%, transparent 80%),
+    linear-gradient(180deg, transparent 66%, rgba(20, 15, 11, 0.4) 78%, rgba(10, 8, 6, 0.85) 94%),
+    linear-gradient(170deg, #382C21 0%, #241B14 52%, #100C09 100%);
   background-size:
     cover,
-    80% 42%,
+    84% 46%,
     100% 100%,
     cover;
   background-position:
     center,
-    50% 20%,
+    50% 18%,
     center,
     center;
   background-repeat: no-repeat;
-  filter: saturate(0.85) contrast(1.04);
+  filter: saturate(0.9) contrast(1.03);
 }
 
 /* Grano finísimo */
@@ -2120,7 +2125,9 @@
   align-items: baseline;
   justify-content: space-between;
   gap: var(--space-24);
-  margin-top: clamp(72px, 11vh, 128px);
+  margin-top: clamp(88px, 13vh, 152px);
+  /* Aire lateral extra para que la firma no roce el borde */
+  padding-right: clamp(8px, 1vw, 18px);
 }
 
 .srv-fin__foot-left {
@@ -2132,14 +2139,26 @@
   color: rgba(246, 242, 235, 0.35);
 }
 
+/* Firma de marca — mismo tratamiento tipográfico que los cierres
+   de las secciones 02 y 03: hairline dorada + itálica serif */
 .srv-fin__foot-right {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-16);
   font-family: var(--font-heading);
   font-style: italic;
   font-weight: var(--weight-heading-light);
-  font-size: clamp(0.85rem, 1.1vw, 1rem);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: clamp(0.95rem, 1.3vw, 1.125rem);
+  letter-spacing: 0.01em;
   color: #C0AE83;
+}
+
+.srv-fin__foot-mark {
+  flex: none;
+  width: 28px;
+  height: 1px;
+  background: var(--color-gold);
+  opacity: 0.85;
 }
 
 /* --- Revelado escalonado — lento, como un último suspiro --- */
@@ -2591,7 +2610,7 @@
   }
 
   .srv-fin__stage {
-    margin-top: clamp(40px, 6vh, 56px);
+    margin-top: clamp(28px, 4.5vh, 44px);
   }
 
   .srv-fin__title {
