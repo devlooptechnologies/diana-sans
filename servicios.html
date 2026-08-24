@@ -118,6 +118,82 @@
 
   </section>
 
+  <!-- ================================================================
+       SECCIÓN 02 — SERVICIOS
+       "Todo lo que necesitas, sin tener que pedirlo."
+       Lista editorial en filas horizontales: número dorado, nombre en
+       versalitas con tracking amplio y descripción en gris cálido,
+       separadas por líneas finísimas. Sin cards, sin iconos.
+       Composición asimétrica: titular a la izquierda (~40%), lista a
+       la derecha (~60%) arrancando más abajo. Un pequeño bloque
+       fotográfico vertical acompaña al titular como interludio.
+       @FOTO: el placeholder (.srv-services__photo) se reemplaza por
+       la fotografía real en assets/css/servicios-page.css.
+       ================================================================ -->
+  <section class="srv-services" id="servicios-detalle">
+
+    <div class="srv-services__inner">
+
+      <!-- Cabecera editorial — label izquierda, índice derecha -->
+      <header class="srv-services__head">
+        <span class="srv-services__overline" data-ssr="0">Servicios</span>
+        <span class="srv-services__index" data-ssr="1">02 / Servicios</span>
+      </header>
+
+      <div class="srv-services__layout">
+
+        <!-- Titular + introducción + interludio fotográfico -->
+        <div class="srv-services__intro">
+          <h2 class="srv-services__title" data-ssr="2">
+            <span class="srv-services__title-line">Todo lo que necesitas,</span>
+            <span class="srv-services__title-line">sin tener que pedirlo.</span>
+            <span class="srv-services__title-accent">Pensado antes de que llegues.</span>
+          </h2>
+          <p class="srv-services__lede" data-ssr="3">
+            Desde una conexión estable para trabajar hasta acompañamiento durante tu estancia.
+            Cada servicio existe para que puedas llegar, instalarte y disfrutar.
+          </p>
+          <figure class="srv-services__figure" data-ssr="4">
+            <div class="srv-services__photo" role="img" aria-label="Interior de Diana &amp; Sans — luz cálida de tarde"></div>
+          </figure>
+        </div>
+
+        <!-- Lista editorial de servicios — filas, nunca cards -->
+        <ul class="srv-services__list">
+          <li class="srv-services__row" data-ssr="5">
+            <span class="srv-services__num">01</span>
+            <h3 class="srv-services__name">Wi-Fi dedicado</h3>
+            <p class="srv-services__desc">200 Mbps para cada apartamento, pensado para trabajar, crear y disfrutar sin compartir la conexión.</p>
+          </li>
+          <li class="srv-services__row" data-ssr="6">
+            <span class="srv-services__num">02</span>
+            <h3 class="srv-services__name">Vigilancia 24h</h3>
+            <p class="srv-services__desc">Conserjería y vigilancia permanente para una estancia tranquila y cuidada.</p>
+          </li>
+          <li class="srv-services__row" data-ssr="7">
+            <span class="srv-services__num">03</span>
+            <h3 class="srv-services__name">Traslados</h3>
+            <p class="srv-services__desc">Recogida y traslado al aeropuerto, con opciones de transporte adaptadas a la estancia.</p>
+          </li>
+          <li class="srv-services__row" data-ssr="8">
+            <span class="srv-services__num">04</span>
+            <h3 class="srv-services__name">Estancias largas</h3>
+            <p class="srv-services__desc">Condiciones pensadas para quienes vienen por semanas o meses, ya sea por trabajo, entrenamiento o descanso.</p>
+          </li>
+        </ul>
+
+      </div>
+
+      <!-- Detalle editorial de cierre -->
+      <footer class="srv-services__closing" data-ssr="9">
+        <span class="srv-services__closing-mark" aria-hidden="true"></span>
+        <p class="srv-services__closing-text">Lo esencial está cuidado.</p>
+      </footer>
+
+    </div>
+
+  </section>
+
   <script src="assets/js/main.js"></script>
 
   <!-- Entrada cinematográfica del hero — Servicios -->
@@ -132,6 +208,27 @@
           hero.classList.add('is-loaded');
         }, 150);
       });
+    })();
+  </script>
+
+  <!-- Revelado escalonado de la sección 02 — visible por defecto,
+       la animación solo embellece cuando la sección entra en pantalla -->
+  <script>
+    (function() {
+      'use strict';
+      var section = document.querySelector('.srv-services');
+      if (!section || !('IntersectionObserver' in window)) return;
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            section.classList.add('is-revealed');
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.12 });
+
+      observer.observe(section);
     })();
   </script>
 </body>

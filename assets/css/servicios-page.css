@@ -16,6 +16,11 @@
       arquitectónica (interior con luz de ventana) y referencia
       editorial en la esquina inferior de la imagen.
 
+   SECCIÓN 02 — lista editorial de servicios en filas horizontales
+   (número dorado / nombre versalitas / descripción gris cálido),
+   titular asimétrico a la izquierda con interludio fotográfico
+   vertical y cierre itálico dorado "Lo esencial está cuidado.".
+
    Entrada: cada elemento [data-sr] se revela escalonadamente con
    la clase .is-loaded que inyecta el script inline de la página.
    Los elementos son visibles por defecto; la animación solo
@@ -399,6 +404,293 @@
   to   { opacity: 1; transform: none; }
 }
 
+/* ============================================================
+   SECCIÓN 02 — LA LISTA EDITORIAL
+   "Todo lo que necesitas, sin tener que pedirlo."
+   Filas horizontales amplias: número dorado / nombre en
+   versalitas / descripción en gris cálido, separadas por
+   líneas finísimas que ganan presencia al pasar el cursor.
+   Composición asimétrica: titular ~40% a la izquierda, lista
+   ~60% a la derecha arrancando más abajo. Mucho negro entre
+   bloques. La sección es larga y pausada a propósito.
+   ============================================================ */
+
+.srv-services {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  /* Un paso más profundo que --color-black-absolute (#0A0A0A):
+     la sección respira en su propia penumbra, sin ruptura visual. */
+  background-color: #080808;
+  overflow-x: clip;
+}
+
+.srv-services__inner {
+  position: relative;
+  z-index: var(--z-base);
+  width: 100%;
+  max-width: var(--grid-container);
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: clamp(128px, 17vh, 208px) var(--grid-page-margin) clamp(120px, 16vh, 192px);
+}
+
+/* --- Cabecera editorial — label e índice, mismo lenguaje que el hero --- */
+
+.srv-services__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-24);
+}
+
+.srv-services__overline {
+  font-family: var(--font-body);
+  font-size: var(--text-eyebrow);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.srv-services__index {
+  font-family: var(--font-body);
+  font-size: 0.5rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-ivory);
+  opacity: 0.35;
+}
+
+/* --- Composición asimétrica — titular 40% / lista 60% --- */
+
+.srv-services__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: start;
+  column-gap: clamp(56px, 7vw, 112px);
+  margin-top: clamp(56px, 9vh, 104px);
+}
+
+/* Columna izquierda — titular, introducción e interludio fotográfico */
+
+.srv-services__intro {
+  max-width: 520px;
+}
+
+.srv-services__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3.4vw, 3rem);
+  font-weight: var(--weight-heading-light);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--color-ivory);
+}
+
+.srv-services__title-line {
+  display: block;
+}
+
+/* Acento itálico dorado — tercera línea, desplazada como en el hero */
+.srv-services__title-accent {
+  display: block;
+  margin-top: 0.22em;
+  margin-left: clamp(1rem, 2.2vw, 2.25rem);
+  font-style: italic;
+  font-weight: var(--weight-heading-light);
+  font-size: clamp(1.3rem, 2.6vw, 2.25rem);
+  line-height: 1.2;
+  color: #C0AE83;
+}
+
+.srv-services__lede {
+  margin-top: clamp(32px, 5vh, 52px);
+  max-width: 40ch;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-body-light);
+  line-height: 1.95;
+  letter-spacing: 0.015em;
+  color: var(--color-gray-warm);
+}
+
+/* Interludio fotográfico — bloque vertical pequeño y discreto,
+   alineado con la sangría del acento. @FOTO: sustituir las capas de
+   background-image por url('../img/servicios-detalle.jpg'). Foto
+   arquitectónica/interior real, vertical 3/4, oscura, luz cálida,
+   mucho espacio negativo. Conservar el grano (::after). */
+.srv-services__figure {
+  margin: clamp(48px, 7vh, 80px) 0 0 clamp(1rem, 2.2vw, 2.25rem);
+  width: clamp(148px, 12.5vw, 216px);
+}
+
+.srv-services__photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background-color: #12100D;
+  background-image:
+    radial-gradient(120% 120% at 50% 45%, transparent 50%, rgba(0, 0, 0, 0.6) 100%),
+    linear-gradient(115deg, rgba(214, 184, 126, 0.22) 0%, rgba(196, 168, 110, 0.08) 34%, transparent 60%),
+    linear-gradient(168deg, #332A21 0%, #211A14 52%, #0F0C0A 100%);
+  background-size: cover;
+  background-position: center;
+  filter: saturate(0.85) contrast(1.04);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Grano finísimo — cohesión con la fotografía del hero */
+.srv-services__photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 150px 150px;
+  opacity: 0.45;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* --- Lista editorial — filas horizontales, nunca cards --- */
+
+.srv-services__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--color-divider);
+  /* Tensión visual: la lista arranca más abajo que el titular */
+  margin-top: clamp(48px, 8vh, 96px);
+}
+
+.srv-services__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 48px minmax(150px, 230px) 1fr;
+  column-gap: clamp(20px, 2.5vw, 40px);
+  align-items: baseline;
+  padding: clamp(36px, 5.5vh, 56px) 0;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+/* La línea divisoria gana presencia con un trazo dorado que se
+   dibuja desde la izquierda, lento y contenido. */
+.srv-services__row::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(196, 168, 110, 0.35) 0%, rgba(196, 168, 110, 0.08) 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 900ms var(--ease-out);
+  pointer-events: none;
+}
+
+.srv-services__row:hover::after {
+  transform: scaleX(1);
+}
+
+.srv-services__num {
+  font-family: var(--font-body);
+  font-size: 0.625rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.22em;
+  color: rgba(196, 168, 110, 0.55);
+  transition: color 700ms var(--ease-out);
+}
+
+.srv-services__row:hover .srv-services__num {
+  color: var(--color-gold);
+}
+
+.srv-services__name {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  line-height: var(--text-caption-lh);
+  color: var(--color-ivory);
+  transition: transform 700ms var(--ease-out);
+}
+
+.srv-services__row:hover .srv-services__name {
+  transform: translateX(10px);
+}
+
+.srv-services__desc {
+  margin: 0;
+  max-width: 44ch;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-body-light);
+  line-height: 1.9;
+  letter-spacing: 0.01em;
+  color: var(--color-gray-warm);
+}
+
+/* --- Detalle editorial de cierre — línea dorada + cursiva --- */
+
+.srv-services__closing {
+  display: flex;
+  align-items: center;
+  gap: var(--space-24);
+  margin-top: clamp(112px, 16vh, 176px);
+}
+
+.srv-services__closing-mark {
+  flex: none;
+  width: 36px;
+  height: 1px;
+  background: var(--color-gold);
+  opacity: 0.85;
+}
+
+.srv-services__closing-text {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: var(--weight-heading-light);
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  letter-spacing: 0.01em;
+  color: #C0AE83;
+}
+
+/* ===========================
+   SECCIÓN 02 — ENTRADA ESCALONADA
+   Visible por defecto; la animación solo corre cuando la sección
+   entra en pantalla (.is-revealed via IntersectionObserver).
+   =========================== */
+
+.srv-services [data-ssr] {
+  opacity: 1;
+  transform: none;
+}
+
+.srv-services.is-revealed [data-ssr] {
+  animation-name: srvReveal;
+  animation-duration: 1.3s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: backwards;
+  animation-delay: var(--ssr-delay, 0s);
+}
+
+.srv-services [data-ssr="0"] { --ssr-delay: 0s; }
+.srv-services [data-ssr="1"] { --ssr-delay: 0.15s; }
+.srv-services [data-ssr="2"] { --ssr-delay: 0.3s; }
+.srv-services [data-ssr="3"] { --ssr-delay: 0.5s; }
+.srv-services [data-ssr="4"] { --ssr-delay: 0.65s; }
+.srv-services [data-ssr="5"] { --ssr-delay: 0.85s; }
+.srv-services [data-ssr="6"] { --ssr-delay: 1s; }
+.srv-services [data-ssr="7"] { --ssr-delay: 1.15s; }
+.srv-services [data-ssr="8"] { --ssr-delay: 1.3s; }
+.srv-services [data-ssr="9"] { --ssr-delay: 1.55s; }
+
 /* ===========================
    TABLET — 768–1024px
    =========================== */
@@ -418,6 +710,25 @@
 
   .srv-hero__frame {
     width: clamp(260px, 34vw, 360px);
+  }
+
+  /* Sección 02 */
+  .srv-services__inner {
+    padding-top: calc(var(--navbar-height) + clamp(72px, 10vh, 112px));
+    padding-bottom: clamp(96px, 12vh, 144px);
+  }
+
+  .srv-services__layout {
+    column-gap: clamp(40px, 5vw, 64px);
+  }
+
+  .srv-services__figure {
+    width: clamp(132px, 15vw, 184px);
+  }
+
+  .srv-services__row {
+    grid-template-columns: 36px minmax(130px, 190px) 1fr;
+    column-gap: var(--space-16);
   }
 }
 
@@ -503,6 +814,79 @@
     left: 16px;
     bottom: 14px;
   }
+
+  /* Sección 02 — una sola columna, filas verticales, sin cards */
+  .srv-services__inner {
+    padding-top: calc(var(--navbar-height) + clamp(56px, 9vh, 88px));
+    padding-bottom: clamp(80px, 12vh, 112px);
+  }
+
+  .srv-services__head {
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .srv-services__layout {
+    grid-template-columns: 1fr;
+    margin-top: clamp(40px, 6vh, 56px);
+  }
+
+  .srv-services__intro {
+    max-width: 100%;
+  }
+
+  .srv-services__title {
+    font-size: clamp(1.6rem, 7vw, 2.1rem);
+  }
+
+  .srv-services__title-accent {
+    margin-left: clamp(0.75rem, 4.5vw, 1.5rem);
+    font-size: clamp(1.2rem, 5.5vw, 1.6rem);
+  }
+
+  .srv-services__lede {
+    margin-top: clamp(24px, 4vh, 32px);
+    max-width: 100%;
+  }
+
+  .srv-services__figure {
+    margin-left: clamp(0.75rem, 4.5vw, 1.5rem);
+    width: clamp(128px, 34vw, 168px);
+  }
+
+  .srv-services__list {
+    margin-top: clamp(56px, 9vh, 80px);
+  }
+
+  /* Fila vertical: número y nombre arriba, descripción debajo,
+     el número ancla la lectura en la columna izquierda */
+  .srv-services__row {
+    grid-template-columns: minmax(36px, auto) 1fr;
+    grid-template-areas:
+      'num name'
+      'num desc';
+    row-gap: var(--space-16);
+    padding: clamp(32px, 5vh, 44px) 0;
+  }
+
+  .srv-services__num {
+    grid-area: num;
+    align-self: start;
+    padding-top: 3px;
+  }
+
+  .srv-services__name {
+    grid-area: name;
+  }
+
+  .srv-services__desc {
+    grid-area: desc;
+    max-width: 52ch;
+  }
+
+  .srv-services__closing {
+    margin-top: clamp(72px, 11vh, 104px);
+  }
 }
 
 /* ===========================
@@ -536,5 +920,21 @@
   .srv-hero__image-link:focus-visible .srv-hero__image {
     transform: none !important;
     transition: none !important;
+  }
+
+  .srv-services [data-ssr] {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .srv-services__row::after,
+  .srv-services__num,
+  .srv-services__name {
+    transition: none !important;
+  }
+
+  .srv-services__row:hover .srv-services__name {
+    transform: none !important;
   }
 }
