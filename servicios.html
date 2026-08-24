@@ -281,6 +281,96 @@
 
   </section>
 
+  <!-- ================================================================
+       SECCIÓN 04 — PARA QUIÉN
+       "Hay estancias para todos. Pero algunas se sienten hechas para ti."
+       Cuatro perfiles como piezas tipográficas independientes —nunca
+       cards ni tabla— dispuestos en una composición irregular de
+       revista: 01 y 02 abren la zona, 03 se desplaza hacia dentro,
+       04 desciende más. A la derecha, pieza fotográfica vertical
+       grande (~33%) que respira junto a los perfiles.
+       @FOTO: la imagen real va en assets/img/perfiles.jpg (espacio
+       interior de Diana & Sans —escritorio, sala o dormitorio—,
+       vertical 2/3, oscura, cálida, sin personas). Mientras no
+       exista se muestra un placeholder discreto; al añadirla, el
+       overlay sutil y el grano se aplican solos.
+       ================================================================ -->
+  <section class="srv-per" id="para-quien">
+
+    <div class="srv-per__inner">
+
+      <!-- Cabecera editorial — label izquierda, índice derecha -->
+      <header class="srv-per__head">
+        <span class="srv-per__overline" data-sp="0">Para quién</span>
+        <span class="srv-per__index" data-sp="1">04 / Experiencia</span>
+      </header>
+
+      <!-- Titular -->
+      <div class="srv-per__intro">
+        <h2 class="srv-per__title" data-sp="2">
+          <span class="srv-per__title-line">Hay estancias para todos.</span>
+          <span class="srv-per__title-accent">Pero algunas se sienten hechas para ti.</span>
+        </h2>
+        <p class="srv-per__lede" data-sp="3">
+          Espacios pensados para quienes vienen a trabajar, entrenar, descansar,
+          explorar o simplemente quedarse un poco más.
+        </p>
+      </div>
+
+      <!-- Perfiles + pieza fotográfica -->
+      <div class="srv-per__body">
+
+        <!-- Cuatro perfiles tipográficos -->
+        <div class="srv-per__flow">
+
+          <article class="srv-per__item srv-per__item--01" data-sp="4">
+            <span class="srv-per__num">01</span>
+            <h3 class="srv-per__name">Profesionales</h3>
+            <p class="srv-per__desc">Para quienes necesitan un lugar cómodo, tranquilo y conectado para trabajar sin interrupciones.</p>
+          </article>
+
+          <article class="srv-per__item srv-per__item--02" data-sp="5">
+            <span class="srv-per__num">02</span>
+            <h3 class="srv-per__name">Nómadas digitales</h3>
+            <p class="srv-per__desc">Para quienes convierten cualquier destino en su lugar de trabajo y buscan quedarse por más tiempo.</p>
+          </article>
+
+          <article class="srv-per__item srv-per__item--03" data-sp="6">
+            <span class="srv-per__num">03</span>
+            <h3 class="srv-per__name">Pilotos y entrenamiento</h3>
+            <p class="srv-per__desc">Para quienes llegan a Cartago por deporte, entrenamiento o competición y necesitan una estancia práctica y cómoda.</p>
+          </article>
+
+          <article class="srv-per__item srv-per__item--04" data-sp="7">
+            <span class="srv-per__num">04</span>
+            <h3 class="srv-per__name">Familias</h3>
+            <p class="srv-per__desc">Para quienes buscan un espacio privado donde sentirse cómodos durante unos días, semanas o más.</p>
+          </article>
+
+        </div>
+
+        <!-- Pieza fotográfica vertical — derecha, descendida -->
+        <figure class="srv-per__figure" data-sp="8">
+          <div class="srv-per__photo" role="img" aria-label="Interior arquitectónico de Diana &amp; Sans con luz cálida — un espacio que se adapta a cada motivo de viaje">
+            <img class="srv-per__photo-img" src="assets/img/perfiles.jpg" alt="" loading="lazy" onerror="this.remove()">
+          </div>
+        </figure>
+
+      </div>
+
+      <!-- Frase final -->
+      <footer class="srv-per__closing" data-sp="9">
+        <span class="srv-per__closing-mark" aria-hidden="true"></span>
+        <div class="srv-per__closing-lines">
+          <p class="srv-per__closing-line">Cada huésped llega por una razón.</p>
+          <p class="srv-per__closing-accent">Nosotros nos encargamos de que quiera quedarse.</p>
+        </div>
+      </footer>
+
+    </div>
+
+  </section>
+
   <script src="assets/js/main.js"></script>
 
   <!-- Entrada cinematográfica del hero — Servicios -->
@@ -337,6 +427,27 @@
       }, { threshold: 0.1 });
 
       expObserver.observe(expSection);
+    })();
+  </script>
+
+  <!-- Revelado escalonado de la sección 04 — mismo criterio:
+       visible por defecto, la animación embellece al entrar en pantalla -->
+  <script>
+    (function() {
+      'use strict';
+      var perSection = document.querySelector('.srv-per');
+      if (!perSection || !('IntersectionObserver' in window)) return;
+
+      var perObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            perSection.classList.add('is-revealed');
+            perObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.1 });
+
+      perObserver.observe(perSection);
     })();
   </script>
 </body>
