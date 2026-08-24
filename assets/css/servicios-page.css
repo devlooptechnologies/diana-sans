@@ -1523,7 +1523,7 @@
   max-width: var(--grid-container);
   margin: 0 auto;
   box-sizing: border-box;
-  padding: clamp(96px, 13vh, 152px) var(--grid-page-margin) clamp(112px, 15vh, 168px);
+  padding: clamp(80px, 10.5vh, 120px) var(--grid-page-margin) clamp(88px, 11.5vh, 128px);
 }
 
 /* --- Cabecera editorial — índice izquierda, label derecha --- */
@@ -1603,14 +1603,17 @@
   grid-template-columns: minmax(0, 28fr) minmax(0, 18fr);
   column-gap: clamp(40px, 5vw, 80px);
   align-items: start;
-  margin-top: clamp(56px, 9vh, 104px);
+  margin-top: clamp(48px, 7.5vh, 88px);
 }
 
 /* @FOTO: assets/img/cartago.jpg — Cartago o su entorno real,
-   horizontal 16/9, luz cálida de tarde, cinematográfica y ligera-
-   mente oscura. Sin personas posando ni monumentos genéricos.
-   Mientras no exista el archivo se muestra este placeholder; al
-   añadirla, overlay (::before) y grano (::after) se aplican solos. */
+   horizontal 3/2, luz cálida de tarde, composición cinematográfica
+   y tonos oscuros y tierra. Arquitectura o paisaje reconocible,
+   sin personas posando ni monumentos genéricos. Este es el momento
+   de realidad visual de la página: el overlay se mantiene mínimo
+   a propósito. Mientras no exista el archivo se muestra un
+   placeholder; overlay (::before) y grano (::after) se aplican
+   solos al añadirla. */
 
 .srv-ctg__figure {
   margin: 0;
@@ -1619,7 +1622,7 @@
 .srv-ctg__photo {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.05);
   transition: transform 600ms var(--ease-out), filter 600ms var(--ease-out);
@@ -1636,12 +1639,14 @@
   object-position: center;
 }
 
+/* Overlay mínimo — solo lo justo para asentar la foto sobre el
+   negro sin apagarla */
 .srv-ctg__photo::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: var(--z-above);
-  background: linear-gradient(180deg, rgba(8, 8, 8, 0.16) 0%, rgba(8, 8, 8, 0.04) 45%, rgba(8, 8, 8, 0.3) 100%);
+  background: linear-gradient(180deg, rgba(8, 8, 8, 0.08) 0%, rgba(8, 8, 8, 0) 45%, rgba(8, 8, 8, 0.18) 100%);
   pointer-events: none;
 }
 
@@ -1651,16 +1656,16 @@
 .srv-ctg__photo {
   background-color: #0D0B09;
   background-image:
-    /* Viñeta cinematográfica */
-    radial-gradient(130% 110% at 50% 42%, transparent 48%, rgba(0, 0, 0, 0.62) 100%),
+    /* Viñeta cinematográfica — contenida */
+    radial-gradient(130% 110% at 50% 42%, transparent 52%, rgba(0, 0, 0, 0.55) 100%),
     /* Bruma dorada del ocaso sobre el valle */
-    radial-gradient(120% 60% at 50% 30%, rgba(226, 192, 132, 0.3) 0%, rgba(196, 168, 110, 0.12) 45%, transparent 75%),
+    radial-gradient(120% 60% at 50% 30%, rgba(230, 196, 136, 0.36) 0%, rgba(196, 168, 110, 0.14) 45%, transparent 75%),
     /* Lavado cálido lateral */
-    linear-gradient(100deg, rgba(206, 176, 122, 0.14) 0%, transparent 55%),
+    linear-gradient(100deg, rgba(206, 176, 122, 0.16) 0%, transparent 55%),
     /* Silueta del pueblo y el terreno — masa difusa */
-    linear-gradient(180deg, transparent 55%, rgba(16, 12, 9, 0.55) 66%, rgba(11, 8, 6, 0.9) 78%, rgba(6, 5, 4, 0.98) 100%),
+    linear-gradient(180deg, transparent 55%, rgba(16, 12, 9, 0.5) 66%, rgba(11, 8, 6, 0.88) 78%, rgba(6, 5, 4, 0.98) 100%),
     /* Cielo a tierra — base cálida descendente */
-    linear-gradient(180deg, #241C15 0%, #191310 45%, #0E0B09 100%);
+    linear-gradient(180deg, #281F17 0%, #1A1410 45%, #0E0B09 100%);
   background-size:
     cover,
     cover,
@@ -1700,7 +1705,7 @@
 
 .srv-ctg__aside {
   transition: transform 600ms var(--ease-out);
-  margin-top: clamp(56px, 9vh, 104px);
+  margin-top: clamp(24px, 4vh, 56px);
 }
 
 .srv-ctg__place {
@@ -1768,7 +1773,7 @@
 /* --- Frase de campaña — dos voces, tipografía pura --- */
 
 .srv-ctg__closing {
-  margin-top: clamp(88px, 13vh, 144px);
+  margin-top: clamp(64px, 9vh, 104px);
 }
 
 .srv-ctg__campaign {
