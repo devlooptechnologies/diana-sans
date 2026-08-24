@@ -1,18 +1,20 @@
 /* ============================================================
-   SERVICIOS PAGE — TODO LO QUE NECESITAS
-   Apertura editorial silenciosa.
-   Marca: negro profundo, marfil, dorado tenue.
+   SERVICIOS PAGE — TODO ESTÁ PENSADO
+   Apertura editorial silenciosa que vende la filosofía del
+   servicio. Marca: negro profundo, marfil, dorado tenue.
    Cormorant Garamond + Inter. Mucho espacio negativo.
    Regla: un solo gesto gráfico (la línea dorada del detalle).
 
    Composición: HERO en dos grandes áreas en rejilla editorial.
    1) IZQUIERDA — identificación (SERVICIOS / 01 · SERVICIOS),
-      declaración principal en dos líneas y la promesa de la
-      estancia. El titular gobierna; la línea itálica dorada
-      funciona como acento, no como segundo titular.
-   2) DERECHA — pieza visual protagonista con lectura fotográfica
-      (interior con luz cálida de ventana) y referencia editorial
-      en la esquina inferior de la imagen.
+      declaración principal en dos líneas, la promesa de la
+      estancia y la firma itálica dorada. El titular gobierna;
+      la línea itálica funciona como acento, no como segundo
+      titular. Al pie, cierre editorial con los servicios
+      esenciales en tipografía mínima.
+   2) DERECHA — pieza visual protagonista con lectura
+      arquitectónica (interior con luz de ventana) y referencia
+      editorial en la esquina inferior de la imagen.
 
    Entrada: cada elemento [data-sr] se revela escalonadamente con
    la clase .is-loaded que inyecta el script inline de la página.
@@ -215,6 +217,41 @@
   color: rgba(246, 242, 235, 0.92);
 }
 
+/* --- Cierre editorial al pie del hero: servicios esenciales en
+   una línea tipográfica mínima. margin-top:auto lo ancla abajo y
+   resuelve el espacio negro sobrante sin romper el aire. --- */
+
+.srv-hero__foot {
+  width: 100%;
+  margin-top: auto;
+  padding-top: clamp(20px, 3vh, 28px);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-24);
+}
+
+.srv-hero__foot-label {
+  flex: none;
+  font-family: var(--font-body);
+  font-size: 0.5625rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(246, 242, 235, 0.38);
+}
+
+.srv-hero__foot-items {
+  font-family: var(--font-body);
+  font-size: 0.5625rem;
+  font-weight: var(--weight-body-light);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(246, 242, 235, 0.62);
+  text-align: right;
+}
+
 /* ===========================
    COLUMNA DERECHA — pieza visual
    =========================== */
@@ -232,9 +269,10 @@
   text-decoration: none;
 }
 
-/* Superficie fotográfica — placeholder con lectura fotográfica:
-   interior arquitectónico, luz cálida de ventana, textura de
-   pared, sombras profundas y overlay negro suave.
+/* Superficie fotográfica — placeholder con lectura arquitectónica
+   clara: pared cálida iluminada, ventana con montantes verticales,
+   luz de día diagonal y piso en sombra. Se percibe "alojamiento"
+   sin dejar de ser oscura y elegante.
    @FOTO: para poner la fotografía real, sustituye las capas de
    background-image por url('../img/servicios-hero.jpg'); conserva
    el haz de luz (::before) y el grano (::after) si quieres
@@ -245,17 +283,18 @@
   aspect-ratio: 4 / 5;
   box-sizing: border-box;
   overflow: hidden;
-  background-color: #0E0C0B;
+  background-color: #16120F;
   background-image:
-    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.014) 0 1px, transparent 1px 4px),
-    radial-gradient(130% 130% at 50% 42%, transparent 42%, rgba(0, 0, 0, 0.78) 100%),
-    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.32) 0 1px, transparent 1px 58px),
-    linear-gradient(115deg, rgba(196, 168, 110, 0.18) 0%, rgba(196, 168, 110, 0.06) 28%, transparent 54%),
-    radial-gradient(85% 65% at 32% 26%, rgba(196, 168, 110, 0.1) 0%, transparent 62%),
-    linear-gradient(168deg, #1C1613 0%, #13100E 48%, #0A0908 100%);
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.016) 0 1px, transparent 1px 4px),
+    radial-gradient(135% 125% at 50% 42%, transparent 52%, rgba(0, 0, 0, 0.62) 100%),
+    repeating-linear-gradient(90deg, rgba(26, 20, 15, 0.5) 0 2px, transparent 2px 62px),
+    linear-gradient(0deg, rgba(31, 24, 18, 0.55) 0%, transparent 22%),
+    linear-gradient(115deg, rgba(228, 198, 140, 0.34) 0%, rgba(214, 182, 124, 0.16) 32%, transparent 58%),
+    radial-gradient(92% 68% at 30% 24%, rgba(230, 200, 142, 0.22) 0%, transparent 64%),
+    linear-gradient(168deg, #4A3E32 0%, #33291F 46%, #181310 100%);
   background-size: cover;
   background-position: center;
-  filter: saturate(0.75) contrast(1.05);
+  filter: saturate(0.88) contrast(1.06) brightness(1.1);
   border: 1px solid rgba(255, 255, 255, 0.05);
   transform: scale(1.04);
   transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -267,15 +306,15 @@
 }
 
 /* Haz de luz cálida entrando por una ventana — difuso, superior
-   izquierda. Sugiere el interior sin ser una imagen literal. */
+   izquierda. Refuerza la lectura de interior real. */
 .srv-hero__image::before {
   content: '';
   position: absolute;
   top: -10%;
   left: -8%;
-  width: 72%;
-  height: 90%;
-  background: linear-gradient(118deg, rgba(196, 168, 110, 0.16) 0%, rgba(196, 168, 110, 0.04) 46%, transparent 78%);
+  width: 76%;
+  height: 92%;
+  background: linear-gradient(118deg, rgba(232, 202, 146, 0.26) 0%, rgba(232, 202, 146, 0.07) 46%, transparent 78%);
   filter: blur(22px);
   pointer-events: none;
 }
@@ -349,6 +388,7 @@
 .srv-hero [data-sr="4"] { --sr-delay: 1s; }
 .srv-hero [data-sr="5"] { --sr-delay: 1.2s; }
 .srv-hero [data-sr="6"] { --sr-delay: 1.4s; }
+.srv-hero [data-sr="7"] { --sr-delay: 1.6s; }
 
 @keyframes srvReveal {
   from { opacity: 0; transform: translateY(20px); }
@@ -433,6 +473,16 @@
 
   .srv-hero__detail {
     margin-top: clamp(48px, 8vh, 64px);
+  }
+
+  .srv-hero__foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .srv-hero__foot-items {
+    text-align: left;
   }
 
   .srv-hero__frame {
