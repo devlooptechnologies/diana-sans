@@ -371,6 +371,81 @@
 
   </section>
 
+  <!-- ================================================================
+       SECCIÓN 05 — CARTAGO
+       "Tu estancia también se vive afuera."
+       El relato pasa del interior de Diana & Sans al lugar que lo
+       contiene. Fotografía panorámica de gran formato (~60%) con el
+       bloque editorial de la ciudad a su derecha, descendido para
+       romper la simetría. Tres referencias como líneas tipográficas
+       —sin distancias inventadas— y cierre de campaña a dos voces.
+       Sin mapa: eso vive en la sección de contacto/ubicación.
+       @FOTO: la imagen real va en assets/img/cartago.jpg — Cartago o
+       su entorno, horizontal 16/9, luz cálida de tarde, atmósfera
+       cinematográfica, sin personas posando ni monumentos genéricos.
+       Mientras no exista se muestra un placeholder discreto; al
+       añadirla, overlay y grano se aplican solos.
+       ================================================================ -->
+  <section class="srv-ctg" id="cartago">
+
+    <div class="srv-ctg__inner">
+
+      <!-- Cabecera editorial — índice izquierda, label derecha -->
+      <header class="srv-ctg__head">
+        <span class="srv-ctg__overline" data-cg="0">05 / Cartago</span>
+        <span class="srv-ctg__index" data-cg="1">Alrededores</span>
+      </header>
+
+      <!-- Titular -->
+      <div class="srv-ctg__intro">
+        <h2 class="srv-ctg__title" data-cg="2">
+          <span class="srv-ctg__title-line">Tu estancia también</span>
+          <span class="srv-ctg__title-line">se vive afuera.</span>
+          <span class="srv-ctg__title-accent">Cartago está más cerca de lo que imaginas.</span>
+        </h2>
+        <p class="srv-ctg__lede" data-cg="3">
+          Una ubicación pensada para que puedas descansar, trabajar
+          y descubrir el Valle del Cauca sin complicaciones.
+        </p>
+      </div>
+
+      <!-- Escena — fotografía panorámica + bloque editorial -->
+      <div class="srv-ctg__stage">
+
+        <figure class="srv-ctg__figure" data-cg="4">
+          <div class="srv-ctg__photo" role="img" aria-label="Atmósfera de Cartago, Valle del Cauca — luz cálida de tarde sobre la ciudad y el valle">
+            <img class="srv-ctg__photo-img" src="assets/img/cartago.jpg" alt="" loading="lazy" onerror="this.remove()">
+          </div>
+        </figure>
+
+        <aside class="srv-ctg__aside" data-cg="5">
+          <h3 class="srv-ctg__place">Cartago</h3>
+          <p class="srv-ctg__region">Valle del Cauca&ensp;·&ensp;Colombia</p>
+
+          <ul class="srv-ctg__refs">
+            <li class="srv-ctg__ref">Centro de Cartago</li>
+            <li class="srv-ctg__ref">Parque de la Isleta</li>
+            <li class="srv-ctg__ref">Aeropuerto Santa Ana</li>
+          </ul>
+
+          <p class="srv-ctg__note">
+            Un punto de partida para quienes vienen por trabajo, deporte,
+            descanso o simplemente quieren conocer una parte diferente del Valle.
+          </p>
+        </aside>
+
+      </div>
+
+      <!-- Frase de campaña -->
+      <footer class="srv-ctg__closing" data-cg="6">
+        <span class="srv-ctg__campaign">Cerca de todo.</span>
+        <span class="srv-ctg__campaign-accent">Lejos del ruido.</span>
+      </footer>
+
+    </div>
+
+  </section>
+
   <script src="assets/js/main.js"></script>
 
   <!-- Entrada cinematográfica del hero — Servicios -->
@@ -448,6 +523,27 @@
       }, { threshold: 0.1 });
 
       perObserver.observe(perSection);
+    })();
+  </script>
+
+  <!-- Revelado escalonado de la sección 05 — mismo criterio:
+       visible por defecto, la animación embellece al entrar en pantalla -->
+  <script>
+    (function() {
+      'use strict';
+      var ctgSection = document.querySelector('.srv-ctg');
+      if (!ctgSection || !('IntersectionObserver' in window)) return;
+
+      var ctgObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            ctgSection.classList.add('is-revealed');
+            ctgObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.1 });
+
+      ctgObserver.observe(ctgSection);
     })();
   </script>
 </body>

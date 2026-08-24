@@ -33,6 +33,12 @@
    composición irregular con descensos y sangrías propios, pieza
    fotográfica vertical a la derecha (~33%) y cierre a dos voces.
 
+   SECCIÓN 05 — cartago: el relato sale al exterior. Fotografía
+   panorámica de gran formato con el bloque editorial de la ciudad
+   a la derecha y descendido, referencias como líneas tipográficas
+   finas (sin distancias no confirmadas) y frase de campaña a dos
+   voces. Sin mapa: eso vive en contacto/ubicación.
+
    Entrada: cada elemento [data-sr] se revela escalonadamente con
    la clase .is-loaded que inyecta el script inline de la página.
    Los elementos son visibles por defecto; la animación solo
@@ -1491,6 +1497,327 @@
 .srv-per [data-sp="8"] { --sp-delay: 0.8s; }
 .srv-per [data-sp="9"] { --sp-delay: 1.35s; }
 
+/* ============================================================
+   SECCIÓN 05 — CARTAGO
+   "Tu estancia también se vive afuera."
+   El relato sale al exterior: fotografía panorámica de gran
+   formato (~60%) con el bloque editorial de la ciudad a su
+   derecha y descendido. Tres referencias como líneas
+   tipográficas finas —sin distancias que no estén confirmadas—.
+   Cierre de campaña a dos voces: sans versalitas + serif itálica
+   dorada. Sin mapa: eso pertenece a contacto/ubicación.
+   ============================================================ */
+
+.srv-ctg {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  background-color: #080808;
+  overflow-x: clip;
+}
+
+.srv-ctg__inner {
+  position: relative;
+  z-index: var(--z-base);
+  width: 100%;
+  max-width: var(--grid-container);
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: clamp(96px, 13vh, 152px) var(--grid-page-margin) clamp(112px, 15vh, 168px);
+}
+
+/* --- Cabecera editorial — índice izquierda, label derecha --- */
+
+.srv-ctg__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-24);
+}
+
+.srv-ctg__overline {
+  font-family: var(--font-body);
+  font-size: var(--text-eyebrow);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.srv-ctg__index {
+  font-family: var(--font-body);
+  font-size: 0.5rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-ivory);
+  opacity: 0.35;
+}
+
+/* --- Titular --- */
+
+.srv-ctg__intro {
+  margin-top: clamp(48px, 8vh, 88px);
+  max-width: 760px;
+}
+
+.srv-ctg__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.9rem, 3.8vw, 3.4rem);
+  font-weight: var(--weight-heading-light);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-ivory);
+}
+
+.srv-ctg__title-line {
+  display: block;
+}
+
+.srv-ctg__title-accent {
+  display: block;
+  margin-top: 0.22em;
+  margin-left: clamp(1rem, 2.2vw, 2.25rem);
+  font-style: italic;
+  font-weight: var(--weight-heading-light);
+  font-size: clamp(1.25rem, 2.5vw, 2.15rem);
+  line-height: 1.25;
+  color: #C0AE83;
+}
+
+.srv-ctg__lede {
+  margin-top: clamp(28px, 4vh, 44px);
+  max-width: 52ch;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-body-light);
+  line-height: 1.95;
+  letter-spacing: 0.015em;
+  color: var(--color-gray-warm);
+}
+
+/* --- Escena — foto panorámica + bloque editorial descendido --- */
+
+.srv-ctg__stage {
+  display: grid;
+  grid-template-columns: minmax(0, 28fr) minmax(0, 18fr);
+  column-gap: clamp(40px, 5vw, 80px);
+  align-items: start;
+  margin-top: clamp(56px, 9vh, 104px);
+}
+
+/* @FOTO: assets/img/cartago.jpg — Cartago o su entorno real,
+   horizontal 16/9, luz cálida de tarde, cinematográfica y ligera-
+   mente oscura. Sin personas posando ni monumentos genéricos.
+   Mientras no exista el archivo se muestra este placeholder; al
+   añadirla, overlay (::before) y grano (::after) se aplican solos. */
+
+.srv-ctg__figure {
+  margin: 0;
+}
+
+.srv-ctg__photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 600ms var(--ease-out), filter 600ms var(--ease-out);
+  will-change: transform, filter;
+}
+
+.srv-ctg__photo-img {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-base);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.srv-ctg__photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-above);
+  background: linear-gradient(180deg, rgba(8, 8, 8, 0.16) 0%, rgba(8, 8, 8, 0.04) 45%, rgba(8, 8, 8, 0.3) 100%);
+  pointer-events: none;
+}
+
+/* Fallback — atardecer sobre el valle: bruma dorada en el horizonte
+   y masa oscura de tejados/vegetación disolviéndose abajo. Solo
+   luz y atmósfera, sin líneas duras. */
+.srv-ctg__photo {
+  background-color: #0D0B09;
+  background-image:
+    /* Viñeta cinematográfica */
+    radial-gradient(130% 110% at 50% 42%, transparent 48%, rgba(0, 0, 0, 0.62) 100%),
+    /* Bruma dorada del ocaso sobre el valle */
+    radial-gradient(120% 60% at 50% 30%, rgba(226, 192, 132, 0.3) 0%, rgba(196, 168, 110, 0.12) 45%, transparent 75%),
+    /* Lavado cálido lateral */
+    linear-gradient(100deg, rgba(206, 176, 122, 0.14) 0%, transparent 55%),
+    /* Silueta del pueblo y el terreno — masa difusa */
+    linear-gradient(180deg, transparent 55%, rgba(16, 12, 9, 0.55) 66%, rgba(11, 8, 6, 0.9) 78%, rgba(6, 5, 4, 0.98) 100%),
+    /* Cielo a tierra — base cálida descendente */
+    linear-gradient(180deg, #241C15 0%, #191310 45%, #0E0B09 100%);
+  background-size:
+    cover,
+    cover,
+    cover,
+    100% 100%,
+    cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: saturate(0.88) contrast(1.05);
+}
+
+/* Grano finísimo */
+.srv-ctg__photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 150px 150px;
+  opacity: 0.45;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* Microinteracción — zoom contenido + un punto de luz; el bloque
+   de la ciudad se acerca 4px, como girando la página hacia él */
+@media (hover: hover) {
+  .srv-ctg__figure:hover .srv-ctg__photo {
+    transform: scale(1.028);
+    filter: saturate(0.9) contrast(1.05) brightness(1.06);
+  }
+
+  .srv-ctg__figure:hover + .srv-ctg__aside {
+    transform: translateX(4px);
+  }
+}
+
+.srv-ctg__aside {
+  transition: transform 600ms var(--ease-out);
+  margin-top: clamp(56px, 9vh, 104px);
+}
+
+.srv-ctg__place {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: var(--weight-heading-light);
+  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--color-ivory);
+}
+
+.srv-ctg__region {
+  margin: var(--space-12) 0 0;
+  font-family: var(--font-body);
+  font-size: 0.625rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(196, 168, 110, 0.75);
+}
+
+/* Referencias — líneas editoriales finas, sin distancias que no
+   estén confirmadas: solo el nombre y un guiño dorado */
+.srv-ctg__refs {
+  margin: clamp(28px, 4vh, 44px) 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--color-divider);
+}
+
+.srv-ctg__ref {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  padding: clamp(14px, 2vh, 18px) 0;
+  border-bottom: 1px solid var(--color-divider);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: var(--weight-body-regular);
+  letter-spacing: 0.04em;
+  color: rgba(246, 242, 235, 0.88);
+}
+
+.srv-ctg__ref::before {
+  content: '';
+  flex: none;
+  width: 16px;
+  height: 1px;
+  background: rgba(196, 168, 110, 0.55);
+}
+
+.srv-ctg__note {
+  margin: clamp(32px, 5vh, 52px) 0 0;
+  max-width: 38ch;
+  font-family: var(--font-body);
+  font-size: var(--text-body-small);
+  font-weight: var(--weight-body-light);
+  line-height: 1.85;
+  letter-spacing: 0.01em;
+  color: var(--color-gray-warm);
+}
+
+/* --- Frase de campaña — dos voces, tipografía pura --- */
+
+.srv-ctg__closing {
+  margin-top: clamp(88px, 13vh, 144px);
+}
+
+.srv-ctg__campaign {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.625rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(246, 242, 235, 0.45);
+}
+
+.srv-ctg__campaign-accent {
+  display: block;
+  margin-top: var(--space-8);
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: var(--weight-heading-light);
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  letter-spacing: 0.02em;
+  color: #C0AE83;
+}
+
+/* ===========================
+   SECCIÓN 05 — ENTRADA ESCALONADA
+   Visible por defecto; la animación corre al entrar en pantalla.
+   =========================== */
+
+.srv-ctg [data-cg] {
+  opacity: 1;
+  transform: none;
+}
+
+.srv-ctg.is-revealed [data-cg] {
+  animation-name: srvReveal;
+  animation-duration: 1.3s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: backwards;
+  animation-delay: var(--cg-delay, 0s);
+}
+
+.srv-ctg [data-cg="0"] { --cg-delay: 0s; }
+.srv-ctg [data-cg="1"] { --cg-delay: 0.15s; }
+.srv-ctg [data-cg="2"] { --cg-delay: 0.3s; }
+.srv-ctg [data-cg="3"] { --cg-delay: 0.5s; }
+.srv-ctg [data-cg="4"] { --cg-delay: 0.65s; }
+.srv-ctg [data-cg="5"] { --cg-delay: 0.85s; }
+.srv-ctg [data-cg="6"] { --cg-delay: 1.05s; }
+
 /* ===========================
    TABLET — 768–1024px
    =========================== */
@@ -1561,6 +1888,11 @@
 
   .srv-per__figure {
     margin-top: clamp(80px, 12vh, 136px);
+  }
+
+  /* Sección 05 */
+  .srv-ctg__stage {
+    column-gap: clamp(32px, 4vw, 56px);
   }
 }
 
@@ -1839,6 +2171,49 @@
   .srv-per__closing {
     margin-top: clamp(72px, 11vh, 104px);
   }
+
+  /* Sección 05 — una sola columna: titular → foto → ciudad → frase */
+  .srv-ctg__inner {
+    padding-top: calc(var(--navbar-height) + clamp(56px, 9vh, 88px));
+    padding-bottom: clamp(80px, 12vh, 112px);
+  }
+
+  .srv-ctg__head {
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .srv-ctg__intro {
+    margin-top: clamp(40px, 6vh, 56px);
+    max-width: 100%;
+  }
+
+  .srv-ctg__title {
+    font-size: clamp(1.7rem, 7vw, 2.2rem);
+  }
+
+  .srv-ctg__title-accent {
+    margin-left: clamp(0.75rem, 4.5vw, 1.5rem);
+    font-size: clamp(1.15rem, 5vw, 1.6rem);
+  }
+
+  .srv-ctg__lede {
+    margin-top: clamp(24px, 4vh, 32px);
+    max-width: 100%;
+  }
+
+  .srv-ctg__stage {
+    grid-template-columns: 1fr;
+    margin-top: clamp(48px, 7vh, 64px);
+  }
+
+  .srv-ctg__aside {
+    margin-top: clamp(32px, 5vh, 48px);
+  }
+
+  .srv-ctg__closing {
+    margin-top: clamp(64px, 10vh, 96px);
+  }
 }
 
 /* ===========================
@@ -1935,5 +2310,25 @@
   .srv-per__flow:hover + .srv-per__figure .srv-per__photo {
     transform: none !important;
     filter: saturate(0.88) contrast(1.05) !important;
+  }
+
+  .srv-ctg [data-cg] {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .srv-ctg__photo,
+  .srv-ctg__aside {
+    transition: none !important;
+  }
+
+  .srv-ctg__figure:hover .srv-ctg__photo {
+    transform: none !important;
+    filter: saturate(0.88) contrast(1.05) !important;
+  }
+
+  .srv-ctg__figure:hover + .srv-ctg__aside {
+    transform: none !important;
   }
 }
