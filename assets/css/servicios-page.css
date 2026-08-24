@@ -1215,14 +1215,16 @@
   color: var(--color-gray-warm);
 }
 
-/* --- Cuerpo — perfiles a la izquierda (~64%), foto a la derecha --- */
+/* --- Cuerpo — perfiles a la izquierda (~65%), foto a la derecha.
+   El gap contenido y el descenso calibrado de la pieza hacen que
+   la foto conviva con los perfiles 02/04 en vez de flotar sola --- */
 
 .srv-per__body {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-  column-gap: clamp(56px, 7vw, 112px);
+  grid-template-columns: minmax(0, 13fr) minmax(0, 7fr);
+  column-gap: clamp(40px, 5vw, 80px);
   align-items: start;
-  margin-top: clamp(64px, 10vh, 120px);
+  margin-top: clamp(52px, 8vh, 96px);
 }
 
 /* Flujo de perfiles — columnas desiguales para evitar la tabla */
@@ -1231,7 +1233,7 @@
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
   column-gap: clamp(40px, 5vw, 80px);
-  row-gap: clamp(56px, 9vh, 104px);
+  row-gap: clamp(44px, 7.5vh, 84px);
 }
 
 .srv-per__item {
@@ -1260,18 +1262,18 @@
 
 /* Desplazamientos irregulares — composición de revista:
    02 desciende respecto a 01; 03 se sangra hacia dentro;
-   04 desciende más que su pareja de fila */
+   04 desciende claramente más que su pareja de fila */
 .srv-per__item--02 {
-  margin-top: clamp(32px, 5vh, 56px);
+  margin-top: clamp(40px, 6vh, 72px);
 }
 
 .srv-per__item--03 {
-  padding-left: clamp(24px, 3vw, 56px);
-  margin-top: clamp(8px, 2vh, 24px);
+  padding-left: clamp(32px, 4vw, 72px);
+  margin-top: clamp(16px, 3vh, 40px);
 }
 
 .srv-per__item--04 {
-  margin-top: clamp(48px, 8vh, 88px);
+  margin-top: clamp(64px, 10vh, 112px);
 }
 
 .srv-per__num {
@@ -1323,8 +1325,13 @@
 
 /* --- Pieza fotográfica — vertical grande, derecha, descendida --- */
 
+/* --- Pieza fotográfica — vertical grande, derecha.
+   El descenso calibrado la sienta al lado del bloque 02/04:
+   deja de ser una columna independiente y pasa a formar parte
+   de la composición --- */
+
 .srv-per__figure {
-  margin: clamp(64px, 10vh, 128px) 0 0;
+  margin: clamp(96px, 15vh, 168px) 0 0;
 }
 
 /* Estructura lista para la imagen real: basta con añadir
@@ -1424,7 +1431,7 @@
   display: flex;
   align-items: flex-start;
   gap: var(--space-16);
-  margin-top: clamp(96px, 14vh, 152px);
+  margin-top: clamp(76px, 11.5vh, 124px);
 }
 
 .srv-per__closing-mark {
@@ -1541,7 +1548,7 @@
   }
 
   .srv-per__body {
-    column-gap: clamp(40px, 5vw, 64px);
+    column-gap: clamp(32px, 4vw, 56px);
   }
 
   .srv-per__flow {
@@ -1549,7 +1556,11 @@
   }
 
   .srv-per__item--03 {
-    padding-left: clamp(16px, 2.5vw, 32px);
+    padding-left: clamp(20px, 3vw, 44px);
+  }
+
+  .srv-per__figure {
+    margin-top: clamp(80px, 12vh, 136px);
   }
 }
 
