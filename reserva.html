@@ -273,18 +273,21 @@
 
               <div class="rsv__field">
                 <label class="rsv__label" for="rsv-mensaje">¿Hay algo que debamos saber antes de tu llegada?</label>
-                <textarea class="rsv__input rsv__textarea" id="rsv-mensaje" name="mensaje" rows="4" placeholder="Cuéntanos si necesitas traslado, vienes por trabajo, entrenamiento, una estancia larga o tienes alguna solicitud especial."></textarea>
+                <textarea class="rsv__input rsv__textarea" id="rsv-mensaje" name="mensaje" rows="3" placeholder="Cuéntanos si necesitas traslado, vienes por trabajo, entrenamiento, una estancia larga o tienes alguna solicitud especial."></textarea>
               </div>
 
               <!-- Preferencia de apartamento (opciones solo si ya existen) -->
               <div class="rsv__field">
                 <label class="rsv__label" for="rsv-apto">Preferencia de apartamento <span class="rsv__optional">· opcional</span></label>
-                <select class="rsv__input rsv__select" id="rsv-apto" name="apartamento">
-                  <option value="">Sin preferencia</option>
-                  <option value="presidential">Presidential</option>
-                  <option value="terra">Terra</option>
-                  <option value="interior">Interior</option>
-                </select>
+                <div class="rsv__select-wrap">
+                  <select class="rsv__input rsv__select" id="rsv-apto" name="apartamento">
+                    <option value="">Sin preferencia</option>
+                    <option value="presidential">Presidential</option>
+                    <option value="terra">Terra</option>
+                    <option value="interior">Interior</option>
+                  </select>
+                  <svg class="rsv__select-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+                </div>
               </div>
 
               <!-- Necesidades / servicios -->
@@ -313,17 +316,17 @@
                     <span class="rsv__check-text">Parapente — información sobre la actividad</span>
                   </label>
                   <label class="rsv__check">
-                    <input type="checkbox" name="necesidad" value="Otra solicitud">
+                    <input type="checkbox" name="necesidad" value="Algo más">
                     <span class="rsv__check-box"></span>
-                    <span class="rsv__check-text">Otra solicitud</span>
+                    <span class="rsv__check-text">Algo más</span>
                   </label>
                 </div>
                 <p class="rsv__hint">El parapente se muestra como información mientras se confirma el proveedor o la alianza.</p>
               </div>
 
               <div class="rsv__navbtns">
-                <button type="button" class="rsv__btn rsv__btn--back" data-rsv-back="3">Volver</button>
-                <button type="button" class="rsv__btn rsv__btn--next" data-rsv-next="3">Revisar&ensp;&rarr;</button>
+                <button type="button" class="rsv__btn rsv__btn--back" data-rsv-back="3">&larr;&ensp;Volver a tus datos</button>
+                <button type="button" class="rsv__btn rsv__btn--next" data-rsv-next="3">Continuar&ensp;&rarr;</button>
               </div>
             </fieldset>
 
