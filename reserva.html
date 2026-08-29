@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diana & Sans — Reserva tu estancia en Cartago</title>
+  <meta name="description" content="Solicita disponibilidad en Diana & Sans y prepara tu próxima estancia en Cartago, Valle del Cauca.">
+
+  <!-- Open Graph básico -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Diana & Sans — Reserva tu estancia en Cartago">
+  <meta property="og:description" content="Solicita disponibilidad en Diana & Sans y prepara tu próxima estancia en Cartago, Valle del Cauca.">
+  <meta property="og:locale" content="es_CO">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/typography.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/footer.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="stylesheet" href="assets/css/reserva-page.css">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='24' font-size='24' font-family='serif' fill='%23B79A63'>D</text></svg>">
+</head>
+<body>
+
+  <!-- NAVBAR GLOBAL -->
+  <nav class="navbar navbar--visible" role="navigation">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">Diana <span>&</span> Sans</a>
+      <div class="navbar__menu">
+        <a href="espacios.html" class="navbar__link">Espacios</a>
+        <a href="experiencias.html" class="navbar__link">Experiencias</a>
+        <a href="galeria.html" class="navbar__link">Galería</a>
+        <a href="servicios.html" class="navbar__link">Servicios</a>
+      </div>
+      <div class="navbar__right">
+        <span class="navbar__lang">ES</span>
+        <a href="reserva.html" class="navbar__cta" aria-current="page">Reservar</a>
+      </div>
+      <div class="navbar__toggle" aria-label="Menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="navbar__mobile-menu">
+    <a href="espacios.html" class="navbar__link">Espacios</a>
+    <a href="experiencias.html" class="navbar__link">Experiencias</a>
+    <a href="galeria.html" class="navbar__link">Galería</a>
+    <a href="servicios.html" class="navbar__link">Servicios</a>
+    <a href="reserva.html" class="btn btn--primary" aria-current="page">Reservar</a>
+  </div>
+
+  <!-- ================================================================
+       RESERVA — HERO + SOLICITUD
+       "Tu próxima estancia empieza aquí."
+       La continuación natural de la experiencia editorial: no un panel
+       administrativo, sino una solicitud de disponibilidad cuidada.
+       Lado izquierdo — la promesa: titular, texto, frase de marca.
+       Lado derecho — el formulario en cuatro pasos minimalistas.
+       Sin precios ficticios: funciona como solicitud de disponibilidad
+       y se gestiona de forma manual (email/WhatsApp).
+       WhatsApp real (único configurado en el sitio): wa.me/573001234567
+       ================================================================ -->
+  <section class="rsv" id="reserva">
+
+    <div class="rsv__inner">
+
+      <div class="rsv__layout">
+
+        <!-- LADO IZQUIERDO — la promesa -->
+        <div class="rsv__aside">
+          <header class="rsv__head">
+            <span class="rsv__overline" data-rv="0">Reserva</span>
+            <span class="rsv__index" data-rv="1">Pensado para quedarse.</span>
+          </header>
+
+          <div class="rsv__promise">
+            <h1 class="rsv__title" data-rv="2">
+              <span class="rsv__title-line">Tu próxima estancia</span>
+              <span class="rsv__title-line rsv__title-line--em">empieza aquí.</span>
+            </h1>
+            <p class="rsv__lede" data-rv="3">
+              Cuéntanos cuándo vienes y qué necesitas.<br>
+              Nosotros nos encargamos del resto.
+            </p>
+            <!-- Detalle editorial — línea dorada + frase -->
+            <div class="rsv__detail" data-rv="4">
+              <span class="rsv__detail-mark" aria-hidden="true"></span>
+              <span class="rsv__detail-text">Pensado para que llegar sea sencillo.</span>
+            </div>
+
+            <!-- Nota honesta: es una solicitud, no un motor de reservas -->
+            <p class="rsv__note" data-rv="5">
+              Cada solicitud se revisa personalmente. Te contactaremos para
+              confirmar disponibilidad y los detalles de tu estancia.
+            </p>
+          </div>
+        </div>
+
+        <!-- LADO DERECHO — el formulario por pasos -->
+        <div class="rsv__panel">
+
+          <!-- Progreso editorial -->
+          <ol class="rsv__steps" data-rv="6">
+            <li class="rsv__stepnav is-active" data-stepnav="1">
+              <span class="rsv__stepnav-num">01</span>
+              <span class="rsv__stepnav-label">Estancia</span>
+            </li>
+            <li class="rsv__stepnav" data-stepnav="2">
+              <span class="rsv__stepnav-num">02</span>
+              <span class="rsv__stepnav-label">Tus datos</span>
+            </li>
+            <li class="rsv__stepnav" data-stepnav="3">
+              <span class="rsv__stepnav-num">03</span>
+              <span class="rsv__stepnav-label">Detalles</span>
+            </li>
+            <li class="rsv__stepnav" data-stepnav="4">
+              <span class="rsv__stepnav-num">04</span>
+              <span class="rsv__stepnav-label">Confirmar</span>
+            </li>
+          </ol>
+
+          <form class="rsv__form" id="rsvForm" novalidate>
+
+            <!-- ==================== PASO 01 — ESTANCIA ==================== -->
+            <fieldset class="rsv__step" data-step="1">
+              <legend class="rsv__step-legend">
+                <span class="rsv__step-legend-num">01</span>
+                Tu estancia
+              </legend>
+
+              <div class="rsv__fieldgroup">
+                <div class="rsv__field">
+                  <label class="rsv__label" for="rsv-llegada">Fecha de llegada <span class="rsv__req">*</span></label>
+                  <input class="rsv__input" type="date" id="rsv-llegada" name="llegada" data-required>
+                  <p class="rsv__error" data-error="llegada"></p>
+                </div>
+                <div class="rsv__field">
+                  <label class="rsv__label" for="rsv-salida">Fecha de salida <span class="rsv__req">*</span></label>
+                  <input class="rsv__input" type="date" id="rsv-salida" name="salida" data-required>
+                  <p class="rsv__error" data-error="salida"></p>
+                </div>
+              </div>
+
+              <div class="rsv__fieldgroup">
+                <div class="rsv__field">
+                  <label class="rsv__label" for="rsv-huespedes">Huéspedes <span class="rsv__req">*</span></label>
+                  <select class="rsv__input rsv__select" id="rsv-huespedes" name="huespedes" data-required>
+                    <option value="">Selecciona</option>
+                    <option value="1">1 huésped</option>
+                    <option value="2">2 huéspedes</option>
+                    <option value="3">3 huéspedes</option>
+                    <option value="4">4 huéspedes</option>
+                  </select>
+                  <p class="rsv__error" data-error="huespedes"></p>
+                </div>
+                <div class="rsv__field">
+                  <label class="rsv__label" for="rsv-adultos">Adultos <span class="rsv__req">*</span></label>
+                  <input class="rsv__input" type="number" id="rsv-adultos" name="adultos" min="1" max="20" value="2" data-required>
+                  <p class="rsv__error" data-error="adultos"></p>
+                </div>
+                <div class="rsv__field">
+                  <label class="rsv__label" for="rsv-ninos">Niños</label>
+                  <input class="rsv__input" type="number" id="rsv-ninos" name="ninos" min="0" max="20" value="0">
+                </div>
+              </div>
+
+              <div class="rsv__field">
+                <label class="rsv__label" for="rsv-tipo">Tipo de estancia <span class="rsv__optional">· opcional</span></label>
+                <select class="rsv__input rsv__select" id="rsv-tipo" name="tipo">
+                  <option value="">Sin indicar</option>
+                  <option value="corta">Corta</option>
+                  <option value="larga">Larga (semanas o meses)</option>
+                  <option value="trabajo">Trabajo</option>
+                  <option value="turismo">Turismo</option>
+                  <option value="entrenamiento">Entrenamiento / deporte</option>
+                  <option value="otra">Otra</option>
+                </select>
+              </div>
+
+              <div class="rsv__navbtns">
+                <span></span>
+                <button type="button" class="rsv__btn rsv__btn--next" data-rsv-next="1">Continuar&ensp;&rarr;</button>
+              </div>
+            </fieldset>
+
+            <!-- ==================== PASO 02 — TUS DATOS ==================== -->
+            <fieldset class="rsv__step" data-step="2" hidden>
+              <legend class="rsv__step-legend">
+                <span class="rsv__step-legend-num">02</span>
+                Tus datos
+              </legend>
+
+              <div class="rsv__fieldgroup">
+                <div class="rsv__field">
+                  <label class="rsv__label" for="rsv-nombre">Nombre completo <span class="rsv__req">*</span></label>
+                  <input class="rsv__input" type="text" id="rsv-nombre" name="nombre" placeholder="Tu nombre" data-required>
+                  <p class="rsv__error" data-error="nombre"></p>
+                </div>
+              </div>
+
+              <div class="rsv__fieldgroup">
+                <div class="rsv__field">
+                  <label class="rsv__label" for="rsv-email">Correo electrónico <span class="rsv__req">*</span></label>
+                  <input class="rsv__input" type="email" id="rsv-email" name="email" placeholder="tu@correo.com" data-required data-type="email">
+                  <p class="rsv__error" data-error="email"></p>
+                </div>
+                <div class="rsv__field">
+                  <label class="rsv__label" for="rsv-tel">WhatsApp / teléfono <span class="rsv__req">*</span></label>
+                  <input class="rsv__input" type="tel" id="rsv-tel" name="telefono" placeholder="+57 ..." data-required data-type="tel">
+                  <p class="rsv__error" data-error="telefono"></p>
+                </div>
+              </div>
+
+              <div class="rsv__fieldgroup">
+                <div class="rsv__field">
+                  <label class="rsv__label" for="rsv-pais">País de procedencia <span class="rsv__req">*</span></label>
+                  <input class="rsv__input" type="text" id="rsv-pais" name="pais" placeholder="Tu país" data-required>
+                  <p class="rsv__error" data-error="pais"></p>
+                </div>
+                <div class="rsv__field">
+                  <label class="rsv__label" for="rsv-doc">Documento de identidad <span class="rsv__optional">· opcional</span></label>
+                  <input class="rsv__input" type="text" id="rsv-doc" name="documento" placeholder="Si lo deseas">
+                </div>
+              </div>
+
+              <div class="rsv__navbtns">
+                <button type="button" class="rsv__btn rsv__btn--back" data-rsv-back="2">Volver</button>
+                <button type="button" class="rsv__btn rsv__btn--next" data-rsv-next="2">Continuar&ensp;&rarr;</button>
+              </div>
+            </fieldset>
+
+            <!-- ==================== PASO 03 — DETALLES ==================== -->
+            <fieldset class="rsv__step" data-step="3" hidden>
+              <legend class="rsv__step-legend">
+                <span class="rsv__step-legend-num">03</span>
+                Cuéntanos más
+              </legend>
+
+              <div class="rsv__field">
+                <label class="rsv__label" for="rsv-mensaje">¿Hay algo que debamos saber antes de tu llegada?</label>
+                <textarea class="rsv__input rsv__textarea" id="rsv-mensaje" name="mensaje" rows="4" placeholder="Cuéntanos si necesitas traslado, vienes por trabajo, entrenamiento, una estancia larga o tienes alguna solicitud especial."></textarea>
+              </div>
+
+              <!-- Preferencia de apartamento (opciones solo si ya existen) -->
+              <div class="rsv__field">
+                <label class="rsv__label" for="rsv-apto">Preferencia de apartamento <span class="rsv__optional">· opcional</span></label>
+                <select class="rsv__input rsv__select" id="rsv-apto" name="apartamento">
+                  <option value="">Sin preferencia</option>
+                  <option value="presidential">Presidential</option>
+                  <option value="terra">Terra</option>
+                  <option value="interior">Interior</option>
+                </select>
+              </div>
+
+              <!-- Necesidades / servicios -->
+              <div class="rsv__field">
+                <span class="rsv__label rsv__label--block">¿Qué necesitas?</span>
+                <div class="rsv__checks">
+                  <label class="rsv__check">
+                    <input type="checkbox" name="necesidad" value="Traslado hacia/desde el aeropuerto">
+                    <span class="rsv__check-box"></span>
+                    <span class="rsv__check-text">Traslado hacia/desde el aeropuerto</span>
+                  </label>
+                  <label class="rsv__check">
+                    <input type="checkbox" name="necesidad" value="Estancia larga">
+                    <span class="rsv__check-box"></span>
+                    <span class="rsv__check-text">Estancia larga</span>
+                  </label>
+                  <label class="rsv__check">
+                    <input type="checkbox" name="necesidad" value="Información sobre actividades">
+                    <span class="rsv__check-box"></span>
+                    <span class="rsv__check-text">Información sobre actividades</span>
+                  </label>
+                  <!-- Parapente: informativo, no promete disponibilidad -->
+                  <label class="rsv__check" title="Información sobre la actividad — proveedor por confirmar">
+                    <input type="checkbox" name="necesidad" value="Parapente — información sobre la actividad">
+                    <span class="rsv__check-box"></span>
+                    <span class="rsv__check-text">Parapente — información sobre la actividad</span>
+                  </label>
+                  <label class="rsv__check">
+                    <input type="checkbox" name="necesidad" value="Otra solicitud">
+                    <span class="rsv__check-box"></span>
+                    <span class="rsv__check-text">Otra solicitud</span>
+                  </label>
+                </div>
+                <p class="rsv__hint">El parapente se muestra como información mientras se confirma el proveedor o la alianza.</p>
+              </div>
+
+              <div class="rsv__navbtns">
+                <button type="button" class="rsv__btn rsv__btn--back" data-rsv-back="3">Volver</button>
+                <button type="button" class="rsv__btn rsv__btn--next" data-rsv-next="3">Revisar&ensp;&rarr;</button>
+              </div>
+            </fieldset>
+
+            <!-- ==================== PASO 04 — CONFIRMAR ==================== -->
+            <fieldset class="rsv__step" data-step="4" hidden>
+              <legend class="rsv__step-legend">
+                <span class="rsv__step-legend-num">04</span>
+                Revisa tu solicitud
+              </legend>
+
+              <!-- Resumen dinámico -->
+              <div class="rsv__summary" id="rsvSummary">
+                <div class="rsv__summary-block">
+                  <span class="rsv__summary-title">Estancia</span>
+                  <p class="rsv__summary-line"><span>Llegada</span><em data-summary="llegada">&mdash;</em></p>
+                  <p class="rsv__summary-line"><span>Salida</span><em data-summary="salida">&mdash;</em></p>
+                  <p class="rsv__summary-line"><span>Huéspedes</span><em data-summary="huespedes">&mdash;</em></p>
+                </div>
+                <div class="rsv__summary-block">
+                  <span class="rsv__summary-title">Huésped</span>
+                  <p class="rsv__summary-line"><span>Nombre</span><em data-summary="nombre">&mdash;</em></p>
+                  <p class="rsv__summary-line"><span>Correo</span><em data-summary="email">&mdash;</em></p>
+                  <p class="rsv__summary-line"><span>WhatsApp</span><em data-summary="telefono">&mdash;</em></p>
+                </div>
+                <div class="rsv__summary-block">
+                  <span class="rsv__summary-title">Solicitudes</span>
+                  <p class="rsv__summary-list" data-summary="solicitudes">&mdash;</p>
+                </div>
+              </div>
+
+              <p class="rsv__disclaimer">
+                No se realiza ningún cargo. Esta es una solicitud de disponibilidad:
+                te contactaremos para confirmar fechas y detalles.
+              </p>
+
+              <div class="rsv__navbtns rsv__navbtns--final">
+                <button type="button" class="rsv__btn rsv__btn--back" data-rsv-back="4">Volver</button>
+                <button type="submit" class="rsv__submit">Enviar solicitud&ensp;&rarr;</button>
+              </div>
+
+              <div class="rsv__alt">
+                <p class="rsv__alt-q">¿Prefieres hablar directamente con nosotros?</p>
+                <a class="rsv__alt-link" href="https://wa.me/573001234567" target="_blank" rel="noopener">
+                  Escribir por WhatsApp&ensp;&rarr;
+                </a>
+              </div>
+            </fieldset>
+
+          </form>
+
+          <!-- ==================== ESTADO DE ÉXITO ==================== -->
+          <div class="rsv__success" id="rsvSuccess" hidden>
+            <span class="rsv__success-mark" aria-hidden="true"></span>
+            <h2 class="rsv__success-title">Solicitud recibida.</h2>
+            <p class="rsv__success-nombre">Gracias, <em data-success-nombre>&mdash;</em>.</p>
+            <p class="rsv__success-copy">
+              Hemos recibido los datos de tu estancia. Nos pondremos en contacto
+              contigo para confirmar disponibilidad y los siguientes pasos.
+            </p>
+            <div class="rsv__success-actions">
+              <a class="rsv__success-wa" href="https://wa.me/573001234567" target="_blank" rel="noopener">
+                Escribir por WhatsApp&ensp;&rarr;
+              </a>
+              <a class="rsv__success-home" href="index.html">Volver al inicio&ensp;&rarr;</a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER GLOBAL — coherencia con el resto del sitio -->
+  <footer class="footer" id="contacto">
+    <div class="container">
+      <div class="footer__top">
+
+        <div class="footer__brand">
+          <div class="footer__logo">Diana <span>&</span> Sans</div>
+          <p class="footer__tagline">
+            Hospitalidad boutique en el corazón del Valle del Cauca.
+          </p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="#" class="footer__social-link" aria-label="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://wa.me/573001234567" target="_blank" rel="noopener" class="footer__social-link" aria-label="WhatsApp">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <hr class="footer__divider">
+
+        <div class="footer__columns">
+          <div class="footer__column">
+            <span class="footer__column-title">Navegación</span>
+            <a href="espacios.html" class="footer__column-link">Espacios</a>
+            <a href="experiencias.html" class="footer__column-link">Experiencias</a>
+            <a href="galeria.html" class="footer__column-link">Galería</a>
+            <a href="servicios.html" class="footer__column-link">Servicios</a>
+            <a href="reserva.html" class="footer__column-link" aria-current="page">Reserva</a>
+          </div>
+          <div class="footer__column">
+            <span class="footer__column-title">Servicios</span>
+            <a href="servicios.html" class="footer__column-link">Wi-Fi 7 privado</a>
+            <a href="servicios.html" class="footer__column-link">Aire acondicionado Daikin</a>
+            <a href="servicios.html" class="footer__column-link">Calentador Bosch</a>
+            <a href="servicios.html" class="footer__column-link">Vigilancia 24 h</a>
+            <a href="servicios.html" class="footer__column-link">Estancias largas</a>
+          </div>
+        </div>
+
+        <hr class="footer__divider">
+
+        <div class="footer__contact">
+          <span class="footer__column-title">Contacto</span>
+          <div class="footer__contact-items">
+            <a href="https://wa.me/573001234567" class="footer__contact-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              <span>+57 300 123 4567</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span class="footer__copyright">© 2026 Diana &amp; Sans. Todos los derechos reservados.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+
+  <!-- Entrada editorial del contenedor de reserva -->
+  <script>
+    (function() {
+      'use strict';
+      var rsv = document.querySelector('.rsv');
+      if (!rsv) return;
+      requestAnimationFrame(function() {
+        setTimeout(function() { rsv.classList.add('is-loaded'); }, 120);
+      });
+    })();
+  </script>
+
+  <!-- Lógica de la solicitud de reserva: pasos, validaciones, resumen,
+       estado de éxito y WhatsApp. Sin backend: la solicitud se revisa
+       de forma manual. Los datos se conservan localmente y se puede
+       continuar por WhatsApp con un resumen pre-cargado. -->
+  <script>
+    (function() {
+      'use strict';
+
+      var form = document.getElementById('rsvForm');
+      if (!form) return;
+
+      /* Número real de WhatsApp configurado en el sitio (index.html).
+         No se inventa: es el único número operativo del proyecto. */
+      var WA_NUMBER = '573001234567';
+
+      /* --- Navegación por pasos --- */
+      var steps = Array.prototype.slice.call(form.querySelectorAll('.rsv__step'));
+      var stepnavs = Array.prototype.slice.call(document.querySelectorAll('.rsv__stepnav'));
+
+      function showStep(n) {
+        steps.forEach(function(s) {
+          var on = parseInt(s.getAttribute('data-step'), 10) === n;
+          s.hidden = !on;
+          if (on) s.classList.add('is-current');
+          else s.classList.remove('is-current');
+        });
+        stepnavs.forEach(function(sn) {
+          var on = parseInt(sn.getAttribute('data-stepnav'), 10) <= n;
+          var cur = parseInt(sn.getAttribute('data-stepnav'), 10) === n;
+          sn.classList.toggle('is-active', cur);
+          sn.classList.toggle('is-done', on && !cur);
+        });
+        if (n > 1) updateSummary();
+        form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      /* --- Validación de un campo --- */
+      function markError(input, msg) {
+        var wrap = input.closest('.rsv__field') || input.parentElement;
+        var err = wrap.querySelector('[data-error]');
+        if (err) err.textContent = msg;
+        input.classList.toggle('rsv__input--invalid', !!msg);
+      }
+
+      var todayISO = function() {
+        var d = new Date();
+        var m = String(d.getMonth() + 1).padStart(2, '0');
+        var day = String(d.getDate()).padStart(2, '0');
+        return d.getFullYear() + '-' + m + '-' + day;
+      };
+
+      function validateField(input) {
+        var value = (input.value || '').trim();
+        var name = input.name;
+
+        if (input.dataset.required && !value) {
+          markError(input, 'Este campo es obligatorio.');
+          return false;
+        }
+        if (value && input.dataset.type === 'email') {
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+            markError(input, 'Ingresa un correo válido.');
+            return false;
+          }
+        }
+        if (value && input.dataset.type === 'tel') {
+          var digits = value.replace(/\D/g, '');
+          if (digits.length < 7 || digits.length > 15) {
+            markError(input, 'Ingresa un teléfono válido.');
+            return false;
+          }
+        }
+        if (input.type === 'number' && value !== '') {
+          var n = parseInt(value, 10);
+          var min = input.min ? parseInt(input.min, 10) : 0;
+          if (isNaN(n) || n < min) {
+            markError(input, 'Valor no válido.');
+            return false;
+          }
+        }
+        markError(input, '');
+        return true;
+      }
+
+      /* Validación de fechas cruzadas */
+      function validateDates() {
+        var llegada = document.getElementById('rsv-llegada');
+        var salida = document.getElementById('rsv-salida');
+        var ok = validateField(llegada) & validateField(salida);
+
+        if (llegada.value && salida.value && llegada.value > salida.value) {
+          markError(salida, 'La fecha de salida no puede ser anterior a la llegada.');
+          return false;
+        }
+        if (llegada.value && salida.value && llegada.value === salida.value) {
+          markError(salida, 'La salida debe ser posterior a la llegada.');
+          return false;
+        }
+        return !!ok;
+      }
+
+      /* --- Validar un paso completo --- */
+      function validateStep(n) {
+        var step = form.querySelector('.rsv__step[data-step="' + n + '"]');
+        if (!step) return true;
+
+        var ok = true;
+
+        // Fechas
+        if (n === 1) ok = validateDates() && ok;
+
+        var inputs = step.querySelectorAll('input, select');
+        Array.prototype.forEach.call(inputs, function(input) {
+          if (input.disabled) return;
+          if (!validateField(input)) ok = false;
+        });
+
+        return ok;
+      }
+
+      /* --- Resumen dinámico --- */
+      var labeled = {
+        '1': { llegada: 'Llegada', salida: 'Salida', huespedes: 'Huéspedes' },
+        '2': { nombre: 'Nombre', email: 'Correo', telefono: 'WhatsApp' }
+      };
+
+      function fmtDate(iso) {
+        if (!iso) return '—';
+        var d = new Date(iso + 'T00:00:00');
+        if (isNaN(d)) return iso;
+        var opts = { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' };
+        return d.toLocaleDateString('es-ES', opts);
+      }
+
+      function updateSummary() {
+        var val = function(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; };
+        var set = function(key, txt) {
+          var el = document.querySelector('[data-summary="' + key + '"]');
+          if (el) el.textContent = txt || '—';
+        };
+
+        var llegada = val('rsv-llegada');
+        var salida = val('rsv-salida');
+        set('llegada', fmtDate(llegada));
+        set('salida', fmtDate(salida));
+
+        var npers = val('rsv-huespedes') || 'Sin especificar';
+        var adultos = val('rsv-adultos');
+        var ninos = val('rsv-ninos');
+        var hues = npers;
+        if (adultos || ninos) {
+          var parts = [];
+          if (adultos) parts.push(adultos + ' adulto' + (adultos !== '1' ? 's' : ''));
+          if (ninos && ninos !== '0') parts.push(ninos + ' niño' + (ninos !== '1' ? 's' : ''));
+          if (parts.length) hues = npers + (parts.length ? ' (' + parts.join(', ') + ')' : '');
+        }
+        set('huespedes', hues);
+
+        set('nombre', val('rsv-nombre'));
+        set('email', val('rsv-email'));
+        set('telefono', val('rsv-tel') || '—');
+
+        var checks = form.querySelectorAll('input[name="necesidad"]:checked');
+        var lista = Array.prototype.map.call(checks, function(c) { return c.value; });
+        var msgTxt = val('rsv-mensaje');
+        var apto = val('rsv-apto');
+        if (apto && apto !== 'Sin preferencia') lista.push('Preferencia: ' + apto);
+        if (msgTxt) lista.push(msgTxt.slice(0, 80) + (msgTxt.length > 80 ? '…' : ''));
+
+        var dest = document.querySelector('[data-summary="solicitudes"]');
+        if (dest) {
+          dest.textContent = '';
+          if (!lista.length) { dest.textContent = 'Sin solicitudes adicionales.'; }
+          Array.prototype.forEach.call(lista, function(item) {
+            var line = document.createElement('span');
+            line.className = 'rsv__summary-sol';
+            line.textContent = '· ' + item;
+            dest.appendChild(line);
+          });
+        }
+      }
+
+      /* --- Construir mensaje de WhatsApp con el resumen --- */
+      function waMessage() {
+        var val = function(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; };
+        var checks = form.querySelectorAll('input[name="necesidad"]:checked');
+        var necesidad = Array.prototype.map.call(checks, function(c) { return c.value; }).join(', ');
+
+        var lines = [
+          'Hola Diana & Sans, me gustaría solicitar disponibilidad.',
+          '',
+          'Estancia: ' + fmtDate(val('rsv-llegada')) + ' → ' + fmtDate(val('rsv-salida')),
+          'Huéspedes: ' + (val('rsv-huespedes') || 'sin especificar') +
+            (val('rsv-adultos') ? ' (' + val('rsv-adultos') + ' adulto' + (val('rsv-adultos') !== '1' ? 's' : '') + ')' : '') +
+            (val('rsv-ninos') && val('rsv-ninos') !== '0' ? ', ' + val('rsv-ninos') + ' niño(s)' : ''),
+          'Tipo de estancia: ' + (val('rsv-tipo') || 'sin indicar'),
+          'Nombre: ' + (val('rsv-nombre') || '—'),
+          'Correo: ' + (val('rsv-email') || '—'),
+          'País: ' + (val('rsv-pais') || '—'),
+          'Preferencia: ' + (val('rsv-apto') || 'sin especificar'),
+          necesidad ? 'Solicitudes: ' + necesidad : ''
+        ].filter(Boolean);
+
+        var mensaje = val('rsv-mensaje');
+        if (mensaje) lines.push('Detalles: ' + mensaje);
+
+        return lines.join('\n');
+      }
+
+      /* --- Envío (solicitud manual) --- */
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (!validateStep(1) || !validateStep(2)) {
+          // volver al primer paso con error
+          var target = !validateStep(1) ? 1 : 2;
+          showStep(target);
+          return;
+        }
+        updateSummary();
+
+        // Conservar localmente la solicitud (no es un motor de reservas:
+        // solo evita perder los datos si el usuario recarga la página).
+        try {
+          var record = {
+            creada: new Date().toISOString(),
+            nombre: document.getElementById('rsv-nombre').value,
+            email: document.getElementById('rsv-email').value,
+            telefono: document.getElementById('rsv-tel').value,
+            pais: document.getElementById('rsv-pais').value,
+            fecha_llegada: document.getElementById('rsv-llegada').value,
+            fecha_salida: document.getElementById('rsv-salida').value,
+            adultos: document.getElementById('rsv-adultos').value,
+            ninos: document.getElementById('rsv-ninos').value,
+            huespedes: document.getElementById('rsv-huespedes').value,
+            tipo_estancia: document.getElementById('rsv-tipo').value,
+            solicitudes: Array.prototype.map.call(
+              form.querySelectorAll('input[name="necesidad"]:checked'),
+              function(c) { return c.value; }
+            ),
+            mensaje: document.getElementById('rsv-mensaje').value,
+            estado: 'nueva'
+          };
+          localStorage.setItem('dianasans_solicitud_reserva', JSON.stringify(record));
+        } catch (err) { /* almacenamiento no disponible: se ignora */ }
+
+        // Estado de éxito
+        var nombre = document.getElementById('rsv-nombre').value.trim().split(' ')[0];
+        var el = document.querySelector('[data-success-nombre]');
+        if (el) el.textContent = nombre || 'bienvenido';
+        form.hidden = true;
+        document.querySelector('.rsv__steps').hidden = true;
+        var suc = document.getElementById('rsvSuccess');
+        suc.hidden = false;
+        requestAnimationFrame(function() { suc.classList.add('is-shown'); });
+      });
+
+      /* --- Botones de paso --- */
+      form.addEventListener('click', function(e) {
+        if (e.target.closest('[data-rsv-next]')) {
+          var from = parseInt(e.target.closest('[data-rsv-next]').getAttribute('data-rsv-next'), 10);
+          if (validateStep(from)) showStep(from + 1);
+        }
+        if (e.target.closest('[data-rsv-back]')) {
+          var to = parseInt(e.target.closest('[data-rsv-back]').getAttribute('data-rsv-back'), 10);
+          showStep(to - 1);
+        }
+      });
+
+      /* Limpiar error al reescribir */
+      form.addEventListener('input', function(e) {
+        if (e.target.closest('.rsv__input')) {
+          var wrap = e.target.closest('.rsv__field');
+          (wrap.querySelector('[data-error]') || {}).textContent = '';
+          e.target.classList.remove('rsv__input--invalid');
+          if (e.target.name === 'salida') {
+            var ll = document.getElementById('rsv-llegada');
+            var err = e.target.closest('.rsv__field').querySelector('[data-error]');
+            if (err && ll.value && ll.value < e.target.value) err.textContent = '';
+          }
+        }
+      });
+
+      // Initialize
+      var ll = document.getElementById('rsv-llegada');
+      var sal = document.getElementById('rsv-salida');
+      ll.min = todayISO();
+      sal.min = todayISO();
+      showStep(1);
+    })();
+  </script>
+</body>
+</html>
