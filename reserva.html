@@ -381,17 +381,46 @@
           <!-- ==================== ESTADO DE ÉXITO ==================== -->
           <div class="rsv__success" id="rsvSuccess" hidden>
             <span class="rsv__success-mark" aria-hidden="true"></span>
-            <h2 class="rsv__success-title">Solicitud recibida.</h2>
+            <h2 class="rsv__success-title">Hemos recibido tu solicitud.</h2>
             <p class="rsv__success-nombre">Gracias, <em data-success-nombre>&mdash;</em>.</p>
             <p class="rsv__success-copy">
-              Hemos recibido los datos de tu estancia. Nos pondremos en contacto
-              contigo para confirmar disponibilidad y los siguientes pasos.
+              Hemos recibido los datos de tu estancia. Revisaremos personalmente la
+              disponibilidad y nos pondremos en contacto contigo para confirmar los
+              detalles y los siguientes pasos.
             </p>
+            <p class="rsv__success-nopay">No se realiza ningún pago en este momento.</p>
+
+            <!-- Resumen editorial de la solicitud enviada -->
+            <div class="rsv__success-summary">
+              <span class="rsv__success-summary-title">Tu estancia</span>
+              <div class="rsv__success-summary-row">
+                <span class="rsv__success-summary-date" data-success="llegada">&mdash;</span>
+                <span class="rsv__success-summary-tag">Llegada</span>
+              </div>
+              <div class="rsv__success-summary-row">
+                <span class="rsv__success-summary-date" data-success="salida">&mdash;</span>
+                <span class="rsv__success-summary-tag">Salida</span>
+              </div>
+              <div class="rsv__success-summary-row">
+                <span class="rsv__success-summary-value" data-success="huespedes">&mdash;</span>
+                <span class="rsv__success-summary-tag">Huéspedes</span>
+              </div>
+              <div class="rsv__success-summary-row">
+                <span class="rsv__success-summary-value" data-success="preferencia">&mdash;</span>
+                <span class="rsv__success-summary-tag">Preferencia</span>
+              </div>
+            </div>
+
+            <p class="rsv__success-nopay rsv__success-confirm">
+              Sin pago en este paso. Primero confirmamos disponibilidad contigo.
+            </p>
+
             <div class="rsv__success-actions">
+              <p class="rsv__success-prompt">¿Quieres continuar la conversación directamente?</p>
               <a class="rsv__success-wa" href="https://wa.me/573001234567" target="_blank" rel="noopener">
-                Escribir por WhatsApp&ensp;&rarr;
+                Continuar por WhatsApp&ensp;&rarr;
               </a>
-              <a class="rsv__success-home" href="index.html">Volver al inicio&ensp;&rarr;</a>
+              <a class="rsv__success-home" href="index.html">Volver al sitio&ensp;&rarr;</a>
             </div>
           </div>
 
@@ -922,6 +951,26 @@
         var nombre = document.getElementById('rsv-nombre').value.trim().split(' ')[0];
         var el = document.querySelector('[data-success-nombre]');
         if (el) el.textContent = nombre || 'bienvenido';
+
+        // Resumen editorial de la solicitud (dentro del estado de éxito)
+        var sucSet = function(key, txt) {
+          var node = document.querySelector('[data-success="' + key + '"]');
+          if (node) node.textContent = txt || '—';
+        };
+        sucSet('llegada', fmtDate(document.getElementById('rsv-llegada').value));
+        sucSet('salida', fmtDate(document.getElementById('rsv-salida').value));
+        sucSet('huespedes', ocupacion() || '—');
+        var aptoSel = document.getElementById('rsv-apto').value;
+        sucSet('preferencia', aptoSel || 'Sin preferencia');
+
+        // WhatsApp con mensaje preparado (herramienta de continuación, no obligatorio)
+        var waLink = document.querySelector('.rsv__success-wa');
+        if (waLink) {
+          var waTxt = 'Hola, acabo de enviar una solicitud de estancia en Diana & Sans. Quisiera continuar con la confirmación de disponibilidad.';
+          waTxt += '\n\n' + waMessage();
+          waLink.href = 'https://wa.me/573001234567?text=' + encodeURIComponent(waTxt);
+        }
+
         form.hidden = true;
         document.querySelector('.rsv__steps').hidden = true;
         var suc = document.getElementById('rsvSuccess');
