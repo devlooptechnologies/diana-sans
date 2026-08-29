@@ -1975,8 +1975,10 @@
 .gal-servicios.is-visible [data-sv="7"] { transition-delay: 480ms; }
 .gal-servicios.is-visible [data-sv="8"] { transition-delay: 560ms; }
 .gal-servicios.is-visible [data-sv="9"] { transition-delay: 640ms; }
-.gal-servicios.is-visible [data-sv="10"] { transition-delay: 720ms; }
-.gal-servicios.is-visible [data-sv="11"] { transition-delay: 760ms; }
+  .gal-servicios.is-visible [data-sv="10"] { transition-delay: 720ms; }
+  .gal-servicios.is-visible [data-sv="11"] { transition-delay: 760ms; }
+  .gal-servicios.is-visible [data-sv="12"] { transition-delay: 800ms; }
+  .gal-servicios.is-visible [data-sv="13"] { transition-delay: 860ms; }
 
 /* La fotografía usa clip-path reveal; sin translate en ella */
 .gal-servicios__main[data-sv] {
