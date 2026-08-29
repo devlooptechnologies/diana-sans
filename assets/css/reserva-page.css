@@ -482,6 +482,127 @@
   opacity: 0.8;
 }
 
+/* --- Teléfono: indicativo + número (paso 02) --- */
+
+.rsv__telgroup {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-bottom: 1px solid var(--color-divider);
+  transition: border-color 400ms var(--ease-out);
+}
+
+.rsv__telgroup:focus-within {
+  border-bottom-color: var(--color-gold);
+}
+
+.rsv__telgroup .rsv__input {
+  border-bottom: none;
+}
+
+.rsv__telgroup-code {
+  position: relative;
+  flex: none;
+  width: auto;
+  min-width: 128px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.rsv__telgroup-select {
+  width: auto;
+  min-width: 96px;
+  padding-right: 22px;
+  cursor: pointer;
+}
+
+.rsv__telgroup-arrow {
+  position: absolute;
+  right: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-gold);
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.rsv__telgroup-num {
+  flex: 1;
+  min-width: 0;
+}
+
+/* --- Buscador de países (paso 02) --- */
+
+.rsv__country {
+  position: relative;
+}
+
+.rsv__country-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: var(--z-nav);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 220px;
+  overflow-y: auto;
+  background: #0E0D0B;
+  border: 1px solid rgba(196, 168, 110, 0.25);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+}
+
+.rsv__country-opt {
+  padding: var(--space-12) var(--space-16);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  color: rgba(246, 242, 235, 0.85);
+  cursor: pointer;
+}
+
+.rsv__country-opt:hover,
+.rsv__country-opt:focus-visible {
+  background: rgba(196, 168, 110, 0.12);
+  color: var(--color-ivory);
+}
+
+.rsv__country-empty {
+  padding: var(--space-12) var(--space-16);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  color: rgba(166, 162, 155, 0.7);
+}
+
+/* --- Nota de privacidad (paso 02) --- */
+
+.rsv__privacy {
+  margin: 0 0 clamp(32px, 5vh, 48px);
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: var(--weight-body-light);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  color: rgba(166, 162, 155, 0.65);
+}
+
+/* --- Navegación paso 02 --- */
+
+.rsv__navbtns--step2 .rsv__btn--back {
+  color: var(--color-gray-warm);
+}
+
+.rsv__btn--disabled,
+.rsv__btn--disabled:hover,
+.rsv__btn--disabled:focus-visible {
+  color: rgba(246, 242, 235, 0.25);
+  cursor: not-allowed;
+  outline: none;
+}
+
 /* --- CTA del paso 01 visible + confianza (paso 04) --- */
 
 .rsv__step1-cta {
@@ -997,6 +1118,20 @@
 
   .rsv__checks {
     grid-template-columns: 1fr;
+  }
+
+  /* Teléfono y país en móvil */
+  .rsv__telgroup-code {
+    min-width: 0;
+    width: 38%;
+  }
+
+  .rsv__country-list {
+    max-height: 200px;
+  }
+
+  .rsv__privacy {
+    text-align: left;
   }
 
   /* Inputs táctiles: altura y área de toque cómodas */

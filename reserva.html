@@ -214,31 +214,39 @@
                 <span class="rsv__step-legend-text">Tus datos</span>
               </legend>
 
-              <div class="rsv__fieldgroup">
-                <div class="rsv__field">
-                  <label class="rsv__label" for="rsv-nombre">Nombre completo <span class="rsv__req">*</span></label>
-                  <input class="rsv__input" type="text" id="rsv-nombre" name="nombre" placeholder="Tu nombre" data-required>
-                  <p class="rsv__error" data-error="nombre"></p>
-                </div>
+              <div class="rsv__field">
+                <label class="rsv__label" for="rsv-nombre">Nombre completo <span class="rsv__req">*</span></label>
+                <input class="rsv__input" type="text" id="rsv-nombre" name="nombre" placeholder="Tu nombre completo" data-required autocomplete="name">
+                <p class="rsv__error" data-error="nombre"></p>
               </div>
 
               <div class="rsv__fieldgroup">
                 <div class="rsv__field">
                   <label class="rsv__label" for="rsv-email">Correo electrónico <span class="rsv__req">*</span></label>
-                  <input class="rsv__input" type="email" id="rsv-email" name="email" placeholder="tu@correo.com" data-required data-type="email">
+                  <input class="rsv__input" type="email" id="rsv-email" name="email" placeholder="tu@correo.com" data-required data-type="email" autocomplete="email">
                   <p class="rsv__error" data-error="email"></p>
                 </div>
                 <div class="rsv__field">
                   <label class="rsv__label" for="rsv-tel">WhatsApp / teléfono <span class="rsv__req">*</span></label>
-                  <input class="rsv__input" type="tel" id="rsv-tel" name="telefono" placeholder="+57 ..." data-required data-type="tel">
+                  <div class="rsv__telgroup">
+                    <span class="rsv__telgroup-code">
+                      <select class="rsv__input rsv__select rsv__telgroup-select" id="rsv-indicativo" name="indicativo" aria-label="Indicativo del país"></select>
+                      <svg class="rsv__telgroup-arrow" width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+                    </span>
+                    <input class="rsv__input rsv__telgroup-num" type="tel" id="rsv-tel" name="telefono" placeholder="300 000 0000" data-required data-type="tel" autocomplete="tel-national" inputmode="numeric">
+                  </div>
                   <p class="rsv__error" data-error="telefono"></p>
                 </div>
               </div>
 
               <div class="rsv__fieldgroup">
                 <div class="rsv__field">
-                  <label class="rsv__label" for="rsv-pais">País de procedencia <span class="rsv__req">*</span></label>
-                  <input class="rsv__input" type="text" id="rsv-pais" name="pais" placeholder="Tu país" data-required>
+                  <label class="rsv__label" for="rsv-pais-buscar">País de procedencia <span class="rsv__req">*</span></label>
+                  <div class="rsv__country">
+                    <input class="rsv__input" type="text" id="rsv-pais-buscar" placeholder="Buscar país" autocomplete="off">
+                    <input type="hidden" id="rsv-pais" name="pais" value="">
+                    <ul class="rsv__country-list" id="rsv-countryList" role="listbox" hidden></ul>
+                  </div>
                   <p class="rsv__error" data-error="pais"></p>
                 </div>
                 <div class="rsv__field">
@@ -247,9 +255,12 @@
                 </div>
               </div>
 
-              <div class="rsv__navbtns">
-                <button type="button" class="rsv__btn rsv__btn--back" data-rsv-back="2">Volver</button>
-                <button type="button" class="rsv__btn rsv__btn--next" data-rsv-next="2">Continuar&ensp;&rarr;</button>
+              <!-- Nota de privacidad -->
+              <p class="rsv__privacy">Usaremos tus datos únicamente para gestionar tu solicitud de estancia.</p>
+
+              <div class="rsv__navbtns rsv__navbtns--step2">
+                <button type="button" class="rsv__btn rsv__btn--back" data-rsv-back="2">&larr;&ensp;Volver a estancia</button>
+                <button type="button" class="rsv__btn rsv__btn--next rsv__btn--disabled" data-rsv-next="2" data-required-gate="2" disabled>Continuar&ensp;&rarr;</button>
               </div>
             </fieldset>
 
@@ -481,6 +492,138 @@
          No se inventa: es el único número operativo del proyecto. */
       var WA_NUMBER = '573001234567';
 
+      /* Países de procedencia con su indicativo telefónico (datos geográficos
+         estándar). Se usan para poblar el buscador de países y el indicativo
+         del teléfono. Colombia por defecto. */
+      var PAISES = [
+        { n: 'Colombia', c: '+57' },
+        { n: 'Argentina', c: '+54' },
+        { n: 'Bolivia', c: '+591' },
+        { n: 'Brasil', c: '+55' },
+        { n: 'Canadá', c: '+1' },
+        { n: 'Chile', c: '+56' },
+        { n: 'Costa Rica', c: '+506' },
+        { n: 'Cuba', c: '+53' },
+        { n: 'Ecuador', c: '+593' },
+        { n: 'El Salvador', c: '+503' },
+        { n: 'España', c: '+34' },
+        { n: 'Estados Unidos', c: '+1' },
+        { n: 'Francia', c: '+33' },
+        { n: 'Guatemala', c: '+502' },
+        { n: 'Honduras', c: '+504' },
+        { n: 'Italia', c: '+39' },
+        { n: 'México', c: '+52' },
+        { n: 'Nicaragua', c: '+505' },
+        { n: 'Panamá', c: '+507' },
+        { n: 'Paraguay', c: '+595' },
+        { n: 'Perú', c: '+51' },
+        { n: 'Portugal', c: '+351' },
+        { n: 'Reino Unido', c: '+44' },
+        { n: 'República Dominicana', c: '+1' },
+        { n: 'Uruguay', c: '+598' },
+        { n: 'Venezuela', c: '+58' }
+      ];
+      PAISES.sort(function(a, b) { return a.n.localeCompare(b.n); });
+
+      /* Poblar el select de indicativos */
+      var indicativoSel = document.getElementById('rsv-indicativo');
+      var PAIS_DEFAULT = 'Colombia';
+      if (indicativoSel) {
+        PAISES.forEach(function(p) {
+          var opt = document.createElement('option');
+          opt.value = p.c;
+          opt.textContent = p.c + ' · ' + p.n;
+          opt.dataset.country = p.n;
+          indicativoSel.appendChild(opt);
+        });
+        var defIdx = -1;
+        PAISES.forEach(function(p, i) { if (p.n === PAIS_DEFAULT) defIdx = i; });
+        if (defIdx >= 0) indicativoSel.selectedIndex = defIdx;
+        indicativoSel.addEventListener('change', function() {
+          updateStep2Gate();
+          updateSummary();
+        });
+      }
+
+      /* Teléfono completo (indicativo + número), legible y con dígitos */
+      function telValue() {
+        return indicativoSel ? (indicativoSel.value || '') : '';
+      }
+      function telDigits() {
+        var num = (document.getElementById('rsv-tel') || {}).value || '';
+        return (telValue() + num).replace(/\D/g, '');
+      }
+      function telDisplay() {
+        var num = ((document.getElementById('rsv-tel') || {}).value || '').trim();
+        return (indicativoSel ? indicativoSel.value : '') + (num ? ' ' + num : '');
+      }
+
+      /* --- Buscador de países --- */
+      var paisBuscar = document.getElementById('rsv-pais-buscar');
+      var paisHidden = document.getElementById('rsv-pais');
+      var paisListEl = document.getElementById('rsv-countryList');
+
+      function renderCountries(filter) {
+        if (!paisListEl) return;
+        paisListEl.innerHTML = '';
+        var q = (filter || '').trim().toLowerCase();
+        var matches = [];
+        PAISES.forEach(function(p) {
+          if (!q || p.n.toLowerCase().indexOf(q) === 0 || p.n.toLowerCase().indexOf(' ' + q) > -1) matches.push(p);
+        });
+        if (q && matches.length === 0) {
+          var li = document.createElement('li');
+          li.className = 'rsv__country-empty';
+          li.textContent = 'Sin resultados';
+          paisListEl.appendChild(li);
+          return;
+        }
+        matches.forEach(function(p) {
+          var li = document.createElement('li');
+          li.className = 'rsv__country-opt';
+          li.setAttribute('role', 'option');
+          li.setAttribute('data-value', p.n);
+          li.textContent = p.n;
+          li.addEventListener('mousedown', function(ev) { ev.preventDefault(); selectCountry(p.n); });
+          paisListEl.appendChild(li);
+        });
+      }
+
+      function selectCountry(name) {
+        if (paisBuscar) paisBuscar.value = name;
+        if (paisHidden) paisHidden.value = name;
+        if (paisListEl) paisListEl.hidden = true;
+        // Sincronizar indicativo del teléfono al país elegido
+        var p = PAISES.filter(function(x) { return x.n === name; })[0];
+        if (p && indicativoSel) {
+          Array.prototype.forEach.call(indicativoSel.options, function(o, i) {
+            if (o.dataset.country === name) indicativoSel.selectedIndex = i;
+          });
+        }
+        var wrap = paisBuscar && paisBuscar.closest('.rsv__field');
+        var err = wrap && wrap.querySelector('[data-error]');
+        if (err) err.textContent = '';
+        paisBuscar.classList.remove('rsv__input--invalid');
+        updateStep2Gate();
+        updateSummary();
+      }
+
+      if (paisBuscar) {
+        paisBuscar.addEventListener('input', function() {
+          paisHidden.value = '';
+          paisListEl.hidden = false;
+          renderCountries(paisBuscar.value);
+          updateStep2Gate();
+        });
+        paisBuscar.addEventListener('focus', function() {
+          renderCountries(paisBuscar.value);
+          paisListEl.hidden = false;
+        });
+        document.addEventListener('click', function(e) {
+          if (paisListEl && !e.target.closest('.rsv__country')) paisListEl.hidden = true;
+        });
+      }
+
       /* --- Navegación por pasos --- */
       var steps = Array.prototype.slice.call(form.querySelectorAll('.rsv__step'));
       var stepnavs = Array.prototype.slice.call(document.querySelectorAll('.rsv__stepnav'));
@@ -500,6 +643,7 @@
         });
         if (n > 1) updateSummary();
         updateLive();
+        updateStep2Gate();
         form.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
 
@@ -532,10 +676,10 @@
             return false;
           }
         }
-        if (value && input.dataset.type === 'tel') {
-          var digits = value.replace(/\D/g, '');
-          if (digits.length < 7 || digits.length > 15) {
-            markError(input, 'Ingresa un teléfono válido.');
+        if (input.dataset.type === 'tel') {
+          var digits = telDigits();
+          if (digits.length < 8 || digits.length > 15) {
+            markError(input, 'Ingresa un número de teléfono válido.');
             return false;
           }
         }
@@ -578,13 +722,37 @@
         // Fechas
         if (n === 1) ok = validateDates() && ok;
 
+        // País de procedencia (selector): validar contra el valor seleccionado
+        if (n === 2) {
+          var pb = document.getElementById('rsv-pais-buscar');
+          if (!paisHidden || !paisHidden.value) {
+            markError(pb, 'Selecciona tu país de procedencia.');
+            ok = false;
+          }
+        }
+
         var inputs = step.querySelectorAll('input, select');
         Array.prototype.forEach.call(inputs, function(input) {
           if (input.disabled) return;
+          if (input.type === 'hidden') return;
           if (!validateField(input)) ok = false;
         });
 
         return ok;
+      }
+
+      /* Gate del botón CONTINUAR del paso 02: deshabilitado mientras
+         falte algún campo obligatorio o la selección de país. */
+      function updateStep2Gate() {
+        var btn = form.querySelector('[data-required-gate="2"]');
+        if (!btn) return;
+        var nombre = ((document.getElementById('rsv-nombre') || {}).value || '').trim();
+        var email = ((document.getElementById('rsv-email') || {}).value || '').trim();
+        var telOk = telDigits().length >= 8 && telDigits().length <= 15;
+        var paisOk = paisHidden && paisHidden.value;
+        var ready = !!nombre && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && telOk && !!paisOk;
+        btn.disabled = !ready;
+        btn.classList.toggle('rsv__btn--disabled', !ready);
       }
 
       /* --- Resumen dinámico --- */
@@ -659,7 +827,7 @@
 
         set('nombre', val('rsv-nombre'));
         set('email', val('rsv-email'));
-        set('telefono', val('rsv-tel') || '—');
+        set('telefono', telDisplay() || '—');
 
         var checks = form.querySelectorAll('input[name="necesidad"]:checked');
         var lista = Array.prototype.map.call(checks, function(c) { return c.value; });
@@ -696,6 +864,7 @@
           'Motivo de viaje: ' + (val('rsv-tipo') || 'sin indicar'),
           'Nombre: ' + (val('rsv-nombre') || '—'),
           'Correo: ' + (val('rsv-email') || '—'),
+          'Teléfono: ' + (telDisplay() || '—'),
           'País: ' + (val('rsv-pais') || '—'),
           'Preferencia: ' + (val('rsv-apto') || 'sin especificar'),
           necesidad ? 'Solicitudes: ' + necesidad : ''
@@ -725,7 +894,7 @@
             creada: new Date().toISOString(),
             nombre: document.getElementById('rsv-nombre').value,
             email: document.getElementById('rsv-email').value,
-            telefono: document.getElementById('rsv-tel').value,
+            telefono: telDisplay() || document.getElementById('rsv-tel').value,
             pais: document.getElementById('rsv-pais').value,
             fecha_llegada: document.getElementById('rsv-llegada').value,
             fecha_salida: document.getElementById('rsv-salida').value,
@@ -801,6 +970,7 @@
           }
         }
         updateLive();
+        updateStep2Gate();
       });
 
       // Initialize
