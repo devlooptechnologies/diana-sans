@@ -152,15 +152,23 @@
 /* Elemento de confianza: sin pago en este paso */
 .rsv__trust {
   display: flex;
-  align-items: center;
-  gap: var(--space-16);
+  flex-direction: column;
+  gap: var(--space-4);
   margin: clamp(28px, 4vh, 40px) 0 0;
-  max-width: 38ch;
+  max-width: 26ch;
   font-family: var(--font-body);
-  font-size: var(--text-caption);
+  font-size: 0.6875rem;
+  font-weight: var(--weight-body-light);
+  line-height: 1.7;
+  letter-spacing: 0.03em;
+  color: rgba(166, 162, 155, 0.7);
+}
+
+.rsv__trust-strong {
+  font-size: 0.75rem;
   font-weight: var(--weight-body-medium);
-  letter-spacing: 0.04em;
-  color: rgba(166, 162, 155, 0.85);
+  letter-spacing: 0.02em;
+  color: rgba(246, 242, 235, 0.85);
 }
 
 .rsv__trust::before {
@@ -170,6 +178,7 @@
   height: 1px;
   background: var(--color-gold);
   opacity: 0.6;
+  margin-bottom: var(--space-8);
 }
 
 /* ===========================
@@ -253,6 +262,8 @@
 }
 
 .rsv__step-legend {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   margin-bottom: clamp(32px, 5vh, 48px);
   padding: 0;
@@ -273,13 +284,21 @@
   margin-top: var(--space-16);
 }
 
+.rsv__step-legend-text {
+  display: block;
+  margin-top: var(--space-8);
+  font-size: inherit;
+}
+
 .rsv__step-legend-num {
-  margin-right: var(--space-16);
+  display: block;
   font-family: var(--font-body);
   font-size: 0.625rem;
   font-weight: var(--weight-body-medium);
-  letter-spacing: 0.2em;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
   color: var(--color-gold);
+  margin: 0;
 }
 
 /* --- Campos --- */
@@ -373,29 +392,115 @@
 
 /* --- Resumen vivo bajo las fechas (paso 01) --- */
 .rsv__live {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  margin: -clamp(8px, 1.5vh, 16px) 0 clamp(36px, 5vh, 52px);
-  padding: var(--space-16) 0;
-  border-top: 1px solid var(--color-divider);
-  border-bottom: 1px solid var(--color-divider);
+  margin: clamp(16px, 3vh, 28px) 0 clamp(32px, 5vh, 48px);
+  padding: 0;
 }
 
 .rsv__live-line {
   font-family: var(--font-body);
   font-size: 0.8125rem;
   font-weight: var(--weight-body-medium);
-  letter-spacing: 0.04em;
-  color: var(--color-ivory);
+  letter-spacing: 0.02em;
+  color: var(--color-gold);
+  opacity: 0.85;
+  min-height: 1.2em;
 }
 
-.rsv__live-line--dim {
+/* --- Steppers de adultos / niños (paso 01) --- */
+
+.rsv__fieldgroup--counts .rsv__field {
+  margin-bottom: clamp(32px, 5vh, 48px);
+}
+
+.rsv__stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 220px;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.rsv__stepper-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: var(--weight-heading-light);
+  color: var(--color-gray-warm);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 400ms var(--ease-out);
+}
+
+.rsv__stepper-btn:hover,
+.rsv__stepper-btn:focus-visible {
+  color: var(--color-gold);
+}
+
+.rsv__stepper-btn:focus-visible {
+  outline: 1px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+.rsv__stepper-input {
+  width: 3ch;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  font-weight: var(--weight-heading-light);
+  color: var(--color-ivory);
+  background: transparent;
+  border: none;
+  padding: var(--space-12) 0;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* --- Select de motivo de viaje con flecha (paso 01) --- */
+
+.rsv__select-wrap {
+  position: relative;
+}
+
+.rsv__select-wrap .rsv__select {
+  padding-right: 32px;
+  cursor: pointer;
+}
+
+.rsv__select-arrow {
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  transform: translateY(-50%);
+  color: var(--color-gold);
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* --- CTA del paso 01 visible + confianza (paso 04) --- */
+
+.rsv__step1-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-16);
+}
+
+.rsv__step1-trust {
+  margin: 0;
+  max-width: 30ch;
+  font-family: var(--font-body);
   font-size: 0.6875rem;
   font-weight: var(--weight-body-light);
-  letter-spacing: 0.03em;
-  color: var(--color-gold);
-  opacity: 0.75;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  color: rgba(166, 162, 155, 0.7);
+  text-align: right;
 }
 
 .rsv__error {
@@ -918,6 +1023,14 @@
   }
 
   .rsv__navbtns .rsv__btn--back {
+    text-align: center;
+  }
+
+  .rsv__step1-cta {
+    align-items: stretch;
+  }
+
+  .rsv__step1-trust {
     text-align: center;
   }
 }

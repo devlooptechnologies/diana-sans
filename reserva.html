@@ -106,7 +106,8 @@
 
             <!-- Elemento de confianza: sin pago en este paso -->
             <p class="rsv__trust" data-rv="7">
-              Sin pago en este paso. Primero confirmamos disponibilidad contigo.
+              <span class="rsv__trust-strong">Sin pago en este paso.</span>
+              <span>Primero confirmamos disponibilidad contigo.</span>
             </p>
           </div>
         </div>
@@ -140,7 +141,7 @@
             <fieldset class="rsv__step" data-step="1">
               <legend class="rsv__step-legend">
                 <span class="rsv__step-legend-num">01</span>
-                Tu estancia
+                <span class="rsv__step-legend-text">Tu estancia</span>
               </legend>
 
               <div class="rsv__fieldgroup">
@@ -156,40 +157,53 @@
                 </div>
               </div>
 
-              <!-- Resumen vivo: lo que el usuario va seleccionando -->
+              <!-- Resumen vivo: limpio, discreto -->
               <div class="rsv__live" id="rsvLive" aria-live="polite">
-                <span class="rsv__live-line" data-live="range">&mdash;</span>
-                <span class="rsv__live-line rsv__live-line--dim" data-live="nights">Selecciona las fechas para calcular las noches&nbsp;&middot;&nbsp;2 adultos</span>
+                <span class="rsv__live-line" data-live="summary">Selecciona tus fechas para continuar.</span>
               </div>
 
-              <div class="rsv__fieldgroup">
+              <div class="rsv__fieldgroup rsv__fieldgroup--counts">
                 <div class="rsv__field">
                   <label class="rsv__label" for="rsv-adultos">Adultos <span class="rsv__req">*</span></label>
-                  <input class="rsv__input" type="number" id="rsv-adultos" name="adultos" min="1" max="20" value="2" data-required>
+                  <div class="rsv__stepper">
+                    <button type="button" class="rsv__stepper-btn" data-step-minus="rsv-adultos" aria-label="Menos adultos">&minus;</button>
+                    <input class="rsv__stepper-input" type="text" id="rsv-adultos" name="adultos" min="1" max="20" value="2" readonly data-required aria-live="polite">
+                    <button type="button" class="rsv__stepper-btn" data-step-plus="rsv-adultos" aria-label="Más adultos">+</button>
+                  </div>
                   <p class="rsv__error" data-error="adultos"></p>
                 </div>
                 <div class="rsv__field">
                   <label class="rsv__label" for="rsv-ninos">Niños</label>
-                  <input class="rsv__input" type="number" id="rsv-ninos" name="ninos" min="0" max="20" value="0">
+                  <div class="rsv__stepper">
+                    <button type="button" class="rsv__stepper-btn" data-step-minus="rsv-ninos" aria-label="Menos niños">&minus;</button>
+                    <input class="rsv__stepper-input" type="text" id="rsv-ninos" name="ninos" min="0" max="20" value="0" readonly aria-live="polite">
+                    <button type="button" class="rsv__stepper-btn" data-step-plus="rsv-ninos" aria-label="Más niños">+</button>
+                  </div>
                 </div>
               </div>
 
               <div class="rsv__field">
                 <label class="rsv__label" for="rsv-tipo">Motivo de viaje <span class="rsv__optional">· opcional</span></label>
-                <select class="rsv__input rsv__select" id="rsv-tipo" name="tipo">
-                  <option value="">Sin indicar</option>
-                  <option value="trabajo">Trabajo</option>
-                  <option value="entrenamiento">Entrenamiento / deporte</option>
-                  <option value="turismo">Turismo</option>
-                  <option value="larga">Estancia larga</option>
-                  <option value="familia">Familia</option>
-                  <option value="otro">Otro</option>
-                </select>
+                <div class="rsv__select-wrap">
+                  <select class="rsv__input rsv__select" id="rsv-tipo" name="tipo">
+                    <option value="">Sin indicar</option>
+                    <option value="trabajo">Trabajo</option>
+                    <option value="turismo">Turismo</option>
+                    <option value="deporte">Deporte / entrenamiento</option>
+                    <option value="larga">Estancia larga</option>
+                    <option value="familia">Familia</option>
+                    <option value="otro">Otro</option>
+                  </select>
+                  <svg class="rsv__select-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+                </div>
               </div>
 
-              <div class="rsv__navbtns">
+              <div class="rsv__navbtns rsv__navbtns--step1">
                 <span></span>
-                <button type="button" class="rsv__btn rsv__btn--next" data-rsv-next="1">Continuar&ensp;&rarr;</button>
+                <div class="rsv__step1-cta">
+                  <button type="button" class="rsv__btn rsv__btn--next" data-rsv-next="1">Continuar con mis datos&ensp;&rarr;</button>
+                  <p class="rsv__step1-trust">Sin pago en este paso. Primero confirmamos disponibilidad contigo.</p>
+                </div>
               </div>
             </fieldset>
 
@@ -197,7 +211,7 @@
             <fieldset class="rsv__step" data-step="2" hidden>
               <legend class="rsv__step-legend">
                 <span class="rsv__step-legend-num">02</span>
-                Tus datos
+                <span class="rsv__step-legend-text">Tus datos</span>
               </legend>
 
               <div class="rsv__fieldgroup">
@@ -243,7 +257,7 @@
             <fieldset class="rsv__step" data-step="3" hidden>
               <legend class="rsv__step-legend">
                 <span class="rsv__step-legend-num">03</span>
-                Cuéntanos más
+                <span class="rsv__step-legend-text">Cuéntanos más</span>
               </legend>
 
               <div class="rsv__field">
@@ -306,7 +320,7 @@
             <fieldset class="rsv__step" data-step="4" hidden>
               <legend class="rsv__step-legend">
                 <span class="rsv__step-legend-num">04</span>
-                Revisa tu solicitud
+                <span class="rsv__step-legend-text">Revisa tu solicitud</span>
               </legend>
 
               <!-- Resumen dinámico -->
@@ -613,29 +627,17 @@
         var noches = nightsBetween(llegada, salida);
         var occ = ocupacion();
 
-        var range = document.querySelector('[data-live="range"]');
-        if (!range) return;
-        if (llegada && salida) {
-          range.textContent = fmtDate(llegada) + ' → ' + fmtDate(salida);
-        } else if (llegada) {
-          range.textContent = fmtDate(llegada) + ' → …';
-        } else {
-          range.textContent = '—';
+        var summary = document.querySelector('[data-live="summary"]');
+        if (!summary) return;
+
+        if (!llegada || !salida || noches === null) {
+          summary.textContent = 'Selecciona tus fechas para continuar.';
+          return;
         }
 
-        var nights = document.querySelector('[data-live="nights"]');
-        if (nights) {
-          var partes = [];
-          if (noches !== null) partes.push(noches + (noches === 1 ? ' noche' : ' noches'));
-          if (occ) partes.push(occ);
-          if (!llegada || !salida) {
-            nights.textContent = 'Selecciona las fechas para calcular las noches' + (occ ? ' · ' + occ : '');
-          } else if (noches === null) {
-            nights.textContent = 'Fechas no válidas' + (occ ? ' · ' + occ : '');
-          } else {
-            nights.textContent = partes.join(' · ');
-          }
-        }
+        var partes = [noches + (noches === 1 ? ' noche' : ' noches')];
+        if (occ) partes.push(occ);
+        summary.textContent = partes.join(' · ');
       }
 
       function updateSummary() {
@@ -764,6 +766,25 @@
         if (e.target.closest('[data-rsv-back]')) {
           var to = parseInt(e.target.closest('[data-rsv-back]').getAttribute('data-rsv-back'), 10);
           showStep(to - 1);
+        }
+
+        /* Steppers de adultos / niños */
+        var stepPlus = e.target.closest('[data-step-plus]');
+        var stepMinus = e.target.closest('[data-step-minus]');
+        if (stepPlus || stepMinus) {
+          var id = (stepPlus || stepMinus).getAttribute('data-step-plus') || (stepPlus || stepMinus).getAttribute('data-step-minus');
+          var inp = document.getElementById(id);
+          if (!inp) return;
+          var cur = parseInt(inp.value, 10) || 0;
+          var min = parseInt(inp.getAttribute('min'), 10) || 0;
+          var max = parseInt(inp.getAttribute('max'), 10) || 99;
+          var next = stepPlus ? cur + 1 : cur - 1;
+          inp.value = Math.min(max, Math.max(min, next));
+          updateLive();
+          var wrap = inp.closest('.rsv__field');
+          var err = wrap.querySelector('[data-error]');
+          if (err) err.textContent = '';
+          inp.classList.remove('rsv__input--invalid');
         }
       });
 
