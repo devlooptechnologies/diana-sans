@@ -103,6 +103,11 @@
               Cada solicitud se revisa personalmente. Te contactaremos para
               confirmar disponibilidad y los detalles de tu estancia.
             </p>
+
+            <!-- Elemento de confianza: sin pago en este paso -->
+            <p class="rsv__trust" data-rv="7">
+              Sin pago en este paso. Primero confirmamos disponibilidad contigo.
+            </p>
           </div>
         </div>
 
@@ -151,18 +156,13 @@
                 </div>
               </div>
 
+              <!-- Resumen vivo: lo que el usuario va seleccionando -->
+              <div class="rsv__live" id="rsvLive" aria-live="polite">
+                <span class="rsv__live-line" data-live="range">&mdash;</span>
+                <span class="rsv__live-line rsv__live-line--dim" data-live="nights">Selecciona las fechas para calcular las noches&nbsp;&middot;&nbsp;2 adultos</span>
+              </div>
+
               <div class="rsv__fieldgroup">
-                <div class="rsv__field">
-                  <label class="rsv__label" for="rsv-huespedes">Huéspedes <span class="rsv__req">*</span></label>
-                  <select class="rsv__input rsv__select" id="rsv-huespedes" name="huespedes" data-required>
-                    <option value="">Selecciona</option>
-                    <option value="1">1 huésped</option>
-                    <option value="2">2 huéspedes</option>
-                    <option value="3">3 huéspedes</option>
-                    <option value="4">4 huéspedes</option>
-                  </select>
-                  <p class="rsv__error" data-error="huespedes"></p>
-                </div>
                 <div class="rsv__field">
                   <label class="rsv__label" for="rsv-adultos">Adultos <span class="rsv__req">*</span></label>
                   <input class="rsv__input" type="number" id="rsv-adultos" name="adultos" min="1" max="20" value="2" data-required>
@@ -175,15 +175,15 @@
               </div>
 
               <div class="rsv__field">
-                <label class="rsv__label" for="rsv-tipo">Tipo de estancia <span class="rsv__optional">· opcional</span></label>
+                <label class="rsv__label" for="rsv-tipo">Motivo de viaje <span class="rsv__optional">· opcional</span></label>
                 <select class="rsv__input rsv__select" id="rsv-tipo" name="tipo">
                   <option value="">Sin indicar</option>
-                  <option value="corta">Corta</option>
-                  <option value="larga">Larga (semanas o meses)</option>
                   <option value="trabajo">Trabajo</option>
-                  <option value="turismo">Turismo</option>
                   <option value="entrenamiento">Entrenamiento / deporte</option>
-                  <option value="otra">Otra</option>
+                  <option value="turismo">Turismo</option>
+                  <option value="larga">Estancia larga</option>
+                  <option value="familia">Familia</option>
+                  <option value="otro">Otro</option>
                 </select>
               </div>
 
@@ -315,6 +315,7 @@
                   <span class="rsv__summary-title">Estancia</span>
                   <p class="rsv__summary-line"><span>Llegada</span><em data-summary="llegada">&mdash;</em></p>
                   <p class="rsv__summary-line"><span>Salida</span><em data-summary="salida">&mdash;</em></p>
+                  <p class="rsv__summary-line"><span>Noches</span><em data-summary="noches">&mdash;</em></p>
                   <p class="rsv__summary-line"><span>Huéspedes</span><em data-summary="huespedes">&mdash;</em></p>
                 </div>
                 <div class="rsv__summary-block">
@@ -484,6 +485,7 @@
           sn.classList.toggle('is-done', on && !cur);
         });
         if (n > 1) updateSummary();
+        updateLive();
         form.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
 
@@ -572,10 +574,6 @@
       }
 
       /* --- Resumen dinámico --- */
-      var labeled = {
-        '1': { llegada: 'Llegada', salida: 'Salida', huespedes: 'Huéspedes' },
-        '2': { nombre: 'Nombre', email: 'Correo', telefono: 'WhatsApp' }
-      };
 
       function fmtDate(iso) {
         if (!iso) return '—';
@@ -583,6 +581,61 @@
         if (isNaN(d)) return iso;
         var opts = { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' };
         return d.toLocaleDateString('es-ES', opts);
+      }
+
+      /* Noches entre dos fechas (ISO yyyy-mm-dd). Null si incompletas o inválidas. */
+      function nightsBetween(llegada, salida) {
+        if (!llegada || !salida) return null;
+        var a = new Date(llegada + 'T00:00:00');
+        var b = new Date(salida + 'T00:00:00');
+        if (isNaN(a) || isNaN(b)) return null;
+        var diff = Math.round((b - a) / 86400000);
+        if (diff <= 0) return null;
+        return diff;
+      }
+
+      /* Ocupación calculada: '2 adultos · 1 niño' */
+      function ocupacion() {
+        var val = function(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; };
+        var adultos = val('rsv-adultos');
+        var ninos = val('rsv-ninos');
+        var parts = [];
+        if (adultos && adultos !== '0') parts.push(adultos + ' adulto' + (adultos !== '1' ? 's' : ''));
+        if (ninos && ninos !== '0') parts.push(ninos + ' niño' + (ninos !== '1' ? 's' : ''));
+        return parts.length ? parts.join(' · ') : '';
+      }
+
+      /* Resumen vivo bajo las fechas (paso 01) */
+      function updateLive() {
+        var val = function(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; };
+        var llegada = val('rsv-llegada');
+        var salida = val('rsv-salida');
+        var noches = nightsBetween(llegada, salida);
+        var occ = ocupacion();
+
+        var range = document.querySelector('[data-live="range"]');
+        if (!range) return;
+        if (llegada && salida) {
+          range.textContent = fmtDate(llegada) + ' → ' + fmtDate(salida);
+        } else if (llegada) {
+          range.textContent = fmtDate(llegada) + ' → …';
+        } else {
+          range.textContent = '—';
+        }
+
+        var nights = document.querySelector('[data-live="nights"]');
+        if (nights) {
+          var partes = [];
+          if (noches !== null) partes.push(noches + (noches === 1 ? ' noche' : ' noches'));
+          if (occ) partes.push(occ);
+          if (!llegada || !salida) {
+            nights.textContent = 'Selecciona las fechas para calcular las noches' + (occ ? ' · ' + occ : '');
+          } else if (noches === null) {
+            nights.textContent = 'Fechas no válidas' + (occ ? ' · ' + occ : '');
+          } else {
+            nights.textContent = partes.join(' · ');
+          }
+        }
       }
 
       function updateSummary() {
@@ -597,17 +650,10 @@
         set('llegada', fmtDate(llegada));
         set('salida', fmtDate(salida));
 
-        var npers = val('rsv-huespedes') || 'Sin especificar';
-        var adultos = val('rsv-adultos');
-        var ninos = val('rsv-ninos');
-        var hues = npers;
-        if (adultos || ninos) {
-          var parts = [];
-          if (adultos) parts.push(adultos + ' adulto' + (adultos !== '1' ? 's' : ''));
-          if (ninos && ninos !== '0') parts.push(ninos + ' niño' + (ninos !== '1' ? 's' : ''));
-          if (parts.length) hues = npers + (parts.length ? ' (' + parts.join(', ') + ')' : '');
-        }
-        set('huespedes', hues);
+        var noches = nightsBetween(llegada, salida);
+        set('noches', noches === null ? '—' : (noches + (noches === 1 ? ' noche' : ' noches')));
+
+        set('huespedes', ocupacion() || '—');
 
         set('nombre', val('rsv-nombre'));
         set('email', val('rsv-email'));
@@ -642,11 +688,10 @@
         var lines = [
           'Hola Diana & Sans, me gustaría solicitar disponibilidad.',
           '',
-          'Estancia: ' + fmtDate(val('rsv-llegada')) + ' → ' + fmtDate(val('rsv-salida')),
-          'Huéspedes: ' + (val('rsv-huespedes') || 'sin especificar') +
-            (val('rsv-adultos') ? ' (' + val('rsv-adultos') + ' adulto' + (val('rsv-adultos') !== '1' ? 's' : '') + ')' : '') +
-            (val('rsv-ninos') && val('rsv-ninos') !== '0' ? ', ' + val('rsv-ninos') + ' niño(s)' : ''),
-          'Tipo de estancia: ' + (val('rsv-tipo') || 'sin indicar'),
+          'Estancia: ' + fmtDate(val('rsv-llegada')) + ' → ' + fmtDate(val('rsv-salida')) +
+            (nightsBetween(val('rsv-llegada'), val('rsv-salida')) ? ' (' + nightsBetween(val('rsv-llegada'), val('rsv-salida')) + ' noches)' : ''),
+          'Huéspedes: ' + (ocupacion() || 'sin especificar'),
+          'Motivo de viaje: ' + (val('rsv-tipo') || 'sin indicar'),
           'Nombre: ' + (val('rsv-nombre') || '—'),
           'Correo: ' + (val('rsv-email') || '—'),
           'País: ' + (val('rsv-pais') || '—'),
@@ -684,8 +729,11 @@
             fecha_salida: document.getElementById('rsv-salida').value,
             adultos: document.getElementById('rsv-adultos').value,
             ninos: document.getElementById('rsv-ninos').value,
-            huespedes: document.getElementById('rsv-huespedes').value,
-            tipo_estancia: document.getElementById('rsv-tipo').value,
+            noches: nightsBetween(
+              document.getElementById('rsv-llegada').value,
+              document.getElementById('rsv-salida').value
+            ),
+            motivo_viaje: document.getElementById('rsv-tipo').value,
             solicitudes: Array.prototype.map.call(
               form.querySelectorAll('input[name="necesidad"]:checked'),
               function(c) { return c.value; }
@@ -731,6 +779,7 @@
             if (err && ll.value && ll.value < e.target.value) err.textContent = '';
           }
         }
+        updateLive();
       });
 
       // Initialize
@@ -738,6 +787,7 @@
       var sal = document.getElementById('rsv-salida');
       ll.min = todayISO();
       sal.min = todayISO();
+      updateLive();
       showStep(1);
     })();
   </script>

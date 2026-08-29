@@ -149,6 +149,29 @@
   color: rgba(166, 162, 155, 0.75);
 }
 
+/* Elemento de confianza: sin pago en este paso */
+.rsv__trust {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  margin: clamp(28px, 4vh, 40px) 0 0;
+  max-width: 38ch;
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.04em;
+  color: rgba(166, 162, 155, 0.85);
+}
+
+.rsv__trust::before {
+  content: '';
+  flex: none;
+  width: 20px;
+  height: 1px;
+  background: var(--color-gold);
+  opacity: 0.6;
+}
+
 /* ===========================
    LADO DERECHO — el formulario
    =========================== */
@@ -346,6 +369,33 @@
   resize: vertical;
   min-height: 110px;
   line-height: 1.8;
+}
+
+/* --- Resumen vivo bajo las fechas (paso 01) --- */
+.rsv__live {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: -clamp(8px, 1.5vh, 16px) 0 clamp(36px, 5vh, 52px);
+  padding: var(--space-16) 0;
+  border-top: 1px solid var(--color-divider);
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.rsv__live-line {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: var(--weight-body-medium);
+  letter-spacing: 0.04em;
+  color: var(--color-ivory);
+}
+
+.rsv__live-line--dim {
+  font-size: 0.6875rem;
+  font-weight: var(--weight-body-light);
+  letter-spacing: 0.03em;
+  color: var(--color-gold);
+  opacity: 0.75;
 }
 
 .rsv__error {
